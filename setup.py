@@ -17,7 +17,7 @@ lines = list(parse_requirements("requirements.txt", session=PipSession()))
 install_requires = [str(l.req) for l in lines if l.original_link is None]
 
 setup(
-    name='tensorpack',
+    name='mot',
     author="Mot contributors",
     author_email="ppwwyyxxc@gmail.com",
     url="https://github.com/surfridereurope/mot",

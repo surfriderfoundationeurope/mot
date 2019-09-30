@@ -5,6 +5,10 @@ language: python
 
 python: 3.6
 
+before_install:
+  - DEBIAN_FRONTEND=noninteractive sudo apt-get update
+  - sudo apt-get install -y libsm6 libxext6 libxrender-dev libcap-dev
+
 install:
   - make install
   # Install the codecov pip dependency
@@ -12,7 +16,7 @@ install:
 
 # Run the unit test
 script:
-  - make tests 
+  - make tests
 
 # Push the results back to codecov
 after_success:
