@@ -1,7 +1,7 @@
 import os
 import numpy as np
 import json
-from dataset import DatasetSplit, DatasetRegistry
+from mot.object_detection.dataset import DatasetSplit, DatasetRegistry
 
 __all__ = ["register_balloon"]
 

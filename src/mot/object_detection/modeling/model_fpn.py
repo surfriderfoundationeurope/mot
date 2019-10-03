@@ -11,7 +11,7 @@ from tensorpack.tfutils.summary import add_moving_summary
 from tensorpack.tfutils.tower import get_current_tower_context
 from tensorpack.utils.argtools import memoized
 
-from config import config as cfg
+from mot.object_detection.config import config as cfg
 from utils.box_ops import area as tf_area
 from .backbone import GroupNorm
 from .model_box import roi_align

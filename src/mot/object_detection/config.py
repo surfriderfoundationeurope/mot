@@ -233,7 +233,7 @@ def finalize_configs(is_training):
         _C.DATA.TRAIN = (_C.DATA.TRAIN, )
 
     # finalize dataset definitions ...
-    from dataset import DatasetRegistry
+    from mot.object_detection.dataset import DatasetRegistry
     datasets = list(_C.DATA.TRAIN) + list(_C.DATA.VAL)
     _C.DATA.CLASS_NAMES = DatasetRegistry.get_metadata(datasets[0], "class_names")
     _C.DATA.NUM_CATEGORY = len(_C.DATA.CLASS_NAMES) - 1

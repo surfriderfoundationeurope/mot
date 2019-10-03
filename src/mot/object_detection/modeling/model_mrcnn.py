@@ -9,7 +9,7 @@ from tensorpack.tfutils.scope_utils import under_name_scope
 from tensorpack.tfutils.summary import add_moving_summary
 
 from .backbone import GroupNorm
-from config import config as cfg
+from mot.object_detection.config import config as cfg
 
 
 @under_name_scope()

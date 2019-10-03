@@ -20,9 +20,9 @@ from tensorpack.tfutils.common import get_tf_version_tuple
 from tensorpack.utils import logger, get_tqdm
 
 from common import CustomResize, clip_boxes
-from config import config as cfg
+from mot.object_detection.config import config as cfg
 from data import get_eval_dataflow
-from dataset import DatasetRegistry
+from mot.object_detection.dataset import DatasetRegistry
 
 try:
     import horovod.tensorflow as hvd

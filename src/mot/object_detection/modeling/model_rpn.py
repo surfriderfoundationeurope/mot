@@ -9,7 +9,7 @@ from tensorpack.tfutils.scope_utils import auto_reuse_variable_scope, under_name
 from tensorpack.tfutils.summary import add_moving_summary
 from tensorpack.utils.argtools import memoized
 
-from config import config as cfg
+from mot.object_detection.config import config as cfg
 from .model_box import clip_boxes
 
 

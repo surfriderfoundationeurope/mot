@@ -21,8 +21,8 @@ from common import (
     CustomResize, DataFromListOfDict, box_to_point8,
     filter_boxes_inside_shape, np_iou, point8_to_box, polygons_to_mask,
 )
-from config import config as cfg
-from dataset import DatasetRegistry, register_coco
+from mot.object_detection.config import config as cfg
+from mot.object_detection.dataset import DatasetRegistry, register_coco
 from utils.np_box_ops import area as np_area
 from utils.np_box_ops import ioa as np_ioa
 
@@ -394,7 +394,7 @@ def get_eval_dataflow(name, shard=0, num_shards=1):
 if __name__ == "__main__":
     import os
     from tensorpack.dataflow import PrintData
-    from config import finalize_configs
+    from mot.object_detection.config import finalize_configs
 
     register_coco(os.path.expanduser("~/data/coco"))
     finalize_configs()

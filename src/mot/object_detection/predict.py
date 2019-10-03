@@ -18,9 +18,9 @@ from tensorpack.tfutils import SmartInit, get_tf_version_tuple
 from tensorpack.tfutils.export import ModelExporter
 from tensorpack.utils import fs, logger
 
-from dataset import DatasetRegistry, register_coco, register_balloon
-from config import config as cfg
-from config import finalize_configs
+from mot.object_detection.dataset import DatasetRegistry, register_coco, register_balloon
+from mot.object_detection.config import config as cfg
+from mot.object_detection.config import finalize_configs
 from data import get_eval_dataflow, get_train_dataflow
 from eval import DetectionResult, multithread_predict_dataflow, predict_image
 from modeling.generalized_rcnn import ResNetC4Model, ResNetFPNModel

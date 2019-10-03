@@ -10,9 +10,9 @@ from tensorpack import *
 from tensorpack.tfutils import collect_env_info
 from tensorpack.tfutils.common import get_tf_version_tuple
 
-from dataset import register_coco, register_balloon
-from config import config as cfg
-from config import finalize_configs
+from mot.object_detection.dataset import register_coco, register_balloon
+from mot.object_detection.config import config as cfg
+from mot.object_detection.config import finalize_configs
 from data import get_train_dataflow
 from eval import EvalCallback
 from modeling.generalized_rcnn import ResNetC4Model, ResNetFPNModel

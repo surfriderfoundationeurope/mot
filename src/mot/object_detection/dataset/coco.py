@@ -8,8 +8,8 @@ import tqdm
 from tensorpack.utils import logger
 from tensorpack.utils.timer import timed_operation
 
-from config import config as cfg
-from dataset import DatasetRegistry, DatasetSplit
+from mot.object_detection.config import config as cfg
+from mot.object_detection.dataset import DatasetRegistry, DatasetSplit
 
 __all__ = ['register_coco']
 

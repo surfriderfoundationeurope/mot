@@ -10,7 +10,7 @@ from tensorpack.tfutils import argscope
 from tensorpack.tfutils.scope_utils import auto_reuse_variable_scope
 from tensorpack.tfutils.varreplace import custom_getter_scope, freeze_variables
 
-from config import config as cfg
+from mot.object_detection.config import config as cfg
 
 
 @layer_register(log_shape=True)

@@ -7,7 +7,7 @@ from collections import namedtuple
 
 from tensorpack.tfutils.scope_utils import under_name_scope
 
-from config import config
+from mot.object_detection.config import config
 
 
 @under_name_scope()

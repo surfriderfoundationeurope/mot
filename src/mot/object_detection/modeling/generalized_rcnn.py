@@ -8,7 +8,7 @@ from tensorpack.models import GlobalAvgPooling, l2_regularizer, regularize_cost
 from tensorpack.tfutils import optimizer
 from tensorpack.tfutils.summary import add_moving_summary
 
-from config import config as cfg
+from mot.object_detection.config import config as cfg
 from data import get_all_anchors, get_all_anchors_fpn
 from utils.box_ops import area as tf_area
 
