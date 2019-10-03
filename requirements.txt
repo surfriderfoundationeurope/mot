@@ -1,1 +1,6 @@
-git+https://github.com/tensorpack/tensorpack.git
+opencv-python>=4.1
+tensorpack==0.9.8
+python-prctl>=1.7
+tqdm>=4.36.1
+cython>=0.29.13
+scipy>=1.3.1
