@@ -3,7 +3,9 @@ from mot.tracker import tracker
 import os
 import numpy as np
 
-PATH_TO_TEST_VIDEO = os.path.abspath("./tests/resources/test_video.mp4")
+home = os.path.expanduser("~")
+PATH_TO_TEST_VIDEO = os.path.join(home, ".mot/tests/test_video.mp4")
+
 PATH_TO_OUTPUT_SPLIT = "/tmp/test_outut_video/"
 def test_split_and_open():
     '''
