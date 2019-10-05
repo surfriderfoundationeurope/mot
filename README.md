@@ -10,7 +10,7 @@
 Make sure you have Python 3.3+ and  1.6 <= tensorflow < 2.0
 
 ```bash
-apt install libsm6 libxrender-dev libxext6 libcap-dev
+apt install libsm6 libxrender-dev libxext6 libcap-dev ffmpeg
 ```
 
 
@@ -74,7 +74,3 @@ make tests
 ```bash
 pytest my_file.py::my_function
 ```
-
-
-
-
