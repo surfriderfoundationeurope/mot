@@ -13,9 +13,9 @@ from tensorpack.tfutils.common import get_tf_version_tuple
 from mot.object_detection.dataset import register_coco, register_balloon
 from mot.object_detection.config import config as cfg
 from mot.object_detection.config import finalize_configs
-from data import get_train_dataflow
-from eval import EvalCallback
-from modeling.generalized_rcnn import ResNetC4Model, ResNetFPNModel
+from mot.object_detection.data import get_train_dataflow
+from mot.object_detection.eval import EvalCallback
+from mot.object_detection.modeling.generalized_rcnn import ResNetC4Model, ResNetFPNModel
 
 
 try:

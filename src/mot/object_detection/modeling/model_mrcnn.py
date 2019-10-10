@@ -8,7 +8,7 @@ from tensorpack.tfutils.common import get_tf_version_tuple
 from tensorpack.tfutils.scope_utils import under_name_scope
 from tensorpack.tfutils.summary import add_moving_summary
 
-from .backbone import GroupNorm
+from mot.object_detection.modeling.backbone import GroupNorm
 from mot.object_detection.config import config as cfg
 
 

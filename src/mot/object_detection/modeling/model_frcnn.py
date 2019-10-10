@@ -11,10 +11,10 @@ from tensorpack.tfutils.summary import add_moving_summary
 from tensorpack.utils.argtools import memoized_method
 
 from mot.object_detection.config import config as cfg
-from utils.box_ops import pairwise_iou
+from mot.object_detection.utils.box_ops import pairwise_iou
 
-from .model_box import decode_bbox_target, encode_bbox_target
-from .backbone import GroupNorm
+from mot.object_detection.modeling.model_box import decode_bbox_target, encode_bbox_target
+from mot.object_detection.modeling.backbone import GroupNorm
 
 
 @under_name_scope()

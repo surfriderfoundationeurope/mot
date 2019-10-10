@@ -19,9 +19,9 @@ from tensorpack.callbacks import Callback
 from tensorpack.tfutils.common import get_tf_version_tuple
 from tensorpack.utils import logger, get_tqdm
 
-from common import CustomResize, clip_boxes
+from mot.object_detection.common import CustomResize, clip_boxes
 from mot.object_detection.config import config as cfg
-from data import get_eval_dataflow
+from mot.object_detection.data import get_eval_dataflow
 from mot.object_detection.dataset import DatasetRegistry
 
 try:

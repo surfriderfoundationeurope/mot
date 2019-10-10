@@ -21,10 +21,10 @@ from tensorpack.utils import fs, logger
 from mot.object_detection.dataset import DatasetRegistry, register_coco, register_balloon
 from mot.object_detection.config import config as cfg
 from mot.object_detection.config import finalize_configs
-from data import get_eval_dataflow, get_train_dataflow
-from eval import DetectionResult, multithread_predict_dataflow, predict_image
-from modeling.generalized_rcnn import ResNetC4Model, ResNetFPNModel
-from viz import (
+from mot.object_detection.data import get_eval_dataflow, get_train_dataflow
+from mot.object_detection.eval import DetectionResult, multithread_predict_dataflow, predict_image
+from mot.object_detection.modeling.generalized_rcnn import ResNetC4Model, ResNetFPNModel
+from mot.object_detection.viz import (
     draw_annotation, draw_final_outputs, draw_predictions,
     draw_proposal_recall, draw_final_outputs_blackwhite)
 

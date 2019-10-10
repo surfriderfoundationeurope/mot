@@ -2,29 +2,33 @@
 # File:
 
 import tensorflow as tf
-
 from tensorpack import ModelDesc
 from tensorpack.models import GlobalAvgPooling, l2_regularizer, regularize_cost
 from tensorpack.tfutils import optimizer
 from tensorpack.tfutils.summary import add_moving_summary
 
 from mot.object_detection.config import config as cfg
-from data import get_all_anchors, get_all_anchors_fpn
-from utils.box_ops import area as tf_area
+from mot.object_detection.data import get_all_anchors, get_all_anchors_fpn
+from mot.object_detection.modeling.model_mrcnn import (maskrcnn_loss, maskrcnn_upXconv_head,
+                                              unpackbits_masks)
+from mot.object_detection.modeling.model_rpn import (generate_rpn_proposals, rpn_head, rpn_losses)
+from mot.object_detection.modeling.backbone import (image_preprocess, resnet_c4_backbone,
+                                                    resnet_conv5, resnet_fpn_backbone)
+from mot.object_detection.modeling.model_box import (RPNAnchors, clip_boxes, crop_and_resize,
+                                                     roi_align)
+from mot.object_detection.modeling.model_cascade import CascadeRCNNHead
+from mot.object_detection.modeling.model_fpn import (fpn_model, generate_fpn_proposals,
+                                                     multilevel_roi_align, multilevel_rpn_losses)
+from mot.object_detection.modeling.model_frcnn import (BoxProposals, FastRCNNHead, fastrcnn_outputs,
+                                                       fastrcnn_predictions,
+                                                       sample_fast_rcnn_targets)
+from mot.object_detection.utils.box_ops import area as tf_area
 
-from . import model_frcnn
-from . import model_mrcnn
-from .backbone import image_preprocess, resnet_c4_backbone, resnet_conv5, resnet_fpn_backbone
-from .model_box import RPNAnchors, clip_boxes, crop_and_resize, roi_align
-from .model_cascade import CascadeRCNNHead
-from .model_fpn import fpn_model, generate_fpn_proposals, multilevel_roi_align, multilevel_rpn_losses
-from .model_frcnn import (
-    BoxProposals, FastRCNNHead, fastrcnn_outputs, fastrcnn_predictions, sample_fast_rcnn_targets)
-from .model_mrcnn import maskrcnn_loss, maskrcnn_upXconv_head, unpackbits_masks
-from .model_rpn import generate_rpn_proposals, rpn_head, rpn_losses
+from . import model_frcnn, model_mrcnn
 
 
 class GeneralizedRCNN(ModelDesc):
+
     def preprocess(self, image):
         image = tf.expand_dims(image, 0)
         image = image_preprocess(image, bgr=True)

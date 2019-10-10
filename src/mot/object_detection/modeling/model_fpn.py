@@ -12,10 +12,10 @@ from tensorpack.tfutils.tower import get_current_tower_context
 from tensorpack.utils.argtools import memoized
 
 from mot.object_detection.config import config as cfg
-from utils.box_ops import area as tf_area
-from .backbone import GroupNorm
-from .model_box import roi_align
-from .model_rpn import generate_rpn_proposals, rpn_losses, get_all_anchors
+from mot.object_detection.utils.box_ops import area as tf_area
+from mot.object_detection.modeling.backbone import GroupNorm
+from mot.object_detection.modeling.model_box import roi_align
+from mot.object_detection.modeling.model_rpn import generate_rpn_proposals, rpn_losses, get_all_anchors
 
 
 @layer_register(log_shape=True)

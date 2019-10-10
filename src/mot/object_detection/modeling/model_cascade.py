@@ -3,9 +3,9 @@ import tensorflow as tf
 from tensorpack.tfutils import get_current_tower_context
 
 from mot.object_detection.config import config as cfg
-from utils.box_ops import pairwise_iou, area as tf_area
-from .model_box import clip_boxes
-from .model_frcnn import BoxProposals, FastRCNNHead, fastrcnn_outputs
+from mot.object_detection.utils.box_ops import pairwise_iou, area as tf_area
+from mot.object_detection.modeling.model_box import clip_boxes
+from mot.object_detection.modeling.model_frcnn import BoxProposals, FastRCNNHead, fastrcnn_outputs
 
 
 class CascadeRCNNHead(object):

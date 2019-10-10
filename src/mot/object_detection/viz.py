@@ -8,9 +8,9 @@ from tensorpack.utils import viz
 from tensorpack.utils.palette import PALETTE_RGB
 
 from mot.object_detection.config import config as cfg
-from utils.np_box_ops import area as np_area
-from utils.np_box_ops import iou as np_iou
-from common import polygons_to_mask
+from mot.object_detection.utils.np_box_ops import area as np_area
+from mot.object_detection.utils.np_box_ops import iou as np_iou
+from mot.object_detection.common import polygons_to_mask
 
 
 def draw_annotation(img, boxes, klass, polygons=None, is_crowd=None):

@@ -10,7 +10,7 @@ from tensorpack.tfutils.summary import add_moving_summary
 from tensorpack.utils.argtools import memoized
 
 from mot.object_detection.config import config as cfg
-from .model_box import clip_boxes
+from mot.object_detection.modeling.model_box import clip_boxes
 
 
 @layer_register(log_shape=True)
