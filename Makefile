@@ -8,6 +8,7 @@ install-dev:
 	python scripts/download_models_and_files.py
 
 tests:
+	python scripts/download_models_and_files.py
 	pytest --cov mot tests/
 
 docker:
