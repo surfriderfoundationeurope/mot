@@ -126,4 +126,4 @@ Performance in [Detectron](https://github.com/facebookresearch/Detectron/) can b
 
 ## Other Datasets / Implementation Details / Speed:
 
-See [BALLOON.md](BALLOON.md) and [NOTES.md](NOTES.md) for more details.
+See [NOTES.md](NOTES.md) for more details.

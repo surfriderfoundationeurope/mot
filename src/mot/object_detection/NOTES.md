@@ -7,7 +7,7 @@ This is a minimal implementation that simply contains these files:
 + modeling/model_{fpn,rpn,frcnn,mrcnn,cascade}.py: implement FPN,RPN,Fast/Mask/Cascade R-CNN models.
 + modeling/model_box.py: implement box-related symbolic functions
 + dataset/dataset.py: the dataset interface
-+ dataset/coco.py: load COCO data to the dataset interface
++ dataset/mot.py: load MOT data to the dataset interface
 + data.py: prepare data for training & inference
 + common.py: common data preparation utilities
 + utils/: third-party helper functions
@@ -23,17 +23,14 @@ This is a minimal implementation that simply contains these files:
 
 	`YourDatasetSplit` can be:
 
-   + `COCODetection`, if your data is already in COCO format. In this case, you need to
-		 modify `dataset/coco.py` to change the class names and the id mapping.
+   + `MotDataset`, if your data is already in MOT format.
 
-   + Your own class, if your data is not in COCO format.
-		 You need to write a subclass of `DatasetSplit`, similar to `COCODetection`.
+   + Your own class, if your data is not in MOT format.
+		 You need to write a subclass of `DatasetSplit`, similar to `MotDataset`.
      In this class you'll implement the logic to load your dataset and evaluate predictions.
 		 The documentation is in the docstring of `DatasetSplit.
 
-	 See [BALLOON.md](BALLOON.md) for an example of fine-tuning on a different dataset.
-
-1. You can easily add more augmentations such as rotation, but be careful how a box should be
+2. You can easily add more augmentations such as rotation, but be careful how a box should be
    augmented. The code now will always use the minimal axis-aligned bounding box of the 4 corners,
    which is probably not the optimal way.
    A TODO is to generate bounding box from segmentation, so more augmentations can be naturally supported.

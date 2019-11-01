@@ -32,19 +32,7 @@ pip install 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonA
 
 ### Object detection
 
-This package is the example FasterRCNN coming from [tensorpack](https://github.com/tensorpack/tensorpack).
-
-
-### Make a prediction with pre trained weights
-
-- save this [file](http://models.tensorpack.com/FasterRCNN/COCO-MaskRCNN-R50FPN2x.npz) correspoding to the weights of a ResNet-50 with FPN
-- python3 mot/src/mot/object_detection/predict.py --load /path/to/weights --predict /path/to/image.jpg
-
-### Using a custom dataset
-
-The main development to perform in this folder is described in [this file](src/mot/object_detection/dataset/dataset.py), in order to read a dataset.
-
-For more details, see the official [README.md](src/mot/object_detection/README.md)
+This package is based on the example FasterRCNN coming from [tensorpack](https://github.com/tensorpack/tensorpack). See this [notebook](https://colab.research.google.com/github/surfriderfoundationeurope/mot/blob/master/notebooks/object_detection_training_and_inference.ipynb) for more details on training and inference.
 
 ## Developpers
 

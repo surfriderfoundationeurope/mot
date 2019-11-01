@@ -18,7 +18,7 @@ from tensorpack.tfutils import SmartInit, get_tf_version_tuple
 from tensorpack.tfutils.export import ModelExporter
 from tensorpack.utils import fs, logger
 
-from mot.object_detection.dataset import DatasetRegistry, register_coco, register_balloon, register_mot
+from mot.object_detection.dataset import DatasetRegistry, register_mot
 from mot.object_detection.config import config as cfg
 from mot.object_detection.config import finalize_configs
 from mot.object_detection.data import get_eval_dataflow, get_train_dataflow
@@ -126,9 +126,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
     if args.config:
         cfg.update_args(args.config)
-    register_coco(cfg.DATA.BASEDIR)  # add COCO datasets to the registry
-    register_balloon(cfg.DATA.BASEDIR)
-    register_mot(cfg.DATA.BASEDIR)
+    register_mot(cfg.DATA.BASEDIR) # add the mot datasets to the registry
 
     MODEL = ResNetFPNModel() if cfg.MODE_FPN else ResNetC4Model()
 
