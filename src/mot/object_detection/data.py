@@ -22,7 +22,7 @@ from mot.object_detection.common import (
     filter_boxes_inside_shape, np_iou, point8_to_box, polygons_to_mask,
 )
 from mot.object_detection.config import config as cfg
-from mot.object_detection.dataset import DatasetRegistry, register_coco
+from mot.object_detection.dataset import DatasetRegistry, register_mot
 from mot.object_detection.utils.np_box_ops import area as np_area
 from mot.object_detection.utils.np_box_ops import ioa as np_ioa
 
@@ -396,8 +396,8 @@ if __name__ == "__main__":
     from tensorpack.dataflow import PrintData
     from mot.object_detection.config import finalize_configs
 
-    register_coco(os.path.expanduser("~/data/coco"))
-    finalize_configs()
+    register_mot(cfg.DATA.BASEDIR)
+    finalize_configs(is_training=True)
     ds = get_train_dataflow()
     ds = PrintData(ds, 10)
     TestDataSpeed(ds, 50000).start()
