@@ -24,7 +24,7 @@ from mot.object_detection.modeling.model_frcnn import (BoxProposals, FastRCNNHea
                                                        sample_fast_rcnn_targets)
 from mot.object_detection.utils.box_ops import area as tf_area
 
-from . import model_frcnn, model_mrcnn
+from mot.object_detection.modeling import model_frcnn, model_mrcnn
 
 
 class GeneralizedRCNN(ModelDesc):

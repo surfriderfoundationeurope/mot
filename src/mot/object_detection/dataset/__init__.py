@@ -1,2 +1,2 @@
-from .dataset import *
-from .mot import *
+from mot.object_detection.dataset.dataset import *
+from mot.object_detection.dataset.mot import *
