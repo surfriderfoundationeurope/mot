@@ -1,7 +1,6 @@
 import json
 import os
 
-import matplotlib.pyplot as plt
 import numpy as np
 
 from tensorpack.utils import logger
@@ -11,12 +10,13 @@ from mot.object_detection.dataset import DatasetRegistry, DatasetSplit
 
 __all__ = ["register_mot"]
 
+
 class MotDataset(DatasetSplit):
 
     def __init__(
-        self,
-        base_dir,
-        split,
+            self,
+            base_dir,
+            split,
     ):
         assert split in ["train", "val"]
         self.split = split
@@ -41,10 +41,9 @@ class MotDataset(DatasetSplit):
         with open(self.json_dataset, "r") as f:
             lines = [json.loads(line) for line in f]
         if self.split == "train":
-            return lines[:int(len(lines)*self.ratio)]
+            return lines[:int(len(lines) * self.ratio)]
         else:
-            return lines[int(len(lines)*self.ratio):]
-
+            return lines[int(len(lines) * self.ratio):]
 
     def read_file_name(self, md5):
         return os.path.join(self.base_dir, "Images_md5", md5)
@@ -80,26 +79,16 @@ class MotDataset(DatasetSplit):
         return roidbs
 
     def eval_inference_results(self, results, output=None):
-        id_to_entity_id = {v: k for k, v in self.class_dict.items()}
+        id_to_entity_id = {v: k for k, v in self.class_to_idx.items()}
         for res in results:
-            # convert to the entity IDs coming from classes_csv_file
-            if res['category_id'] in id_to_entity_id:
-                res['category_id'] = id_to_entity_id[res['category_id']]
-            # COCO expects results in xywh format
-            # box = res['bbox']
-            # box[2] -= box[0]
-            # box[3] -= box[1]
-            # res['bbox'] = [round(float(x), 3) for x in box]
+            res["category_id"] = id_to_entity_id[res["category_id"]]
 
         if output is not None:
             with open(output, 'w') as f:
                 json.dump(results, f)
-        return {}
-        if len(results):
-            # sometimes may crash if the results are empty?
-            return self.print_coco_metrics(results)
-        else:
-            return {}
+        # TODO : implement metrics calculation to return them
+        return results
+
 
 def register_mot(basedir):
     basedir = os.path.expanduser(basedir)
@@ -107,11 +96,9 @@ def register_mot(basedir):
     class_names = ["BG"] + get_class_names(classes_path)
     for split in ["train", "val"]:
         name = "mot_" + split
-        DatasetRegistry.register(
-            name,
-            lambda x=split: MotDataset(basedir, split=x)
-        )
+        DatasetRegistry.register(name, lambda x=split: MotDataset(basedir, split=x))
         DatasetRegistry.register_metadata(name, "class_names", class_names)
+
 
 def get_class_names(classes_path):
     """
