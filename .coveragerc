@@ -1,0 +1,3 @@
+[run]
+# this is an import from tensorpack and the code is sadly not tested
+omit = *mot/object_detection/* 
