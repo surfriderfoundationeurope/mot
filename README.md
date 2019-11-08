@@ -78,19 +78,19 @@ make tests
 pytest my_file.py::my_function
 ```
 
-### status
+### Status
 
 Model & training
-- [x] Object detection mot_training
-- [x] Object detection inference demonstration
+- [x] Object detection training
 - [ ] Improving train, validation and test dataset
 - [ ] Model improvements
 - [ ] Connection with dataset to query dataset
-- [ ] Tracking model
+- [ ] Tracking model (WIP)
 - [ ] test dataset for tracking
 
 Inference and deployment
-- [ ] Inference on video (WIP) for demo
+- [x] Object detection inference notebook
+- [ ] Inference on video (WIP)
 - [ ] Connection with input data and inference
 - [ ] Small webserver and API
 - [ ] Docker build and deployment
