@@ -10,34 +10,23 @@ _________________
 
 ## Project
 
+Welcome to MOT, the garbage detection on river banks github. It is part of a project led by [Surfrider Europe](https://surfrider.eu/),
+
+MOT stands for Multi-Object Tracking, as we detect, then track the different plastic trash instances.
+
+The object detection part is based on [tensorpack](https://github.com/tensorpack/tensorpack).
+
 ### Installation
 
-Make sure you have Python 3.3+ and  1.6 <= tensorflow < 2.0
+You may run directly the [notebook in colab](https://colab.research.google.com/github/surfriderfoundationeurope/mot/blob/master/notebooks/object_detection_training_and_inference.ipynb
+
+To install locally, make sure you have Python 3.3+ and  1.6 <= tensorflow < 2.0
 
 ```bash
 apt install libsm6 libxrender-dev libxext6 libcap-dev ffmpeg
-```
-
-
-* System Python3
-
-```bash
 pip3 install --user .
-pip3 install --user 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'
-
 ```
 
-* If you use pyenv
-
-```bash
-pyenv activate my_amazing_surfrider_project
-pip install .
-pip install 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'
-```
-
-### Object detection
-
-This package is based on the example FasterRCNN coming from [tensorpack](https://github.com/tensorpack/tensorpack). See this [notebook](https://colab.research.google.com/github/surfriderfoundationeurope/mot/blob/master/notebooks/object_detection_training_and_inference.ipynb) for more details on training and inference.
 
 ## Developpers
 
@@ -53,6 +42,12 @@ pip install -e ./
 
 The following libraries are needed to run the tests: `pytest`, `pytest-cov`
 
+### Use with pyenv
+
+```bash
+pyenv activate my_amazing_surfrider_project
+pip install .
+```
 
 ### Run the tests
 
@@ -67,3 +62,19 @@ make tests
 ```bash
 pytest my_file.py::my_function
 ```
+### status
+
+Model & training
+- [x] Object detection mot_training
+- [x] Object detection inference demonstration
+- [ ] Improving train, validation and test dataset
+- [ ] Model improvements
+- [ ] Connection with dataset to query dataset
+- [ ] Tracking model
+- [ ] test dataset for tracking
+
+Inference and deployment
+- [ ] Inference on video (WIP) for demo
+- [ ] Connection with input data and inference
+- [ ] Small webserver and API
+- [ ] Docker build and deployment
