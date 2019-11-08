@@ -10,7 +10,7 @@ _________________
 
 ## Project
 
-Welcome to MOT, the garbage detection on river banks github. It is part of a project led by [Surfrider Europe](https://surfrider.eu/),
+Welcome to MOT, the garbage detection on river banks github. It is part of a project led by [Surfrider Europe](https://surfrider.eu/), which aims at quantifying plastic pollution in rivers through space and time.
 
 MOT stands for Multi-Object Tracking, as we detect, then track the different plastic trash instances.
 
@@ -18,7 +18,7 @@ The object detection part is based on [tensorpack](https://github.com/tensorpack
 
 ### Installation
 
-You may run directly the [notebook in colab](https://colab.research.google.com/github/surfriderfoundationeurope/mot/blob/master/notebooks/object_detection_training_and_inference.ipynb
+You may run directly the [notebook in colab](https://colab.research.google.com/github/surfriderfoundationeurope/mot/blob/master/notebooks/object_detection_training_and_inference.ipynb)
 
 To install locally, make sure you have Python 3.3+ and  1.6 <= tensorflow < 2.0
 
@@ -62,19 +62,19 @@ make tests
 ```bash
 pytest my_file.py::my_function
 ```
-### status
+### Status
 
 Model & training
-- [x] Object detection mot_training
-- [x] Object detection inference demonstration
+- [x] Object detection training
 - [ ] Improving train, validation and test dataset
 - [ ] Model improvements
 - [ ] Connection with dataset to query dataset
-- [ ] Tracking model
+- [ ] Tracking model (WIP)
 - [ ] test dataset for tracking
 
 Inference and deployment
-- [ ] Inference on video (WIP) for demo
+- [x] Object detection inference notebook
+- [ ] Inference on video (WIP)
 - [ ] Connection with input data and inference
 - [ ] Small webserver and API
 - [ ] Docker build and deployment
