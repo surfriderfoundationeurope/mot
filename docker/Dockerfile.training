@@ -1,0 +1,14 @@
+FROM tensorflow/tensorflow:1.15.0-gpu-py3
+
+RUN apt-get -y update && \
+  apt-get -y install libsm6 libxrender-dev libxext6 libcap-dev ffmpeg git && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/* /tmp/*
+
+WORKDIR workspace
+
+ADD . mot
+
+RUN cd mot && \
+  pip3 install . && \
+  python3 scripts/download_training_dataset.py
