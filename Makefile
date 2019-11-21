@@ -13,9 +13,9 @@ tests:
 
 docker:
 	docker build -t mot_training -f docker/Dockerfile.training .
+	docker run -it mot_training
 
-docker-tests: docker
+docker-tests:
 	docker build -t mot_tests -f docker/Dockerfile.tests .
-
 
 .PHONY: tests docker
