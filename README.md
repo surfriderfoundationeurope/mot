@@ -16,9 +16,17 @@ MOT stands for Multi-Object Tracking, as we detect, then track the different pla
 
 The object detection part is based on [tensorpack](https://github.com/tensorpack/tensorpack).
 
+### Dataset
+
+You can download a training dataset on this [link](http://files.heuritech.com/raw_files/dataset_surfrider_cleaned.zip).
+
 ### Installation
 
-You may run directly the [notebook in colab](https://colab.research.google.com/github/surfriderfoundationeurope/mot/blob/master/notebooks/object_detection_training_and_inference.ipynb)
+You may run directly the [notebook in colab](https://colab.research.google.com/github/surfriderfoundationeurope/mot/blob/master/notebooks/object_detection_training_and_inference.ipynb).
+
+For more details on training and inference of the object detection please see the following [file](src/mot/object_detection/README.md) which is based on the README of tensorpack.
+
+#### Classic
 
 To install locally, make sure you have Python 3.3+ and  1.6 <= tensorflow < 2.0
 
@@ -27,6 +35,13 @@ apt install libsm6 libxrender-dev libxext6 libcap-dev ffmpeg
 pip3 install --user .
 ```
 
+#### Docker
+
+The following command will build a docker for development and run interactively.
+
+```bash
+make docker
+```
 
 ## Developpers
 
