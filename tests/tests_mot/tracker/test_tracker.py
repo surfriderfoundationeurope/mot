@@ -2,6 +2,7 @@ from mot.tracker import video_utils
 from mot.tracker import tracker
 import os
 import numpy as np
+import shutil
 
 home = os.path.expanduser("~")
 PATH_TO_TEST_VIDEO = os.path.join(home, ".mot/tests/test_video.mp4")
@@ -11,16 +12,18 @@ def test_split_and_open():
     '''
     split video
     '''
-    if not os.path.isdir(PATH_TO_OUTPUT_SPLIT):
-        os.mkdir(PATH_TO_OUTPUT_SPLIT)
+    if os.path.isdir(PATH_TO_OUTPUT_SPLIT):
+        shutil.rmtree(PATH_TO_OUTPUT_SPLIT)
+    os.mkdir(PATH_TO_OUTPUT_SPLIT)
+
     print(PATH_TO_TEST_VIDEO)
     video_utils.split_video(PATH_TO_TEST_VIDEO, PATH_TO_OUTPUT_SPLIT)
-    assert len(os.listdir(PATH_TO_OUTPUT_SPLIT)) == 4
+    assert len(os.listdir(PATH_TO_OUTPUT_SPLIT)) == 6
     '''
     open path and read images
     '''
     frames_array = video_utils.open_images(video_utils.read_folder(PATH_TO_OUTPUT_SPLIT))
-    assert len(frames_array) == 4
+    assert len(frames_array) == 6
     assert frames_array[0].shape == (768, 1024)
 
 
@@ -43,5 +46,5 @@ def test_track():
     matrices = camflow.compute_transform_matrices(frames_array)
     for m in matrices:
         points.append(camflow.warp_coords(points[-1], m))
-    assert len(points) == 4
+    assert len(points) == 6
     print(points)
