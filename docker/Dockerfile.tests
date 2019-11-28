@@ -5,12 +5,10 @@ RUN apt-get -y update && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/*
 
-WORKDIR workspace
+WORKDIR /workspace/mot
 
-ADD . mot
+ADD . /workspace/mot
 
-RUN cd mot && \
-  pip3 install . && \
-  pip3 install pytest>=5.3.0 pytest-cov>=2.8.1 && \
-	python scripts/download_models_and_files.py && \
-	pytest --cov mot tests/
+RUN pip3 install .
+
+ENTRYPOINT ["tests/run_tests.sh"]
