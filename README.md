@@ -40,7 +40,7 @@ pip3 install --user .
 The following command will build a docker for development and run interactively.
 
 ```bash
-make docker
+make docker-training
 ```
 
 ## Developpers
