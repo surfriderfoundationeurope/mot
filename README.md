@@ -43,6 +43,26 @@ The following command will build a docker for development and run interactively.
 make docker-training
 ```
 
+### Export
+
+First, you need to train an object detection model following the instructions in [this file](src/mot/object_detection/REAME.md).
+Then, you need to export this model in SavedModel format
+
+```bash
+python3 -m mot.object_detection.predict --load /path/to/your/trained/model --config DATA.BASEDIR=/path/to/the/dataset --serving /path/to/serving
+```
+
+The dataset should be the one downloaded following the instructions above. You can also use a folder with only [this file](http://files.heuritech.com/raw_files/surfrider/classes.json) inside if you don't want to download the whole dataset.  
+Also remember to use the same config as the one used for training (using FPN.CASCADE=True for instance).
+
+### Serving
+
+Then, you can launch the serving with:
+
+```bash
+model_folder=/path/to/serving port=the_port_you_want_to_expose make docker-serving
+```
+
 ## Developpers
 
 Please read the [CONTRIBUTING.md](./CONTRIBUTING.md)
