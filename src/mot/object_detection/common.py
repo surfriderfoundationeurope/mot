@@ -161,4 +161,4 @@ try:
         return ret.astype('float32')
 
 except ImportError:
-    from utils.np_box_ops import iou as np_iou  # noqa
+    from mot.object_detection.utils.np_box_ops import iou as np_iou  # noqa

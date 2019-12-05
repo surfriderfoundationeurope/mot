@@ -1,21 +1,19 @@
 install:
 	pip install ./
-	pip install 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'
 
 install-dev:
 	pip install -e ./
-	pip install 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'
 	python scripts/download_models_and_files.py
 
 tests:
-	python scripts/download_models_and_files.py
-	pytest --cov mot tests/
+	./tests/run_tests.sh
 
-docker:
+docker-training:
 	docker build -t mot_training -f docker/Dockerfile.training .
 	docker run -it mot_training
 
 docker-tests:
 	docker build -t mot_tests -f docker/Dockerfile.tests .
+	docker run mot_tests
 
 .PHONY: tests docker
