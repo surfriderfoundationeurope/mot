@@ -150,9 +150,9 @@ if __name__ == '__main__':
             output_names=MODEL.get_inference_tensor_names()[1])
 
         if args.compact:
-            ModelExporter(predcfg).export_compact(args.compact, optimize=False)
+            ModelExporter(predcfg).export_compact(args.compact)
         elif args.serving:
-            ModelExporter(predcfg).export_serving(args.serving, optimize=False)
+            ModelExporter(predcfg).export_serving(args.serving, signature_name="serving")
 
         if args.predict:
             predictor = OfflinePredictor(predcfg)
