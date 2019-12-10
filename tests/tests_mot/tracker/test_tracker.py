@@ -1,4 +1,6 @@
 from mot.tracker import tracker
+from mot.object_detection.config import config as cfg
+
 import os
 import numpy as np
 import shutil
@@ -44,9 +46,23 @@ def test_track_objects():
 
     object_tracker = tracker.ObjectTracking("test_video", test_image_list, test_inference_data, fps = 1)
     trash_list = object_tracker.track_objects()
-    print(trash_list)
     assert len(trash_list) == 3
     found_labels_dict = {1:False, 2:False, 3:False}
     for trash in trash_list:
         found_labels_dict[trash.label] = True
     assert found_labels_dict == {1:True, 2:True, 3:True}
+
+def test_json_output():
+    cfg.DATA.CLASS_NAMES = ["BG"] +  ["bottles", "others", "fragments"]
+    test_inference_data = [{"output/boxes:0":[[558,382,597,415]],
+    "output/labels:0":[3],
+    "output/scores:0":[0.81]}]
+
+    object_tracker = tracker.ObjectTracking("test_video", ["mock_frame"], test_inference_data, fps = 1)
+    object_tracker.track_objects()
+    json_result = object_tracker.json_result()
+
+    assert json_result ==  {"video_length": 1,
+                            "fps": 1,
+                            "video_id": "test_video",
+                            "detected_trash": [{"label": "fragments", "id": 0, "frames": [0]}]}

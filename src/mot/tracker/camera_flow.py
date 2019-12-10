@@ -3,6 +3,9 @@ import numpy as np
 from numpy.linalg import inv
 
 class CameraFlow():
+    '''Compute camera flow through optical flow between consecutive images
+    currently not used in the simplest version of the tracking
+    '''
     def __init__(self):
         self.margin_w = 200
         self.margin_h = 20
@@ -12,6 +15,18 @@ class CameraFlow():
 
 
     def compute_transform_matrix(self, im_prev, im_next):
+        '''
+        Computes the transformation between two images
+
+        Arguments:
+
+        -im_prev: np array of shape self.img_shape and no color channels
+        -im_next: np array of shape self.img_shape and no color channels
+
+        Returns:
+
+        - The affine transformation matrix, np array of shape (2,3)
+        '''
         prev_pts = cv2.goodFeaturesToTrack(im_prev,
                                            maxCorners=200,
                                            qualityLevel=0.01,
@@ -28,9 +43,13 @@ class CameraFlow():
     def warp_image(self, im, matrix):
         return cv2.warpAffine(im, matrix, self.img_shape, flags=cv2.INTER_LINEAR + cv2.WARP_INVERSE_MAP)
 
+
     def warp_coords(self, coords, matrix):
-        '''
-        Assure coords is a np array of shape (X, 2)
+        '''Transforms the coords of points through the affine matrix
+
+        Arguments:
+        - coords: coordinates of points, np array of shape (X, 2)
+        - matrix: transformation matrix of shape (2, 3)
         '''
         matrix = cv2.invertAffineTransform(matrix)
         linear = matrix[:, 0:2]

@@ -1,6 +1,9 @@
 import numpy as np
-from mot.object_detection.utils import np_box_ops
 import copy
+
+from mot.object_detection.utils import np_box_ops
+from mot.object_detection.config import config as cfg
+
 
 class Trash():
     '''Detected trash class
@@ -20,7 +23,14 @@ class Trash():
 
     def find_best_match_in_list(self, list_trash, iou_threshold):
         '''Finds the best matching trash index with regards to a list of trash
-            mathcing is defined by same class and best iou between boxes
+        matching is defined by same class and best iou between boxes
+
+        Arguments:
+        - list_trash: A list of reference trash
+        - iou_threshold: A float IoU threshold
+
+        Returns:
+        - None, or the index of the matching trash
         '''
         matching_id = None
         trash_box = self.get_np_box()[np.newaxis,:]
@@ -47,10 +57,13 @@ class Trash():
     def __repr__(self):
         return "(id:{}, label:{}, center:({:.1f},{:.1f}), frames:{})".format(self.id, self.label, self.get_center()[0], self.get_center()[1], self.frames)
 
+    def json_result(self):
+        classname = cfg.DATA.CLASS_NAMES[self.label]
+        return {"label":classname, "frames":self.frames, "id":self.id}
+
 
 class ObjectTracking():
     '''Wrapper class to tracking trash objects in video output frames
-
     '''
     def __init__(self, video_id, list_path_images, list_inference_output = None, fps = 2, list_geoloc = None):
         self.video_id = video_id
@@ -70,6 +83,15 @@ class ObjectTracking():
 
     def potential_matching_trash_list(self, frame_idx, objects_per_frame_list):
         '''Creates a list of trash which appear in the last `self.rewind_window_match` frames
+
+        Arguments:
+
+        - frame_idx: the frame index as integer
+        - objects_per_frame_list: the list of trash object for each past frame_idx
+
+        Returns:
+
+        - A list of trash objects that could potentially match
         '''
         potential_matching_ids = set()
         for idx_rewind in range(frame_idx -1, frame_idx - self.rewind_window_match - 1, -1):
@@ -78,7 +100,11 @@ class ObjectTracking():
         return [trash for trash in self.detected_trash if trash.id in potential_matching_ids]
 
     def track_objects(self):
-        '''Main function which tracks trash objects
+        '''Main function which tracks trash objects. Assumes
+
+        Returns:
+
+        - The detected trash list
         '''
         if not self.list_inference_output:
             raise ValueError("No inference was run, can't track objects")
@@ -112,7 +138,7 @@ class ObjectTracking():
 
 
     def json_result(self, include_geo = False):
-        '''Outputs a json result centered on tracked objects
+        '''Outputs a json result centered on tracked objects. Score not yet included
 
         Arguments:
 
@@ -124,18 +150,20 @@ class ObjectTracking():
         - a json file of the following format:
         ```python
             {"video_length": 132,
+            "fps": 2,
             "video_id": "GOPRO1234.mp4",
             "detected_trash": [
-              {"type": "bottle", "score": 0.97, "ts": [23,24,25]},
-              {"type": "fragment", "score": 0.93, "ts": [32]},
-            ],
-            "model_version": "0.1"}
+              {"type": "bottle", "id": 0, "frames": [23,24,25]},
+              {"type": "fragment", "id": 1, "frames": [32]},
+            ]}
         ```
         '''
         if not self.tracking_done:
             self.track_objects()
 
         json_output = {}
-        json_output["video_length"] = self.num_images / fps
+        json_output["video_length"] = self.num_images
+        json_output["fps"] = self.fps
         json_output["video_id"] = self.video_id
+        json_output["detected_trash"] = [trash.json_result() for trash in self.detected_trash]
         return json_output
