@@ -21,7 +21,7 @@ def split_video(input_path, output_folder, fps = 1.5, resolution=(1024,768)):
         .filter('scale', width="{}".format(resolution[0]), height='{}'.format(resolution[1]))
         .filter('fps', fps=fps, round='up')
         .trim(start_frame=0)
-        .output(output_folder + 'frame_%4d.jpeg', format='image2', vcodec='mjpeg')
+        .output(os.path.join(output_folder, 'frame_%4d.jpeg'), format='image2', vcodec='mjpeg')
         .run()
     )
 

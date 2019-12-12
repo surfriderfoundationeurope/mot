@@ -6,9 +6,9 @@ from mot.serving.app import app
 
 
 def mock_post_tensorpack_localizer(*args, **kwargs):
-    boxes = [[0, 0, 4, 4], [0, 0, 8, 8]]
-    scores = [0.7, 0.7]
-    classes = [0, 2]
+    boxes = [[0, 0, 40, 40], [0, 0, 80, 80]]
+    scores = [0.71, 0.71]
+    classes = [1, 3]
     response = mock.Mock()
     response.text = json.dumps(
         {
@@ -37,11 +37,10 @@ def test_app_post(mock_server_result):
             ],
         ]})
         output = rv.get_json()
-    expected_output = {
-        'output/boxes:0': [[0, 0, 0.01, 0.01], [0, 0, 0.02, 0.02]],
-        'output/scores:0': [0.7, 0.7],
-        'output/labels:0': [0, 2],
-    }
+    expected_output = {"detected_trash": [
+    {"box":[0.0,0.0,0.1,0.1], "label":"bottles", "score":0.71},
+    {"box":[0.0,0.0,0.2,0.2], "label":"fragments", "score":0.71}
+    ]}
     assert output == expected_output
 
 

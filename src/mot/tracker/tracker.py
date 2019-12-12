@@ -153,8 +153,8 @@ class ObjectTracking():
             "fps": 2,
             "video_id": "GOPRO1234.mp4",
             "detected_trash": [
-              {"type": "bottle", "id": 0, "frames": [23,24,25]},
-              {"type": "fragment", "id": 1, "frames": [32]},
+              {"label": "bottle", "id": 0, "frames": [23,24,25]},
+              {"label": "fragment", "id": 1, "frames": [32]},
             ]}
         ```
         '''
