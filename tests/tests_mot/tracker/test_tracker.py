@@ -3,7 +3,6 @@ from mot.object_detection.config import config as cfg
 
 import os
 import numpy as np
-import shutil
 
 def test_find_best_match():
     test_trash = tracker.Trash(1, 1, [558.1,382.1,597.1,415.1], 4)
@@ -25,10 +24,9 @@ def test_potential_matching_trash_list():
     test_objects_per_frame_list = [[0,1], [2]]
 
     object_tracker = tracker.ObjectTracking("test_video", [], [], fps = 1)
-    object_tracker.detected_trash = test_trash_list
 
     # find objects anterior to second frame
-    potential_list = object_tracker.potential_matching_trash_list(1, test_objects_per_frame_list)
+    potential_list = object_tracker.potential_matching_trash_list(1, test_trash_list, test_objects_per_frame_list)
     assert len(potential_list) == 2
 
 def test_track_objects():
@@ -59,7 +57,6 @@ def test_json_output():
     "output/scores:0":[0.81]}]
 
     object_tracker = tracker.ObjectTracking("test_video", ["mock_frame"], test_inference_data, fps = 1)
-    object_tracker.track_objects()
     json_result = object_tracker.json_result()
 
     assert json_result ==  {"video_length": 1,

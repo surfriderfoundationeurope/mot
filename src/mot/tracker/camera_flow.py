@@ -20,8 +20,8 @@ class CameraFlow():
 
         Arguments:
 
-        -im_prev: np array of shape self.img_shape and no color channels
-        -im_next: np array of shape self.img_shape and no color channels
+        - im_prev: np array of shape self.img_shape and no color channels
+        - im_next: np array of shape self.img_shape and no color channels
 
         Returns:
 
@@ -48,6 +48,7 @@ class CameraFlow():
         '''Transforms the coords of points through the affine matrix
 
         Arguments:
+        
         - coords: coordinates of points, np array of shape (X, 2)
         - matrix: transformation matrix of shape (2, 3)
         '''

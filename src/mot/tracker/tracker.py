@@ -1,5 +1,6 @@
 import numpy as np
 import copy
+from cached_property import cached_property
 
 from mot.object_detection.utils import np_box_ops
 from mot.object_detection.config import config as cfg
@@ -75,13 +76,12 @@ class ObjectTracking():
         self.list_geoloc = list_geoloc
         self.fps = fps
 
-        self.detected_trash = []
         self.tracking_done = False
 
         self.iou_threshold = 0.3
         self.rewind_window_match = 2
 
-    def potential_matching_trash_list(self, frame_idx, objects_per_frame_list):
+    def potential_matching_trash_list(self, frame_idx, detected_trashes, objects_per_frame_list):
         '''Creates a list of trash which appear in the last `self.rewind_window_match` frames
 
         Arguments:
@@ -97,7 +97,11 @@ class ObjectTracking():
         for idx_rewind in range(frame_idx -1, frame_idx - self.rewind_window_match - 1, -1):
             if idx_rewind >= 0:
                 potential_matching_ids = potential_matching_ids.union(set(objects_per_frame_list[idx_rewind]))
-        return [trash for trash in self.detected_trash if trash.id in potential_matching_ids]
+        return [trash for trash in detected_trashes if trash.id in potential_matching_ids]
+
+    @cached_property
+    def detected_trash(self):
+        return self.track_objects()
 
     def track_objects(self):
         '''Main function which tracks trash objects. Assumes
@@ -106,6 +110,8 @@ class ObjectTracking():
 
         - The detected trash list
         '''
+        detected_trashes = []
+
         if not self.list_inference_output:
             raise ValueError("No inference was run, can't track objects")
 
@@ -117,7 +123,7 @@ class ObjectTracking():
             found_boxes = json_object.get("output/boxes:0")
 
             # Build the list of previous trash that could be matched
-            potential_matching_trash = self.potential_matching_trash_list(frame_idx, objects_per_frame_list)
+            potential_matching_trash = self.potential_matching_trash_list(frame_idx, detected_trashes, objects_per_frame_list)
             for label, box in zip(found_classes, found_boxes):
                 current_trash = Trash(nb_detected_objects, label, box, frame_idx)
 
@@ -125,16 +131,15 @@ class ObjectTracking():
                 matching_id = current_trash.find_best_match_in_list(potential_matching_trash, self.iou_threshold)
                 if matching_id is not None:
                     # append the frame & box to the matching trash
-                    self.detected_trash[matching_id].add_matching_object(box, frame_idx)
+                    detected_trashes[matching_id].add_matching_object(box, frame_idx)
                     objects_per_frame_list[frame_idx].append(matching_id)
                 else:
                     # Otherwise, create new object
-                    self.detected_trash.append(copy.deepcopy(current_trash))
+                    detected_trashes.append(copy.deepcopy(current_trash))
                     objects_per_frame_list[frame_idx].append(current_trash.id)
                     nb_detected_objects += 1
 
-        self.tracking_done = True
-        return self.detected_trash
+        return detected_trashes
 
 
     def json_result(self, include_geo = False):
@@ -158,8 +163,6 @@ class ObjectTracking():
             ]}
         ```
         '''
-        if not self.tracking_done:
-            self.track_objects()
 
         json_output = {}
         json_output["video_length"] = self.num_images

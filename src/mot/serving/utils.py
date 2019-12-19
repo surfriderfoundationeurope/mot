@@ -116,7 +116,6 @@ def handle_file(file: FileStorage, upload_folder=UPLOAD_FOLDER, fps=2) -> Dict[s
             output = localizer_tensorflow_serving_inference(image, SERVING_URL)
             list_inference_output.append(output)
         object_tracker = ObjectTracking(filename, list_path_images, list_inference_output, fps = fps)
-        object_tracker.track_objects()
         return object_tracker.json_result()
 
         shutil.rmtree(folder) # remove it as we don't need it anymore
