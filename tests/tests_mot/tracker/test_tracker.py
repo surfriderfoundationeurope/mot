@@ -1,47 +1,65 @@
-from mot.tracker import video_utils
 from mot.tracker import tracker
+from mot.object_detection.config import config as cfg
+
 import os
 import numpy as np
 
-home = os.path.expanduser("~")
-PATH_TO_TEST_VIDEO = os.path.join(home, ".mot/tests/test_video.mp4")
+def test_find_best_match():
+    test_trash = tracker.Trash(1, 1, [558.1,382.1,597.1,415.1], 4)
+    trash_list = [ tracker.Trash(0, 1, [558.1,382.1,597.1,415.1], 2),
+    tracker.Trash(1, 1, [530, 360 ,591,414], 2),
+    tracker.Trash(2, 2, [558.1,382.1,597.1,415.1], 3),
+    ]
 
-PATH_TO_OUTPUT_SPLIT = "/tmp/test_outut_video/"
-def test_split_and_open():
-    '''
-    split video
-    '''
-    if not os.path.isdir(PATH_TO_OUTPUT_SPLIT):
-        os.mkdir(PATH_TO_OUTPUT_SPLIT)
-    print(PATH_TO_TEST_VIDEO)
-    video_utils.split_video(PATH_TO_TEST_VIDEO, PATH_TO_OUTPUT_SPLIT)
-    assert len(os.listdir(PATH_TO_OUTPUT_SPLIT)) == 4
-    '''
-    open path and read images
-    '''
-    frames_array = video_utils.open_images(video_utils.read_folder(PATH_TO_OUTPUT_SPLIT))
-    assert len(frames_array) == 4
-    assert frames_array[0].shape == (768, 1024)
+    matching_id = test_trash.find_best_match_in_list(trash_list, 0.3)
+    assert matching_id == 0
 
+def test_potential_matching_trash_list():
+    # 3 Trash, 2 on first frame, 1 on second frame
+    test_trash_list = [ tracker.Trash(0, 1, [558.1,382.1,597.1,415.1], 0),
+    tracker.Trash(1, 1, [530, 360 ,591,414], 0),
+    tracker.Trash(2, 2, [558.1,382.1,597.1,415.1], 1),
+    ]
 
-def test_track():
-    if not os.path.isdir(PATH_TO_OUTPUT_SPLIT) or len(os.listdir(PATH_TO_OUTPUT_SPLIT)) != 4:
-        video_utils.split_video(PATH_TO_TEST_VIDEO, PATH_TO_OUTPUT_SPLIT)
+    test_objects_per_frame_list = [[0,1], [2]]
 
-    frames_array = video_utils.open_images(video_utils.read_folder(PATH_TO_OUTPUT_SPLIT))
+    object_tracker = tracker.ObjectTracking("test_video", [], [], fps = 1)
 
-    camflow = tracker.CameraFlow()
-    matrix = camflow.compute_transform_matrix(frames_array[0], frames_array[1])
-    assert matrix.shape == (2, 3)
+    # find objects anterior to second frame
+    potential_list = object_tracker.potential_matching_trash_list(1, test_trash_list, test_objects_per_frame_list)
+    assert len(potential_list) == 2
 
-    '''
-    transform points
-    '''
-    point = np.array([448., 448.])
-    points = []
-    points.append(point)
-    matrices = camflow.compute_transform_matrices(frames_array)
-    for m in matrices:
-        points.append(camflow.warp_coords(points[-1], m))
-    assert len(points) == 4
-    print(points)
+def test_track_objects():
+    test_image_list = ["mock_frame_1", "mock_frame_2", "mock_frame_3"]
+    test_inference_data = [
+    {"output/boxes:0":[[558,382,597,415],[524,186,618,210],[459,357,507,381]],
+    "output/labels:0":[3,1,2],
+    "output/scores:0":[0.81,0.68,0.62]},
+    {"output/boxes:0":[[558,382,597,415],[524,186,618,210],[459,357,507,381]],
+    "output/labels:0":[3,1,2],
+    "output/scores:0":[0.81,0.68,0.62]},
+    {"output/boxes:0":[[558,382,597,415],[524,186,618,210],[459,357,507,381]],
+    "output/labels:0":[3,1,2],
+    "output/scores:0":[0.81,0.68,0.62]}]
+
+    object_tracker = tracker.ObjectTracking("test_video", test_image_list, test_inference_data, fps = 1)
+    trash_list = object_tracker.track_objects()
+    assert len(trash_list) == 3
+    found_labels_dict = {1:False, 2:False, 3:False}
+    for trash in trash_list:
+        found_labels_dict[trash.label] = True
+    assert found_labels_dict == {1:True, 2:True, 3:True}
+
+def test_json_output():
+    cfg.DATA.CLASS_NAMES = ["BG"] +  ["bottles", "others", "fragments"]
+    test_inference_data = [{"output/boxes:0":[[558,382,597,415]],
+    "output/labels:0":[3],
+    "output/scores:0":[0.81]}]
+
+    object_tracker = tracker.ObjectTracking("test_video", ["mock_frame"], test_inference_data, fps = 1)
+    json_result = object_tracker.json_result()
+
+    assert json_result ==  {"video_length": 1,
+                            "fps": 1,
+                            "video_id": "test_video",
+                            "detected_trash": [{"label": "fragments", "id": 0, "frames": [0]}]}
