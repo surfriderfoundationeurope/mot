@@ -66,12 +66,12 @@ class MotDataset(DatasetSplit):
         self.dataset_path = os.path.join(base_dir, dataset_file)
         if not os.path.isfile(self.dataset_path):
             raise FileNotFoundError(
-                f"Missing file {self.dataset_path}. Make sure your file is named correctly."
+                "Missing file {}. Make sure your file is named correctly.".format(self.dataset_path)
             )
         self.classes_path = os.path.join(base_dir, classes_file)
         if not os.path.isfile(self.classes_path):
             raise FileNotFoundError(
-                f"Missing file {self.classes_path}. Make sure your file is named correctly."
+                "Missing file {}. Make sure your file is named correctly.".format(self.classes_path)
             )
         with open(self.classes_path) as f:
             classes = json.load(f)
@@ -83,7 +83,7 @@ class MotDataset(DatasetSplit):
             self.images_folder = os.path.join(base_dir, images_folder)
         # yapf: enable
         if not os.path.isdir(self.images_folder):
-            raise NotADirectoryError(f"Missing images folder {self.images_folder}.")
+            raise NotADirectoryError("Missing images folder {}.".format(self.images_folder))
 
     def read_labels(self, labels: List[Dict[str, object]]) -> (np.ndarray, np.ndarray):
         """[summary]

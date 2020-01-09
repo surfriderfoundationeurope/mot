@@ -134,20 +134,20 @@ def handle_file(file: FileStorage, upload_folder=UPLOAD_FOLDER, fps=2) -> Dict[s
         if os.path.isdir(folder):
             shutil.rmtree(folder)
         os.mkdir(folder)
-        logger.info(f"Splitting video {full_filepath} to {folder}.")
+        logger.info("Splitting video {} to {}.".format(full_filepath, folder))
         split_video(full_filepath, folder, fps=fps)
         list_path_images = read_folder(folder)
         if len(list_path_images) == 0:
             raise ValueError("No output image")
-        logger.info(f"{len(list_path_images)} images to analyze.")
+        logger.info("{} images to analyze.".format(len(list_path_images)))
         list_inference_output = []
         for i, image_path in enumerate(list_path_images):
             image = cv2.imread(image_path)  # cv2 opens in BGR
             output = localizer_tensorflow_serving_inference(image, SERVING_URL)
             list_inference_output.append(output)
             if not i % 100:
-                logger.info(f"Analyzing image {i+1} / {len(list_path_images)}.")
-        logger.info(f"Finish analyzing video {full_filepath}.")
+                logger.info("Analyzing image {} / {}.".format(i + 1, len(list_path_images)))
+        logger.info("Finish analyzing video {}.".format(full_filepath))
         logger.info("Starting tracking.")
         object_tracker = ObjectTracking(filename, list_path_images, list_inference_output, fps=fps)
         logger.info("Tracking finished.")
