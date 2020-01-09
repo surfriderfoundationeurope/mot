@@ -31,7 +31,6 @@ def test_preprocess_for_serving():
     signature['inputs'] = np.array(signature['inputs'])
 
     assert ratio == 8
-    # From RGB to BGR
-    assert np.sum(signature['inputs'][:, :, 0]) == 2 * 800**2
+    assert np.sum(signature['inputs'][:, :, 0]) == 0
     assert np.sum(signature['inputs'][:, :, 1]) == 800**2
-    assert np.sum(signature['inputs'][:, :, 2]) == 0
+    assert np.sum(signature['inputs'][:, :, 2]) == 2 * 800**2
