@@ -52,7 +52,7 @@ Then, you need to export this model in SavedModel format
 python3 -m mot.object_detection.predict --load /path/to/your/trained/model --config DATA.BASEDIR=/path/to/the/dataset --serving /path/to/serving
 ```
 
-The dataset should be the one downloaded following the instructions above. You can also use a folder with only [this file](http://files.heuritech.com/raw_files/surfrider/classes.json) inside if you don't want to download the whole dataset.  
+The dataset should be the one downloaded following the instructions above. You can also use a folder with only [this file](http://files.heuritech.com/raw_files/surfrider/classes.json) inside if you don't want to download the whole dataset.
 Also remember to use the same config as the one used for training (using FPN.CASCADE=True for instance).
 
 ### Serving
@@ -62,6 +62,11 @@ Then, you can launch the serving with:
 ```bash
 model_folder=/path/to/serving port=the_port_you_want_to_expose make docker-serving
 ```
+
+For `model_folder`, you specify the path to the folder where the `saved_model.pb` file and `variables` folder stored.
+The `port` is the one you'll use to make inference requests.
+Then, you can request the server either by sending HTTP requests or by using the web interface at `host:port`.
+For more details on this see the documentation related to [serving](src/mot/serving/utils.py).
 
 ## Developpers
 
@@ -100,17 +105,28 @@ pytest my_file.py::my_function
 
 ### Status
 
-Model & training
+Model & training:
+
 - [x] Object detection training
+
 - [ ] Improving train, validation and test dataset
+
 - [ ] Model improvements
+
 - [ ] Connection with dataset to query dataset
+
 - [ ] Tracking model (WIP)
+
 - [ ] test dataset for tracking
 
-Inference and deployment
+Inference and deployment:
+
 - [x] Object detection inference notebook
+
 - [ ] Inference on video (WIP)
+
 - [ ] Connection with input data and inference
-- [ ] Small webserver and API
+
+- [x] Small webserver and API (in local)
+
 - [ ] Docker build and deployment
