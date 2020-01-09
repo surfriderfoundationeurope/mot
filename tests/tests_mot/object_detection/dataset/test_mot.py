@@ -17,20 +17,25 @@ def prepare_dataset_folder(tmpdir):
     image_array = np.ones((600, 600, 3))
     cv2.imwrite(image_path, image_array)
     # We write two annotations, because one will be used for the train split and one for the val split
-    annotations = [{
-        'md5':
-            image_md5,
-        'size':
-            OrderedDict([('width', '600'), ('height', '600'), ('depth', '3')]),
-        'labels': [{
-            'bbox': ['250', '255', '278', '289'],
-            'label': 'fragments'
-        }, {
-            'bbox': ['432', '231', '459', '280'],
-            'label': 'bottles'
-        }],
-    } for _ in range(2)]
-    with open(os.path.join(tmpdir, "new_dataset.json"), "w+") as f:
+    annotations = [
+        {
+            'md5':
+                image_md5,
+            'size':
+                OrderedDict([('width', '600'), ('height', '600'), ('depth', '3')]),
+            'labels':
+                [
+                    {
+                        'bbox': ['250', '255', '278', '289'],
+                        'label': 'fragments'
+                    }, {
+                        'bbox': ['432', '231', '459', '280'],
+                        'label': 'bottles'
+                    }
+                ],
+        } for _ in range(2)
+    ]
+    with open(os.path.join(tmpdir, "dataset.json"), "w+") as f:
         for annotation in annotations:
             f.write(json.dumps(annotation) + "\n")
 
@@ -45,8 +50,9 @@ def test_training_roidbs(tmpdir):
         roidbs = dataset.training_roidbs()
         assert len(roidbs) == 1
         assert os.path.isfile(roidbs[0]["file_name"])
-        assert np.array_equal(roidbs[0]["boxes"],
-                              np.array([[250., 255., 278., 289.], [432., 231., 459., 280.]]))
+        assert np.array_equal(
+            roidbs[0]["boxes"], np.array([[250., 255., 278., 289.], [432., 231., 459., 280.]])
+        )
         assert np.array_equal(roidbs[0]["class"], np.array([3, 1], np.float32))
 
 
@@ -65,20 +71,34 @@ def test_eval_inference_results(tmpdir):
     prepare_dataset_folder(tmpdir)
     for split in "train", "val":
         dataset = MotDataset(base_dir=tmpdir, split=split)
-        results = [{
-            'image_id': "abcdef.png",
-            'category_id': 3,
-            'bbox': [255, 265, 270, 300],
-            'score': 0.9,
-        }, {
-            'image_id': "abcdef.png",
-            'category_id': 1,
-            'bbox': [255, 265, 270, 300],
-            'score': 0.9,
-        }]
+        results = [
+            {
+                'image_id': "abcdef.png",
+                'category_id': 3,
+                'bbox': [255, 265, 270, 300],
+                'score': 0.9,
+            }, {
+                'image_id': "abcdef.png",
+                'category_id': 1,
+                'bbox': [255, 265, 270, 300],
+                'score': 0.9,
+            }
+        ]
         output_file = os.path.join(tmpdir, "output.json")
-        results = dataset.eval_inference_results(results, output_file)
+        dataset.eval_inference_results(results, output_file)
         assert os.path.isfile(output_file)
         assert len(results) == 2
-        assert results[0]["category_id"] == "fragments"
-        assert results[1]["category_id"] == "bottles"
+        with open(output_file, "r") as f:
+            assert json.load(f) == [
+                {
+                    'image_id': "abcdef.png",
+                    'category_id': "fragments",
+                    'bbox': [255, 265, 270, 300],
+                    'score': 0.9,
+                }, {
+                    'image_id': "abcdef.png",
+                    'category_id': "bottles",
+                    'bbox': [255, 265, 270, 300],
+                    'score': 0.9,
+                }
+            ]
