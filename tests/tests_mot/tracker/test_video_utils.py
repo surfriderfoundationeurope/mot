@@ -1,10 +1,13 @@
-from mot.tracker import video_utils
 import os
-import numpy as np
 import shutil
+
+import numpy as np
+
+from mot.tracker import video_utils
 
 home = os.path.expanduser("~")
 PATH_TO_TEST_VIDEO = os.path.join(home, ".mot/tests/test_video.mp4")
+
 
 def test_split_video(tmpdir):
     video_utils.split_video(PATH_TO_TEST_VIDEO, tmpdir, fps=2)

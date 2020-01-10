@@ -43,7 +43,7 @@ def preprocess_for_serving(image, min_dimension=800, max_dimension=1300):
 
     Arguments:
 
-    - *image*: A np.array of shape [height, width, channels] in RGB
+    - *image*: A np.array of shape [height, width, channels] in BGR
     - *min_dimension*: minimum image dimension.
     - *max_dimension*: If the resized largest size is over max_dimension. Will use to max_dimension
     to compute the resizing ratio.
@@ -55,8 +55,5 @@ def preprocess_for_serving(image, min_dimension=800, max_dimension=1300):
     - *input_signature*: A dictionary which match the server signature
     - *scaling_ratio*: A float representing the scaling to resize the image.
     """
-
-    # Convert to BGR
-    image = image[:, :, ::-1]
     resized_image, scale_ratio = resize_to_min_dimension(image, min_dimension, max_dimension)
     return {"inputs": resized_image.tolist()}, scale_ratio

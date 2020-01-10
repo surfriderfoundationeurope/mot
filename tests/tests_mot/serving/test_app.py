@@ -1,7 +1,8 @@
 import json
+from unittest import mock
 
-import mock
 from flask import request
+
 from mot.serving.app import app
 
 
@@ -37,10 +38,20 @@ def test_app_post(mock_server_result):
             ],
         ]})
         output = rv.get_json()
-    expected_output = {"detected_trash": [
-    {"box":[0.0,0.0,0.1,0.1], "label":"bottles", "score":0.71},
-    {"box":[0.0,0.0,0.2,0.2], "label":"fragments", "score":0.71}
-    ]}
+    expected_output = {
+        "detected_trash":
+            [
+                {
+                    "box": [0.0, 0.0, 0.1, 0.1],
+                    "label": "bottles",
+                    "score": 0.71
+                }, {
+                    "box": [0.0, 0.0, 0.2, 0.2],
+                    "label": "fragments",
+                    "score": 0.71
+                }
+            ]
+    }
     assert output == expected_output
 
 

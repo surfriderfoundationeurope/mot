@@ -9,6 +9,7 @@ from mot.object_detection.config import config as cfg
 class Trash():
     '''Detected trash class
     '''
+
     def __init__(self, id, label, box, frame):
         self.id = id
         self.label = label
@@ -34,7 +35,7 @@ class Trash():
         - None, or the index of the matching trash
         '''
         matching_id = None
-        trash_box = self.get_np_box()[np.newaxis,:]
+        trash_box = self.get_np_box()[np.newaxis, :]
         boxes_list = []
         idx_list = []
         for matching_trash in list_trash:
@@ -44,29 +45,36 @@ class Trash():
 
         if boxes_list:
             ious = np_box_ops.iou(trash_box, np.vstack(boxes_list))
-            best_iou_idx = np.argmax(ious,axis=-1)[0]
+            best_iou_idx = np.argmax(ious, axis=-1)[0]
             assert ious.shape == (1, len(boxes_list))
-            if ious[0,best_iou_idx] >= iou_threshold:
+            if ious[0, best_iou_idx] >= iou_threshold:
                 matching_id = idx_list[best_iou_idx]
 
         return matching_id
 
     def get_center(self):
-        x1,y1,x2,y2 = self.boxes[-1]
-        return (x2+x1)/2, (y2+y1)/2
+        x1, y1, x2, y2 = self.boxes[-1]
+        return (x2 + x1) / 2, (y2 + y1) / 2
 
     def __repr__(self):
-        return "(id:{}, label:{}, center:({:.1f},{:.1f}), frames:{})".format(self.id, self.label, self.get_center()[0], self.get_center()[1], self.frames)
+        return "(id:{}, label:{}, center:({:.1f},{:.1f}), frames:{})".format(
+            self.id, self.label,
+            self.get_center()[0],
+            self.get_center()[1], self.frames
+        )
 
-    def json_result(self):
-        classname = cfg.DATA.CLASS_NAMES[self.label]
-        return {"label":classname, "frames":self.frames, "id":self.id}
+    def json_result(self, class_names=["bottles", "others", "fragments"]):
+        class_names = ["BG"] + class_names
+        return {"label": class_names[self.label], "frames": self.frames, "id": self.id}
 
 
 class ObjectTracking():
     '''Wrapper class to tracking trash objects in video output frames
     '''
-    def __init__(self, video_id, list_path_images, list_inference_output = None, fps = 2, list_geoloc = None):
+
+    def __init__(
+        self, video_id, list_path_images, list_inference_output=None, fps=2, list_geoloc=None
+    ):
         self.video_id = video_id
 
         self.list_path_images = list_path_images
@@ -94,9 +102,11 @@ class ObjectTracking():
         - A list of trash objects that could potentially match
         '''
         potential_matching_ids = set()
-        for idx_rewind in range(frame_idx -1, frame_idx - self.rewind_window_match - 1, -1):
+        for idx_rewind in range(frame_idx - 1, frame_idx - self.rewind_window_match - 1, -1):
             if idx_rewind >= 0:
-                potential_matching_ids = potential_matching_ids.union(set(objects_per_frame_list[idx_rewind]))
+                potential_matching_ids = potential_matching_ids.union(
+                    set(objects_per_frame_list[idx_rewind])
+                )
         return [trash for trash in detected_trashes if trash.id in potential_matching_ids]
 
     @cached_property
@@ -123,12 +133,16 @@ class ObjectTracking():
             found_boxes = json_object.get("output/boxes:0")
 
             # Build the list of previous trash that could be matched
-            potential_matching_trash = self.potential_matching_trash_list(frame_idx, detected_trashes, objects_per_frame_list)
+            potential_matching_trash = self.potential_matching_trash_list(
+                frame_idx, detected_trashes, objects_per_frame_list
+            )
             for label, box in zip(found_classes, found_boxes):
                 current_trash = Trash(nb_detected_objects, label, box, frame_idx)
 
                 # Is this object already matching something?
-                matching_id = current_trash.find_best_match_in_list(potential_matching_trash, self.iou_threshold)
+                matching_id = current_trash.find_best_match_in_list(
+                    potential_matching_trash, self.iou_threshold
+                )
                 if matching_id is not None:
                     # append the frame & box to the matching trash
                     detected_trashes[matching_id].add_matching_object(box, frame_idx)
@@ -141,8 +155,7 @@ class ObjectTracking():
 
         return detected_trashes
 
-
-    def json_result(self, include_geo = False):
+    def json_result(self, include_geo=False):
         '''Outputs a json result centered on tracked objects. Score not yet included
 
         Arguments:

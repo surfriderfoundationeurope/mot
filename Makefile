@@ -17,12 +17,13 @@ docker-tests:
 	docker run --name mot_tests_$(USER) mot_tests
 
 docker-serving:
-	docker stop mot_serving_$(USER) || true 
-	docker rm mot_serving_$(USER) || true 
-	cp -r $(model_folder) serving 
+	docker stop mot_serving_$(USER) || true
+	docker rm mot_serving_$(USER) || true
+	rm -r serving || true
+	cp -r $(model_folder) serving
 	docker build -f docker/Dockerfile.serving -t mot_serving .
 	docker run -t --rm --name mot_serving_$(USER)  -p $(port):5000 --runtime=nvidia -e NVIDIA_VISIBLE_DEVICES=0 \
         -e MODEL_NAME=serving \
-        mot_serving 
+        mot_serving
 
 .PHONY: tests docker
