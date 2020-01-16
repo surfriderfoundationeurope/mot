@@ -7,7 +7,12 @@ RUN apt-get -y update && \
 
 WORKDIR /workspace/mot
 
+ADD requirements.txt /workspace/mot
+
+RUN pip3 install -r requirements.txt && \
+    pip3 install jupyter==1.0.0 && \
+    rm requirements.txt
+
 ADD . /workspace/mot
 
-RUN pip3 install . && \
-  python3 scripts/download_training_dataset.py
+ENV PYTHONPATH $PYTHONPATH:/workspace/mot/src
