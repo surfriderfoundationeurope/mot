@@ -27,7 +27,7 @@ def mock_post_tensorpack_localizer(*args, **kwargs):
 @mock.patch('requests.post', side_effect=mock_post_tensorpack_localizer)
 def test_app_post(mock_server_result):
     with app.test_client() as c:
-        rv = c.post('/', json={"image": [
+        response = c.post("/", json={"image": [
             [
                 [0, 0, 0],
                 [0, 0, 0],
@@ -37,7 +37,7 @@ def test_app_post(mock_server_result):
                 [0, 0, 0],
             ],
         ]})
-        output = rv.get_json()
+        output = response.get_json()
     expected_output = {
         "detected_trash":
             [
@@ -56,5 +56,8 @@ def test_app_post(mock_server_result):
 
 
 def test_app_get():
-    with app.test_request_context('/'):
-        assert request.path == '/'
+    with app.test_client() as c:
+        response = c.get("/lmnav")
+        assert response.status_code == 404
+        response = c.get("/")
+        assert response.status_code == 200

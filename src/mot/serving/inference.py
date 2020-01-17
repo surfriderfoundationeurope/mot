@@ -5,23 +5,27 @@ from typing import Dict, List
 
 import cv2
 import numpy as np
-from flask import flash, redirect, render_template, request
+from flask import request
 from tensorpack.utils import logger
+from tqdm import tqdm
 from werkzeug import FileStorage
 from werkzeug.utils import secure_filename
 
-from mot.object_detection.config import config as cfg
 from mot.object_detection.query_server import \
     localizer_tensorflow_serving_inference
-from mot.object_detection.dataset.mot import get_class_names
 from mot.tracker.tracker import ObjectTracking
 from mot.tracker.video_utils import read_folder, split_video
 
 SERVING_URL = "http://localhost:8501"  # the url where the tf-serving container exposes the model
 UPLOAD_FOLDER = 'tmp'  # folder used to store images or videos when sending files
+FPS = 4
+RESOLUTION = (1024, 768)
+CLASS_NAMES = ["bottles", "others", "fragments"]
 
 
-def handle_post_request(upload_folder=UPLOAD_FOLDER) -> Dict[str, np.array]:
+def handle_post_request(upload_folder=UPLOAD_FOLDER,
+                        fps=FPS,
+                        resolution=RESOLUTION) -> Dict[str, np.array]:
     """This method is the first one to be called when a POST request is coming. It analyzes the incoming
         format (file or JSON) and then call the appropiate methods to do the prediction.
 
@@ -49,7 +53,7 @@ def handle_post_request(upload_folder=UPLOAD_FOLDER) -> Dict[str, np.array]:
     - *NotImplementedError*: If the format of data isn't handled yet
     """
     if "file" in request.files:
-        return handle_file(request.files['file'], upload_folder)
+        return handle_file(request.files['file'], upload_folder, fps, resolution)
     data = json.loads(request.data.decode("utf-8"))
     if "image" in data:
         image = np.array(data["image"])
@@ -58,7 +62,10 @@ def handle_post_request(upload_folder=UPLOAD_FOLDER) -> Dict[str, np.array]:
         raise NotImplementedError("video")
 
 
-def handle_file(file: FileStorage, upload_folder=UPLOAD_FOLDER, fps=2) -> Dict[str, np.array]:
+def handle_file(file: FileStorage,
+                upload_folder=UPLOAD_FOLDER,
+                fps=FPS,
+                resolution=RESOLUTION) -> Dict[str, np.array]:
     """Make the prediction if the data is coming from an uploaded file.
 
     Arguments:
@@ -135,18 +142,16 @@ def handle_file(file: FileStorage, upload_folder=UPLOAD_FOLDER, fps=2) -> Dict[s
             shutil.rmtree(folder)
         os.mkdir(folder)
         logger.info("Splitting video {} to {}.".format(full_filepath, folder))
-        split_video(full_filepath, folder, fps=fps)
+        split_video(full_filepath, folder, fps=fps, resolution=resolution)
         list_path_images = read_folder(folder)
         if len(list_path_images) == 0:
             raise ValueError("No output image")
         logger.info("{} images to analyze.".format(len(list_path_images)))
         list_inference_output = []
-        for i, image_path in enumerate(list_path_images):
+        for i, image_path in enumerate(tqdm(list_path_images)):
             image = cv2.imread(image_path)  # cv2 opens in BGR
             output = localizer_tensorflow_serving_inference(image, SERVING_URL)
             list_inference_output.append(output)
-            if not i % 100:
-                logger.info("Analyzing image {} / {}.".format(i + 1, len(list_path_images)))
         logger.info("Finish analyzing video {}.".format(full_filepath))
         logger.info("Starting tracking.")
         object_tracker = ObjectTracking(filename, list_path_images, list_inference_output, fps=fps)
@@ -156,10 +161,8 @@ def handle_file(file: FileStorage, upload_folder=UPLOAD_FOLDER, fps=2) -> Dict[s
         raise NotImplementedError(file_type)
 
 
-def predict_and_format_image(
-    image: np.ndarray,
-    class_names: str = ["bottles", "others", "fragments"]
-) -> List[Dict[str, object]]:
+def predict_and_format_image(image: np.ndarray,
+                             class_names: str = CLASS_NAMES) -> List[Dict[str, object]]:
     """Make prediction on an image and return them in a human readable format.
 
     Arguments:

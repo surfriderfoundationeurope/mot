@@ -11,4 +11,6 @@ ADD . /workspace/mot
 
 RUN pip3 install .
 
+RUN ./tests/prepare_tests.sh
+
 ENTRYPOINT ["tests/run_tests.sh"]

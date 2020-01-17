@@ -1,20 +1,16 @@
-import io
 import json
 import os
-import shutil
 from unittest import mock
 
 import cv2
 import numpy as np
 import pytest
-from flask import Flask, request
 from werkzeug import FileStorage
 
-from mot.object_detection.config import config as cfg
-from mot.serving.utils import handle_post_request, predict_and_format_image
+from mot.serving.inference import handle_post_request, predict_and_format_image
 
-home = os.path.expanduser("~")
-PATH_TO_TEST_VIDEO = os.path.join(home, ".mot/tests/test_video.mp4")
+HOME = os.path.expanduser("~")
+PATH_TO_TEST_VIDEO = os.path.join(HOME, ".mot/tests/test_video.mp4")
 
 
 def mock_post_tensorpack_localizer(*args, **kwargs):
@@ -41,7 +37,7 @@ def test_handle_post_request_image(mock_server_result):
     data = data.encode('utf-8')
     m = mock.MagicMock()  # here we mock flask.request
     m.data = data
-    with mock.patch("mot.serving.utils.request", m):
+    with mock.patch("mot.serving.inference.request", m):
         output = handle_post_request()
     expected_output = {
         "detected_trash":
@@ -67,7 +63,7 @@ def test_handle_post_request_video():
     m = mock.MagicMock()  # here we mock flask.request
     m.data = data
     with pytest.raises(NotImplementedError):
-        with mock.patch("mot.serving.utils.request", m):
+        with mock.patch("mot.serving.inference.request", m):
             output = handle_post_request()
 
 
@@ -80,8 +76,18 @@ def test_handle_post_request_file_image(mock_server_result, tmpdir):
     m = mock.MagicMock()
     files = {"file": FileStorage(open(filepath, "rb"), content_type='image/jpg')}
     m.files = files
-    with mock.patch("mot.serving.utils.request", m):
-        output = handle_post_request(upload_folder=str(tmpdir))
+
+    upload_folder = os.path.join(tmpdir, "upload")
+    os.mkdir(upload_folder)
+    with open(os.path.join(upload_folder, filename), "w+") as f:
+        f.write(
+            "this file should be deleted by the handle post request to be replaced"
+            " by the image we are uploading."
+        )
+
+    with mock.patch("mot.serving.inference.request", m):
+        output = handle_post_request(upload_folder=upload_folder)
+
     expected_output = {
         "image":
             output["image"],
@@ -106,8 +112,12 @@ def test_handle_post_request_file_video(mock_server_result, tmpdir):
     m = mock.MagicMock()
     files = {"file": FileStorage(open(PATH_TO_TEST_VIDEO, "rb"), content_type='video/mkv')}
     m.files = files
-    with mock.patch("mot.serving.utils.request", m):
-        output = handle_post_request(upload_folder=str(tmpdir))
+    split_frames_folder = os.path.join(
+        tmpdir, "{}_split".format(os.path.basename(PATH_TO_TEST_VIDEO))
+    )
+    os.mkdir(split_frames_folder)  # this folder should be deleted by handle post request
+    with mock.patch("mot.serving.inference.request", m):
+        output = handle_post_request(upload_folder=str(tmpdir), fps=2)
         assert len(output["detected_trash"]) == 2
         assert "id" in output["detected_trash"][0]
         assert "frames" in output["detected_trash"][1]
@@ -124,9 +134,13 @@ def test_handle_post_request_file_other(tmpdir):
     m = mock.MagicMock()
     files = {"file": FileStorage(open(filepath, "rb"), content_type='application/pdf')}
     m.files = files
+    upload_folder = os.path.join(tmpdir, "upload_folder")
     with pytest.raises(NotImplementedError):
-        with mock.patch("mot.serving.utils.request", m):
-            output = handle_post_request(upload_folder=str(tmpdir))
+        with mock.patch("mot.serving.inference.request", m):
+            output = handle_post_request(upload_folder=upload_folder)
+    assert os.path.isdir(
+        upload_folder
+    )  # the upload_folder should be created by handle post request
 
 
 @mock.patch('requests.post', side_effect=mock_post_tensorpack_localizer)

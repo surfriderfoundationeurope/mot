@@ -110,15 +110,33 @@ pip install .
 
 ### Run the tests
 
+
+- Within your local environement:
+
 * To run all the tests:
 
 ```bash
 make tests
 ```
 
-* To run a specific test
+* To run a specific test:
 
 ```bash
+pytest my_file.py::my_function
+```
+
+- Within a docker environement:
+
+* To run all the tests:
+
+```bash
+make docker-tests
+```
+
+* To run a specific test:
+
+```bash
+make up-tests
 pytest my_file.py::my_function
 ```
 
