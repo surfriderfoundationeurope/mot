@@ -56,6 +56,16 @@ def test_handle_post_request_image(mock_server_result):
     assert output == expected_output
 
 
+def test_handle_post_request_wrong_image():
+    data = "{}".format(json.dumps({"image:0": [[[0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0]]]}))
+    data = data.encode('utf-8')
+    m = mock.MagicMock()  # here we mock flask.request
+    m.data = data
+    with pytest.raises(ValueError):
+        with mock.patch("mot.serving.inference.request", m):
+            output = handle_post_request()
+
+
 def test_handle_post_request_video():
     # TODO test good behavior when implemented
     data = "{}".format(json.dumps({"video": [[[0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0]]]}))
@@ -136,7 +146,7 @@ def test_handle_post_request_file_other(tmpdir):
     with open(filepath, "w") as f:
         f.write("mock data")
     m = mock.MagicMock()
-    files = {"file": FileStorage(open(filepath, "rb"), content_type='application/pdf')}
+    files = {"file": FileStorage(open(filepath, "rb"), content_type='poulet/pdf')}
     m.files = files
     upload_folder = os.path.join(tmpdir, "upload_folder")
     with pytest.raises(NotImplementedError):

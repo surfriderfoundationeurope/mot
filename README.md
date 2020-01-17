@@ -75,17 +75,7 @@ Also remember to use the same config as the one used for training (using FPN.CAS
 
 ### Serving
 
-Then, you can launch the serving with:
-
-```bash
-NVIDIA_VISIBLE_DEVICES=2 MODEL_FOLDER=/path/to/serving PORT=the_port_you_want_to_expose make docker-serving
-```
-
-`NVIDIA_VISIBLE_DEVICES`allows you to specify the GPU you want to use for inferences.
-For `MODEL_FOLDER`, you specify the path to the folder where the `saved_model.pb` file and `variables` folder stored.
-The `PORT` is the one you'll use to make inference requests.
-Then, you can request the server either by sending HTTP requests or by using the web interface at `host:port`.
-For more details on this see the documentation related to [serving](src/mot/serving/utils.py).
+Refer to [this file](src/mot/serving/REAME.md).
 
 ## Developpers
 

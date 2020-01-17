@@ -63,6 +63,12 @@ def handle_post_request(upload_folder=UPLOAD_FOLDER,
         return {"detected_trash": predict_and_format_image(image)}
     elif "video" in data:
         raise NotImplementedError("video")
+    else:
+        raise ValueError(
+            "Error during the reading of JSON. Keys {} aren't valid ones.".format(data.keys()) +
+            "For an image, send a JSON such as {'image': [0, 0, 0]}." +
+            "Sending videos over JSON isn't implemented yet."
+        )
 
 
 def handle_file(file: FileStorage,
@@ -144,7 +150,7 @@ def handle_file(file: FileStorage,
         os.remove(full_filepath)  # remove it as we don't need it anymore
         return {"image": filename, "detected_trash": predict_and_format_image(image)}
 
-    elif file_type == "video":
+    elif file_type in ["video", "application"]:
         # splitting video and saving frames
         folder = os.path.join(upload_folder, "{}_split".format(filename))
         if os.path.isdir(folder):
