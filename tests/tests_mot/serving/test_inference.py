@@ -162,6 +162,8 @@ def test_predict_and_format_image(mock_server_result, tmpdir):
             "score": 0.71
         }
     ]
+
+    # tesing with different class names
     class_names = ["others", "fragments", "chicken", "bottles"]
     predictions = predict_and_format_image(image, class_names)
     assert predictions == [
@@ -175,3 +177,13 @@ def test_predict_and_format_image(mock_server_result, tmpdir):
             "score": 0.71
         }
     ]
+
+    # testing with different thresholds
+    class_to_threshold = {"bottles": 0.8, "others": 0.3, "fragments": 0.3}
+    predictions = predict_and_format_image(image, class_to_threshold=class_to_threshold)
+    assert predictions == [{"box": [0.0, 0.0, 0.5, 0.5], "label": "fragments", "score": 0.71}]
+
+    # testing with different thresholds
+    class_to_threshold = {"bottles": 0.8, "others": 0.3, "fragments": 0.8}
+    predictions = predict_and_format_image(image, class_to_threshold=class_to_threshold)
+    assert predictions == []

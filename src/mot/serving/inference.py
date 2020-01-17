@@ -21,6 +21,7 @@ UPLOAD_FOLDER = 'tmp'  # folder used to store images or videos when sending file
 FPS = 4
 RESOLUTION = (1024, 768)
 CLASS_NAMES = ["bottles", "others", "fragments"]
+CLASS_TO_THRESHOLD = {"bottles": 0.4, "others": 0.3, "fragments": 0.3}
 
 
 def handle_post_request(upload_folder=UPLOAD_FOLDER,
@@ -166,13 +167,20 @@ def handle_file(file: FileStorage,
         raise NotImplementedError(file_type)
 
 
-def predict_and_format_image(image: np.ndarray,
-                             class_names: str = CLASS_NAMES) -> List[Dict[str, object]]:
+def predict_and_format_image(
+    image: np.ndarray,
+    class_names: List[str] = CLASS_NAMES,
+    class_to_threshold: Dict[str, float] = CLASS_TO_THRESHOLD
+) -> List[Dict[str, object]]:
     """Make prediction on an image and return them in a human readable format.
 
     Arguments:
 
     - *image*: An numpy array in BGR
+    - *class_names*: The list of class names without background
+    - *class_to_threshold*: A dict assigning class names to threshold. If a class name isn't in
+        this dict, no threshold will be applied, which means that all predictions for this class
+        will be kept.
 
     Returns:
 
@@ -192,6 +200,8 @@ def predict_and_format_image(image: np.ndarray,
     for box, label, score in zip(
         outputs["output/boxes:0"], outputs["output/labels:0"], outputs["output/scores:0"]
     ):
-        trash_json = {"box": [x for x in box], "label": class_names[label], "score": score}
-        detected_trash.append(trash_json)
+        if class_names[label] not in class_to_threshold or score >= class_to_threshold[
+            class_names[label]]:
+            trash_json = {"box": [x for x in box], "label": class_names[label], "score": score}
+            detected_trash.append(trash_json)
     return detected_trash
