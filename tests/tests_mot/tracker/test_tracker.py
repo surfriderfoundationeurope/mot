@@ -86,6 +86,6 @@ def test_json_output():
         "detected_trash": [{
             "label": "fragments",
             "id": 0,
-            "frames": [0]
+            "frame_to_box": {0: [558, 382, 597, 415]}
         }]
     }

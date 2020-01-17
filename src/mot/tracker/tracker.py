@@ -65,7 +65,11 @@ class Trash():
 
     def json_result(self, class_names=["bottles", "others", "fragments"]):
         class_names = ["BG"] + class_names
-        return {"label": class_names[self.label], "frames": self.frames, "id": self.id}
+        return {
+            "label": class_names[self.label],
+            "frame_to_box": {frame: box for frame, box in zip(self.frames, self.boxes)},
+            "id": self.id
+        }
 
 
 class ObjectTracking():

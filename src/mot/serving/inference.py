@@ -105,13 +105,18 @@ def handle_file(file: FileStorage,
         "detected_trash":
             [
                 {
-                    "label": "bottle",
+                    "label": "bottles",
                     "id": 0,
-                    "frames": [23, 24, 25]
+                    "frame_to_box": {
+                        23: [0, 0, 1, 10],
+                        24: [1, 1, 4, 13]
+                    }
                 }, {
-                    "label": "fragment",
+                    "label": "fragments",
                     "id": 1,
-                    "frames": [32]
+                    "frame_to_box": {
+                        12: [10, 8, 9, 15]
+                    }
                 }
             ]
     }
