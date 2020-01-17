@@ -7,7 +7,7 @@ import numpy as np
 import pytest
 from werkzeug import FileStorage
 
-from mot.serving.inference import handle_post_request, predict_and_format_image
+from mot.serving.inference import handle_post_request, predict_and_format_image, process_image
 
 HOME = os.path.expanduser("~")
 PATH_TO_TEST_VIDEO = os.path.join(HOME, ".mot/tests/test_video.mp4")
@@ -145,6 +145,19 @@ def test_handle_post_request_file_other(tmpdir):
     assert os.path.isdir(
         upload_folder
     )  # the upload_folder should be created by handle post request
+
+
+@mock.patch('requests.post', side_effect=mock_post_tensorpack_localizer)
+def test_process_image(mock_server_result, tmpdir):
+    image = np.ones((5, 5, 3))
+    image_path = os.path.join(tmpdir, "image.jpg")
+    cv2.imwrite(image_path, image)
+    predictions = process_image(image_path)
+    assert predictions == {
+        'output/boxes:0': [[0.0, 0.0, 0.25, 0.25], [0.0, 0.0, 0.5, 0.5]],
+        'output/scores:0': [0.71, 0.71],
+        'output/labels:0': [1, 3]
+    }
 
 
 @mock.patch('requests.post', side_effect=mock_post_tensorpack_localizer)

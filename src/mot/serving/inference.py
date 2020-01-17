@@ -1,4 +1,5 @@
 import json
+import multiprocessing
 import os
 import shutil
 from typing import Dict, List
@@ -22,6 +23,7 @@ FPS = 4
 RESOLUTION = (1024, 768)
 CLASS_NAMES = ["bottles", "others", "fragments"]
 CLASS_TO_THRESHOLD = {"bottles": 0.4, "others": 0.3, "fragments": 0.3}
+CPU_COUNT = min(multiprocessing.cpu_count(), 32)
 
 
 def handle_post_request(upload_folder=UPLOAD_FOLDER,
@@ -143,28 +145,58 @@ def handle_file(file: FileStorage,
         return {"image": filename, "detected_trash": predict_and_format_image(image)}
 
     elif file_type == "video":
+        # splitting video and saving frames
         folder = os.path.join(upload_folder, "{}_split".format(filename))
         if os.path.isdir(folder):
             shutil.rmtree(folder)
         os.mkdir(folder)
         logger.info("Splitting video {} to {}.".format(full_filepath, folder))
         split_video(full_filepath, folder, fps=fps, resolution=resolution)
-        list_path_images = read_folder(folder)
-        if len(list_path_images) == 0:
+        image_paths = read_folder(folder)
+        if len(image_paths) == 0:
             raise ValueError("No output image")
-        logger.info("{} images to analyze.".format(len(list_path_images)))
-        list_inference_output = []
-        for i, image_path in enumerate(tqdm(list_path_images)):
-            image = cv2.imread(image_path)  # cv2 opens in BGR
-            output = localizer_tensorflow_serving_inference(image, SERVING_URL)
-            list_inference_output.append(output)
+
+        # making inference on frames
+        logger.info("{} images to analyze on {} CPUs.".format(len(image_paths), CPU_COUNT))
+        with multiprocessing.Pool(CPU_COUNT) as p:
+            inference_outputs = list(
+                tqdm(
+                    p.imap(process_image, image_paths),
+                    total=len(image_paths),
+                )
+            )
         logger.info("Finish analyzing video {}.".format(full_filepath))
+
+        # tracking objects
         logger.info("Starting tracking.")
-        object_tracker = ObjectTracking(filename, list_path_images, list_inference_output, fps=fps)
+        object_tracker = ObjectTracking(filename, image_paths, inference_outputs, fps=fps)
         logger.info("Tracking finished.")
         return object_tracker.json_result()
     else:
         raise NotImplementedError(file_type)
+
+
+def process_image(image_path: str) -> Dict[str, object]:
+    """Function used to open and predict on an image. It is suposed to be used in multiprocessing.
+    
+    Arguments:
+    
+    - *image_path* 
+    
+    Returns:
+    
+    - *Dict[str, object]*: Predictions for this image path
+
+    ```python
+    predictions = {
+        'output/boxes:0': [[0, 0, 1, 1], [0, 0, 10, 10], [10, 10, 15, 100]],
+        'output/labels:0': [3, 1, 2], # the labels start at 1 since 0 is for background
+        'output/scores:0': [0.98, 0.87, 0.76] # sorted in descending order
+    }
+    ```  
+    """
+    image = cv2.imread(image_path)  # cv2 opens in BGR
+    return localizer_tensorflow_serving_inference(image, SERVING_URL)
 
 
 def predict_and_format_image(
