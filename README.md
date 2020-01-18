@@ -63,7 +63,7 @@ make docker-exec-training
 
 ### Export
 
-First, you need to train an object detection model following the instructions in [this file](src/mot/object_detection/REAME.md).
+First, you need to train an object detection model following the instructions in [this file](src/mot/object_detection/README.md).
 Then, you need to export this model in SavedModel format
 
 ```bash
@@ -75,7 +75,7 @@ Also remember to use the same config as the one used for training (using FPN.CAS
 
 ### Serving
 
-Refer to [this file](src/mot/serving/REAME.md).
+Refer to [this file](src/mot/serving/README.md).
 
 ## Developpers
 
