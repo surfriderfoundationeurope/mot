@@ -61,13 +61,31 @@ Do the following command to exec an already running container:
 make docker-exec-training
 ```
 
-### Export
+### Train
 
-First, you need to train an object detection model following the instructions in [this file](src/mot/object_detection/README.md).
-Then, you need to export this model in SavedModel format
+See the [original tensorpack README](src/mot/object_detection/README.md) for more details about the configurations and weights.
+```bash
+python3 -m mot.object_detection.train --load /path/to/pretrained/weights --config DATA.BASEDIR=/path/to/the/dataset --config TODO=SEE_TENSORPACK_README
+```
+
+The next files are pretrained weights on the dataset introduced previously:
+- https://files.heuritech.com/raw_files/surfrider/resnet50_fpn/model-6000.index
+- https://files.heuritech.com/raw_files/surfrider/resnet50_fpn/model-6000.data-00000-of-00001
+
+The command used to train this model was:
 
 ```bash
-python3 -m mot.object_detection.predict --load /path/to/your/trained/model --config DATA.BASEDIR=/path/to/the/dataset --serving /path/to/serving
+python3 -m mot.object_detection.train --load /path/to/pretrained_weights/COCO-MaskRCNN-R50FPN2x.npz --logdir /path/to/logdir --config DATA.BASEDIR=/path/to/dataset MODE_MASK=False TRAIN.LR_SCHEDULE=250,500,750
+```
+
+Put those files in a folder, which will be `/path/to/your/trained/model` in the export section.
+
+### Export
+
+First, you need to train an object detection model. Then, you can export this model in SavedModel format:
+
+```bash
+python3 -m mot.object_detection.predict --load /path/to/your/trained/model --serving /path/to/serving --config DATA.BASEDIR=/path/to/the/dataset SAME_CONFIG=AS_TRAINING
 ```
 
 The dataset should be the one downloaded following the instructions above. You can also use a folder with only [this file](http://files.heuritech.com/raw_files/surfrider/classes.json) inside if you don't want to download the whole dataset.
