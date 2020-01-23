@@ -3,7 +3,9 @@ sudo: false
 
 language: python
 
-python: 3.6
+python:
+  - 3.6
+  - 3.7
 
 before_install:
   - DEBIAN_FRONTEND=noninteractive sudo apt-get update
@@ -24,6 +26,7 @@ deploy:
   skip_cleanup: true
   github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
   on:
+    python: 3.6
     branch: master
 
 # Push the results back to codecov
