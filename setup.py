@@ -19,7 +19,7 @@ install_requires = [str(l.req) for l in lines if l.original_link is None]
 setup(
     name='mot',
     author="Mot contributors",
-    author_email="ppwwyyxxc@gmail.com",
+    author_email="charles.ollion@heuritech.com",
     url="https://github.com/surfridereurope/mot",
     keywords="tensorflow, deep learning, multi object tracking, object detection",
     license="Apache",

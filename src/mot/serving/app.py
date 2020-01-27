@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 
-from mot.serving.utils import handle_post_request
+from mot.serving.inference import handle_post_request
 
 app = Flask(__name__)
 

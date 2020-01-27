@@ -1,16 +1,17 @@
-import numpy as np
 import copy
+from typing import List
+
+import numpy as np
 from cached_property import cached_property
 
 from mot.object_detection.utils import np_box_ops
-from mot.object_detection.config import config as cfg
 
 
 class Trash():
     '''Detected trash class
     '''
 
-    def __init__(self, id, label, box, frame):
+    def __init__(self, id: int, label: int, box: List[float], frame: int):
         self.id = id
         self.label = label
         self.boxes = [box]
@@ -65,7 +66,12 @@ class Trash():
 
     def json_result(self, class_names=["bottles", "others", "fragments"]):
         class_names = ["BG"] + class_names
-        return {"label": class_names[self.label], "frames": self.frames, "id": self.id}
+        rounded_boxes = [[round(coord, 2) for coord in box] for box in self.boxes]
+        return {
+            "label": class_names[self.label],
+            "frame_to_box": {frame: box for frame, box in zip(self.frames, rounded_boxes)},
+            "id": self.id
+        }
 
 
 class ObjectTracking():

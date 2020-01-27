@@ -3,9 +3,7 @@ import os
 from typing import Dict, List
 
 import numpy as np
-from tensorpack.utils import logger
 
-from mot.object_detection.config import finalize_configs
 from mot.object_detection.dataset import DatasetRegistry, DatasetSplit
 from mot.object_detection.utils.np_box_ops import area as np_area
 
