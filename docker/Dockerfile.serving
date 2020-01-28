@@ -10,13 +10,15 @@ ADD requirements.txt .
 
 RUN pip3 install -r requirements.txt && \
   rm requirements.txt
- 
-ADD src/mot/ /mot
 
-ADD serving /models/serving/1 
+ADD src// /src
+
+ADD serving /models/serving/1
 # the 1 is used for versioning the models
 # TODO: find a cleaner way to handle this
 
-ENV PYTHONPATH $PYTHONPATH:/mot
+ADD scripts/up_serving.sh /scripts/up_serving.sh
 
-ENTRYPOINT /mot/serving/run.sh
+ENV PYTHONPATH $PYTHONPATH:/src
+
+ENTRYPOINT /scripts/up_serving.sh

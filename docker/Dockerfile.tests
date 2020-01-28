@@ -7,8 +7,15 @@ RUN apt-get -y update && \
 
 WORKDIR /workspace/mot
 
+ADD requirements.txt /workspace/mot
+
+RUN pip3 install -r requirements.txt && \
+    rm requirements.txt
+
 ADD . /workspace/mot
 
-RUN pip3 install .
+RUN ./tests/prepare_tests.sh
+
+ENV PYTHONPATH $PYTHONPATH:/workspace/mot/src
 
 ENTRYPOINT ["tests/run_tests.sh"]

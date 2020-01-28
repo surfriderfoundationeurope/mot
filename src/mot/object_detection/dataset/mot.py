@@ -3,9 +3,7 @@ import os
 from typing import Dict, List
 
 import numpy as np
-from tensorpack.utils import logger
 
-from mot.object_detection.config import finalize_configs
 from mot.object_detection.dataset import DatasetRegistry, DatasetSplit
 from mot.object_detection.utils.np_box_ops import area as np_area
 
@@ -200,12 +198,12 @@ def register_mot(
 ):
     """Register a dataset to the registry. See `MotDataset` for more details on arguments.
     """
-    basedir = os.path.expanduser(basedir)
-    classes_path = os.path.join(basedir, "classes.json")
+    base_dir = os.path.expanduser(base_dir)
+    classes_path = os.path.join(base_dir, "classes.json")
     class_names = ["BG"] + get_class_names(classes_path)
     for split in ["train", "val"]:
         name = "mot_" + split
-        DatasetRegistry.register(name, lambda x=split: MotDataset(basedir, split=x))
+        DatasetRegistry.register(name, lambda x=split: MotDataset(base_dir, split=x))
         DatasetRegistry.register_metadata(name, "class_names", class_names)
 
 

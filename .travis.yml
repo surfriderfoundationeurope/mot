@@ -14,7 +14,7 @@ before_install:
 install:
   - make install
   # Install the codecov pip dependency
-  - pip install codecov pytest pytest-cov portray
+  - pip install codecov portray
 
 # Run the unit test
 script:

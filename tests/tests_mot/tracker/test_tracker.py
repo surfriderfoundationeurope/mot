@@ -1,9 +1,10 @@
-from mot.tracker import tracker
-from mot.object_detection.config import config as cfg
-
 import os
+
 import numpy as np
 import shutil
+
+from mot.object_detection.config import config as cfg
+from mot.tracker import tracker
 
 
 def test_find_best_match():
@@ -80,13 +81,38 @@ def test_json_output():
     )
     json_result = object_tracker.json_result()
 
+    # yapf: disable
     assert json_result == {
         "video_length": 1,
         "fps": 1,
         "video_id": "test_video",
-        "detected_trash": [{
-            "label": "fragments",
-            "id": 0,
-            "frames": [0]
-        }]
+        "detected_trash":
+            [{
+                "label": "fragments",
+                "id": 0,
+                "frame_to_box": {
+                    0: [558, 382, 597, 415]
+                }
+            }]
+    }
+    # yapf: enable
+
+
+def test_trash_json_result():
+    trash = tracker.Trash(id=1, label=2, box=[1, 3, 2, 10], frame=7)
+    assert trash.json_result(class_names=["requin", "poisson"]) == {
+        "label": "poisson",
+        "frame_to_box": {
+            7: [1, 3, 2, 10]
+        },
+        "id": 1
+    }
+    trash.add_matching_object([1.00004, 4, 5, 10], 8)
+    assert trash.json_result(class_names=["requin", "poisson"]) == {
+        "label": "poisson",
+        "frame_to_box": {
+            7: [1, 3, 2, 10],
+            8: [1.0, 4, 5, 10]
+        },
+        "id": 1
     }
