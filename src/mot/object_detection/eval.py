@@ -105,7 +105,7 @@ def _paste_mask(box, mask, shape):
         return ret
 
 
-def predict_image(img, model_func):
+def predict_image(img, model_func, as_named_tuple=False):
     """
     Run detection on one image, using the TF callable.
     This function should handle the preprocessing internally.
@@ -129,15 +129,15 @@ def predict_image(img, model_func):
     # boxes are already clipped inside the graph, but after the floating point scaling, this may not be true any more.
     boxes = clip_boxes(boxes, orig_shape)
     if masks:
-        full_masks = [_paste_mask(box, mask, orig_shape)
-                      for box, mask in zip(boxes, masks[0])]
+        full_masks = [_paste_mask(box, mask, orig_shape) for box, mask in zip(boxes, masks[0])]
         masks = full_masks
     else:
         # fill with none
         masks = [None] * len(boxes)
 
-    results = [DetectionResult(*args) for args in zip(boxes, probs, labels.tolist(), masks)]
-    return results
+    if as_named_tuple:
+        return [DetectionResult(*args) for args in zip(boxes, probs, labels.tolist(), masks)]
+    return (boxes, probs, labels)
 
 
 def predict_dataflow(df, model_func, tqdm_bar=None):
