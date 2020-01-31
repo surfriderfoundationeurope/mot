@@ -22,6 +22,8 @@ UPLOAD_FOLDER = 'tmp'  # folder used to store images or videos when sending file
 FPS = 4
 RESOLUTION = (1024, 768)
 CLASS_NAMES = ["bottles", "others", "fragments"]
+SUM_THRESHOLD = 0.6  # the sum of scores for all classes must be greater than this value
+# for the prediction to be kept
 CLASS_TO_THRESHOLD = {"bottles": 0.4, "others": 0.3, "fragments": 0.3}
 CPU_COUNT = min(multiprocessing.cpu_count(), 32)
 
@@ -184,13 +186,13 @@ def handle_file(file: FileStorage,
 
 def process_image(image_path: str) -> Dict[str, object]:
     """Function used to open and predict on an image. It is suposed to be used in multiprocessing.
-    
+
     Arguments:
-    
-    - *image_path* 
-    
+
+    - *image_path*
+
     Returns:
-    
+
     - *Dict[str, object]*: Predictions for this image path
 
     ```python
@@ -199,10 +201,10 @@ def process_image(image_path: str) -> Dict[str, object]:
         'output/labels:0': [3, 1, 2], # the labels start at 1 since 0 is for background
         'output/scores:0': [0.98, 0.87, 0.76] # sorted in descending order
     }
-    ```  
+    ```
     """
     image = cv2.imread(image_path)  # cv2 opens in BGR
-    return localizer_tensorflow_serving_inference(image, SERVING_URL)
+    return localizer_tensorflow_serving_inference(image, SERVING_URL, return_all_scores=True)
 
 
 def predict_and_format_image(
@@ -233,13 +235,21 @@ def predict_and_format_image(
     ```
     """
     class_names = ["BG"] + class_names
-    outputs = localizer_tensorflow_serving_inference(image, SERVING_URL)
+    outputs = localizer_tensorflow_serving_inference(image, SERVING_URL, return_all_scores=False)
     detected_trash = []
     for box, label, score in zip(
         outputs["output/boxes:0"], outputs["output/labels:0"], outputs["output/scores:0"]
     ):
-        if class_names[label] not in class_to_threshold or score >= class_to_threshold[
-            class_names[label]]:
+        if keep_prediction(class_names, label, class_to_threshold, score):
             trash_json = {"box": [x for x in box], "label": class_names[label], "score": score}
             detected_trash.append(trash_json)
     return detected_trash
+
+
+def keep_prediction(class_names, label, class_to_threshold, score):
+    if isinstance(score, list):  # we have scores for all classes
+        if np.array(score).sum() < SUM_THRESHOLD:
+            return False
+        return True
+    return class_names[label] not in class_to_threshold or score >= class_to_threshold[
+        class_names[label]]
