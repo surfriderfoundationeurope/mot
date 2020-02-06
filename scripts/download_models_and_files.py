@@ -3,8 +3,8 @@ import os
 
 FILES = {
     # download test video
-    "http://files.heuritech.com/raw_files/surfrider/test_video.mp4" : ".mot/tests/test_video.mp4"
-
+    "http://files.heuritech.com/raw_files/surfrider/test_video.mp4" : ".mot/tests/test_video.mp4",
+    "http://files.heuritech.com/raw_files/surfrider/test_video_folder.zip" : ".mot/tests/test_video_folder.zip"
 }
 
 home = os.path.expanduser("~")
