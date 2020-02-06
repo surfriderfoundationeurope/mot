@@ -11,6 +11,7 @@ from mot.serving.inference import handle_post_request, predict_and_format_image,
 
 HOME = os.path.expanduser("~")
 PATH_TO_TEST_VIDEO = os.path.join(HOME, ".mot/tests/test_video.mp4")
+PATH_TO_TEST_ZIP = os.path.join(HOME, ".mot/tests/test_video_folder.zip")
 
 
 def mock_post_tensorpack_localizer(*args, **kwargs):
@@ -126,6 +127,26 @@ def test_handle_post_request_file_video(mock_server_result, tmpdir):
         tmpdir, "{}_split".format(os.path.basename(PATH_TO_TEST_VIDEO))
     )
     os.mkdir(split_frames_folder)  # this folder should be deleted by handle post request
+    with mock.patch("mot.serving.inference.request", m):
+        output = handle_post_request(upload_folder=str(tmpdir), fps=2)
+
+    assert len(output["detected_trash"]) == 2
+    assert "id" in output["detected_trash"][0]
+    assert "frame_to_box" in output["detected_trash"][1]
+    for frame, box in output["detected_trash"][1]["frame_to_box"].items():
+        assert isinstance(frame, int)
+        assert isinstance(box, list)
+        assert len(box) == 4
+    assert output["video_length"] == 6 or output["video_length"] == 7
+    assert output["fps"] == 2
+    assert "video_id" in output
+
+@mock.patch('requests.post', side_effect=mock_post_tensorpack_localizer)
+def test_handle_post_request_file_zip(mock_server_result, tmpdir):
+    m = mock.MagicMock()
+    files = {"file": FileStorage(open(PATH_TO_TEST_ZIP, "rb"), content_type='application/zip')}
+    m.files = files
+
     with mock.patch("mot.serving.inference.request", m):
         output = handle_post_request(upload_folder=str(tmpdir), fps=2)
 
