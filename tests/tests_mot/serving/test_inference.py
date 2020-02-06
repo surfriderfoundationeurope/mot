@@ -122,12 +122,13 @@ def test_handle_post_request_file_video(mock_server_result, tmpdir):
     m = mock.MagicMock()
     files = {"file": FileStorage(open(PATH_TO_TEST_VIDEO, "rb"), content_type='video/mkv')}
     m.files = files
+    m.form = {"fps": 2, "foo": "bar"}
     split_frames_folder = os.path.join(
         tmpdir, "{}_split".format(os.path.basename(PATH_TO_TEST_VIDEO))
     )
     os.mkdir(split_frames_folder)  # this folder should be deleted by handle post request
     with mock.patch("mot.serving.inference.request", m):
-        output = handle_post_request(upload_folder=str(tmpdir), fps=2)
+        output = handle_post_request(upload_folder=str(tmpdir))
 
     assert len(output["detected_trash"]) == 2
     assert "id" in output["detected_trash"][0]

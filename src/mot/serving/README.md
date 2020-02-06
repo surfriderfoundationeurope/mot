@@ -1,6 +1,6 @@
 # Serving
 
-The serving is the interface to peform inferences on images (object detection) or on videos (object tracking). 
+The serving is the interface to peform inferences on images (object detection) or on videos (object tracking).
 
 ## Launch
 
@@ -39,3 +39,11 @@ curl -d @/path/to/json --header "Content-Type: application/json" host:port
 ```bash
 curl -F "file=@/path/to/file" host:port
 ```
+
+For videos you can add parameters such as fps and resolution like that:
+
+```bash
+curl -F "file=@image.png" -F "fps=2" -F "resolution=(10,10)" host:port
+```
+
+You don't have to specify those parameters and you can find their default value in [this file](inference.py).
