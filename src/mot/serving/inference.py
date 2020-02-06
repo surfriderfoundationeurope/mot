@@ -25,7 +25,7 @@ CLASS_NAMES = ["bottles", "others", "fragments"]
 SUM_THRESHOLD = 0.6  # the sum of scores for all classes must be greater than this value
 # for the prediction to be kept
 CLASS_TO_THRESHOLD = {"bottles": 0.4, "others": 0.3, "fragments": 0.3}
-CPU_COUNT = min(multiprocessing.cpu_count(), 32)
+CPU_COUNT = min(int(multiprocessing.cpu_count() / 2), 32)
 
 
 def handle_post_request(upload_folder=UPLOAD_FOLDER,
