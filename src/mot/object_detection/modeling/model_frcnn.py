@@ -209,7 +209,9 @@ def fastrcnn_predictions(boxes, scores):
         filtered_scores,
         cfg.TEST.RESULTS_PER_IM,
         cfg.TEST.FRCNN_NMS_THRESH)
-    final_scores = tf.gather(filtered_scores, selection, name='scores')
+    # The next lines are really dirty: it's a trick to return the scores for all classes
+    final_scores = tf.gather(tf.gather(scores, filtered_ids[:, 1], axis=1), selection, axis=1)
+    final_scores = tf.transpose(final_scores, name="scores")
     final_labels = tf.add(tf.gather(cls_per_box[:, 0], selection), 1, name='labels')
     final_boxes = tf.gather(filtered_boxes, selection, name='boxes')
     return final_boxes, final_scores, final_labels

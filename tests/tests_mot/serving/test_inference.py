@@ -15,7 +15,7 @@ PATH_TO_TEST_VIDEO = os.path.join(HOME, ".mot/tests/test_video.mp4")
 
 def mock_post_tensorpack_localizer(*args, **kwargs):
     boxes = [[0, 0, 40, 40], [0, 0, 80, 80]]
-    scores = [0.71, 0.71]
+    scores = [[0.71, 0.1, 0.1], [0.2, 0.05, 0.71]]
     classes = [1, 3]
     response = mock.Mock()
     response.text = json.dumps(
@@ -128,7 +128,7 @@ def test_handle_post_request_file_video(mock_server_result, tmpdir):
     os.mkdir(split_frames_folder)  # this folder should be deleted by handle post request
     with mock.patch("mot.serving.inference.request", m):
         output = handle_post_request(upload_folder=str(tmpdir), fps=2)
-    
+
     assert len(output["detected_trash"]) == 2
     assert "id" in output["detected_trash"][0]
     assert "frame_to_box" in output["detected_trash"][1]
@@ -139,6 +139,7 @@ def test_handle_post_request_file_video(mock_server_result, tmpdir):
     assert output["video_length"] == 6 or output["video_length"] == 7
     assert output["fps"] == 2
     assert "video_id" in output
+
 
 def test_handle_post_request_file_other(tmpdir):
     filename = "test.pdf"
@@ -165,7 +166,7 @@ def test_process_image(mock_server_result, tmpdir):
     predictions = process_image(image_path)
     assert predictions == {
         'output/boxes:0': [[0.0, 0.0, 0.25, 0.25], [0.0, 0.0, 0.5, 0.5]],
-        'output/scores:0': [0.71, 0.71],
+        'output/scores:0': [[0.71, 0.1, 0.1], [0.2, 0.05, 0.71]],
         'output/labels:0': [1, 3]
     }
 
