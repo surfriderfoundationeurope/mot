@@ -2,16 +2,20 @@
 
 The serving is the interface to peform inferences on images (object detection) or on videos (object tracking).
 
-## Launch
+## SavedModel
 
-Once you have a SavedModel on disk, you can launch the serving with:
+For this step, you need a SavedModel on disk. You can either
+- export one of your models following the instructions in the principal README
+- use this [pretrained model](http://files.heuritech.com/raw_files/surfrider/serving_2.zip). You need to unzip it, this will be your `MODEL_FOLDER` in the next step.
+
+## Launch
 
 ```bash
 NVIDIA_VISIBLE_DEVICES=2 MODEL_FOLDER=/path/to/serving PORT=the_port_you_want_to_expose make docker-serving
 ```
 
 `NVIDIA_VISIBLE_DEVICES`allows you to specify the GPU you want to use for inferences.
-For `MODEL_FOLDER`, you specify the path to the folder where the `saved_model.pb` file and `variables` folder stored.
+For `MODEL_FOLDER`, you specify the path to the folder where the `saved_model.pb` file and `variables` folder are stored.
 The `PORT` is the one you'll use to make inference requests.
 
 
