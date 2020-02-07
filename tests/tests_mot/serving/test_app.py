@@ -1,13 +1,14 @@
 import json
 from unittest import mock
 
+import numpy as np
 import pytest
 
 from mot.serving.app import app
 
 
 def mock_post_tensorpack_localizer(*args, **kwargs):
-    boxes = [[0, 0, 40, 40], [0, 0, 80, 80]]
+    boxes = [[0, 0, 120, 40], [0, 0, 120, 80]]
     scores = [0.71, 0.71]
     classes = [1, 3]
     response = mock.Mock()
@@ -26,27 +27,19 @@ def mock_post_tensorpack_localizer(*args, **kwargs):
 
 @mock.patch('requests.post', side_effect=mock_post_tensorpack_localizer)
 def test_app_post(mock_server_result):
+    image = np.ones((300, 200, 3))
     with app.test_client() as c:
-        response = c.post("/", json={"image": [
-            [
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-            [
-                [0, 0, 0],
-                [0, 0, 0],
-            ],
-        ]})
+        response = c.post("/", json={"image": image.tolist()})
         output = response.get_json()
     expected_output = {
         "detected_trash":
             [
                 {
-                    "box": [0.0, 0.0, 0.1, 0.1],
+                    "box": [0.0, 0.0, 0.1, 0.05],
                     "label": "bottles",
                     "score": 0.71
                 }, {
-                    "box": [0.0, 0.0, 0.2, 0.2],
+                    "box": [0.0, 0.0, 0.1, 0.1],
                     "label": "fragments",
                     "score": 0.71
                 }

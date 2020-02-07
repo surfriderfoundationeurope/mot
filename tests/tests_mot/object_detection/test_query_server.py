@@ -9,7 +9,7 @@ from mot.object_detection.query_server import \
 
 
 def mock_post_tensorpack_localizer_prediction_score(*args, **kwargs):
-    boxes = [[0, 0, 4, 4], [0, 0, 8, 8]]
+    boxes = [[0, 0, 120, 40], [0, 0, 120, 80]]
     scores = [0.7, 0.7]
     classes = [0, 2]
     response = mock.Mock()
@@ -28,10 +28,10 @@ def mock_post_tensorpack_localizer_prediction_score(*args, **kwargs):
 
 @mock.patch('requests.post', side_effect=mock_post_tensorpack_localizer_prediction_score)
 def test_localizer_tensorflow_serving_inference_prediction_score(mock_server_result):
-    image = np.zeros((200, 200, 3))
+    image = np.zeros((300, 200, 3))
 
     expected_output = {
-        'output/boxes:0': [[0, 0, 1, 1], [0, 0, 2, 2]],
+        'output/boxes:0': [[0, 0, 0.1, 0.05], [0, 0, 0.1, 0.1]],
         'output/scores:0': [0.7, 0.7],
         'output/labels:0': [0, 2],
     }
@@ -53,7 +53,7 @@ def test_localizer_tensorflow_serving_inference_prediction_score(mock_server_res
 
 
 def mock_post_tensorpack_localizer_all_scores(*args, **kwargs):
-    boxes = [[0, 0, 4, 4], [0, 0, 8, 8]]
+    boxes = [[0, 0, 120, 40], [0, 0, 120, 80]]
     scores = [
         [0.7, 0.1, 0.1],
         [0.2, 0.05, 0.7],
@@ -75,10 +75,10 @@ def mock_post_tensorpack_localizer_all_scores(*args, **kwargs):
 
 @mock.patch('requests.post', side_effect=mock_post_tensorpack_localizer_all_scores)
 def test_localizer_tensorflow_serving_inference_all_scores(mock_server_result):
-    image = np.zeros((200, 200, 3))
+    image = np.zeros((300, 200, 3))
 
     expected_output = {
-        'output/boxes:0': [[0, 0, 1, 1], [0, 0, 2, 2]],
+        'output/boxes:0': [[0, 0, 0.1, 0.05], [0, 0, 0.1, 0.1]],
         'output/scores:0': [
             [0.7, 0.1, 0.1],
             [0.2, 0.05, 0.7],
@@ -93,7 +93,7 @@ def test_localizer_tensorflow_serving_inference_all_scores(mock_server_result):
     assert output == expected_output
 
     expected_output = {
-        'output/boxes:0': [[0, 0, 1, 1], [0, 0, 2, 2]],
+        'output/boxes:0': [[0, 0, 0.1, 0.05], [0, 0, 0.1, 0.1]],
         'output/scores:0': [0.7, 0.7],
         'output/labels:0': [0, 2],
     }
