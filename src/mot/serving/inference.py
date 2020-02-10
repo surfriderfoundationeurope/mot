@@ -11,6 +11,7 @@ from tensorpack.utils import logger
 from tqdm import tqdm
 from werkzeug import FileStorage
 from werkzeug.utils import secure_filename
+from zipfile import ZipFile
 
 from mot.object_detection.query_server import \
     localizer_tensorflow_serving_inference
@@ -81,7 +82,7 @@ def handle_file(
 
     Arguments:
 
-    - *file*: The file, can be either an image or a video
+    - *file*: The file, can be either an image or a video, or a zipped folder
     - *upload_folder*: Where the files are temporarly stored
 
     Returns:
@@ -106,7 +107,7 @@ def handle_file(
     }
     ```
 
-    - for a video: a json of format
+    - for a video or a zipped file: a json of format
 
     ```json
     {
@@ -155,13 +156,28 @@ def handle_file(
         return {"image": filename, "detected_trash": predict_and_format_image(image)}
 
     elif file_type in ["video", "application"]:
-        # splitting video and saving frames
-        folder = os.path.join(upload_folder, "{}_split".format(filename))
-        if os.path.isdir(folder):
-            shutil.rmtree(folder)
-        os.mkdir(folder)
-        logger.info("Splitting video {} to {}.".format(full_filepath, folder))
-        split_video(full_filepath, folder, fps=fps, resolution=resolution)
+        folder = None
+
+        if file.mimetype == "application/zip":
+            # zip case
+            ZipFile(full_filepath).extractall(upload_folder)
+            dirname = None
+            with ZipFile(full_filepath, 'r') as zipObj:
+                listOfFileNames = zipObj.namelist()
+                for fileName in listOfFileNames:
+                    dirname = os.path.dirname(fileName)
+                    zipObj.extract(fileName, upload_folder)
+
+            folder = os.path.join(upload_folder, dirname)
+        else:
+            # video case: splitting video and saving frames
+            folder = os.path.join(upload_folder, "{}_split".format(filename))
+            if os.path.isdir(folder):
+                shutil.rmtree(folder)
+            os.mkdir(folder)
+            logger.info("Splitting video {} to {}.".format(full_filepath, folder))
+            split_video(full_filepath, folder, fps=fps, resolution=resolution)
+        print("folder:", folder, "uplaod_folder:", upload_folder, "file.filename:", file.filename)
         image_paths = read_folder(folder)
         if len(image_paths) == 0:
             raise ValueError("No output image")
@@ -182,6 +198,7 @@ def handle_file(
         object_tracker = ObjectTracking(filename, image_paths, inference_outputs, fps=fps)
         logger.info("Tracking finished.")
         return object_tracker.json_result()
+
     else:
         raise NotImplementedError(file_type)
 
