@@ -148,9 +148,9 @@ def test_handle_post_request_file_zip(mock_server_result, tmpdir):
     m = mock.MagicMock()
     files = {"file": FileStorage(open(PATH_TO_TEST_ZIP, "rb"), content_type='application/zip')}
     m.files = files
-
+    m.form = {"fps": 2, "foo": "bar"}
     with mock.patch("mot.serving.inference.request", m):
-        output = handle_post_request(upload_folder=str(tmpdir), fps=2)
+        output = handle_post_request(upload_folder=str(tmpdir))
 
     assert len(output["detected_trash"]) == 2
     assert "id" in output["detected_trash"][0]
