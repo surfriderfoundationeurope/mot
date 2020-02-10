@@ -9,4 +9,5 @@ ffmpeg-python
 wget
 requests
 flask>=1.1.1
+werkzeug==0.16.1 # It fixes the error: from werkzeug import FileStorage cannot import FileStorage.
 cached_property
