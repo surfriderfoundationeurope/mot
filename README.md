@@ -44,6 +44,21 @@ PORT_JUPYTER=22222 PORT_TENSORBOARD=22223 make docker-training
 ```
 
 You don't have to specify the ports at the beginning of the command, but do so if you want to assign a specific port to access jupyter notebook and / or tensorboard.
+
+You can add arguments to the docker run command by specifying RUN_ARGS, for example:
+
+```bash
+RUN_ARGS="-v /srv/data:/srv/data" make docker-training
+```
+
+Do the following command to exec an already running container:
+
+```bash
+make docker-exec-training
+```
+
+### Internal tools
+
 You can launch a jupyter notebook or a tensorboard server by running the command.
 
 ```bash
@@ -54,12 +69,6 @@ or
 ./scripts/run_tensorboard.sh /path/to/the/model/folders/to/track
 ```
 Then, access those servers through the ports you used in the Make command.
-
-Do the following command to exec an already running container:
-
-```bash
-make docker-exec-training
-```
 
 ### Train
 

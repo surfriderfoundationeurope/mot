@@ -14,7 +14,7 @@ PATH_TO_TEST_VIDEO = os.path.join(HOME, ".mot/tests/test_video.mp4")
 
 
 def mock_post_tensorpack_localizer(*args, **kwargs):
-    boxes = [[0, 0, 40, 40], [0, 0, 80, 80]]
+    boxes = [[0, 0, 120, 40], [0, 0, 120, 80]]
     scores = [[0.71, 0.1, 0.1], [0.2, 0.05, 0.71]]
     classes = [1, 3]
     response = mock.Mock()
@@ -33,7 +33,8 @@ def mock_post_tensorpack_localizer(*args, **kwargs):
 
 @mock.patch('requests.post', side_effect=mock_post_tensorpack_localizer)
 def test_handle_post_request_image(mock_server_result):
-    data = "{}".format(json.dumps({"image": [[[0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0]]]}))
+    image = np.ones((300, 200, 3))
+    data = "{}".format(json.dumps({"image": image.tolist()}))
     data = data.encode('utf-8')
     m = mock.MagicMock()  # here we mock flask.request
     m.data = data
@@ -43,11 +44,11 @@ def test_handle_post_request_image(mock_server_result):
         "detected_trash":
             [
                 {
-                    "box": [0.0, 0.0, 0.1, 0.1],
+                    "box": [0.0, 0.0, 0.1, 0.05],
                     "label": "bottles",
                     "score": 0.71
                 }, {
-                    "box": [0.0, 0.0, 0.2, 0.2],
+                    "box": [0.0, 0.0, 0.1, 0.1],
                     "label": "fragments",
                     "score": 0.71
                 }
@@ -79,7 +80,7 @@ def test_handle_post_request_video():
 
 @mock.patch('requests.post', side_effect=mock_post_tensorpack_localizer)
 def test_handle_post_request_file_image(mock_server_result, tmpdir):
-    data = np.array([[[0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0]]])
+    data = np.ones((300, 200, 3))
     filename = "test.jpg"
     filepath = os.path.join(tmpdir, filename)
     cv2.imwrite(filepath, data)
@@ -104,11 +105,11 @@ def test_handle_post_request_file_image(mock_server_result, tmpdir):
         "detected_trash":
             [
                 {
-                    "box": [0.0, 0.0, 0.1, 0.1],
+                    "box": [0.0, 0.0, 0.1, 0.05],
                     "label": "bottles",
                     "score": 0.71
                 }, {
-                    "box": [0.0, 0.0, 0.2, 0.2],
+                    "box": [0.0, 0.0, 0.1, 0.1],
                     "label": "fragments",
                     "score": 0.71
                 }
@@ -122,12 +123,13 @@ def test_handle_post_request_file_video(mock_server_result, tmpdir):
     m = mock.MagicMock()
     files = {"file": FileStorage(open(PATH_TO_TEST_VIDEO, "rb"), content_type='video/mkv')}
     m.files = files
+    m.form = {"fps": 2, "foo": "bar"}
     split_frames_folder = os.path.join(
         tmpdir, "{}_split".format(os.path.basename(PATH_TO_TEST_VIDEO))
     )
     os.mkdir(split_frames_folder)  # this folder should be deleted by handle post request
     with mock.patch("mot.serving.inference.request", m):
-        output = handle_post_request(upload_folder=str(tmpdir), fps=2)
+        output = handle_post_request(upload_folder=str(tmpdir))
 
     assert len(output["detected_trash"]) == 2
     assert "id" in output["detected_trash"][0]
@@ -160,12 +162,12 @@ def test_handle_post_request_file_other(tmpdir):
 
 @mock.patch('requests.post', side_effect=mock_post_tensorpack_localizer)
 def test_process_image(mock_server_result, tmpdir):
-    image = np.ones((5, 5, 3))
+    image = np.ones((300, 200, 3))
     image_path = os.path.join(tmpdir, "image.jpg")
     cv2.imwrite(image_path, image)
     predictions = process_image(image_path)
     assert predictions == {
-        'output/boxes:0': [[0.0, 0.0, 0.25, 0.25], [0.0, 0.0, 0.5, 0.5]],
+        'output/boxes:0': [[0, 0, 0.1, 0.05], [0, 0, 0.1, 0.1]],
         'output/scores:0': [[0.71, 0.1, 0.1], [0.2, 0.05, 0.71]],
         'output/labels:0': [1, 3]
     }
@@ -173,15 +175,15 @@ def test_process_image(mock_server_result, tmpdir):
 
 @mock.patch('requests.post', side_effect=mock_post_tensorpack_localizer)
 def test_predict_and_format_image(mock_server_result, tmpdir):
-    image = np.ones((5, 5, 3))
+    image = np.ones((300, 200, 3))
     predictions = predict_and_format_image(image)
     assert predictions == [
         {
-            "box": [0.0, 0.0, 0.25, 0.25],
+            "box": [0, 0, 0.1, 0.05],
             "label": "bottles",
             "score": 0.71
         }, {
-            "box": [0.0, 0.0, 0.5, 0.5],
+            "box": [0, 0, 0.1, 0.1],
             "label": "fragments",
             "score": 0.71
         }
@@ -192,11 +194,11 @@ def test_predict_and_format_image(mock_server_result, tmpdir):
     predictions = predict_and_format_image(image, class_names)
     assert predictions == [
         {
-            "box": [0.0, 0.0, 0.25, 0.25],
+            "box": [0, 0, 0.1, 0.05],
             "label": "others",
             "score": 0.71
         }, {
-            "box": [0.0, 0.0, 0.5, 0.5],
+            "box": [0, 0, 0.1, 0.1],
             "label": "chicken",
             "score": 0.71
         }
@@ -205,7 +207,7 @@ def test_predict_and_format_image(mock_server_result, tmpdir):
     # testing with different thresholds
     class_to_threshold = {"bottles": 0.8, "others": 0.3, "fragments": 0.3}
     predictions = predict_and_format_image(image, class_to_threshold=class_to_threshold)
-    assert predictions == [{"box": [0.0, 0.0, 0.5, 0.5], "label": "fragments", "score": 0.71}]
+    assert predictions == [{"box": [0, 0, 0.1, 0.1], "label": "fragments", "score": 0.71}]
 
     # testing with different thresholds
     class_to_threshold = {"bottles": 0.8, "others": 0.3, "fragments": 0.8}

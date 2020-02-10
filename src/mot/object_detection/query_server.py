@@ -55,7 +55,7 @@ def localizer_tensorflow_serving_inference(
     ```python
     if return_all_scores:
         predictions = {
-            'output/boxes:0': [[0, 0, 1, 1], [0, 0, 10, 10], [10, 10, 15, 100]],
+            'output/boxes:0': [[0, 0, 1, 1], [0, 0, 10, 10], [10, 10, 15, 100]], (y1, x1, y2, x2)
             'output/labels:0': [3, 1, 2],  # the labels start at 1 since 0 is for background
             'output/scores:0': [
                 [0.001, 0.001, 0.98],
@@ -74,6 +74,10 @@ def localizer_tensorflow_serving_inference(
     signature, ratio = preprocess_for_serving(image)
     predictions = query_tensorflow_server(signature, url)
     predictions['output/boxes:0'] = np.array(predictions['output/boxes:0'], np.int32) / ratio
+    predictions["output/boxes:0"][:, 0] /= image.shape[0] # scaling coords to [0, 1]
+    predictions["output/boxes:0"][:, 1] /= image.shape[1] # scaling coords to [0, 1]
+    predictions["output/boxes:0"][:, 2] /= image.shape[0] # scaling coords to [0, 1]
+    predictions["output/boxes:0"][:, 3] /= image.shape[1] # scaling coords to [0, 1]
     predictions['output/boxes:0'] = predictions['output/boxes:0'].tolist()
     scores = np.array(predictions['output/scores:0'])
     if return_all_scores and len(scores.shape) == 1:

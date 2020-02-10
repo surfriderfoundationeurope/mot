@@ -2,7 +2,7 @@ import json
 import multiprocessing
 import os
 import shutil
-from typing import Dict, List
+from typing import Dict, List, Tuple
 
 import cv2
 import numpy as np
@@ -28,9 +28,7 @@ CLASS_TO_THRESHOLD = {"bottles": 0.4, "others": 0.3, "fragments": 0.3}
 CPU_COUNT = min(int(multiprocessing.cpu_count() / 2), 32)
 
 
-def handle_post_request(upload_folder=UPLOAD_FOLDER,
-                        fps=FPS,
-                        resolution=RESOLUTION) -> Dict[str, np.array]:
+def handle_post_request(upload_folder: str = UPLOAD_FOLDER) -> Dict[str, np.array]:
     """This method is the first one to be called when a POST request is coming. It analyzes the incoming
         format (file or JSON) and then call the appropiate methods to do the prediction.
 
@@ -58,25 +56,27 @@ def handle_post_request(upload_folder=UPLOAD_FOLDER,
     - *NotImplementedError*: If the format of data isn't handled yet
     """
     if "file" in request.files:
-        return handle_file(request.files['file'], upload_folder, fps, resolution)
+        return handle_file(request.files['file'], upload_folder, **request.form)
     data = json.loads(request.data.decode("utf-8"))
     if "image" in data:
         image = np.array(data["image"])
         return {"detected_trash": predict_and_format_image(image)}
-    elif "video" in data:
+    if "video" in data:
         raise NotImplementedError("video")
-    else:
-        raise ValueError(
-            "Error during the reading of JSON. Keys {} aren't valid ones.".format(data.keys()) +
-            "For an image, send a JSON such as {'image': [0, 0, 0]}." +
-            "Sending videos over JSON isn't implemented yet."
-        )
+    raise ValueError(
+        "Error during the reading of JSON. Keys {} aren't valid ones.".format(data.keys()) +
+        "For an image, send a JSON such as {'image': [0, 0, 0]}." +
+        "Sending videos over JSON isn't implemented yet."
+    )
 
 
-def handle_file(file: FileStorage,
-                upload_folder=UPLOAD_FOLDER,
-                fps=FPS,
-                resolution=RESOLUTION) -> Dict[str, np.array]:
+def handle_file(
+    file: FileStorage,
+    upload_folder: str = UPLOAD_FOLDER,
+    fps: int = FPS,
+    resolution: Tuple[int, int] = RESOLUTION,
+    **kwargs
+) -> Dict[str, np.array]:
     """Make the prediction if the data is coming from an uploaded file.
 
     Arguments:
@@ -137,6 +137,8 @@ def handle_file(file: FileStorage,
 
     - *NotImplementedError*: If the format of data isn't handled yet
     """
+    if kwargs:
+        logger.warning(f"Unused kwargs: {kwargs}")
     filename = secure_filename(file.filename)
     full_filepath = os.path.join(upload_folder, filename)
     if not os.path.isdir(upload_folder):
@@ -144,8 +146,8 @@ def handle_file(file: FileStorage,
     if os.path.isfile(full_filepath):
         os.remove(full_filepath)
     file.save(full_filepath)
-    file_type = file.mimetype.split("/")[
-        0]  # mimetype is for example 'image/png' and we only want the image
+    file_type = file.mimetype.split("/")[0]
+    # mimetype is for example 'image/png' and we only want the image
 
     if file_type == "image":
         image = cv2.imread(full_filepath)  # cv2 opens in BGR
