@@ -139,7 +139,7 @@ def handle_file(
     - *NotImplementedError*: If the format of data isn't handled yet
     """
     if kwargs:
-        logger.warning(f"Unused kwargs: {kwargs}")
+        logger.warning("Unused kwargs: {}".format(kwargs))
     filename = secure_filename(file.filename)
     full_filepath = os.path.join(upload_folder, filename)
     if not os.path.isdir(upload_folder):
