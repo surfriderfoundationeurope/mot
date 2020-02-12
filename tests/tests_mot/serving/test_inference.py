@@ -18,9 +18,8 @@ def mock_post_tensorpack_localizer(*args, **kwargs):
     boxes = [[0, 0, 120, 40], [0, 0, 120, 80]]
     scores = [[0.71, 0.1, 0.1], [0.2, 0.05, 0.71]]
     classes = [1, 3]
-    response = mock.Mock()
-    response.text = json.dumps(
-        {
+    class Response(mock.Mock):
+        json_text = {
             'outputs':
                 {
                     'output/boxes:0': boxes,
@@ -28,7 +27,15 @@ def mock_post_tensorpack_localizer(*args, **kwargs):
                     'output/labels:0': classes,
                 }
         }
-    )
+
+        @property
+        def text(self):
+            return json.dumps(self.json_text)
+
+        def json(self):
+            return self.json_text
+
+    response = Response()
     return response
 
 

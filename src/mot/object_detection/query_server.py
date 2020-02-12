@@ -31,7 +31,10 @@ def query_tensorflow_server(signature: Dict, url: str) -> Dict:
     url_serving = os.path.join(url, "v1/models/serving:predict")
     headers = {"content-type": "application/json"}
     json_response = requests.post(url_serving, data=json.dumps(signature), headers=headers)
-    return json.loads(json_response.text)['outputs']
+    response = json_response.json()
+    if "outputs" in response:
+        return response["outputs"]
+    raise ValueError(response) 
 
 
 def localizer_tensorflow_serving_inference(

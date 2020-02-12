@@ -17,7 +17,7 @@ docker-training:
 	docker build -t mot_training -f docker/Dockerfile.training .
 	docker stop $(docker_training_name) || true
 	docker rm $(docker_training_name) || true
-	docker run --runtime=nvidia --name $(docker_training_name) -p $(PORT_JUPYTER):8888 -p $(PORT_TENSORBOARD):6006 -v $(shell pwd):/workspace $(RUN_ARGS) -it mot_training
+	docker run --runtime=nvidia --name $(docker_training_name) -p $(PORT_JUPYTER):8888 -p $(PORT_TENSORBOARD):6006 -v $(shell pwd):/workspace/mot $(RUN_ARGS) -it mot_training
 
 docker-exec-training: 
 	docker exec -it $(docker_training_name) bash
