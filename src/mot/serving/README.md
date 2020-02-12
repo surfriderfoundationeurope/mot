@@ -6,7 +6,7 @@ The serving is the interface to peform inferences on images (object detection) o
 
 For this step, you need a SavedModel on disk. You can either
 - export one of your models following the instructions in the principal README
-- use this [pretrained model](http://files.heuritech.com/raw_files/surfrider/serving_2.zip). You need to unzip it, this will be your `MODEL_FOLDER` in the next step.
+- use this [pretrained model](http://files.heuritech.com/raw_files/surfrider/serving.zip). You need to unzip it, this will be your `MODEL_FOLDER` in the next step.
 
 ## Launch
 

@@ -154,7 +154,7 @@ if __name__ == '__main__':
         if args.compact:
             ModelExporter(predcfg).export_compact(args.compact)
         elif args.serving:
-            ModelExporter(predcfg).export_serving(args.serving, signature_name="serving")
+            ModelExporter(predcfg).export_serving(args.serving, signature_name="serving_default")
 
         if args.predict:
             predictor = OfflinePredictor(predcfg)
