@@ -34,7 +34,15 @@ def query_tensorflow_server(signature: Dict, url: str) -> Dict:
     response = json_response.json()
     if "outputs" in response:
         return response["outputs"]
-    raise ValueError(response) 
+    if "error" in response:
+        message = "Tensorflow serving returned an error. It probably means that your SavedModel " \
+        " doesn't have the correct signature_def, which must be 'serving_default'. You can inspect " \
+        " that by doing `saved_model_cli show --dir /path/to/your/model --all`. If the signature_def" \
+        " isn't 'serving_default' you should export your checkpoints following the instructions" \
+        " in the main README, section `Export` Here is the original" \
+        " error raised by tensorflow serving:\n " + str(response["error"])
+        raise ValueError(message)
+    raise ValueError("Unknwon response from tensorflow serving: {}".format(response))
 
 
 def localizer_tensorflow_serving_inference(
@@ -77,10 +85,10 @@ def localizer_tensorflow_serving_inference(
     signature, ratio = preprocess_for_serving(image)
     predictions = query_tensorflow_server(signature, url)
     predictions['output/boxes:0'] = np.array(predictions['output/boxes:0'], np.int32) / ratio
-    predictions["output/boxes:0"][:, 0] /= image.shape[0] # scaling coords to [0, 1]
-    predictions["output/boxes:0"][:, 1] /= image.shape[1] # scaling coords to [0, 1]
-    predictions["output/boxes:0"][:, 2] /= image.shape[0] # scaling coords to [0, 1]
-    predictions["output/boxes:0"][:, 3] /= image.shape[1] # scaling coords to [0, 1]
+    predictions["output/boxes:0"][:, 0] /= image.shape[0]  # scaling coords to [0, 1]
+    predictions["output/boxes:0"][:, 1] /= image.shape[1]  # scaling coords to [0, 1]
+    predictions["output/boxes:0"][:, 2] /= image.shape[0]  # scaling coords to [0, 1]
+    predictions["output/boxes:0"][:, 3] /= image.shape[1]  # scaling coords to [0, 1]
     predictions['output/boxes:0'] = predictions['output/boxes:0'].tolist()
     scores = np.array(predictions['output/scores:0'])
     if return_all_scores and len(scores.shape) == 1:
