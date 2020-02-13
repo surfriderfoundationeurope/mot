@@ -16,7 +16,7 @@ NVIDIA_VISIBLE_DEVICES=2 RATIO_GPU=0.3 MODEL_FOLDER=/path/to/serving PORT=the_po
 
 - `NVIDIA_VISIBLE_DEVICES` allows you to specify the GPU you want to use for inferences.
 - `RATIO_GPU` is used to specify which fraction of your GPU tou want to allow to your model. By default, it is set at 0.45.
-- For `MODEL_FOLDER`, you have to specify the path to the folder where the `saved_model.pb` file and `variables` folder are stored.
+- For `MODEL_FOLDER`, you have to specify the path to the folder where the `saved_model.pb` file and `variables` folder are stored. If you don't specify a `MODEL_FOLDER`, [this one](http://files.heuritech.com/raw_files/surfrider/serving.zip) will be automatically downloaded and used.
 - The `PORT` is the one you'll use to make inference requests.
 
 
