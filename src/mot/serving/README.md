@@ -11,12 +11,13 @@ For this step, you need a SavedModel on disk. You can either
 ## Launch
 
 ```bash
-NVIDIA_VISIBLE_DEVICES=2 MODEL_FOLDER=/path/to/serving PORT=the_port_you_want_to_expose make docker-serving
+NVIDIA_VISIBLE_DEVICES=2 RATIO_GPU=0.3 MODEL_FOLDER=/path/to/serving PORT=the_port_you_want_to_expose make docker-serving
 ```
 
-`NVIDIA_VISIBLE_DEVICES`allows you to specify the GPU you want to use for inferences.
-For `MODEL_FOLDER`, you specify the path to the folder where the `saved_model.pb` file and `variables` folder are stored.
-The `PORT` is the one you'll use to make inference requests.
+- `NVIDIA_VISIBLE_DEVICES` allows you to specify the GPU you want to use for inferences.
+- `RATIO_GPU` is used to specify which fraction of your GPU tou want to allow to your model. By default, it is set at 0.45.
+- For `MODEL_FOLDER`, you have to specify the path to the folder where the `saved_model.pb` file and `variables` folder are stored. If you don't specify a `MODEL_FOLDER`, [this one](http://files.heuritech.com/raw_files/surfrider/serving.zip) will be automatically downloaded and used.
+- The `PORT` is the one you'll use to make inference requests.
 
 
 ## Requests
@@ -47,7 +48,7 @@ curl -F "file=@/path/to/file" host:port
 For videos you can add parameters such as fps and resolution like that:
 
 ```bash
-curl -F "file=@image.png" -F "fps=2" -F "resolution=(10,10)" host:port
+curl -F "file=@/path/to/video.mp4" -F "fps=2" -F "resolution=(10,10)" host:port
 ```
 
 You don't have to specify those parameters and you can find their default value in [this file](inference.py).

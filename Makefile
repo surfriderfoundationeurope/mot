@@ -19,7 +19,7 @@ docker-training:
 	docker rm $(docker_training_name) || true
 	docker run --runtime=nvidia --name $(docker_training_name) -p $(PORT_JUPYTER):8888 -p $(PORT_TENSORBOARD):6006 -v $(shell pwd):/workspace/mot $(RUN_ARGS) -it mot_training
 
-docker-exec-training: 
+docker-exec-training:
 	docker exec -it $(docker_training_name) bash
 
 docker-tests:
@@ -33,15 +33,14 @@ up-tests:
 	docker stop $(docker_tests_name) || true
 	docker rm $(docker_tests_name) || true
 	docker run -it --entrypoint bash --name $(docker_tests_name) -v $(HOME):/workspace mot_tests
-	
+
 docker-serving:
 	docker stop $(docker_serving_name) || true
 	docker rm $(docker_serving_name) || true
-	rm -r serving || true
-	cp -r $(MODEL_FOLDER) serving
+	./scripts/prepare_serving.sh
 	docker build -f docker/Dockerfile.serving -t mot_serving .
 	rm -r serving
-	docker run -t --rm --name $(docker_serving_name)  -p $(PORT):5000 --runtime=nvidia -e NVIDIA_VISIBLE_DEVICES \
+	docker run -t --rm --name $(docker_serving_name) -p $(PORT):5000 --runtime=nvidia -e NVIDIA_VISIBLE_DEVICES -e RATIO_GPU \
         -e MODEL_NAME=serving \
         mot_serving
 

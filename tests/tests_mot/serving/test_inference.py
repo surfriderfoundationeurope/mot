@@ -241,3 +241,92 @@ def test_predict_and_format_image(mock_server_result, tmpdir):
     class_to_threshold = {"bottles": 0.8, "others": 0.3, "fragments": 0.8}
     predictions = predict_and_format_image(image, class_to_threshold=class_to_threshold)
     assert predictions == []
+
+
+def mock_post_tensorpack_localizer_error(*args, **kwargs):
+    class Response(mock.Mock):
+        json_text = {'error':  "¯\(°_o)/¯"}
+
+        @property
+        def text(self):
+            return json.dumps(self.json_text)
+
+        def json(self):
+            return self.json_text
+
+    response = Response()
+    return response
+
+
+@mock.patch('requests.post', side_effect=mock_post_tensorpack_localizer_error)
+def test_handle_post_request_file_error(mock_server_result, tmpdir):
+    # videos
+    m = mock.MagicMock()
+    files = {"file": FileStorage(open(PATH_TO_TEST_VIDEO, "rb"), content_type='video/mkv')}
+    m.files = files
+    m.form = {"fps": 2, "foo": "bar"}
+    split_frames_folder = os.path.join(
+        tmpdir, "{}_split".format(os.path.basename(PATH_TO_TEST_VIDEO))
+    )
+    os.mkdir(split_frames_folder)  # this folder should be deleted by handle post request
+    with mock.patch("mot.serving.inference.request", m):
+        outputs = handle_post_request(upload_folder=str(tmpdir))
+        assert "error" in outputs
+        assert outputs["error"].endswith("¯\(°_o)/¯")
+
+    # images
+    data = np.ones((300, 200, 3))
+    filename = "test.jpg"
+    filepath = os.path.join(tmpdir, filename)
+    cv2.imwrite(filepath, data)
+    m = mock.MagicMock()
+    files = {"file": FileStorage(open(filepath, "rb"), content_type='image/jpg')}
+    m.files = files
+    with mock.patch("mot.serving.inference.request", m):
+        outputs = handle_post_request(upload_folder=str(tmpdir))
+        assert "error" in outputs
+        assert outputs["error"].endswith("¯\(°_o)/¯")
+
+def mock_post_tensorpack_localizer_unknown(*args, **kwargs):
+    class Response(mock.Mock):
+        json_text = {'unknown': "¯\_(ツ)_/¯"}
+
+        @property
+        def text(self):
+            return json.dumps(self.json_text)
+
+        def json(self):
+            return self.json_text
+
+    response = Response()
+    return response
+
+
+@mock.patch('requests.post', side_effect=mock_post_tensorpack_localizer_unknown)
+def test_handle_post_request_file_unknwon(mock_server_result, tmpdir):
+    # videos
+    m = mock.MagicMock()
+    files = {"file": FileStorage(open(PATH_TO_TEST_VIDEO, "rb"), content_type='video/mkv')}
+    m.files = files
+    m.form = {"fps": 2, "foo": "bar"}
+    split_frames_folder = os.path.join(
+        tmpdir, "{}_split".format(os.path.basename(PATH_TO_TEST_VIDEO))
+    )
+    os.mkdir(split_frames_folder)  # this folder should be deleted by handle post request
+    with mock.patch("mot.serving.inference.request", m):
+        outputs = handle_post_request(upload_folder=str(tmpdir))
+        assert "error" in outputs
+        assert outputs["error"].endswith("{'unknown': '¯\\\\_(ツ)_/¯'}")
+
+    # images
+    data = np.ones((300, 200, 3))
+    filename = "test.jpg"
+    filepath = os.path.join(tmpdir, filename)
+    cv2.imwrite(filepath, data)
+    m = mock.MagicMock()
+    files = {"file": FileStorage(open(filepath, "rb"), content_type='image/jpg')}
+    m.files = files
+    with mock.patch("mot.serving.inference.request", m):
+        outputs = handle_post_request(upload_folder=str(tmpdir))
+        assert "error" in outputs
+        assert outputs["error"].endswith("{'unknown': '¯\\\\_(ツ)_/¯'}")

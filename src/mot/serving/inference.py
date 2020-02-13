@@ -153,7 +153,11 @@ def handle_file(
     if file_type == "image":
         image = cv2.imread(full_filepath)  # cv2 opens in BGR
         os.remove(full_filepath)  # remove it as we don't need it anymore
-        return {"image": filename, "detected_trash": predict_and_format_image(image)}
+        try:
+            detected_trash = predict_and_format_image(image)
+        except ValueError as e:
+            return {"error": str(e)}
+        return {"image": filename, "detected_trash": detected_trash}
 
     elif file_type in ["video", "application"]:
         folder = None
@@ -184,13 +188,16 @@ def handle_file(
 
         # making inference on frames
         logger.info("{} images to analyze on {} CPUs.".format(len(image_paths), CPU_COUNT))
-        with multiprocessing.Pool(CPU_COUNT) as p:
-            inference_outputs = list(
-                tqdm(
-                    p.imap(process_image, image_paths),
-                    total=len(image_paths),
+        try:
+            with multiprocessing.Pool(CPU_COUNT) as p:
+                inference_outputs = list(
+                    tqdm(
+                        p.imap(process_image, image_paths),
+                        total=len(image_paths),
+                    )
                 )
-            )
+        except ValueError as e:
+            return {"error": str(e)}
         logger.info("Finish analyzing video {}.".format(full_filepath))
 
         # tracking objects
@@ -260,7 +267,11 @@ def predict_and_format_image(
         outputs["output/boxes:0"], outputs["output/labels:0"], outputs["output/scores:0"]
     ):
         if keep_prediction(class_names, label, class_to_threshold, score):
-            trash_json = {"box": [x for x in box], "label": class_names[label], "score": score}
+            trash_json = {
+                "box": [round(coord, 2) for coord in box],
+                "label": class_names[label],
+                "score": score,
+            }
             detected_trash.append(trash_json)
     return detected_trash
 

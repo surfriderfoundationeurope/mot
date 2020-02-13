@@ -16,6 +16,8 @@ MOT stands for Multi-Object Tracking, as we detect, then track the different pla
 
 The object detection part is based on [tensorpack](https://github.com/tensorpack/tensorpack).
 
+**The next subsections are useful to read if you want to train models or perform advanced tasks. However, if you just want to launch a serving container or perform inferences on one of those, directly jump to [this file](src/mot/serving/README.md).**
+
 ### Dataset
 
 You can download a training dataset on this [link](http://files.heuritech.com/raw_files/dataset_surfrider_cleaned.zip).
