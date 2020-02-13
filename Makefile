@@ -41,7 +41,7 @@ docker-serving:
 	cp -r $(MODEL_FOLDER) serving
 	docker build -f docker/Dockerfile.serving -t mot_serving .
 	rm -r serving
-	docker run -t --rm --name $(docker_serving_name)  -p $(PORT):5000 --runtime=nvidia -e NVIDIA_VISIBLE_DEVICES \
+	docker run -t --rm --name $(docker_serving_name) -p $(PORT):5000 --runtime=nvidia -e NVIDIA_VISIBLE_DEVICES -e RATIO_GPU \
         -e MODEL_NAME=serving \
         mot_serving
 
