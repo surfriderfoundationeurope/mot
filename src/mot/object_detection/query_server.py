@@ -84,18 +84,19 @@ def localizer_tensorflow_serving_inference(
     """
     signature, ratio = preprocess_for_serving(image)
     predictions = query_tensorflow_server(signature, url)
-    predictions['output/boxes:0'] = np.array(predictions['output/boxes:0'], np.int32) / ratio
-    predictions["output/boxes:0"][:, 0] /= image.shape[0]  # scaling coords to [0, 1]
-    predictions["output/boxes:0"][:, 1] /= image.shape[1]  # scaling coords to [0, 1]
-    predictions["output/boxes:0"][:, 2] /= image.shape[0]  # scaling coords to [0, 1]
-    predictions["output/boxes:0"][:, 3] /= image.shape[1]  # scaling coords to [0, 1]
-    predictions['output/boxes:0'] = predictions['output/boxes:0'].tolist()
     scores = np.array(predictions['output/scores:0'])
-    if return_all_scores and len(scores.shape) == 1:
-        raise ValueError(
-            "return_all_scores is True but the model you're using only returns the score of "
-            "the predicted entity. Try changing the model you're using."
-        )
+    if len(predictions["output/boxes:0"]) > 0:
+        predictions['output/boxes:0'] = np.array(predictions['output/boxes:0'], np.int32) / ratio
+        predictions["output/boxes:0"][:, 0] /= image.shape[0] # scaling coords to [0, 1]
+        predictions["output/boxes:0"][:, 1] /= image.shape[1] # scaling coords to [0, 1]
+        predictions["output/boxes:0"][:, 2] /= image.shape[0] # scaling coords to [0, 1]
+        predictions["output/boxes:0"][:, 3] /= image.shape[1] # scaling coords to [0, 1]
+        predictions['output/boxes:0'] = predictions['output/boxes:0'].tolist()
+        if return_all_scores and len(scores.shape) == 1:
+            raise ValueError(
+                "return_all_scores is True but the model you're using only returns the score of "
+                "the predicted entity. Try changing the model you're using."
+            )
     if not return_all_scores and len(scores.shape) == 2:
         scores = np.max(scores, axis=1)
     predictions['output/scores:0'] = scores.tolist()

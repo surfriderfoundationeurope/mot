@@ -119,3 +119,57 @@ def test_localizer_tensorflow_serving_inference_all_scores(mock_server_result):
         return_all_scores=False,
     )
     assert output == expected_output
+
+def mock_post_tensorpack_localizer_no_pred(*args, **kwargs):
+    boxes = []
+    scores = []
+    classes = []
+
+    class Response(mock.Mock):
+        json_text = {
+            'outputs':
+                {
+                    'output/boxes:0': boxes,
+                    'output/scores:0': scores,
+                    'output/labels:0': classes,
+                }
+        }
+
+        @property
+        def text(self):
+            return json.dumps(self.json_text)
+
+        def json(self):
+            return self.json_text
+
+    response = Response()
+    return response
+
+
+@mock.patch('requests.post', side_effect=mock_post_tensorpack_localizer_no_pred)
+def test_localizer_tensorflow_serving_inference_no_pred(mock_server_result):
+    image = np.zeros((300, 200, 3))
+
+    expected_output = {
+        'output/boxes:0': [],
+        'output/scores:0': [],
+        'output/labels:0': [],
+    }
+    output = localizer_tensorflow_serving_inference(
+        image,
+        'http:localhost:8899',
+        return_all_scores=True,
+    )
+    assert output == expected_output
+
+    expected_output = {
+        'output/boxes:0': [],
+        'output/scores:0': [],
+        'output/labels:0': [],
+    }
+    output = localizer_tensorflow_serving_inference(
+        image,
+        'http:localhost:8899',
+        return_all_scores=False,
+    )
+    assert output == expected_output
