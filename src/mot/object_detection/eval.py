@@ -13,6 +13,7 @@ from contextlib import ExitStack
 import cv2
 import tqdm
 from scipy import interpolate
+from collections.abc import Iterable
 
 from tensorpack.callbacks import Callback
 from tensorpack.tfutils.common import get_tf_version_tuple
@@ -163,11 +164,17 @@ def predict_dataflow(df, model_func, tqdm_bar=None):
             results = predict_image(img, model_func, as_named_tuple=True)
             for r in results:
                 # int()/float() to make it json-serializable
+                # our model can return only the highest score, or the scores of all entities
+                # here, we are just interested in the highest score
+                if isinstance(r.score, Iterable):
+                    score = max(r.score)
+                else:
+                    score = r.score
                 res = {
                     'image_id': img_id,
                     'category_id': int(r.class_id),
                     'bbox': [round(float(x), 4) for x in r.box],
-                    'score': round(float(r.score), 4),
+                    'score': round(float(score), 4),
                 }
 
                 # also append segmentation to results
