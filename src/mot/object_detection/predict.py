@@ -159,7 +159,7 @@ if __name__ == '__main__':
         if args.predict:
             predictor = OfflinePredictor(predcfg)
             for image_file in args.predict:
-                do_predict(predictor, image_file)
+                do_predict(predictor, image_file, visualize=True)
         elif args.evaluate:
             assert args.evaluate.endswith('.json'), args.evaluate
             do_evaluate(predcfg, args.evaluate)
