@@ -137,6 +137,8 @@ def predict_image(img, model_func, as_named_tuple=False):
         masks = [None] * len(boxes)
 
     if as_named_tuple:
+        if len(probs.shape) == 2: # if the scores of all entities are returned for each prediction
+            probs = np.max(probs, axis=1) # we keep here only the biggest score
         return [DetectionResult(*args) for args in zip(boxes, probs, labels.tolist(), masks)]
     return (boxes, probs, labels)
 
