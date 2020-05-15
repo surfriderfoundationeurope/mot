@@ -28,4 +28,8 @@ def split_video(input_path, output_folder, fps=1.5, resolution=(1024, 768)):
 
 def read_folder(input_path):
     # for now, read directly from images in folder ; later from json outputs
-    return [os.path.join(input_path, file) for file in sorted(os.listdir(input_path))]
+    return [
+        os.path.join(input_path, file)
+        for file in sorted(os.listdir(input_path))
+        if os.path.isfile(os.path.join(input_path, file))
+    ]
