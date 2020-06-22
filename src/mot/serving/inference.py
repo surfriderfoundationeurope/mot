@@ -15,7 +15,7 @@ from zipfile import ZipFile
 
 from mot.object_detection.query_server import \
     localizer_tensorflow_serving_inference
-from mot.tracker.tracker import ObjectTracking
+from mot.tracker.object_tracking import ObjectTracking
 from mot.tracker.video_utils import read_folder, split_video
 
 SERVING_URL = "http://localhost:8501"  # the url where the tf-serving container exposes the model
@@ -203,9 +203,9 @@ def handle_file(
         # tracking objects
         logger.info("Starting tracking.")
         object_tracker = ObjectTracking(filename, image_paths, inference_outputs, fps=fps)
+        tracks = object_tracker.compute_tracks()
         logger.info("Tracking finished.")
-        return object_tracker.json_result()
-
+        return object_tracker.json_result(tracks)
     else:
         raise NotImplementedError(file_type)
 
