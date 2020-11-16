@@ -1,0 +1,1824 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.14">
+    
+    
+      
+        <title>Predict - mot</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.d3202873.min.css">
+      
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ff0a5ce4.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#4cae4f">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="green" data-md-color-accent="lightgreen">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#module-motobject_detectionpredict" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../../../.." title="mot" class="md-header-nav__button md-logo" aria-label="mot">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            mot
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Predict
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/surfriderfoundationeurope/mot/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mot
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="mot" class="md-nav__button md-logo" aria-label="mot">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    mot
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/surfriderfoundationeurope/mot/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mot
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../../CONTRIBUTING/" title="Contributing" class="md-nav__link">
+      Contributing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1" checked>
+    
+    <label class="md-nav__link" for="nav-3-1">
+      Mot
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Mot" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        <span class="md-nav__icon md-icon"></span>
+        Mot
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-2" type="checkbox" id="nav-3-1-2" checked>
+    
+    <label class="md-nav__link" for="nav-3-1-2">
+      Object Detection
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Object Detection" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-1-2">
+        <span class="md-nav__icon md-icon"></span>
+        Object Detection
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../common/" title="Common" class="md-nav__link">
+      Common
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../config/" title="Config" class="md-nav__link">
+      Config
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../data/" title="Data" class="md-nav__link">
+      Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../eval/" title="Eval" class="md-nav__link">
+      Eval
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Predict
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="Predict" class="md-nav__link md-nav__link--active">
+      Predict
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#do_evaluate" class="md-nav__link">
+    do_evaluate
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#do_predict" class="md-nav__link">
+    do_predict
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#do_visualize" class="md-nav__link">
+    do_visualize
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../preprocessing/" title="Preprocessing" class="md-nav__link">
+      Preprocessing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../query_server/" title="Query Server" class="md-nav__link">
+      Query Server
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../train/" title="Train" class="md-nav__link">
+      Train
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../viz/" title="Viz" class="md-nav__link">
+      Viz
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-2-11" type="checkbox" id="nav-3-1-2-11">
+    
+    <label class="md-nav__link" for="nav-3-1-2-11">
+      Dataset
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Dataset" data-md-level="4">
+      <label class="md-nav__title" for="nav-3-1-2-11">
+        <span class="md-nav__icon md-icon"></span>
+        Dataset
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dataset/dataset/" title="Dataset" class="md-nav__link">
+      Dataset
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dataset/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dataset/mot/" title="Mot" class="md-nav__link">
+      Mot
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-2-12" type="checkbox" id="nav-3-1-2-12">
+    
+    <label class="md-nav__link" for="nav-3-1-2-12">
+      Modeling
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Modeling" data-md-level="4">
+      <label class="md-nav__title" for="nav-3-1-2-12">
+        <span class="md-nav__icon md-icon"></span>
+        Modeling
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modeling/backbone/" title="Backbone" class="md-nav__link">
+      Backbone
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modeling/generalized_rcnn/" title="Generalized Rcnn" class="md-nav__link">
+      Generalized Rcnn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modeling/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modeling/model_box/" title="Model Box" class="md-nav__link">
+      Model Box
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modeling/model_cascade/" title="Model Cascade" class="md-nav__link">
+      Model Cascade
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modeling/model_fpn/" title="Model Fpn" class="md-nav__link">
+      Model Fpn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modeling/model_frcnn/" title="Model Frcnn" class="md-nav__link">
+      Model Frcnn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modeling/model_mrcnn/" title="Model Mrcnn" class="md-nav__link">
+      Model Mrcnn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modeling/model_rpn/" title="Model Rpn" class="md-nav__link">
+      Model Rpn
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-2-13" type="checkbox" id="nav-3-1-2-13">
+    
+    <label class="md-nav__link" for="nav-3-1-2-13">
+      Utils
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Utils" data-md-level="4">
+      <label class="md-nav__title" for="nav-3-1-2-13">
+        <span class="md-nav__icon md-icon"></span>
+        Utils
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../utils/box_ops/" title="Box Ops" class="md-nav__link">
+      Box Ops
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../utils/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../utils/np_box_ops/" title="Np Box Ops" class="md-nav__link">
+      Np Box Ops
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-3" type="checkbox" id="nav-3-1-3">
+    
+    <label class="md-nav__link" for="nav-3-1-3">
+      Serving
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Serving" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-1-3">
+        <span class="md-nav__icon md-icon"></span>
+        Serving
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../serving/app/" title="App" class="md-nav__link">
+      App
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../serving/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../serving/inference/" title="Inference" class="md-nav__link">
+      Inference
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-4" type="checkbox" id="nav-3-1-4">
+    
+    <label class="md-nav__link" for="nav-3-1-4">
+      Tracker
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tracker" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-1-4">
+        <span class="md-nav__icon md-icon"></span>
+        Tracker
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tracker/camera_flow/" title="Camera Flow" class="md-nav__link">
+      Camera Flow
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tracker/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tracker/object_tracking/" title="Object Tracking" class="md-nav__link">
+      Object Tracking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tracker/tracker_metrics/" title="Tracker Metrics" class="md-nav__link">
+      Tracker Metrics
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tracker/tracker_utils/" title="Tracker Utils" class="md-nav__link">
+      Tracker Utils
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tracker/video_utils/" title="Video Utils" class="md-nav__link">
+      Video Utils
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#do_evaluate" class="md-nav__link">
+    do_evaluate
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#do_predict" class="md-nav__link">
+    do_predict
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#do_visualize" class="md-nav__link">
+    do_visualize
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/surfriderfoundationeurope/mot/edit/master/reference/mot/object_detection/predict.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="module-motobject_detectionpredict">Module mot.object_detection.predict</h1>
+<details class="example"><summary>View Source</summary><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="ch">#!/usr/bin/env python</span>
+
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">import</span> <span class="nn">argparse</span>
+
+<span class="kn">import</span> <span class="nn">itertools</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">import</span> <span class="nn">shutil</span>
+
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+
+<span class="kn">import</span> <span class="nn">cv2</span>
+
+<span class="kn">import</span> <span class="nn">six</span>
+
+<span class="kn">import</span> <span class="nn">tqdm</span>
+
+<span class="k">assert</span> <span class="n">six</span><span class="o">.</span><span class="n">PY3</span><span class="p">,</span> <span class="s2">&quot;This example requires Python 3!&quot;</span>
+
+<span class="kn">import</span> <span class="nn">tensorpack.utils.viz</span> <span class="k">as</span> <span class="nn">tpviz</span>
+
+<span class="kn">from</span> <span class="nn">tensorpack.predict</span> <span class="kn">import</span> <span class="n">MultiTowerOfflinePredictor</span><span class="p">,</span> <span class="n">OfflinePredictor</span><span class="p">,</span> <span class="n">PredictConfig</span>
+
+<span class="kn">from</span> <span class="nn">tensorpack.tfutils</span> <span class="kn">import</span> <span class="n">SmartInit</span><span class="p">,</span> <span class="n">get_tf_version_tuple</span>
+
+<span class="kn">from</span> <span class="nn">tensorpack.tfutils.export</span> <span class="kn">import</span> <span class="n">ModelExporter</span>
+
+<span class="kn">from</span> <span class="nn">tensorpack.utils</span> <span class="kn">import</span> <span class="n">fs</span><span class="p">,</span> <span class="n">logger</span>
+
+<span class="kn">from</span> <span class="nn">mot.object_detection.dataset</span> <span class="kn">import</span> <span class="n">DatasetRegistry</span><span class="p">,</span> <span class="n">register_mot</span>
+
+<span class="kn">from</span> <span class="nn">mot.object_detection.config</span> <span class="kn">import</span> <span class="n">config</span> <span class="k">as</span> <span class="n">cfg</span>
+
+<span class="kn">from</span> <span class="nn">mot.object_detection.config</span> <span class="kn">import</span> <span class="n">finalize_configs</span>
+
+<span class="kn">from</span> <span class="nn">mot.object_detection.data</span> <span class="kn">import</span> <span class="n">get_eval_dataflow</span><span class="p">,</span> <span class="n">get_train_dataflow</span>
+
+<span class="kn">from</span> <span class="nn">mot.object_detection.eval</span> <span class="kn">import</span> <span class="n">DetectionResult</span><span class="p">,</span> <span class="n">multithread_predict_dataflow</span><span class="p">,</span> <span class="n">predict_image</span>
+
+<span class="kn">from</span> <span class="nn">mot.object_detection.modeling.generalized_rcnn</span> <span class="kn">import</span> <span class="n">ResNetC4Model</span><span class="p">,</span> <span class="n">ResNetFPNModel</span>
+
+<span class="kn">from</span> <span class="nn">mot.object_detection.viz</span> <span class="kn">import</span> <span class="p">(</span>
+
+    <span class="n">draw_annotation</span><span class="p">,</span> <span class="n">draw_final_outputs</span><span class="p">,</span> <span class="n">draw_predictions</span><span class="p">,</span>
+
+    <span class="n">draw_proposal_recall</span><span class="p">,</span> <span class="n">draw_final_outputs_blackwhite</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">do_visualize</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">model_path</span><span class="p">,</span> <span class="n">nr_visualize</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="s1">&#39;output&#39;</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Visualize some intermediate results (proposals, raw predictions) inside the pipeline.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">get_train_dataflow</span><span class="p">()</span>
+
+    <span class="n">df</span><span class="o">.</span><span class="n">reset_state</span><span class="p">()</span>
+
+    <span class="n">pred</span> <span class="o">=</span> <span class="n">OfflinePredictor</span><span class="p">(</span><span class="n">PredictConfig</span><span class="p">(</span>
+
+        <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+
+        <span class="n">session_init</span><span class="o">=</span><span class="n">SmartInit</span><span class="p">(</span><span class="n">model_path</span><span class="p">),</span>
+
+        <span class="n">input_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">,</span> <span class="s1">&#39;gt_boxes&#39;</span><span class="p">,</span> <span class="s1">&#39;gt_labels&#39;</span><span class="p">],</span>
+
+        <span class="n">output_names</span><span class="o">=</span><span class="p">[</span>
+
+            <span class="s1">&#39;generate_</span><span class="si">{}</span><span class="s1">_proposals/boxes&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;fpn&#39;</span> <span class="k">if</span> <span class="n">cfg</span><span class="o">.</span><span class="n">MODE_FPN</span> <span class="k">else</span> <span class="s1">&#39;rpn&#39;</span><span class="p">),</span>
+
+            <span class="s1">&#39;generate_</span><span class="si">{}</span><span class="s1">_proposals/scores&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;fpn&#39;</span> <span class="k">if</span> <span class="n">cfg</span><span class="o">.</span><span class="n">MODE_FPN</span> <span class="k">else</span> <span class="s1">&#39;rpn&#39;</span><span class="p">),</span>
+
+            <span class="s1">&#39;fastrcnn_all_scores&#39;</span><span class="p">,</span>
+
+            <span class="s1">&#39;output/boxes&#39;</span><span class="p">,</span>
+
+            <span class="s1">&#39;output/scores&#39;</span><span class="p">,</span>
+
+            <span class="s1">&#39;output/labels&#39;</span><span class="p">,</span>
+
+        <span class="p">]))</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">output_dir</span><span class="p">):</span>
+
+        <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">output_dir</span><span class="p">)</span>
+
+    <span class="n">fs</span><span class="o">.</span><span class="n">mkdir_p</span><span class="p">(</span><span class="n">output_dir</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">nr_visualize</span><span class="p">)</span> <span class="k">as</span> <span class="n">pbar</span><span class="p">:</span>
+
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">dp</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">islice</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">df</span><span class="p">),</span> <span class="n">nr_visualize</span><span class="p">):</span>
+
+            <span class="n">img</span><span class="p">,</span> <span class="n">gt_boxes</span><span class="p">,</span> <span class="n">gt_labels</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="s1">&#39;gt_boxes&#39;</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="s1">&#39;gt_labels&#39;</span><span class="p">]</span>
+
+            <span class="n">rpn_boxes</span><span class="p">,</span> <span class="n">rpn_scores</span><span class="p">,</span> <span class="n">all_scores</span><span class="p">,</span> \
+
+                <span class="n">final_boxes</span><span class="p">,</span> <span class="n">final_scores</span><span class="p">,</span> <span class="n">final_labels</span> <span class="o">=</span> <span class="n">pred</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">gt_boxes</span><span class="p">,</span> <span class="n">gt_labels</span><span class="p">)</span>
+
+            <span class="c1"># draw groundtruth boxes</span>
+
+            <span class="n">gt_viz</span> <span class="o">=</span> <span class="n">draw_annotation</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">gt_boxes</span><span class="p">,</span> <span class="n">gt_labels</span><span class="p">)</span>
+
+            <span class="c1"># draw best proposals for each groundtruth, to show recall</span>
+
+            <span class="n">proposal_viz</span><span class="p">,</span> <span class="n">good_proposals_ind</span> <span class="o">=</span> <span class="n">draw_proposal_recall</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">rpn_boxes</span><span class="p">,</span> <span class="n">rpn_scores</span><span class="p">,</span> <span class="n">gt_boxes</span><span class="p">)</span>
+
+            <span class="c1"># draw the scores for the above proposals</span>
+
+            <span class="n">score_viz</span> <span class="o">=</span> <span class="n">draw_predictions</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">rpn_boxes</span><span class="p">[</span><span class="n">good_proposals_ind</span><span class="p">],</span> <span class="n">all_scores</span><span class="p">[</span><span class="n">good_proposals_ind</span><span class="p">])</span>
+
+            <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">DetectionResult</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span> <span class="k">for</span> <span class="n">args</span> <span class="ow">in</span>
+
+                       <span class="nb">zip</span><span class="p">(</span><span class="n">final_boxes</span><span class="p">,</span> <span class="n">final_scores</span><span class="p">,</span> <span class="n">final_labels</span><span class="p">,</span>
+
+                           <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">final_labels</span><span class="p">))]</span>
+
+            <span class="n">final_viz</span> <span class="o">=</span> <span class="n">draw_final_outputs</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">results</span><span class="p">)</span>
+
+            <span class="n">viz</span> <span class="o">=</span> <span class="n">tpviz</span><span class="o">.</span><span class="n">stack_patches</span><span class="p">([</span>
+
+                <span class="n">gt_viz</span><span class="p">,</span> <span class="n">proposal_viz</span><span class="p">,</span>
+
+                <span class="n">score_viz</span><span class="p">,</span> <span class="n">final_viz</span><span class="p">],</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DISPLAY&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
+
+                <span class="n">tpviz</span><span class="o">.</span><span class="n">interactive_imshow</span><span class="p">(</span><span class="n">viz</span><span class="p">)</span>
+
+            <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">/</span><span class="si">{:03d}</span><span class="s2">.png&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">idx</span><span class="p">),</span> <span class="n">viz</span><span class="p">)</span>
+
+            <span class="n">pbar</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">do_evaluate</span><span class="p">(</span><span class="n">pred_config</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
+
+    <span class="n">num_tower</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">TRAIN</span><span class="o">.</span><span class="n">NUM_GPUS</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">graph_funcs</span> <span class="o">=</span> <span class="n">MultiTowerOfflinePredictor</span><span class="p">(</span>
+
+        <span class="n">pred_config</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">num_tower</span><span class="p">)))</span><span class="o">.</span><span class="n">get_predictors</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">cfg</span><span class="o">.</span><span class="n">DATA</span><span class="o">.</span><span class="n">VAL</span><span class="p">:</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Evaluating </span><span class="si">{}</span><span class="s2"> ...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dataset</span><span class="p">))</span>
+
+        <span class="n">dataflows</span> <span class="o">=</span> <span class="p">[</span>
+
+            <span class="n">get_eval_dataflow</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">shard</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">num_shards</span><span class="o">=</span><span class="n">num_tower</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_tower</span><span class="p">)]</span>
+
+        <span class="n">all_results</span> <span class="o">=</span> <span class="n">multithread_predict_dataflow</span><span class="p">(</span><span class="n">dataflows</span><span class="p">,</span> <span class="n">graph_funcs</span><span class="p">)</span>
+
+        <span class="n">output</span> <span class="o">=</span> <span class="n">output_file</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">dataset</span>
+
+        <span class="n">DatasetRegistry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span><span class="o">.</span><span class="n">eval_inference_results</span><span class="p">(</span><span class="n">all_results</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">do_predict</span><span class="p">(</span><span class="n">pred_func</span><span class="p">,</span> <span class="n">input_file</span><span class="p">,</span> <span class="n">visualize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+
+    <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_COLOR</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">visualize</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">predict_image</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">pred_func</span><span class="p">)</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="n">predict_image</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">pred_func</span><span class="p">,</span> <span class="n">as_named_tuple</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">cfg</span><span class="o">.</span><span class="n">MODE_MASK</span><span class="p">:</span>
+
+        <span class="n">final</span> <span class="o">=</span> <span class="n">draw_final_outputs_blackwhite</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">results</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="n">final</span> <span class="o">=</span> <span class="n">draw_final_outputs</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">results</span><span class="p">)</span>
+
+    <span class="n">viz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">img</span><span class="p">,</span> <span class="n">final</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s2">&quot;output.png&quot;</span><span class="p">,</span> <span class="n">viz</span><span class="p">)</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Inference output for </span><span class="si">{}</span><span class="s2"> written to output.png&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">input_file</span><span class="p">))</span>
+
+    <span class="n">tpviz</span><span class="o">.</span><span class="n">interactive_imshow</span><span class="p">(</span><span class="n">viz</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--load&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;load a model for evaluation.&#39;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--visualize&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;visualize intermediate results&#39;</span><span class="p">)</span>
+
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--evaluate&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Run evaluation. &quot;</span>
+
+                                           <span class="s2">&quot;This argument is the path to the output json evaluation file&quot;</span><span class="p">)</span>
+
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--predict&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Run prediction on a given image. &quot;</span>
+
+                                          <span class="s2">&quot;This argument is the path to the input image file&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">)</span>
+
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--benchmark&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Benchmark the speed of the model + postprocessing&quot;</span><span class="p">)</span>
+
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--config&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;A list of KEY=VALUE to overwrite those defined in config.py&quot;</span><span class="p">,</span>
+
+                        <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">)</span>
+
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--compact&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Save a model to .pb&#39;</span><span class="p">)</span>
+
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--serving&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Save a model to serving file&#39;</span><span class="p">)</span>
+
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">config</span><span class="p">:</span>
+
+        <span class="n">cfg</span><span class="o">.</span><span class="n">update_args</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+
+    <span class="n">register_mot</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">DATA</span><span class="o">.</span><span class="n">BASEDIR</span><span class="p">)</span> <span class="c1"># add the mot datasets to the registry</span>
+
+    <span class="n">MODEL</span> <span class="o">=</span> <span class="n">ResNetFPNModel</span><span class="p">()</span> <span class="k">if</span> <span class="n">cfg</span><span class="o">.</span><span class="n">MODE_FPN</span> <span class="k">else</span> <span class="n">ResNetC4Model</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">tf</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">is_gpu_available</span><span class="p">():</span>
+
+        <span class="kn">from</span> <span class="nn">tensorflow.python.framework</span> <span class="kn">import</span> <span class="n">test_util</span>
+
+        <span class="k">assert</span> <span class="n">get_tf_version_tuple</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span> <span class="ow">and</span> <span class="n">test_util</span><span class="o">.</span><span class="n">IsMklEnabled</span><span class="p">(),</span> \
+
+            <span class="s2">&quot;Inference requires either GPU support or MKL support!&quot;</span>
+
+    <span class="k">assert</span> <span class="n">args</span><span class="o">.</span><span class="n">load</span>
+
+    <span class="n">finalize_configs</span><span class="p">(</span><span class="n">is_training</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">predict</span> <span class="ow">or</span> <span class="n">args</span><span class="o">.</span><span class="n">visualize</span><span class="p">:</span>
+
+        <span class="n">cfg</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">RESULT_SCORE_THRESH</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">RESULT_SCORE_THRESH_VIS</span>
+
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">visualize</span><span class="p">:</span>
+
+        <span class="n">do_visualize</span><span class="p">(</span><span class="n">MODEL</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">load</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="n">predcfg</span> <span class="o">=</span> <span class="n">PredictConfig</span><span class="p">(</span>
+
+            <span class="n">model</span><span class="o">=</span><span class="n">MODEL</span><span class="p">,</span>
+
+            <span class="n">session_init</span><span class="o">=</span><span class="n">SmartInit</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">load</span><span class="p">),</span>
+
+            <span class="n">input_names</span><span class="o">=</span><span class="n">MODEL</span><span class="o">.</span><span class="n">get_inference_tensor_names</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span>
+
+            <span class="n">output_names</span><span class="o">=</span><span class="n">MODEL</span><span class="o">.</span><span class="n">get_inference_tensor_names</span><span class="p">()[</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">compact</span><span class="p">:</span>
+
+            <span class="n">ModelExporter</span><span class="p">(</span><span class="n">predcfg</span><span class="p">)</span><span class="o">.</span><span class="n">export_compact</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">compact</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">serving</span><span class="p">:</span>
+
+            <span class="n">ModelExporter</span><span class="p">(</span><span class="n">predcfg</span><span class="p">)</span><span class="o">.</span><span class="n">export_serving</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">serving</span><span class="p">,</span> <span class="n">signature_name</span><span class="o">=</span><span class="s2">&quot;serving_default&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">predict</span><span class="p">:</span>
+
+            <span class="n">predictor</span> <span class="o">=</span> <span class="n">OfflinePredictor</span><span class="p">(</span><span class="n">predcfg</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">image_file</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">predict</span><span class="p">:</span>
+
+                <span class="n">do_predict</span><span class="p">(</span><span class="n">predictor</span><span class="p">,</span> <span class="n">image_file</span><span class="p">,</span> <span class="n">visualize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">evaluate</span><span class="p">:</span>
+
+            <span class="k">assert</span> <span class="n">args</span><span class="o">.</span><span class="n">evaluate</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.json&#39;</span><span class="p">),</span> <span class="n">args</span><span class="o">.</span><span class="n">evaluate</span>
+
+            <span class="n">do_evaluate</span><span class="p">(</span><span class="n">predcfg</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">evaluate</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">benchmark</span><span class="p">:</span>
+
+            <span class="n">df</span> <span class="o">=</span> <span class="n">get_eval_dataflow</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">DATA</span><span class="o">.</span><span class="n">VAL</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+            <span class="n">df</span><span class="o">.</span><span class="n">reset_state</span><span class="p">()</span>
+
+            <span class="n">predictor</span> <span class="o">=</span> <span class="n">OfflinePredictor</span><span class="p">(</span><span class="n">predcfg</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">img</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">),</span> <span class="n">smoothing</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)):</span>
+
+                <span class="c1"># This includes post-processing time, which is done on CPU and not optimized</span>
+
+                <span class="c1"># To exclude it, modify `predict_image`.</span>
+
+                <span class="n">predict_image</span><span class="p">(</span><span class="n">img</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">predictor</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+</details>
+<h2 id="functions">Functions</h2>
+<h3 id="do_evaluate">do_evaluate</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">do_evaluate</span><span class="p">(</span>
+    <span class="n">pred_config</span><span class="p">,</span>
+    <span class="n">output_file</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span> <span class="n">do_evaluate</span><span class="p">(</span><span class="n">pred_config</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
+
+    <span class="n">num_tower</span> <span class="o">=</span> <span class="k">max</span><span class="p">(</span><span class="n">cfg</span><span class="p">.</span><span class="n">TRAIN</span><span class="p">.</span><span class="n">NUM_GPUS</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">graph_funcs</span> <span class="o">=</span> <span class="n">MultiTowerOfflinePredictor</span><span class="p">(</span>
+
+        <span class="n">pred_config</span><span class="p">,</span> <span class="n">list</span><span class="p">(</span><span class="n">range</span><span class="p">(</span><span class="n">num_tower</span><span class="p">))).</span><span class="n">get_predictors</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">dataset</span> <span class="k">in</span> <span class="n">cfg</span><span class="p">.</span><span class="k">DATA</span><span class="p">.</span><span class="n">VAL</span><span class="p">:</span>
+
+        <span class="n">logger</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="ss">&quot;Evaluating {} ...&quot;</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">dataset</span><span class="p">))</span>
+
+        <span class="n">dataflows</span> <span class="o">=</span> <span class="p">[</span>
+
+            <span class="n">get_eval_dataflow</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">shard</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">num_shards</span><span class="o">=</span><span class="n">num_tower</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">k</span> <span class="k">in</span> <span class="n">range</span><span class="p">(</span><span class="n">num_tower</span><span class="p">)]</span>
+
+        <span class="n">all_results</span> <span class="o">=</span> <span class="n">multithread_predict_dataflow</span><span class="p">(</span><span class="n">dataflows</span><span class="p">,</span> <span class="n">graph_funcs</span><span class="p">)</span>
+
+        <span class="k">output</span> <span class="o">=</span> <span class="n">output_file</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">dataset</span>
+
+        <span class="n">DatasetRegistry</span><span class="p">.</span><span class="k">get</span><span class="p">(</span><span class="n">dataset</span><span class="p">).</span><span class="n">eval_inference_results</span><span class="p">(</span><span class="n">all_results</span><span class="p">,</span> <span class="k">output</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h3 id="do_predict">do_predict</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">do_predict</span><span class="p">(</span>
+    <span class="n">pred_func</span><span class="p">,</span>
+    <span class="n">input_file</span><span class="p">,</span>
+    <span class="n">visualize</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span> <span class="n">do_predict</span><span class="p">(</span><span class="n">pred_func</span><span class="p">,</span> <span class="n">input_file</span><span class="p">,</span> <span class="n">visualize</span><span class="o">=</span><span class="k">False</span><span class="p">):</span>
+
+    <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">imread</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">IMREAD_COLOR</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="k">not</span> <span class="n">visualize</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">predict_image</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">pred_func</span><span class="p">)</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="n">predict_image</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">pred_func</span><span class="p">,</span> <span class="n">as_named_tuple</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">cfg</span><span class="p">.</span><span class="n">MODE_MASK</span><span class="p">:</span>
+
+        <span class="k">final</span> <span class="o">=</span> <span class="n">draw_final_outputs_blackwhite</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">results</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="k">final</span> <span class="o">=</span> <span class="n">draw_final_outputs</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">results</span><span class="p">)</span>
+
+    <span class="n">viz</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">img</span><span class="p">,</span> <span class="k">final</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">cv2</span><span class="p">.</span><span class="n">imwrite</span><span class="p">(</span><span class="ss">&quot;output.png&quot;</span><span class="p">,</span> <span class="n">viz</span><span class="p">)</span>
+
+    <span class="n">logger</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="ss">&quot;Inference output for {} written to output.png&quot;</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">input_file</span><span class="p">))</span>
+
+    <span class="n">tpviz</span><span class="p">.</span><span class="n">interactive_imshow</span><span class="p">(</span><span class="n">viz</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h3 id="do_visualize">do_visualize</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">do_visualize</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">,</span>
+    <span class="n">model_path</span><span class="p">,</span>
+    <span class="n">nr_visualize</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">output_dir</span><span class="o">=</span><span class="s1">&#39;output&#39;</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Visualize some intermediate results (proposals, raw predictions) inside the pipeline.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">do_visualize</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">model_path</span><span class="p">,</span><span class="w"> </span><span class="n">nr_visualize</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="n">output_dir</span><span class="o">=</span><span class="s1">&#39;output&#39;</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    Visualize some intermediate results (proposals, raw predictions) inside the pipeline.</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_train_dataflow</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">df</span><span class="p">.</span><span class="n">reset_state</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">pred</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OfflinePredictor</span><span class="p">(</span><span class="n">PredictConfig</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">session_init</span><span class="o">=</span><span class="n">SmartInit</span><span class="p">(</span><span class="n">model_path</span><span class="p">),</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">input_names</span><span class="o">=[</span><span class="n">&#39;image&#39;, &#39;gt_boxes&#39;, &#39;gt_labels&#39;</span><span class="o">]</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">output_names</span><span class="o">=[</span><span class="n"></span>
+
+<span class="n">            &#39;generate_{}_proposals/boxes&#39;.format(&#39;fpn&#39; if cfg.MODE_FPN else &#39;rpn&#39;),</span>
+
+<span class="n">            &#39;generate_{}_proposals/scores&#39;.format(&#39;fpn&#39; if cfg.MODE_FPN else &#39;rpn&#39;),</span>
+
+<span class="n">            &#39;fastrcnn_all_scores&#39;,</span>
+
+<span class="n">            &#39;output/boxes&#39;,</span>
+
+<span class="n">            &#39;output/scores&#39;,</span>
+
+<span class="n">            &#39;output/labels&#39;,</span>
+
+<span class="n">        </span><span class="o">]</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">os</span><span class="p">.</span><span class="k">path</span><span class="p">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">output_dir</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">shutil</span><span class="p">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">output_dir</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">fs</span><span class="p">.</span><span class="n">mkdir_p</span><span class="p">(</span><span class="n">output_dir</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">with</span><span class="w"> </span><span class="n">tqdm</span><span class="p">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">nr_visualize</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nl">pbar</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">idx</span><span class="p">,</span><span class="w"> </span><span class="n">dp</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">itertools</span><span class="p">.</span><span class="n">islice</span><span class="p">(</span><span class="n">enumerate</span><span class="p">(</span><span class="n">df</span><span class="p">),</span><span class="w"> </span><span class="n">nr_visualize</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="n">gt_boxes</span><span class="p">,</span><span class="w"> </span><span class="n">gt_labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dp</span><span class="o">[</span><span class="n">&#39;image&#39;</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">dp</span><span class="o">[</span><span class="n">&#39;gt_boxes&#39;</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">dp</span><span class="o">[</span><span class="n">&#39;gt_labels&#39;</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">rpn_boxes</span><span class="p">,</span><span class="w"> </span><span class="n">rpn_scores</span><span class="p">,</span><span class="w"> </span><span class="n">all_scores</span><span class="p">,</span><span class="w"> </span><span class="err">\</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">final_boxes</span><span class="p">,</span><span class="w"> </span><span class="n">final_scores</span><span class="p">,</span><span class="w"> </span><span class="n">final_labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pred</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="n">gt_boxes</span><span class="p">,</span><span class="w"> </span><span class="n">gt_labels</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="err">#</span><span class="w"> </span><span class="n">draw</span><span class="w"> </span><span class="n">groundtruth</span><span class="w"> </span><span class="n">boxes</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">gt_viz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">draw_annotation</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="n">gt_boxes</span><span class="p">,</span><span class="w"> </span><span class="n">gt_labels</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="err">#</span><span class="w"> </span><span class="n">draw</span><span class="w"> </span><span class="n">best</span><span class="w"> </span><span class="n">proposals</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">each</span><span class="w"> </span><span class="n">groundtruth</span><span class="p">,</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">show</span><span class="w"> </span><span class="n">recall</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">proposal_viz</span><span class="p">,</span><span class="w"> </span><span class="n">good_proposals_ind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">draw_proposal_recall</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="n">rpn_boxes</span><span class="p">,</span><span class="w"> </span><span class="n">rpn_scores</span><span class="p">,</span><span class="w"> </span><span class="n">gt_boxes</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="err">#</span><span class="w"> </span><span class="n">draw</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">scores</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">above</span><span class="w"> </span><span class="n">proposals</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">score_viz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">draw_predictions</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="n">rpn_boxes</span><span class="o">[</span><span class="n">good_proposals_ind</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">all_scores</span><span class="o">[</span><span class="n">good_proposals_ind</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">DetectionResult(*args) for args in</span>
+
+<span class="n">                       zip(final_boxes, final_scores, final_labels,</span>
+
+<span class="n">                           [None</span><span class="o">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">final_labels</span><span class="p">))</span><span class="err">]</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">final_viz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">draw_final_outputs</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="n">results</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">viz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tpviz</span><span class="p">.</span><span class="n">stack_patches</span><span class="p">(</span><span class="o">[</span><span class="n"></span>
+
+<span class="n">                gt_viz, proposal_viz,</span>
+
+<span class="n">                score_viz, final_viz</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="k">get</span><span class="p">(</span><span class="s1">&#39;DISPLAY&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">None</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">tpviz</span><span class="p">.</span><span class="n">interactive_imshow</span><span class="p">(</span><span class="n">viz</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">cv2</span><span class="p">.</span><span class="n">imwrite</span><span class="p">(</span><span class="ss">&quot;{}/{:03d}.png&quot;</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span><span class="w"> </span><span class="n">idx</span><span class="p">),</span><span class="w"> </span><span class="n">viz</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">pbar</span><span class="p">.</span><span class="k">update</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../" title="Index" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Index
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../preprocessing/" title="Preprocessing" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Preprocessing
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Powered by
+        <a href="http://timothycrosley.github.io/portray">portray.</a>
+        You too can
+        <a href="http://timothycrosley.github.io/portray">
+          portray</a>
+        your Python project well using automatic documentation.
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../../assets/javascripts/vendor.2d1db4bd.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.6627ddf3.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

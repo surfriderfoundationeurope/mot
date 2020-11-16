@@ -1,0 +1,2026 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.14">
+    
+    
+      
+        <title>Mot - mot</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.d3202873.min.css">
+      
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ff0a5ce4.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#4cae4f">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="green" data-md-color-accent="lightgreen">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#module-motobject_detectiondatasetmot" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../../../../.." title="mot" class="md-header-nav__button md-logo" aria-label="mot">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            mot
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Mot
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/surfriderfoundationeurope/mot/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mot
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="mot" class="md-nav__button md-logo" aria-label="mot">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    mot
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/surfriderfoundationeurope/mot/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mot
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../../../CONTRIBUTING/" title="Contributing" class="md-nav__link">
+      Contributing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1" checked>
+    
+    <label class="md-nav__link" for="nav-3-1">
+      Mot
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Mot" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        <span class="md-nav__icon md-icon"></span>
+        Mot
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-2" type="checkbox" id="nav-3-1-2" checked>
+    
+    <label class="md-nav__link" for="nav-3-1-2">
+      Object Detection
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Object Detection" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-1-2">
+        <span class="md-nav__icon md-icon"></span>
+        Object Detection
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../common/" title="Common" class="md-nav__link">
+      Common
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../config/" title="Config" class="md-nav__link">
+      Config
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../data/" title="Data" class="md-nav__link">
+      Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../eval/" title="Eval" class="md-nav__link">
+      Eval
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../predict/" title="Predict" class="md-nav__link">
+      Predict
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../preprocessing/" title="Preprocessing" class="md-nav__link">
+      Preprocessing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../query_server/" title="Query Server" class="md-nav__link">
+      Query Server
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../train/" title="Train" class="md-nav__link">
+      Train
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../viz/" title="Viz" class="md-nav__link">
+      Viz
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-2-11" type="checkbox" id="nav-3-1-2-11" checked>
+    
+    <label class="md-nav__link" for="nav-3-1-2-11">
+      Dataset
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Dataset" data-md-level="4">
+      <label class="md-nav__title" for="nav-3-1-2-11">
+        <span class="md-nav__icon md-icon"></span>
+        Dataset
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dataset/" title="Dataset" class="md-nav__link">
+      Dataset
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Mot
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="Mot" class="md-nav__link md-nav__link--active">
+      Mot
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_class_names" class="md-nav__link">
+    get_class_names
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register_mot" class="md-nav__link">
+    register_mot
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#motdataset" class="md-nav__link">
+    MotDataset
+  </a>
+  
+    <nav class="md-nav" aria-label="MotDataset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ancestors-in-mro" class="md-nav__link">
+    Ancestors (in MRO)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eval_inference_results" class="md-nav__link">
+    eval_inference_results
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inference_roidbs" class="md-nav__link">
+    inference_roidbs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read_file_name" class="md-nav__link">
+    read_file_name
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read_labels" class="md-nav__link">
+    read_labels
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read_lines" class="md-nav__link">
+    read_lines
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#training_roidbs" class="md-nav__link">
+    training_roidbs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-2-12" type="checkbox" id="nav-3-1-2-12">
+    
+    <label class="md-nav__link" for="nav-3-1-2-12">
+      Modeling
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Modeling" data-md-level="4">
+      <label class="md-nav__title" for="nav-3-1-2-12">
+        <span class="md-nav__icon md-icon"></span>
+        Modeling
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../modeling/backbone/" title="Backbone" class="md-nav__link">
+      Backbone
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../modeling/generalized_rcnn/" title="Generalized Rcnn" class="md-nav__link">
+      Generalized Rcnn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../modeling/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../modeling/model_box/" title="Model Box" class="md-nav__link">
+      Model Box
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../modeling/model_cascade/" title="Model Cascade" class="md-nav__link">
+      Model Cascade
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../modeling/model_fpn/" title="Model Fpn" class="md-nav__link">
+      Model Fpn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../modeling/model_frcnn/" title="Model Frcnn" class="md-nav__link">
+      Model Frcnn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../modeling/model_mrcnn/" title="Model Mrcnn" class="md-nav__link">
+      Model Mrcnn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../modeling/model_rpn/" title="Model Rpn" class="md-nav__link">
+      Model Rpn
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-2-13" type="checkbox" id="nav-3-1-2-13">
+    
+    <label class="md-nav__link" for="nav-3-1-2-13">
+      Utils
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Utils" data-md-level="4">
+      <label class="md-nav__title" for="nav-3-1-2-13">
+        <span class="md-nav__icon md-icon"></span>
+        Utils
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../utils/box_ops/" title="Box Ops" class="md-nav__link">
+      Box Ops
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../utils/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../utils/np_box_ops/" title="Np Box Ops" class="md-nav__link">
+      Np Box Ops
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-3" type="checkbox" id="nav-3-1-3">
+    
+    <label class="md-nav__link" for="nav-3-1-3">
+      Serving
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Serving" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-1-3">
+        <span class="md-nav__icon md-icon"></span>
+        Serving
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../serving/app/" title="App" class="md-nav__link">
+      App
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../serving/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../serving/inference/" title="Inference" class="md-nav__link">
+      Inference
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-4" type="checkbox" id="nav-3-1-4">
+    
+    <label class="md-nav__link" for="nav-3-1-4">
+      Tracker
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tracker" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-1-4">
+        <span class="md-nav__icon md-icon"></span>
+        Tracker
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tracker/camera_flow/" title="Camera Flow" class="md-nav__link">
+      Camera Flow
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tracker/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tracker/object_tracking/" title="Object Tracking" class="md-nav__link">
+      Object Tracking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tracker/tracker_metrics/" title="Tracker Metrics" class="md-nav__link">
+      Tracker Metrics
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tracker/tracker_utils/" title="Tracker Utils" class="md-nav__link">
+      Tracker Utils
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tracker/video_utils/" title="Video Utils" class="md-nav__link">
+      Video Utils
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_class_names" class="md-nav__link">
+    get_class_names
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register_mot" class="md-nav__link">
+    register_mot
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#motdataset" class="md-nav__link">
+    MotDataset
+  </a>
+  
+    <nav class="md-nav" aria-label="MotDataset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ancestors-in-mro" class="md-nav__link">
+    Ancestors (in MRO)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eval_inference_results" class="md-nav__link">
+    eval_inference_results
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inference_roidbs" class="md-nav__link">
+    inference_roidbs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read_file_name" class="md-nav__link">
+    read_file_name
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read_labels" class="md-nav__link">
+    read_labels
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read_lines" class="md-nav__link">
+    read_lines
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#training_roidbs" class="md-nav__link">
+    training_roidbs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/surfriderfoundationeurope/mot/edit/master/reference/mot/object_detection/dataset/mot.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="module-motobject_detectiondatasetmot">Module mot.object_detection.dataset.mot</h1>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">mot.object_detection.dataset</span> <span class="kn">import</span> <span class="n">DatasetRegistry</span><span class="p">,</span> <span class="n">DatasetSplit</span>
+
+<span class="kn">from</span> <span class="nn">mot.object_detection.utils.np_box_ops</span> <span class="kn">import</span> <span class="n">area</span> <span class="k">as</span> <span class="n">np_area</span>
+
+<span class="k">class</span> <span class="nc">MotDataset</span><span class="p">(</span><span class="n">DatasetSplit</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;For more details on each methods see the description of dataset.py</span>
+
+<span class="sd">    Arguments:</span>
+
+<span class="sd">    - *base_dir*: the directory where the dataset is located. There should be inside a JSON named {dataset_name}.</span>
+
+<span class="sd">    - *split*: &quot;train&quot; or &quot;val&quot;</span>
+
+<span class="sd">    - *dataset_file*: the name of the JSON to use as dataset in base_dir. A line of this JSON should look like:</span>
+
+<span class="sd">    ```json</span>
+
+<span class="sd">    {</span>
+
+<span class="sd">        &quot;md5&quot;: &quot;159af544cd304c3ee50f63c281afa032&quot;,</span>
+
+<span class="sd">        &quot;labels&quot;:</span>
+
+<span class="sd">            [</span>
+
+<span class="sd">                {</span>
+
+<span class="sd">                    &quot;bbox&quot;: [&quot;250&quot;, &quot;255&quot;, &quot;278&quot;, &quot;289&quot;],</span>
+
+<span class="sd">                    &quot;label&quot;: &quot;fragments&quot;</span>
+
+<span class="sd">                }, {</span>
+
+<span class="sd">                    &quot;bbox&quot;: [&quot;432&quot;, &quot;231&quot;, &quot;459&quot;, &quot;280&quot;],</span>
+
+<span class="sd">                    &quot;label&quot;: &quot;fragments&quot;</span>
+
+<span class="sd">                }</span>
+
+<span class="sd">            ],</span>
+
+<span class="sd">    }</span>
+
+<span class="sd">    ```</span>
+
+<span class="sd">    - *classes_file*: the name of the JSON to use as classes in base_dir. A line of this JSON should look like:</span>
+
+<span class="sd">    ```json</span>
+
+<span class="sd">    [&quot;bottles&quot;, &quot;others&quot;, &quot;fragments&quot;]</span>
+
+<span class="sd">    ```</span>
+
+<span class="sd">    - *images_folder*: Where the images are stored, and named by their md5.</span>
+
+<span class="sd">        - if it starts with &quot;/&quot;, the absolute path will be used</span>
+
+<span class="sd">        - if not, the path os.path.join(base_dir, images_folder) will be used</span>
+
+<span class="sd">    Raises:</span>
+
+<span class="sd">    - *FileNotFoundError*: if the dataset or classes are missing.</span>
+
+<span class="sd">    - *NotADirectoryError*: if the images folder is missing.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+
+        <span class="bp">self</span><span class="p">,</span>
+
+        <span class="n">base_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+
+        <span class="kp">split</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+
+        <span class="n">dataset_file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;dataset.json&quot;</span><span class="p">,</span>
+
+        <span class="n">classes_file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;classes.json&quot;</span><span class="p">,</span>
+
+        <span class="n">images_folder</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Images_md5&quot;</span>
+
+    <span class="p">):</span>
+
+        <span class="k">assert</span> <span class="kp">split</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="s2">&quot;val&quot;</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="kp">split</span> <span class="o">=</span> <span class="kp">split</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">ratio</span> <span class="o">=</span> <span class="mf">0.99</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_dir</span> <span class="o">=</span> <span class="n">base_dir</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataset_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_dir</span><span class="p">,</span> <span class="n">dataset_file</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_path</span><span class="p">):</span>
+
+            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span>
+
+                <span class="s2">&quot;Missing file </span><span class="si">{}</span><span class="s2">. Make sure your file is named correctly.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_path</span><span class="p">)</span>
+
+            <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">classes_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_dir</span><span class="p">,</span> <span class="n">classes_file</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_path</span><span class="p">):</span>
+
+            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span>
+
+                <span class="s2">&quot;Missing file </span><span class="si">{}</span><span class="s2">. Make sure your file is named correctly.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_path</span><span class="p">)</span>
+
+            <span class="p">)</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+
+            <span class="n">classes</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="kp">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_to_idx</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">classes</span><span class="p">)}</span>
+
+        <span class="c1"># yapf: disable</span>
+
+        <span class="k">if</span> <span class="n">images_folder</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;/&quot;</span><span class="p">:</span> <span class="c1"># absolute path if the images are not stored inside the dataset folder for example</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">images_folder</span> <span class="o">=</span> <span class="n">images_folder</span>
+
+        <span class="k">else</span><span class="p">:</span> <span class="c1"># relative path, then it means that the images are stored inside the dataset folder</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">images_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_dir</span><span class="p">,</span> <span class="n">images_folder</span><span class="p">)</span>
+
+        <span class="c1"># yapf: enable</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">images_folder</span><span class="p">):</span>
+
+            <span class="k">raise</span> <span class="ne">NotADirectoryError</span><span class="p">(</span><span class="s2">&quot;Missing images folder </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">images_folder</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">read_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">labels</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;[summary]</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        - *labels*: A list of dicts such as:</span>
+
+<span class="sd">        ```python3</span>
+
+<span class="sd">        labels = [</span>
+
+<span class="sd">            {</span>
+
+<span class="sd">                &quot;bbox&quot;: [&quot;250&quot;, &quot;255&quot;, &quot;278&quot;, &quot;289&quot;],</span>
+
+<span class="sd">                &quot;label&quot;: &quot;fragments&quot;</span>
+
+<span class="sd">            }, {</span>
+
+<span class="sd">                &quot;bbox&quot;: [&quot;432&quot;, &quot;231&quot;, &quot;459&quot;, &quot;280&quot;],</span>
+
+<span class="sd">                &quot;label&quot;: &quot;fragments&quot;</span>
+
+<span class="sd">            }</span>
+
+<span class="sd">        ]</span>
+
+<span class="sd">        ```</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        - *np.ndarray, np.ndarray*: The boxes and classes. Classes starts at 1 since 0 is for background.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">boxes</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">classes</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">crop</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">:</span>
+
+            <span class="n">boxes</span><span class="o">.</span><span class="kp">append</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">coord</span><span class="p">)</span> <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">crop</span><span class="p">[</span><span class="s2">&quot;bbox&quot;</span><span class="p">]])</span>
+
+            <span class="n">classes</span><span class="o">.</span><span class="kp">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">class_to_idx</span><span class="p">[</span><span class="n">crop</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]])</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="n">boxes</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="n">classes</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">read_lines</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]]:</span>
+
+        <span class="sd">&quot;&quot;&quot;Reads the int(len(lines) * self.ratio) first lines if training, and the last ones otherwise.</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        - *List[Dict[str, object]]*: Each dict should look like:</span>
+
+<span class="sd">        ```python</span>
+
+<span class="sd">        {</span>
+
+<span class="sd">            &quot;md5&quot;: &quot;159af544cd304c3ee50f63c281afa032&quot;,</span>
+
+<span class="sd">            &quot;labels&quot;:</span>
+
+<span class="sd">                [</span>
+
+<span class="sd">                    {</span>
+
+<span class="sd">                        &quot;bbox&quot;: [&quot;250&quot;, &quot;255&quot;, &quot;278&quot;, &quot;289&quot;],</span>
+
+<span class="sd">                        &quot;label&quot;: &quot;fragments&quot;</span>
+
+<span class="sd">                    }, {</span>
+
+<span class="sd">                        &quot;bbox&quot;: [&quot;432&quot;, &quot;231&quot;, &quot;459&quot;, &quot;280&quot;],</span>
+
+<span class="sd">                        &quot;label&quot;: &quot;fragments&quot;</span>
+
+<span class="sd">                    }</span>
+
+<span class="sd">                ],</span>
+
+<span class="sd">        }</span>
+
+<span class="sd">        ```</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+
+            <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="n">json</span><span class="o">.</span><span class="kp">loads</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="kp">split</span> <span class="o">==</span> <span class="s2">&quot;train&quot;</span><span class="p">:</span>
+
+            <span class="k">return</span> <span class="n">lines</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">ratio</span><span class="p">)]</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="k">return</span> <span class="n">lines</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">ratio</span><span class="p">):]</span>
+
+    <span class="k">def</span> <span class="nf">read_file_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">md5</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">images_folder</span><span class="p">,</span> <span class="n">md5</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">training_roidbs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="n">lines</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_lines</span><span class="p">()</span>
+
+        <span class="n">roidbs</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+
+            <span class="n">file_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_file_name</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="s2">&quot;md5&quot;</span><span class="p">])</span>
+
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span>
+
+                <span class="n">boxes</span><span class="p">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_labels</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="s2">&quot;labels&quot;</span><span class="p">])</span>
+
+                <span class="c1"># Remove boxes with empty area</span>
+
+                <span class="k">if</span> <span class="n">boxes</span><span class="o">.</span><span class="kp">size</span><span class="p">:</span>
+
+                    <span class="n">non_zero_area</span> <span class="o">=</span> <span class="n">np_area</span><span class="p">(</span><span class="n">boxes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+
+                    <span class="n">boxes</span> <span class="o">=</span> <span class="n">boxes</span><span class="p">[</span><span class="n">non_zero_area</span><span class="p">,</span> <span class="p">:]</span>
+
+                    <span class="n">classes</span> <span class="o">=</span> <span class="n">classes</span><span class="p">[</span><span class="n">non_zero_area</span><span class="p">]</span>
+
+                <span class="n">boxes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">boxes</span><span class="p">)</span>
+
+                <span class="n">roidb</span> <span class="o">=</span> <span class="p">{</span>
+
+                    <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="n">file_name</span><span class="p">,</span>
+
+                    <span class="s2">&quot;boxes&quot;</span><span class="p">:</span> <span class="n">boxes</span><span class="p">,</span>
+
+                    <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="n">classes</span><span class="p">,</span>
+
+                    <span class="s2">&quot;is_crowd&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="kp">zeros</span><span class="p">((</span><span class="n">classes</span><span class="o">.</span><span class="kp">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+                <span class="p">}</span>
+
+                <span class="n">roidbs</span><span class="o">.</span><span class="kp">append</span><span class="p">(</span><span class="n">roidb</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">roidbs</span>
+
+    <span class="k">def</span> <span class="nf">inference_roidbs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="n">lines</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_lines</span><span class="p">()</span>
+
+        <span class="n">roidbs</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+
+            <span class="n">roidb</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_file_name</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="s2">&quot;md5&quot;</span><span class="p">]),</span> <span class="s2">&quot;image_id&quot;</span><span class="p">:</span> <span class="n">line</span><span class="p">[</span><span class="s2">&quot;md5&quot;</span><span class="p">]}</span>
+
+            <span class="n">roidbs</span><span class="o">.</span><span class="kp">append</span><span class="p">(</span><span class="n">roidb</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">roidbs</span>
+
+    <span class="k">def</span> <span class="nf">eval_inference_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">],</span> <span class="n">output</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+
+        <span class="n">id_to_entity_id</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_to_idx</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+        <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+
+            <span class="n">res</span><span class="p">[</span><span class="s2">&quot;category_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">id_to_entity_id</span><span class="p">[</span><span class="n">res</span><span class="p">[</span><span class="s2">&quot;category_id&quot;</span><span class="p">]]</span>
+
+        <span class="k">if</span> <span class="n">output</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+
+                <span class="n">json</span><span class="o">.</span><span class="kp">dump</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+        <span class="c1"># TODO : implement metrics calculation to return them</span>
+
+        <span class="k">return</span> <span class="p">{}</span>
+
+<span class="k">def</span> <span class="nf">register_mot</span><span class="p">(</span>
+
+    <span class="n">base_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+
+    <span class="n">dataset_file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;dataset.json&quot;</span><span class="p">,</span>
+
+    <span class="n">classes_file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;classes.json&quot;</span><span class="p">,</span>
+
+    <span class="n">images_folder</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Images_md5&quot;</span>
+
+<span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Register a dataset to the registry. See `MotDataset` for more details on arguments.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">base_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">base_dir</span><span class="p">)</span>
+
+    <span class="n">classes_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_dir</span><span class="p">,</span> <span class="s2">&quot;classes.json&quot;</span><span class="p">)</span>
+
+    <span class="n">class_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;BG&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">get_class_names</span><span class="p">(</span><span class="n">classes_path</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="kp">split</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="s2">&quot;val&quot;</span><span class="p">]:</span>
+
+        <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;mot_&quot;</span> <span class="o">+</span> <span class="kp">split</span>
+
+        <span class="n">DatasetRegistry</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="o">=</span><span class="kp">split</span><span class="p">:</span> <span class="n">MotDataset</span><span class="p">(</span><span class="n">base_dir</span><span class="p">,</span> <span class="kp">split</span><span class="o">=</span><span class="n">x</span><span class="p">))</span>
+
+        <span class="n">DatasetRegistry</span><span class="o">.</span><span class="n">register_metadata</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;class_names&quot;</span><span class="p">,</span> <span class="n">class_names</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_class_names</span><span class="p">(</span><span class="n">classes_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Arguments:</span>
+
+<span class="sd">    - *classes_path*: The path to a file containing class names, for example [&quot;bottles&quot;, &quot;others&quot;, &quot;fragments&quot;]</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">    - *List[str]*: A list: [&quot;bottles&quot;, &quot;others&quot;, &quot;fragments&quot;]</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">classes_path</span><span class="p">):</span>
+
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s2">&quot;Missing file for classes at </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">classes_path</span><span class="p">))</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">classes_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+
+    <span class="n">class_names</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="kp">loads</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">class_names</span>
+</code></pre></div>
+
+</details>
+<h2 id="functions">Functions</h2>
+<h3 id="get_class_names">get_class_names</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">get_class_names</span><span class="p">(</span>
+    <span class="n">classes_path</span><span class="p">:</span><span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+</code></pre></div>
+
+<p>Arguments:</p>
+<ul>
+<li><em>classes_path</em>: The path to a file containing class names, for example ["bottles", "others", "fragments"]</li>
+</ul>
+<p>Returns:</p>
+<ul>
+<li><em>List[str]</em>: A list: ["bottles", "others", "fragments"]</li>
+</ul>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">get_class_names</span><span class="p">(</span><span class="nl">classes_path</span><span class="p">:</span><span class="w"> </span><span class="nf">str</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">List</span><span class="o">[</span><span class="n">str</span><span class="o">]</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    Arguments:</span>
+
+<span class="ss">    - *classes_path*: The path to a file containing class names, for example [&quot;</span><span class="n">bottles</span><span class="ss">&quot;, &quot;</span><span class="n">others</span><span class="ss">&quot;, &quot;</span><span class="n">fragments</span><span class="ss">&quot;]</span>
+
+<span class="ss">    Returns:</span>
+
+<span class="ss">    - *List[str]*: A list: [&quot;</span><span class="n">bottles</span><span class="ss">&quot;, &quot;</span><span class="n">others</span><span class="ss">&quot;, &quot;</span><span class="n">fragments</span><span class="ss">&quot;]</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">os</span><span class="p">.</span><span class="k">path</span><span class="p">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">classes_path</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">raise</span><span class="w"> </span><span class="n">FileNotFoundError</span><span class="p">(</span><span class="ss">&quot;Missing file for classes at {}&quot;</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">classes_path</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">with</span><span class="w"> </span><span class="k">open</span><span class="p">(</span><span class="n">classes_path</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;r&quot;</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nl">f</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">lines</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">readlines</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">class_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">lines</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">class_names</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h3 id="register_mot">register_mot</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">register_mot</span><span class="p">(</span>
+    <span class="n">base_dir</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
+    <span class="n">dataset_file</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s1">&#39;dataset.json&#39;</span><span class="p">,</span>
+    <span class="n">classes_file</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s1">&#39;classes.json&#39;</span><span class="p">,</span>
+    <span class="n">images_folder</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s1">&#39;Images_md5&#39;</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Register a dataset to the registry. See <code>MotDataset</code> for more details on arguments.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span> <span class="n">register_mot</span><span class="p">(</span>
+
+    <span class="n">base_dir</span><span class="o">:</span> <span class="n">str</span><span class="p">,</span>
+
+    <span class="n">dataset_file</span><span class="o">:</span> <span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;dataset.json&quot;</span><span class="p">,</span>
+
+    <span class="n">classes_file</span><span class="o">:</span> <span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;classes.json&quot;</span><span class="p">,</span>
+
+    <span class="n">images_folder</span><span class="o">:</span> <span class="n">str</span> <span class="o">=</span> <span class="s2">&quot;Images_md5&quot;</span>
+
+<span class="p">)</span><span class="o">:</span>
+
+    <span class="s2">&quot;</span><span class="se">&quot;&quot;</span><span class="s2">Register a dataset to the registry. See `MotDataset` for more details on arguments.</span>
+
+<span class="s2">    </span><span class="se">&quot;&quot;</span><span class="s2">&quot;</span>
+
+    <span class="n">base_dir</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="k">path</span><span class="p">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">base_dir</span><span class="p">)</span>
+
+    <span class="n">classes_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="k">path</span><span class="p">.</span><span class="k">join</span><span class="p">(</span><span class="n">base_dir</span><span class="p">,</span> <span class="s2">&quot;classes.json&quot;</span><span class="p">)</span>
+
+    <span class="n">class_names</span> <span class="o">=</span> <span class="err">[</span><span class="s2">&quot;BG&quot;</span><span class="err">]</span> <span class="o">+</span> <span class="n">get_class_names</span><span class="p">(</span><span class="n">classes_path</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">split</span> <span class="k">in</span> <span class="err">[</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="s2">&quot;val&quot;</span><span class="err">]</span><span class="o">:</span>
+
+        <span class="k">name</span> <span class="o">=</span> <span class="s2">&quot;mot_&quot;</span> <span class="o">+</span> <span class="n">split</span>
+
+        <span class="n">DatasetRegistry</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="k">name</span><span class="p">,</span> <span class="n">lambda</span> <span class="n">x</span><span class="o">=</span><span class="n">split</span><span class="o">:</span> <span class="n">MotDataset</span><span class="p">(</span><span class="n">base_dir</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="n">x</span><span class="p">))</span>
+
+        <span class="n">DatasetRegistry</span><span class="p">.</span><span class="n">register_metadata</span><span class="p">(</span><span class="k">name</span><span class="p">,</span> <span class="s2">&quot;class_names&quot;</span><span class="p">,</span> <span class="n">class_names</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h2 id="classes">Classes</h2>
+<h3 id="motdataset">MotDataset</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">MotDataset</span><span class="p">(</span>
+    <span class="n">base_dir</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
+    <span class="n">split</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span>
+    <span class="n">dataset_file</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s1">&#39;dataset.json&#39;</span><span class="p">,</span>
+    <span class="n">classes_file</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s1">&#39;classes.json&#39;</span><span class="p">,</span>
+    <span class="n">images_folder</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s1">&#39;Images_md5&#39;</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>For more details on each methods see the description of dataset.py</p>
+<p>Arguments:</p>
+<ul>
+<li><em>base_dir</em>: the directory where the dataset is located. There should be inside a JSON named {dataset_name}.</li>
+<li><em>split</em>: "train" or "val"</li>
+<li><em>dataset_file</em>: the name of the JSON to use as dataset in base_dir. A line of this JSON should look like:</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;md5&quot;</span><span class="p">:</span> <span class="s2">&quot;159af544cd304c3ee50f63c281afa032&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;labels&quot;</span><span class="p">:</span>
+        <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;bbox&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;250&quot;</span><span class="p">,</span> <span class="s2">&quot;255&quot;</span><span class="p">,</span> <span class="s2">&quot;278&quot;</span><span class="p">,</span> <span class="s2">&quot;289&quot;</span><span class="p">],</span>
+                <span class="nt">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;fragments&quot;</span>
+            <span class="p">},</span> <span class="p">{</span>
+                <span class="nt">&quot;bbox&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;432&quot;</span><span class="p">,</span> <span class="s2">&quot;231&quot;</span><span class="p">,</span> <span class="s2">&quot;459&quot;</span><span class="p">,</span> <span class="s2">&quot;280&quot;</span><span class="p">],</span>
+                <span class="nt">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;fragments&quot;</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<ul>
+<li><em>classes_file</em>: the name of the JSON to use as classes in base_dir. A line of this JSON should look like:</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="p">[</span><span class="s2">&quot;bottles&quot;</span><span class="p">,</span> <span class="s2">&quot;others&quot;</span><span class="p">,</span> <span class="s2">&quot;fragments&quot;</span><span class="p">]</span>
+</code></pre></div>
+
+<ul>
+<li><em>images_folder</em>: Where the images are stored, and named by their md5.<ul>
+<li>if it starts with "/", the absolute path will be used</li>
+<li>if not, the path os.path.join(base_dir, images_folder) will be used</li>
+</ul>
+</li>
+</ul>
+<p>Raises:</p>
+<ul>
+<li><em>FileNotFoundError</em>: if the dataset or classes are missing.</li>
+<li><em>NotADirectoryError</em>: if the images folder is missing.</li>
+</ul>
+<h4 id="ancestors-in-mro">Ancestors (in MRO)</h4>
+<ul>
+<li>mot.object_detection.dataset.dataset.DatasetSplit</li>
+</ul>
+<h4 id="methods">Methods</h4>
+<h5 id="eval_inference_results">eval_inference_results</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">eval_inference_results</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">results</span><span class="p">:</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">],</span>
+    <span class="n">output</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">eval_inference_results</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">results</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">str</span><span class="p">,</span> <span class="k">object</span><span class="p">],</span> <span class="k">output</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="k">None</span><span class="p">):</span>
+
+        <span class="n">id_to_entity_id</span> <span class="o">=</span> <span class="err">{</span><span class="n">v</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="k">in</span> <span class="k">self</span><span class="p">.</span><span class="n">class_to_idx</span><span class="p">.</span><span class="n">items</span><span class="p">()</span><span class="err">}</span>
+
+        <span class="k">for</span> <span class="n">res</span> <span class="k">in</span> <span class="n">results</span><span class="p">:</span>
+
+            <span class="n">res</span><span class="p">[</span><span class="ss">&quot;category_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">id_to_entity_id</span><span class="p">[</span><span class="n">res</span><span class="p">[</span><span class="ss">&quot;category_id&quot;</span><span class="p">]]</span>
+
+        <span class="k">if</span> <span class="k">output</span> <span class="k">is</span> <span class="k">not</span> <span class="k">None</span><span class="p">:</span>
+
+            <span class="k">with</span> <span class="k">open</span><span class="p">(</span><span class="k">output</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+
+                <span class="n">json</span><span class="p">.</span><span class="n">dump</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+        <span class="o">#</span> <span class="n">TODO</span> <span class="p">:</span> <span class="n">implement</span> <span class="n">metrics</span> <span class="n">calculation</span> <span class="k">to</span> <span class="k">return</span> <span class="n">them</span>
+
+        <span class="k">return</span> <span class="err">{}</span>
+</code></pre></div>
+
+</details>
+<h5 id="inference_roidbs">inference_roidbs</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">inference_roidbs</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">inference_roidbs</span><span class="p">(</span><span class="k">self</span><span class="p">):</span>
+
+        <span class="n">lines</span> <span class="o">=</span> <span class="k">self</span><span class="p">.</span><span class="n">read_lines</span><span class="p">()</span>
+
+        <span class="n">roidbs</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">line</span> <span class="k">in</span> <span class="n">lines</span><span class="p">:</span>
+
+            <span class="n">roidb</span> <span class="o">=</span> <span class="err">{</span><span class="ss">&quot;file_name&quot;</span><span class="p">:</span> <span class="k">self</span><span class="p">.</span><span class="n">read_file_name</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="ss">&quot;md5&quot;</span><span class="p">]),</span> <span class="ss">&quot;image_id&quot;</span><span class="p">:</span> <span class="n">line</span><span class="p">[</span><span class="ss">&quot;md5&quot;</span><span class="p">]</span><span class="err">}</span>
+
+            <span class="n">roidbs</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">roidb</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">roidbs</span>
+</code></pre></div>
+
+</details>
+<h5 id="read_file_name">read_file_name</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">read_file_name</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">md5</span><span class="p">:</span><span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">read_file_name</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">md5</span><span class="p">:</span> <span class="n">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">str</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="k">join</span><span class="p">(</span><span class="k">self</span><span class="p">.</span><span class="n">images_folder</span><span class="p">,</span> <span class="n">md5</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h5 id="read_labels">read_labels</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">read_labels</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">labels</span><span class="p">:</span><span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="s1">&#39;&gt;, &lt;class &#39;</span><span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="s1">&#39;&gt;)</span>
+</code></pre></div>
+
+<p>[summary]</p>
+<p>Arguments:</p>
+<ul>
+<li><em>labels</em>: A list of dicts such as:</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;bbox&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;250&quot;</span><span class="p">,</span> <span class="s2">&quot;255&quot;</span><span class="p">,</span> <span class="s2">&quot;278&quot;</span><span class="p">,</span> <span class="s2">&quot;289&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;fragments&quot;</span>
+    <span class="p">},</span> <span class="p">{</span>
+        <span class="s2">&quot;bbox&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;432&quot;</span><span class="p">,</span> <span class="s2">&quot;231&quot;</span><span class="p">,</span> <span class="s2">&quot;459&quot;</span><span class="p">,</span> <span class="s2">&quot;280&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;fragments&quot;</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+
+<p>Returns:</p>
+<ul>
+<li><em>np.ndarray, np.ndarray</em>: The boxes and classes. Classes starts at 1 since 0 is for background.</li>
+</ul>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">read_labels</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="nl">labels</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">[</span><span class="n">Dict[str, object</span><span class="o">]</span><span class="err">]</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">,</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;[summary]</span>
+
+<span class="ss">        Arguments:</span>
+
+<span class="ss">        - *labels*: A list of dicts such as:</span>
+
+<span class="ss">        ```python3</span>
+
+<span class="ss">        labels = [</span>
+
+<span class="ss">            {</span>
+
+<span class="ss">                &quot;</span><span class="n">bbox</span><span class="ss">&quot;: [&quot;</span><span class="mi">250</span><span class="ss">&quot;, &quot;</span><span class="mi">255</span><span class="ss">&quot;, &quot;</span><span class="mi">278</span><span class="ss">&quot;, &quot;</span><span class="mi">289</span><span class="ss">&quot;],</span>
+
+<span class="ss">                &quot;</span><span class="n">label</span><span class="ss">&quot;: &quot;</span><span class="n">fragments</span><span class="ss">&quot;</span>
+
+<span class="ss">            }, {</span>
+
+<span class="ss">                &quot;</span><span class="n">bbox</span><span class="ss">&quot;: [&quot;</span><span class="mi">432</span><span class="ss">&quot;, &quot;</span><span class="mi">231</span><span class="ss">&quot;, &quot;</span><span class="mi">459</span><span class="ss">&quot;, &quot;</span><span class="mi">280</span><span class="ss">&quot;],</span>
+
+<span class="ss">                &quot;</span><span class="n">label</span><span class="ss">&quot;: &quot;</span><span class="n">fragments</span><span class="ss">&quot;</span>
+
+<span class="ss">            }</span>
+
+<span class="ss">        ]</span>
+
+<span class="ss">        ```</span>
+
+<span class="ss">        Returns:</span>
+
+<span class="ss">        - *np.ndarray, np.ndarray*: The boxes and classes. Classes starts at 1 since 0 is for background.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">boxes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">classes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">crop</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">labels</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">boxes</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="o">[</span><span class="n">int(coord) for coord in crop[&quot;bbox&quot;</span><span class="o">]</span><span class="err">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">classes</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">class_to_idx</span><span class="o">[</span><span class="n">crop[&quot;label&quot;</span><span class="o">]</span><span class="err">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="k">array</span><span class="p">(</span><span class="n">boxes</span><span class="p">),</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="k">array</span><span class="p">(</span><span class="n">classes</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h5 id="read_lines">read_lines</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">read_lines</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]]</span>
+</code></pre></div>
+
+<p>Reads the int(len(lines) * self.ratio) first lines if training, and the last ones otherwise.</p>
+<p>Arguments:</p>
+<p>Returns:</p>
+<ul>
+<li><em>List[Dict[str, object]]</em>: Each dict should look like:</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="s2">&quot;md5&quot;</span><span class="p">:</span> <span class="s2">&quot;159af544cd304c3ee50f63c281afa032&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;labels&quot;</span><span class="p">:</span>
+        <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;bbox&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;250&quot;</span><span class="p">,</span> <span class="s2">&quot;255&quot;</span><span class="p">,</span> <span class="s2">&quot;278&quot;</span><span class="p">,</span> <span class="s2">&quot;289&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;fragments&quot;</span>
+            <span class="p">},</span> <span class="p">{</span>
+                <span class="s2">&quot;bbox&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;432&quot;</span><span class="p">,</span> <span class="s2">&quot;231&quot;</span><span class="p">,</span> <span class="s2">&quot;459&quot;</span><span class="p">,</span> <span class="s2">&quot;280&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;fragments&quot;</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">read_lines</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">object</span><span class="p">]]:</span>
+
+        <span class="sd">&quot;&quot;&quot;Reads the int(len(lines) * self.ratio) first lines if training, and the last ones otherwise.</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        - *List[Dict[str, object]]*: Each dict should look like:</span>
+
+<span class="sd">        ```python</span>
+
+<span class="sd">        {</span>
+
+<span class="sd">            &quot;md5&quot;: &quot;159af544cd304c3ee50f63c281afa032&quot;,</span>
+
+<span class="sd">            &quot;labels&quot;:</span>
+
+<span class="sd">                [</span>
+
+<span class="sd">                    {</span>
+
+<span class="sd">                        &quot;bbox&quot;: [&quot;250&quot;, &quot;255&quot;, &quot;278&quot;, &quot;289&quot;],</span>
+
+<span class="sd">                        &quot;label&quot;: &quot;fragments&quot;</span>
+
+<span class="sd">                    }, {</span>
+
+<span class="sd">                        &quot;bbox&quot;: [&quot;432&quot;, &quot;231&quot;, &quot;459&quot;, &quot;280&quot;],</span>
+
+<span class="sd">                        &quot;label&quot;: &quot;fragments&quot;</span>
+
+<span class="sd">                    }</span>
+
+<span class="sd">                ],</span>
+
+<span class="sd">        }</span>
+
+<span class="sd">        ```</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">with</span> <span class="n">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+
+            <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">split</span> <span class="o">==</span> <span class="s2">&quot;train&quot;</span><span class="p">:</span>
+
+            <span class="k">return</span> <span class="n">lines</span><span class="p">[:</span><span class="nb nb-Type">int</span><span class="p">(</span><span class="n">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">ratio</span><span class="p">)]</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="k">return</span> <span class="n">lines</span><span class="p">[</span><span class="nb nb-Type">int</span><span class="p">(</span><span class="n">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">ratio</span><span class="p">):]</span>
+</code></pre></div>
+
+</details>
+<h5 id="training_roidbs">training_roidbs</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">training_roidbs</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">training_roidbs</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">lines</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">read_lines</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">roidbs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">lines</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="nf">file_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">read_file_name</span><span class="p">(</span><span class="n">line</span><span class="o">[</span><span class="n">&quot;md5&quot;</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">os</span><span class="p">.</span><span class="k">path</span><span class="p">.</span><span class="n">isfile</span><span class="p">(</span><span class="nf">file_name</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">boxes</span><span class="p">,</span><span class="w"> </span><span class="n">classes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">read_labels</span><span class="p">(</span><span class="n">line</span><span class="o">[</span><span class="n">&quot;labels&quot;</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                </span><span class="err">#</span><span class="w"> </span><span class="n">Remove</span><span class="w"> </span><span class="n">boxes</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">empty</span><span class="w"> </span><span class="n">area</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="n">boxes</span><span class="p">.</span><span class="k">size</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">non_zero_area</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">np_area</span><span class="p">(</span><span class="n">boxes</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">boxes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">boxes</span><span class="o">[</span><span class="n">non_zero_area, :</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">classes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">classes</span><span class="o">[</span><span class="n">non_zero_area</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">boxes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">float32</span><span class="p">(</span><span class="n">boxes</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">roidb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+
+<span class="w">                    </span><span class="ss">&quot;file_name&quot;</span><span class="err">:</span><span class="w"> </span><span class="nf">file_name</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">                    </span><span class="ss">&quot;boxes&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">boxes</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">                    </span><span class="ss">&quot;class&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">classes</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">                    </span><span class="ss">&quot;is_crowd&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">classes</span><span class="p">.</span><span class="n">shape</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">                </span><span class="err">}</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">roidbs</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">roidb</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">roidbs</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../" title="Index" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Index
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../modeling/backbone/" title="Backbone" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Backbone
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Powered by
+        <a href="http://timothycrosley.github.io/portray">portray.</a>
+        You too can
+        <a href="http://timothycrosley.github.io/portray">
+          portray</a>
+        your Python project well using automatic documentation.
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../../../assets/javascripts/vendor.2d1db4bd.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.6627ddf3.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../../../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../../../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

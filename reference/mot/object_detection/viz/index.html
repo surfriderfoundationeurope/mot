@@ -1,0 +1,1647 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.14">
+    
+    
+      
+        <title>Viz - mot</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.d3202873.min.css">
+      
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ff0a5ce4.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#4cae4f">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="green" data-md-color-accent="lightgreen">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#module-motobject_detectionviz" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../../../.." title="mot" class="md-header-nav__button md-logo" aria-label="mot">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            mot
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Viz
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/surfriderfoundationeurope/mot/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mot
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="mot" class="md-nav__button md-logo" aria-label="mot">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    mot
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/surfriderfoundationeurope/mot/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mot
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../../CONTRIBUTING/" title="Contributing" class="md-nav__link">
+      Contributing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1" checked>
+    
+    <label class="md-nav__link" for="nav-3-1">
+      Mot
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Mot" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        <span class="md-nav__icon md-icon"></span>
+        Mot
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-2" type="checkbox" id="nav-3-1-2" checked>
+    
+    <label class="md-nav__link" for="nav-3-1-2">
+      Object Detection
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Object Detection" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-1-2">
+        <span class="md-nav__icon md-icon"></span>
+        Object Detection
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../common/" title="Common" class="md-nav__link">
+      Common
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../config/" title="Config" class="md-nav__link">
+      Config
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../data/" title="Data" class="md-nav__link">
+      Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../eval/" title="Eval" class="md-nav__link">
+      Eval
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../predict/" title="Predict" class="md-nav__link">
+      Predict
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../preprocessing/" title="Preprocessing" class="md-nav__link">
+      Preprocessing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../query_server/" title="Query Server" class="md-nav__link">
+      Query Server
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../train/" title="Train" class="md-nav__link">
+      Train
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Viz
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="Viz" class="md-nav__link md-nav__link--active">
+      Viz
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    Variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#draw_annotation" class="md-nav__link">
+    draw_annotation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#draw_final_outputs" class="md-nav__link">
+    draw_final_outputs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#draw_final_outputs_blackwhite" class="md-nav__link">
+    draw_final_outputs_blackwhite
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#draw_mask" class="md-nav__link">
+    draw_mask
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#draw_predictions" class="md-nav__link">
+    draw_predictions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#draw_proposal_recall" class="md-nav__link">
+    draw_proposal_recall
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-2-11" type="checkbox" id="nav-3-1-2-11">
+    
+    <label class="md-nav__link" for="nav-3-1-2-11">
+      Dataset
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Dataset" data-md-level="4">
+      <label class="md-nav__title" for="nav-3-1-2-11">
+        <span class="md-nav__icon md-icon"></span>
+        Dataset
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dataset/dataset/" title="Dataset" class="md-nav__link">
+      Dataset
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dataset/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dataset/mot/" title="Mot" class="md-nav__link">
+      Mot
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-2-12" type="checkbox" id="nav-3-1-2-12">
+    
+    <label class="md-nav__link" for="nav-3-1-2-12">
+      Modeling
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Modeling" data-md-level="4">
+      <label class="md-nav__title" for="nav-3-1-2-12">
+        <span class="md-nav__icon md-icon"></span>
+        Modeling
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modeling/backbone/" title="Backbone" class="md-nav__link">
+      Backbone
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modeling/generalized_rcnn/" title="Generalized Rcnn" class="md-nav__link">
+      Generalized Rcnn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modeling/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modeling/model_box/" title="Model Box" class="md-nav__link">
+      Model Box
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modeling/model_cascade/" title="Model Cascade" class="md-nav__link">
+      Model Cascade
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modeling/model_fpn/" title="Model Fpn" class="md-nav__link">
+      Model Fpn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modeling/model_frcnn/" title="Model Frcnn" class="md-nav__link">
+      Model Frcnn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modeling/model_mrcnn/" title="Model Mrcnn" class="md-nav__link">
+      Model Mrcnn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modeling/model_rpn/" title="Model Rpn" class="md-nav__link">
+      Model Rpn
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-2-13" type="checkbox" id="nav-3-1-2-13">
+    
+    <label class="md-nav__link" for="nav-3-1-2-13">
+      Utils
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Utils" data-md-level="4">
+      <label class="md-nav__title" for="nav-3-1-2-13">
+        <span class="md-nav__icon md-icon"></span>
+        Utils
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../utils/box_ops/" title="Box Ops" class="md-nav__link">
+      Box Ops
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../utils/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../utils/np_box_ops/" title="Np Box Ops" class="md-nav__link">
+      Np Box Ops
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-3" type="checkbox" id="nav-3-1-3">
+    
+    <label class="md-nav__link" for="nav-3-1-3">
+      Serving
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Serving" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-1-3">
+        <span class="md-nav__icon md-icon"></span>
+        Serving
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../serving/app/" title="App" class="md-nav__link">
+      App
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../serving/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../serving/inference/" title="Inference" class="md-nav__link">
+      Inference
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-4" type="checkbox" id="nav-3-1-4">
+    
+    <label class="md-nav__link" for="nav-3-1-4">
+      Tracker
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tracker" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-1-4">
+        <span class="md-nav__icon md-icon"></span>
+        Tracker
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tracker/camera_flow/" title="Camera Flow" class="md-nav__link">
+      Camera Flow
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tracker/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tracker/object_tracking/" title="Object Tracking" class="md-nav__link">
+      Object Tracking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tracker/tracker_metrics/" title="Tracker Metrics" class="md-nav__link">
+      Tracker Metrics
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tracker/tracker_utils/" title="Tracker Utils" class="md-nav__link">
+      Tracker Utils
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tracker/video_utils/" title="Video Utils" class="md-nav__link">
+      Video Utils
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    Variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#draw_annotation" class="md-nav__link">
+    draw_annotation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#draw_final_outputs" class="md-nav__link">
+    draw_final_outputs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#draw_final_outputs_blackwhite" class="md-nav__link">
+    draw_final_outputs_blackwhite
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#draw_mask" class="md-nav__link">
+    draw_mask
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#draw_predictions" class="md-nav__link">
+    draw_predictions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#draw_proposal_recall" class="md-nav__link">
+    draw_proposal_recall
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/surfriderfoundationeurope/mot/edit/master/reference/mot/object_detection/viz.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="module-motobject_detectionviz">Module mot.object_detection.viz</h1>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="c1"># File: viz.py</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">six.moves</span> <span class="kn">import</span> <span class="nb">zip</span>
+
+<span class="kn">from</span> <span class="nn">tensorpack.utils</span> <span class="kn">import</span> <span class="n">viz</span>
+
+<span class="kn">from</span> <span class="nn">tensorpack.utils.palette</span> <span class="kn">import</span> <span class="n">PALETTE_RGB</span>
+
+<span class="kn">from</span> <span class="nn">mot.object_detection.config</span> <span class="kn">import</span> <span class="n">config</span> <span class="k">as</span> <span class="n">cfg</span>
+
+<span class="kn">from</span> <span class="nn">mot.object_detection.utils.np_box_ops</span> <span class="kn">import</span> <span class="n">area</span> <span class="k">as</span> <span class="n">np_area</span>
+
+<span class="kn">from</span> <span class="nn">mot.object_detection.utils.np_box_ops</span> <span class="kn">import</span> <span class="n">iou</span> <span class="k">as</span> <span class="n">np_iou</span>
+
+<span class="kn">from</span> <span class="nn">mot.object_detection.common</span> <span class="kn">import</span> <span class="n">polygons_to_mask</span>
+
+<span class="k">def</span> <span class="nf">draw_annotation</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">klass</span><span class="p">,</span> <span class="n">polygons</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">is_crowd</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Will not modify img&quot;&quot;&quot;</span>
+
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">boxes</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">klass</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">is_crowd</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">boxes</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">is_crowd</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="bp">cls</span><span class="p">,</span> <span class="n">crd</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">klass</span><span class="p">,</span> <span class="n">is_crowd</span><span class="p">):</span>
+
+            <span class="n">clsname</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">DATA</span><span class="o">.</span><span class="n">CLASS_NAMES</span><span class="p">[</span><span class="bp">cls</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="n">crd</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+
+                <span class="n">clsname</span> <span class="o">+=</span> <span class="s1">&#39;;Crowd&#39;</span>
+
+            <span class="n">labels</span><span class="o">.</span><span class="kp">append</span><span class="p">(</span><span class="n">clsname</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="k">for</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="n">klass</span><span class="p">:</span>
+
+            <span class="n">labels</span><span class="o">.</span><span class="kp">append</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">DATA</span><span class="o">.</span><span class="n">CLASS_NAMES</span><span class="p">[</span><span class="bp">cls</span><span class="p">])</span>
+
+    <span class="n">img</span> <span class="o">=</span> <span class="n">viz</span><span class="o">.</span><span class="n">draw_boxes</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">polygons</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">polygons</span><span class="p">:</span>
+
+            <span class="n">mask</span> <span class="o">=</span> <span class="n">polygons_to_mask</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">img</span><span class="o">.</span><span class="kp">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">img</span><span class="o">.</span><span class="kp">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+            <span class="n">img</span> <span class="o">=</span> <span class="n">draw_mask</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">img</span>
+
+<span class="k">def</span> <span class="nf">draw_proposal_recall</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">proposals</span><span class="p">,</span> <span class="n">proposal_scores</span><span class="p">,</span> <span class="n">gt_boxes</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Draw top3 proposals for each gt.</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">        proposals: NPx4</span>
+
+<span class="sd">        proposal_scores: NP</span>
+
+<span class="sd">        gt_boxes: NG</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">box_ious</span> <span class="o">=</span> <span class="n">np_iou</span><span class="p">(</span><span class="n">gt_boxes</span><span class="p">,</span> <span class="n">proposals</span><span class="p">)</span>    <span class="c1"># ng x np</span>
+
+    <span class="n">box_ious_argsort</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">argsort</span><span class="p">(</span><span class="o">-</span><span class="n">box_ious</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">good_proposals_ind</span> <span class="o">=</span> <span class="n">box_ious_argsort</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span>   <span class="c1"># for each gt, find 3 best proposals</span>
+
+    <span class="n">good_proposals_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">unique</span><span class="p">(</span><span class="n">good_proposals_ind</span><span class="o">.</span><span class="kp">ravel</span><span class="p">())</span>
+
+    <span class="n">proposals</span> <span class="o">=</span> <span class="n">proposals</span><span class="p">[</span><span class="n">good_proposals_ind</span><span class="p">,</span> <span class="p">:]</span>
+
+    <span class="n">tags</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">proposal_scores</span><span class="p">[</span><span class="n">good_proposals_ind</span><span class="p">]))</span>
+
+    <span class="n">img</span> <span class="o">=</span> <span class="n">viz</span><span class="o">.</span><span class="n">draw_boxes</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">proposals</span><span class="p">,</span> <span class="n">tags</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">img</span><span class="p">,</span> <span class="n">good_proposals_ind</span>
+
+<span class="k">def</span> <span class="nf">draw_predictions</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">scores</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">        boxes: kx4</span>
+
+<span class="sd">        scores: kxC</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">boxes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">img</span>
+
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="kp">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="kp">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">,</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">DATA</span><span class="o">.</span><span class="n">CLASS_NAMES</span><span class="p">[</span><span class="n">lb</span><span class="p">],</span> <span class="n">score</span><span class="p">)</span> <span class="k">for</span> <span class="n">lb</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">scores</span><span class="p">)]</span>
+
+    <span class="k">return</span> <span class="n">viz</span><span class="o">.</span><span class="n">draw_boxes</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">tags</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">draw_final_outputs</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">        results: [DetectionResult]</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">img</span>
+
+    <span class="c1"># Display in largest to smallest order to reduce occlusion</span>
+
+    <span class="n">boxes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">asarray</span><span class="p">([</span><span class="n">r</span><span class="o">.</span><span class="n">box</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">])</span>
+
+    <span class="n">areas</span> <span class="o">=</span> <span class="n">np_area</span><span class="p">(</span><span class="n">boxes</span><span class="p">)</span>
+
+    <span class="n">sorted_inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">argsort</span><span class="p">(</span><span class="o">-</span><span class="n">areas</span><span class="p">)</span>
+
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">img</span>
+
+    <span class="n">tags</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">result_id</span> <span class="ow">in</span> <span class="n">sorted_inds</span><span class="p">:</span>
+
+        <span class="n">r</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">result_id</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="n">ret</span> <span class="o">=</span> <span class="n">draw_mask</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">mask</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+
+        <span class="n">tags</span><span class="o">.</span><span class="kp">append</span><span class="p">(</span>
+
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">,</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">DATA</span><span class="o">.</span><span class="n">CLASS_NAMES</span><span class="p">[</span><span class="n">r</span><span class="o">.</span><span class="n">class_id</span><span class="p">],</span> <span class="n">r</span><span class="o">.</span><span class="n">score</span><span class="p">))</span>
+
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">viz</span><span class="o">.</span><span class="n">draw_boxes</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">tags</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ret</span>
+
+<span class="k">def</span> <span class="nf">draw_final_outputs_blackwhite</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">        results: [DetectionResult]</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">img_bw</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="kp">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">img_bw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">img_bw</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">img_bw</span>
+
+    <span class="n">boxes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">asarray</span><span class="p">([</span><span class="n">r</span><span class="o">.</span><span class="n">box</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">])</span>
+
+    <span class="n">all_masks</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="o">.</span><span class="n">mask</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">all_masks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="n">m</span> <span class="o">=</span> <span class="n">all_masks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">m2</span> <span class="ow">in</span> <span class="n">all_masks</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+
+            <span class="n">m</span> <span class="o">=</span> <span class="n">m</span> <span class="o">|</span> <span class="p">(</span><span class="n">m2</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">img_bw</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>
+
+    <span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">,</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">DATA</span><span class="o">.</span><span class="n">CLASS_NAMES</span><span class="p">[</span><span class="n">r</span><span class="o">.</span><span class="n">class_id</span><span class="p">],</span> <span class="n">r</span><span class="o">.</span><span class="n">score</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">]</span>
+
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">viz</span><span class="o">.</span><span class="n">draw_boxes</span><span class="p">(</span><span class="n">img_bw</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">tags</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ret</span>
+
+<span class="k">def</span> <span class="nf">draw_mask</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Overlay a mask on top of the image.</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">        im: a 3-channel uint8 image in BGR</span>
+
+<span class="sd">        mask: a binary 1-channel image of the same size</span>
+
+<span class="sd">        color: if None, will choose automatically</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">color</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="n">color</span> <span class="o">=</span> <span class="n">PALETTE_RGB</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">PALETTE_RGB</span><span class="p">))][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">color</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">asarray</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="kp">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+    <span class="n">im</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="kp">repeat</span><span class="p">((</span><span class="n">mask</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)[:,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">],</span> <span class="mi">3</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+
+                  <span class="n">im</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">+</span> <span class="n">color</span> <span class="o">*</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">im</span><span class="p">)</span>
+
+    <span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="kp">astype</span><span class="p">(</span><span class="s1">&#39;uint8&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">im</span>
+</code></pre></div>
+
+</details>
+<h2 id="variables">Variables</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">PALETTE_RGB</span>
+</code></pre></div>
+
+<h2 id="functions">Functions</h2>
+<h3 id="draw_annotation">draw_annotation</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">draw_annotation</span><span class="p">(</span>
+    <span class="n">img</span><span class="p">,</span>
+    <span class="n">boxes</span><span class="p">,</span>
+    <span class="n">klass</span><span class="p">,</span>
+    <span class="n">polygons</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">is_crowd</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Will not modify img</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">draw_annotation</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="n">boxes</span><span class="p">,</span><span class="w"> </span><span class="n">klass</span><span class="p">,</span><span class="w"> </span><span class="n">polygons</span><span class="o">=</span><span class="k">None</span><span class="p">,</span><span class="w"> </span><span class="n">is_crowd</span><span class="o">=</span><span class="k">None</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;Will not modify img&quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">assert</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">boxes</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">klass</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">is_crowd</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="k">None</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">boxes</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">is_crowd</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">cls</span><span class="p">,</span><span class="w"> </span><span class="n">crd</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">zip</span><span class="p">(</span><span class="n">klass</span><span class="p">,</span><span class="w"> </span><span class="n">is_crowd</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">clsname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cfg</span><span class="p">.</span><span class="k">DATA</span><span class="p">.</span><span class="n">CLASS_NAMES</span><span class="o">[</span><span class="n">cls</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">crd</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">clsname</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s1">&#39;;Crowd&#39;</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">labels</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">clsname</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">cls</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">klass</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">labels</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">cfg</span><span class="p">.</span><span class="k">DATA</span><span class="p">.</span><span class="n">CLASS_NAMES</span><span class="o">[</span><span class="n">cls</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">img</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viz</span><span class="p">.</span><span class="n">draw_boxes</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="n">boxes</span><span class="p">,</span><span class="w"> </span><span class="n">labels</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">polygons</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="k">None</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">polygons</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">mask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">polygons_to_mask</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">img</span><span class="p">.</span><span class="n">shape</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">img</span><span class="p">.</span><span class="n">shape</span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">img</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">draw_mask</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="n">mask</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">img</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h3 id="draw_final_outputs">draw_final_outputs</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">draw_final_outputs</span><span class="p">(</span>
+    <span class="n">img</span><span class="p">,</span>
+    <span class="n">results</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Args:
+results: [DetectionResult]</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">draw_final_outputs</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="n">results</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    Args:</span>
+
+<span class="ss">        results: [DetectionResult]</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">results</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">img</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">Display</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">largest</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">smallest</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">reduce</span><span class="w"> </span><span class="n">occlusion</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">boxes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">asarray</span><span class="p">(</span><span class="o">[</span><span class="n">r.box for r in results</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">areas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">np_area</span><span class="p">(</span><span class="n">boxes</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">sorted_inds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">argsort</span><span class="p">(</span><span class="o">-</span><span class="n">areas</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">img</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">tags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">result_id</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">sorted_inds</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">results</span><span class="o">[</span><span class="n">result_id</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">mask</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="k">None</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">draw_mask</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">mask</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">results</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">tags</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">            </span><span class="ss">&quot;{},{:.2f}&quot;</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">cfg</span><span class="p">.</span><span class="k">DATA</span><span class="p">.</span><span class="n">CLASS_NAMES</span><span class="o">[</span><span class="n">r.class_id</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">score</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viz</span><span class="p">.</span><span class="n">draw_boxes</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span><span class="w"> </span><span class="n">boxes</span><span class="p">,</span><span class="w"> </span><span class="n">tags</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h3 id="draw_final_outputs_blackwhite">draw_final_outputs_blackwhite</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">draw_final_outputs_blackwhite</span><span class="p">(</span>
+    <span class="n">img</span><span class="p">,</span>
+    <span class="n">results</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Args:
+results: [DetectionResult]</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">draw_final_outputs_blackwhite</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="n">results</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    Args:</span>
+
+<span class="ss">        results: [DetectionResult]</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">img_bw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">img</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">img_bw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">stack</span><span class="p">(</span><span class="o">[</span><span class="n">img_bw</span><span class="o">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">results</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">img_bw</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">boxes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">asarray</span><span class="p">(</span><span class="o">[</span><span class="n">r.box for r in results</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">all_masks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">r.mask for r in results</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">all_masks</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="k">None</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">all_masks</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">m2</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">all_masks</span><span class="o">[</span><span class="n">1:</span><span class="o">]</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="n">m2</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">img_bw</span><span class="o">[</span><span class="n">m</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">img</span><span class="o">[</span><span class="n">m</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">tags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">&quot;{},{:.2f}&quot;.format(cfg.DATA.CLASS_NAMES[r.class_id</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">score</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">results</span><span class="err">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viz</span><span class="p">.</span><span class="n">draw_boxes</span><span class="p">(</span><span class="n">img_bw</span><span class="p">,</span><span class="w"> </span><span class="n">boxes</span><span class="p">,</span><span class="w"> </span><span class="n">tags</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h3 id="draw_mask">draw_mask</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">draw_mask</span><span class="p">(</span>
+    <span class="n">im</span><span class="p">,</span>
+    <span class="n">mask</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Overlay a mask on top of the image.</p>
+<p>Args:
+    im: a 3-channel uint8 image in BGR
+    mask: a binary 1-channel image of the same size
+    color: if None, will choose automatically</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="s s-Atom">def</span> <span class="nf">draw_mask</span><span class="p">(</span><span class="s s-Atom">im</span><span class="p">,</span> <span class="s s-Atom">mask</span><span class="p">,</span> <span class="s s-Atom">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="s s-Atom">color</span><span class="o">=</span><span class="nv">None</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+    <span class="s2">&quot;&quot;&quot;</span>
+
+<span class="s2">    Overlay a mask on top of the image.</span>
+
+<span class="s2">    Args:</span>
+
+<span class="s2">        im: a 3-channel uint8 image in BGR</span>
+
+<span class="s2">        mask: a binary 1-channel image of the same size</span>
+
+<span class="s2">        color: if None, will choose automatically</span>
+
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="s s-Atom">if</span> <span class="s s-Atom">color</span> <span class="o">is</span> <span class="nv">None</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">color</span> <span class="o">=</span> <span class="nv">PALETTE_RGB</span><span class="p">[</span><span class="s s-Atom">np</span><span class="p">.</span><span class="s s-Atom">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="nv">PALETTE_RGB</span><span class="p">))][</span><span class="s s-Atom">::-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="s s-Atom">color</span> <span class="o">=</span> <span class="s s-Atom">np</span><span class="p">.</span><span class="nf">asarray</span><span class="p">(</span><span class="s s-Atom">color</span><span class="p">,</span> <span class="s s-Atom">dtype</span><span class="o">=</span><span class="s s-Atom">np</span><span class="p">.</span><span class="s s-Atom">float32</span><span class="p">)</span>
+
+    <span class="s s-Atom">im</span> <span class="o">=</span> <span class="s s-Atom">np</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="s s-Atom">np</span><span class="p">.</span><span class="nf">repeat</span><span class="p">((</span><span class="s s-Atom">mask</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)[</span><span class="s s-Atom">:</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="nv">None</span><span class="p">],</span> <span class="mi">3</span><span class="p">,</span> <span class="s s-Atom">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+
+                  <span class="s s-Atom">im</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="s s-Atom">alpha</span><span class="p">)</span> <span class="o">+</span> <span class="s s-Atom">color</span> <span class="o">*</span> <span class="s s-Atom">alpha</span><span class="p">,</span> <span class="s s-Atom">im</span><span class="p">)</span>
+
+    <span class="s s-Atom">im</span> <span class="o">=</span> <span class="s s-Atom">im</span><span class="p">.</span><span class="nf">astype</span><span class="p">(</span><span class="s s-Atom">&#39;uint8&#39;</span><span class="p">)</span>
+
+    <span class="s s-Atom">return</span> <span class="s s-Atom">im</span>
+</code></pre></div>
+
+</details>
+<h3 id="draw_predictions">draw_predictions</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">draw_predictions</span><span class="p">(</span>
+    <span class="n">img</span><span class="p">,</span>
+    <span class="n">boxes</span><span class="p">,</span>
+    <span class="n">scores</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Args:
+boxes: kx4
+scores: kxC</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">draw_predictions</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="n">boxes</span><span class="p">,</span><span class="w"> </span><span class="n">scores</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    Args:</span>
+
+<span class="ss">        boxes: kx4</span>
+
+<span class="ss">        scores: kxC</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">boxes</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">img</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scores</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">scores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scores</span><span class="p">.</span><span class="nf">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">tags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">&quot;{},{:.2f}&quot;.format(cfg.DATA.CLASS_NAMES[lb</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">score</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">lb</span><span class="p">,</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">zip</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span><span class="w"> </span><span class="n">scores</span><span class="p">)</span><span class="err">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">viz</span><span class="p">.</span><span class="n">draw_boxes</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="n">boxes</span><span class="p">,</span><span class="w"> </span><span class="n">tags</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h3 id="draw_proposal_recall">draw_proposal_recall</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">draw_proposal_recall</span><span class="p">(</span>
+    <span class="n">img</span><span class="p">,</span>
+    <span class="n">proposals</span><span class="p">,</span>
+    <span class="n">proposal_scores</span><span class="p">,</span>
+    <span class="n">gt_boxes</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Draw top3 proposals for each gt.
+Args:
+    proposals: NPx4
+    proposal_scores: NP
+    gt_boxes: NG</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">draw_proposal_recall</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="n">proposals</span><span class="p">,</span><span class="w"> </span><span class="n">proposal_scores</span><span class="p">,</span><span class="w"> </span><span class="n">gt_boxes</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    Draw top3 proposals for each gt.</span>
+
+<span class="ss">    Args:</span>
+
+<span class="ss">        proposals: NPx4</span>
+
+<span class="ss">        proposal_scores: NP</span>
+
+<span class="ss">        gt_boxes: NG</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">box_ious</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">np_iou</span><span class="p">(</span><span class="n">gt_boxes</span><span class="p">,</span><span class="w"> </span><span class="n">proposals</span><span class="p">)</span><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">ng</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">np</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">box_ious_argsort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">argsort</span><span class="p">(</span><span class="o">-</span><span class="n">box_ious</span><span class="p">,</span><span class="w"> </span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">good_proposals_ind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">box_ious_argsort</span><span class="o">[</span><span class="n">:, :3</span><span class="o">]</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">each</span><span class="w"> </span><span class="n">gt</span><span class="p">,</span><span class="w"> </span><span class="n">find</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="n">best</span><span class="w"> </span><span class="n">proposals</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">good_proposals_ind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="k">unique</span><span class="p">(</span><span class="n">good_proposals_ind</span><span class="p">.</span><span class="n">ravel</span><span class="p">())</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">proposals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">proposals</span><span class="o">[</span><span class="n">good_proposals_ind, :</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">tags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">(</span><span class="k">map</span><span class="p">(</span><span class="nf">str</span><span class="p">,</span><span class="w"> </span><span class="n">proposal_scores</span><span class="o">[</span><span class="n">good_proposals_ind</span><span class="o">]</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">img</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viz</span><span class="p">.</span><span class="n">draw_boxes</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="n">proposals</span><span class="p">,</span><span class="w"> </span><span class="n">tags</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="n">good_proposals_ind</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../train/" title="Train" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Train
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../dataset/dataset/" title="Dataset" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Dataset
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Powered by
+        <a href="http://timothycrosley.github.io/portray">portray.</a>
+        You too can
+        <a href="http://timothycrosley.github.io/portray">
+          portray</a>
+        your Python project well using automatic documentation.
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../../assets/javascripts/vendor.2d1db4bd.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.6627ddf3.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

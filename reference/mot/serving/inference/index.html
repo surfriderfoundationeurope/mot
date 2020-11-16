@@ -1,0 +1,2203 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.14">
+    
+    
+      
+        <title>Inference - mot</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.d3202873.min.css">
+      
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ff0a5ce4.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#4cae4f">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="green" data-md-color-accent="lightgreen">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#module-motservinginference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../../../.." title="mot" class="md-header-nav__button md-logo" aria-label="mot">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            mot
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Inference
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/surfriderfoundationeurope/mot/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mot
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="mot" class="md-nav__button md-logo" aria-label="mot">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    mot
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/surfriderfoundationeurope/mot/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mot
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../../CONTRIBUTING/" title="Contributing" class="md-nav__link">
+      Contributing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1" checked>
+    
+    <label class="md-nav__link" for="nav-3-1">
+      Mot
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Mot" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        <span class="md-nav__icon md-icon"></span>
+        Mot
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-2" type="checkbox" id="nav-3-1-2">
+    
+    <label class="md-nav__link" for="nav-3-1-2">
+      Object Detection
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Object Detection" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-1-2">
+        <span class="md-nav__icon md-icon"></span>
+        Object Detection
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/common/" title="Common" class="md-nav__link">
+      Common
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/config/" title="Config" class="md-nav__link">
+      Config
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/data/" title="Data" class="md-nav__link">
+      Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/eval/" title="Eval" class="md-nav__link">
+      Eval
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/predict/" title="Predict" class="md-nav__link">
+      Predict
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/preprocessing/" title="Preprocessing" class="md-nav__link">
+      Preprocessing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/query_server/" title="Query Server" class="md-nav__link">
+      Query Server
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/train/" title="Train" class="md-nav__link">
+      Train
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/viz/" title="Viz" class="md-nav__link">
+      Viz
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-2-11" type="checkbox" id="nav-3-1-2-11">
+    
+    <label class="md-nav__link" for="nav-3-1-2-11">
+      Dataset
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Dataset" data-md-level="4">
+      <label class="md-nav__title" for="nav-3-1-2-11">
+        <span class="md-nav__icon md-icon"></span>
+        Dataset
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/dataset/dataset/" title="Dataset" class="md-nav__link">
+      Dataset
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/dataset/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/dataset/mot/" title="Mot" class="md-nav__link">
+      Mot
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-2-12" type="checkbox" id="nav-3-1-2-12">
+    
+    <label class="md-nav__link" for="nav-3-1-2-12">
+      Modeling
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Modeling" data-md-level="4">
+      <label class="md-nav__title" for="nav-3-1-2-12">
+        <span class="md-nav__icon md-icon"></span>
+        Modeling
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/modeling/backbone/" title="Backbone" class="md-nav__link">
+      Backbone
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/modeling/generalized_rcnn/" title="Generalized Rcnn" class="md-nav__link">
+      Generalized Rcnn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/modeling/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/modeling/model_box/" title="Model Box" class="md-nav__link">
+      Model Box
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/modeling/model_cascade/" title="Model Cascade" class="md-nav__link">
+      Model Cascade
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/modeling/model_fpn/" title="Model Fpn" class="md-nav__link">
+      Model Fpn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/modeling/model_frcnn/" title="Model Frcnn" class="md-nav__link">
+      Model Frcnn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/modeling/model_mrcnn/" title="Model Mrcnn" class="md-nav__link">
+      Model Mrcnn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/modeling/model_rpn/" title="Model Rpn" class="md-nav__link">
+      Model Rpn
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-2-13" type="checkbox" id="nav-3-1-2-13">
+    
+    <label class="md-nav__link" for="nav-3-1-2-13">
+      Utils
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Utils" data-md-level="4">
+      <label class="md-nav__title" for="nav-3-1-2-13">
+        <span class="md-nav__icon md-icon"></span>
+        Utils
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/utils/box_ops/" title="Box Ops" class="md-nav__link">
+      Box Ops
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/utils/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/utils/np_box_ops/" title="Np Box Ops" class="md-nav__link">
+      Np Box Ops
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-3" type="checkbox" id="nav-3-1-3" checked>
+    
+    <label class="md-nav__link" for="nav-3-1-3">
+      Serving
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Serving" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-1-3">
+        <span class="md-nav__icon md-icon"></span>
+        Serving
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../app/" title="App" class="md-nav__link">
+      App
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Inference
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="Inference" class="md-nav__link md-nav__link--active">
+      Inference
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    Variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#handle_file" class="md-nav__link">
+    handle_file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handle_post_request" class="md-nav__link">
+    handle_post_request
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keep_prediction" class="md-nav__link">
+    keep_prediction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#predict_and_format_image" class="md-nav__link">
+    predict_and_format_image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#process_image" class="md-nav__link">
+    process_image
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-4" type="checkbox" id="nav-3-1-4">
+    
+    <label class="md-nav__link" for="nav-3-1-4">
+      Tracker
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tracker" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-1-4">
+        <span class="md-nav__icon md-icon"></span>
+        Tracker
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tracker/camera_flow/" title="Camera Flow" class="md-nav__link">
+      Camera Flow
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tracker/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tracker/object_tracking/" title="Object Tracking" class="md-nav__link">
+      Object Tracking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tracker/tracker_metrics/" title="Tracker Metrics" class="md-nav__link">
+      Tracker Metrics
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tracker/tracker_utils/" title="Tracker Utils" class="md-nav__link">
+      Tracker Utils
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tracker/video_utils/" title="Video Utils" class="md-nav__link">
+      Video Utils
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    Variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#handle_file" class="md-nav__link">
+    handle_file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handle_post_request" class="md-nav__link">
+    handle_post_request
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keep_prediction" class="md-nav__link">
+    keep_prediction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#predict_and_format_image" class="md-nav__link">
+    predict_and_format_image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#process_image" class="md-nav__link">
+    process_image
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/surfriderfoundationeurope/mot/edit/master/reference/mot/serving/inference.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="module-motservinginference">Module mot.serving.inference</h1>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="kn">import</span> <span class="nn">multiprocessing</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">import</span> <span class="nn">shutil</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<span class="kn">import</span> <span class="nn">cv2</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">request</span>
+
+<span class="kn">from</span> <span class="nn">tensorpack.utils</span> <span class="kn">import</span> <span class="n">logger</span>
+
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="kn">from</span> <span class="nn">werkzeug</span> <span class="kn">import</span> <span class="n">FileStorage</span>
+
+<span class="kn">from</span> <span class="nn">werkzeug.utils</span> <span class="kn">import</span> <span class="n">secure_filename</span>
+
+<span class="kn">from</span> <span class="nn">zipfile</span> <span class="kn">import</span> <span class="n">ZipFile</span>
+
+<span class="kn">from</span> <span class="nn">mot.object_detection.query_server</span> <span class="kn">import</span> \
+
+    <span class="n">localizer_tensorflow_serving_inference</span>
+
+<span class="kn">from</span> <span class="nn">mot.tracker.object_tracking</span> <span class="kn">import</span> <span class="n">ObjectTracking</span>
+
+<span class="kn">from</span> <span class="nn">mot.tracker.video_utils</span> <span class="kn">import</span> <span class="n">read_folder</span><span class="p">,</span> <span class="n">split_video</span>
+
+<span class="n">SERVING_URL</span> <span class="o">=</span> <span class="s2">&quot;http://localhost:8501&quot;</span>  <span class="c1"># the url where the tf-serving container exposes the model</span>
+
+<span class="n">UPLOAD_FOLDER</span> <span class="o">=</span> <span class="s1">&#39;tmp&#39;</span>  <span class="c1"># folder used to store images or videos when sending files</span>
+
+<span class="n">FPS</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="n">RESOLUTION</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">768</span><span class="p">)</span>
+
+<span class="n">CLASS_NAMES</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;bottles&quot;</span><span class="p">,</span> <span class="s2">&quot;others&quot;</span><span class="p">,</span> <span class="s2">&quot;fragments&quot;</span><span class="p">]</span>
+
+<span class="n">SUM_THRESHOLD</span> <span class="o">=</span> <span class="mf">0.6</span>  <span class="c1"># the sum of scores for all classes must be greater than this value</span>
+
+<span class="c1"># for the prediction to be kept</span>
+
+<span class="n">CLASS_TO_THRESHOLD</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;bottles&quot;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span> <span class="s2">&quot;others&quot;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s2">&quot;fragments&quot;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">}</span>
+
+<span class="n">CPU_COUNT</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">32</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">handle_post_request</span><span class="p">(</span><span class="n">upload_folder</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">UPLOAD_FOLDER</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">]:</span>
+
+    <span class="sd">&quot;&quot;&quot;This method is the first one to be called when a POST request is coming. It analyzes the incoming</span>
+
+<span class="sd">        format (file or JSON) and then call the appropiate methods to do the prediction.</span>
+
+<span class="sd">    If you want to make a prediction by sending the data as a JSON, it has to be in this format:</span>
+
+<span class="sd">    ```json</span>
+
+<span class="sd">    {&quot;image&quot;:[[[0,0,0],[0,0,0]],[[0,0,0],[0,0,0]]]}</span>
+
+<span class="sd">    ```</span>
+
+<span class="sd">    or</span>
+
+<span class="sd">    ```json</span>
+
+<span class="sd">    {&quot;video&quot;: TODO}</span>
+
+<span class="sd">    ```</span>
+
+<span class="sd">    Arguments:</span>
+
+<span class="sd">    - *upload_folder*: Where the files are temporarly stored</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">    - *Dict[str, np.array]*: The predictions of the TF serving module</span>
+
+<span class="sd">    Raises:</span>
+
+<span class="sd">    - *NotImplementedError*: If the format of data isn&#39;t handled yet</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="s2">&quot;file&quot;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">files</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">handle_file</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">files</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">],</span> <span class="n">upload_folder</span><span class="p">,</span> <span class="o">**</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">)</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="kp">loads</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="s2">&quot;image&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+
+        <span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;image&quot;</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;detected_trash&quot;</span><span class="p">:</span> <span class="n">predict_and_format_image</span><span class="p">(</span><span class="n">image</span><span class="p">)}</span>
+
+    <span class="k">if</span> <span class="s2">&quot;video&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;video&quot;</span><span class="p">)</span>
+
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+
+        <span class="s2">&quot;Error during the reading of JSON. Keys </span><span class="si">{}</span><span class="s2"> aren&#39;t valid ones.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span>
+
+        <span class="s2">&quot;For an image, send a JSON such as {&#39;image&#39;: [0, 0, 0]}.&quot;</span> <span class="o">+</span>
+
+        <span class="s2">&quot;Sending videos over JSON isn&#39;t implemented yet.&quot;</span>
+
+    <span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">handle_file</span><span class="p">(</span>
+
+    <span class="n">file</span><span class="p">:</span> <span class="n">FileStorage</span><span class="p">,</span>
+
+    <span class="n">upload_folder</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">UPLOAD_FOLDER</span><span class="p">,</span>
+
+    <span class="n">fps</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">FPS</span><span class="p">,</span>
+
+    <span class="n">resolution</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">RESOLUTION</span><span class="p">,</span>
+
+    <span class="o">**</span><span class="n">kwargs</span>
+
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">]:</span>
+
+    <span class="sd">&quot;&quot;&quot;Make the prediction if the data is coming from an uploaded file.</span>
+
+<span class="sd">    Arguments:</span>
+
+<span class="sd">    - *file*: The file, can be either an image or a video, or a zipped folder</span>
+
+<span class="sd">    - *upload_folder*: Where the files are temporarly stored</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">    - for an image: a json of format</span>
+
+<span class="sd">    ```json</span>
+
+<span class="sd">    {</span>
+
+<span class="sd">        &quot;image&quot;: filename,</span>
+
+<span class="sd">        &quot;detected_trash&quot;:</span>
+
+<span class="sd">            [</span>
+
+<span class="sd">                {</span>
+
+<span class="sd">                    &quot;box&quot;: [1, 1, 2, 20],</span>
+
+<span class="sd">                    &quot;label&quot;: &quot;fragments&quot;,</span>
+
+<span class="sd">                    &quot;score&quot;: 0.92</span>
+
+<span class="sd">                }, {</span>
+
+<span class="sd">                    &quot;box&quot;: [10, 10, 25, 20],</span>
+
+<span class="sd">                    &quot;label&quot;: &quot;bottles&quot;,</span>
+
+<span class="sd">                    &quot;score&quot;: 0.75</span>
+
+<span class="sd">                }</span>
+
+<span class="sd">            ]</span>
+
+<span class="sd">    }</span>
+
+<span class="sd">    ```</span>
+
+<span class="sd">    - for a video or a zipped file: a json of format</span>
+
+<span class="sd">    ```json</span>
+
+<span class="sd">    {</span>
+
+<span class="sd">        &quot;video_length&quot;: 132,</span>
+
+<span class="sd">        &quot;fps&quot;: 2,</span>
+
+<span class="sd">        &quot;video_id&quot;: &quot;GOPRO1234.mp4&quot;,</span>
+
+<span class="sd">        &quot;detected_trash&quot;:</span>
+
+<span class="sd">            [</span>
+
+<span class="sd">                {</span>
+
+<span class="sd">                    &quot;label&quot;: &quot;bottles&quot;,</span>
+
+<span class="sd">                    &quot;id&quot;: 0,</span>
+
+<span class="sd">                    &quot;frame_to_box&quot;: {</span>
+
+<span class="sd">                        23: [0, 0, 1, 10],</span>
+
+<span class="sd">                        24: [1, 1, 4, 13]</span>
+
+<span class="sd">                    }</span>
+
+<span class="sd">                }, {</span>
+
+<span class="sd">                    &quot;label&quot;: &quot;fragments&quot;,</span>
+
+<span class="sd">                    &quot;id&quot;: 1,</span>
+
+<span class="sd">                    &quot;frame_to_box&quot;: {</span>
+
+<span class="sd">                        12: [10, 8, 9, 15]</span>
+
+<span class="sd">                    }</span>
+
+<span class="sd">                }</span>
+
+<span class="sd">            ]</span>
+
+<span class="sd">    }</span>
+
+<span class="sd">    ```</span>
+
+<span class="sd">    Raises:</span>
+
+<span class="sd">    - *NotImplementedError*: If the format of data isn&#39;t handled yet</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">kwargs</span><span class="p">:</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Unused kwargs: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">kwargs</span><span class="p">))</span>
+
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">secure_filename</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
+    <span class="n">full_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">upload_folder</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">upload_folder</span><span class="p">):</span>
+
+        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">upload_folder</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">full_filepath</span><span class="p">):</span>
+
+        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">full_filepath</span><span class="p">)</span>
+
+    <span class="n">file</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">full_filepath</span><span class="p">)</span>
+
+    <span class="n">file_type</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">mimetype</span><span class="o">.</span><span class="kp">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># mimetype is for example &#39;image/png&#39; and we only want the image</span>
+
+    <span class="k">if</span> <span class="n">file_type</span> <span class="o">==</span> <span class="s2">&quot;image&quot;</span><span class="p">:</span>
+
+        <span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">full_filepath</span><span class="p">)</span>  <span class="c1"># cv2 opens in BGR</span>
+
+        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">full_filepath</span><span class="p">)</span>  <span class="c1"># remove it as we don&#39;t need it anymore</span>
+
+        <span class="k">try</span><span class="p">:</span>
+
+            <span class="n">detected_trash</span> <span class="o">=</span> <span class="n">predict_and_format_image</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;image&quot;</span><span class="p">:</span> <span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;detected_trash&quot;</span><span class="p">:</span> <span class="n">detected_trash</span><span class="p">}</span>
+
+    <span class="k">elif</span> <span class="n">file_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;video&quot;</span><span class="p">,</span> <span class="s2">&quot;application&quot;</span><span class="p">]:</span>
+
+        <span class="n">folder</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">mimetype</span> <span class="o">==</span> <span class="s2">&quot;application/zip&quot;</span><span class="p">:</span>
+
+            <span class="c1"># zip case</span>
+
+            <span class="n">ZipFile</span><span class="p">(</span><span class="n">full_filepath</span><span class="p">)</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">upload_folder</span><span class="p">)</span>
+
+            <span class="n">dirname</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="k">with</span> <span class="n">ZipFile</span><span class="p">(</span><span class="n">full_filepath</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zipObj</span><span class="p">:</span>
+
+                <span class="n">listOfFileNames</span> <span class="o">=</span> <span class="n">zipObj</span><span class="o">.</span><span class="n">namelist</span><span class="p">()</span>
+
+                <span class="k">for</span> <span class="n">fileName</span> <span class="ow">in</span> <span class="n">listOfFileNames</span><span class="p">:</span>
+
+                    <span class="n">dirname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">fileName</span><span class="p">)</span>
+
+                    <span class="n">zipObj</span><span class="o">.</span><span class="kp">extract</span><span class="p">(</span><span class="n">fileName</span><span class="p">,</span> <span class="n">upload_folder</span><span class="p">)</span>
+
+            <span class="n">folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">upload_folder</span><span class="p">,</span> <span class="n">dirname</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="c1"># video case: splitting video and saving frames</span>
+
+            <span class="n">folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">upload_folder</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">_split&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">folder</span><span class="p">):</span>
+
+                <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+
+            <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="kp">info</span><span class="p">(</span><span class="s2">&quot;Splitting video </span><span class="si">{}</span><span class="s2"> to </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">full_filepath</span><span class="p">,</span> <span class="n">folder</span><span class="p">))</span>
+
+            <span class="n">split_video</span><span class="p">(</span><span class="n">full_filepath</span><span class="p">,</span> <span class="n">folder</span><span class="p">,</span> <span class="n">fps</span><span class="o">=</span><span class="n">fps</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="n">resolution</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;folder:&quot;</span><span class="p">,</span> <span class="n">folder</span><span class="p">,</span> <span class="s2">&quot;uplaod_folder:&quot;</span><span class="p">,</span> <span class="n">upload_folder</span><span class="p">,</span> <span class="s2">&quot;file.filename:&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
+        <span class="n">image_paths</span> <span class="o">=</span> <span class="n">read_folder</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">image_paths</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No output image&quot;</span><span class="p">)</span>
+
+        <span class="c1"># making inference on frames</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="kp">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> images to analyze on </span><span class="si">{}</span><span class="s2"> CPUs.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">image_paths</span><span class="p">),</span> <span class="n">CPU_COUNT</span><span class="p">))</span>
+
+        <span class="k">try</span><span class="p">:</span>
+
+            <span class="k">with</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">CPU_COUNT</span><span class="p">)</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
+
+                <span class="n">inference_outputs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+
+                    <span class="n">tqdm</span><span class="p">(</span>
+
+                        <span class="n">p</span><span class="o">.</span><span class="n">imap</span><span class="p">(</span><span class="n">process_image</span><span class="p">,</span> <span class="n">image_paths</span><span class="p">),</span>
+
+                        <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">image_paths</span><span class="p">),</span>
+
+                    <span class="p">)</span>
+
+                <span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="kp">info</span><span class="p">(</span><span class="s2">&quot;Finish analyzing video </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">full_filepath</span><span class="p">))</span>
+
+        <span class="c1"># tracking objects</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="kp">info</span><span class="p">(</span><span class="s2">&quot;Starting tracking.&quot;</span><span class="p">)</span>
+
+        <span class="n">object_tracker</span> <span class="o">=</span> <span class="n">ObjectTracking</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">image_paths</span><span class="p">,</span> <span class="n">inference_outputs</span><span class="p">,</span> <span class="n">fps</span><span class="o">=</span><span class="n">fps</span><span class="p">)</span>
+
+        <span class="n">tracks</span> <span class="o">=</span> <span class="n">object_tracker</span><span class="o">.</span><span class="n">compute_tracks</span><span class="p">()</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="kp">info</span><span class="p">(</span><span class="s2">&quot;Tracking finished.&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">object_tracker</span><span class="o">.</span><span class="n">json_result</span><span class="p">(</span><span class="n">tracks</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">file_type</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">process_image</span><span class="p">(</span><span class="n">image_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]:</span>
+
+    <span class="sd">&quot;&quot;&quot;Function used to open and predict on an image. It is suposed to be used in multiprocessing.</span>
+
+<span class="sd">    Arguments:</span>
+
+<span class="sd">    - *image_path*</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">    - *Dict[str, object]*: Predictions for this image path</span>
+
+<span class="sd">    ```python</span>
+
+<span class="sd">    predictions = {</span>
+
+<span class="sd">        &#39;output/boxes:0&#39;: [[0, 0, 1, 1], [0, 0, 10, 10], [10, 10, 15, 100]],</span>
+
+<span class="sd">        &#39;output/labels:0&#39;: [3, 1, 2], # the labels start at 1 since 0 is for background</span>
+
+<span class="sd">        &#39;output/scores:0&#39;: [0.98, 0.87, 0.76] # sorted in descending order</span>
+
+<span class="sd">    }</span>
+
+<span class="sd">    ```</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>  <span class="c1"># cv2 opens in BGR</span>
+
+    <span class="k">return</span> <span class="n">localizer_tensorflow_serving_inference</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">SERVING_URL</span><span class="p">,</span> <span class="n">return_all_scores</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">predict_and_format_image</span><span class="p">(</span>
+
+    <span class="n">image</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+
+    <span class="n">class_names</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">CLASS_NAMES</span><span class="p">,</span>
+
+    <span class="n">class_to_threshold</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">CLASS_TO_THRESHOLD</span>
+
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]]:</span>
+
+    <span class="sd">&quot;&quot;&quot;Make prediction on an image and return them in a human readable format.</span>
+
+<span class="sd">    Arguments:</span>
+
+<span class="sd">    - *image*: An numpy array in BGR</span>
+
+<span class="sd">    - *class_names*: The list of class names without background</span>
+
+<span class="sd">    - *class_to_threshold*: A dict assigning class names to threshold. If a class name isn&#39;t in</span>
+
+<span class="sd">        this dict, no threshold will be applied, which means that all predictions for this class</span>
+
+<span class="sd">        will be kept.</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">    - *List[Dict[str, object]]*: List of dicts such as:</span>
+
+<span class="sd">    ```python3</span>
+
+<span class="sd">    {</span>
+
+<span class="sd">        &quot;box&quot;: [1, 1, 2, 20],</span>
+
+<span class="sd">        &quot;label&quot;: &quot;fragments&quot;,</span>
+
+<span class="sd">        &quot;score&quot;: 0.92</span>
+
+<span class="sd">    }</span>
+
+<span class="sd">    ```</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">class_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;BG&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">class_names</span>
+
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">localizer_tensorflow_serving_inference</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">SERVING_URL</span><span class="p">,</span> <span class="n">return_all_scores</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="n">detected_trash</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">box</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+
+        <span class="n">outputs</span><span class="p">[</span><span class="s2">&quot;output/boxes:0&quot;</span><span class="p">],</span> <span class="n">outputs</span><span class="p">[</span><span class="s2">&quot;output/labels:0&quot;</span><span class="p">],</span> <span class="n">outputs</span><span class="p">[</span><span class="s2">&quot;output/scores:0&quot;</span><span class="p">]</span>
+
+    <span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">keep_prediction</span><span class="p">(</span><span class="n">class_names</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">class_to_threshold</span><span class="p">,</span> <span class="n">score</span><span class="p">):</span>
+
+            <span class="n">trash_json</span> <span class="o">=</span> <span class="p">{</span>
+
+                <span class="s2">&quot;box&quot;</span><span class="p">:</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">coord</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">box</span><span class="p">],</span>
+
+                <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">class_names</span><span class="p">[</span><span class="n">label</span><span class="p">],</span>
+
+                <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="n">score</span><span class="p">,</span>
+
+            <span class="p">}</span>
+
+            <span class="n">detected_trash</span><span class="o">.</span><span class="kp">append</span><span class="p">(</span><span class="n">trash_json</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">detected_trash</span>
+
+<span class="k">def</span> <span class="nf">keep_prediction</span><span class="p">(</span><span class="n">class_names</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">class_to_threshold</span><span class="p">,</span> <span class="n">score</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>  <span class="c1"># we have scores for all classes</span>
+
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="n">score</span><span class="p">)</span><span class="o">.</span><span class="kp">sum</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">SUM_THRESHOLD</span><span class="p">:</span>
+
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">return</span> <span class="n">class_names</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">class_to_threshold</span> <span class="ow">or</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="n">class_to_threshold</span><span class="p">[</span>
+
+        <span class="n">class_names</span><span class="p">[</span><span class="n">label</span><span class="p">]]</span>
+</code></pre></div>
+
+</details>
+<h2 id="variables">Variables</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">CLASS_NAMES</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">CLASS_TO_THRESHOLD</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">CPU_COUNT</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">FPS</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">RESOLUTION</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">SERVING_URL</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">SUM_THRESHOLD</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">UPLOAD_FOLDER</span>
+</code></pre></div>
+
+<h2 id="functions">Functions</h2>
+<h3 id="handle_file">handle_file</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">handle_file</span><span class="p">(</span>
+    <span class="n">file</span><span class="p">:</span><span class="n">werkzeug</span><span class="o">.</span><span class="n">datastructures</span><span class="o">.</span><span class="n">FileStorage</span><span class="p">,</span>
+    <span class="n">upload_folder</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s1">&#39;tmp&#39;</span><span class="p">,</span>
+    <span class="n">fps</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">resolution</span><span class="p">:</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">768</span><span class="p">),</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">built</span><span class="o">-</span><span class="ow">in</span> <span class="n">function</span> <span class="n">array</span><span class="o">&gt;</span><span class="p">]</span>
+</code></pre></div>
+
+<p>Make the prediction if the data is coming from an uploaded file.</p>
+<p>Arguments:</p>
+<ul>
+<li><em>file</em>: The file, can be either an image or a video, or a zipped folder</li>
+<li><em>upload_folder</em>: Where the files are temporarly stored</li>
+</ul>
+<p>Returns:</p>
+<ul>
+<li>for an image: a json of format</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;image&quot;</span><span class="p">:</span> <span class="err">filename</span><span class="p">,</span>
+    <span class="nt">&quot;detected_trash&quot;</span><span class="p">:</span>
+        <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
+                <span class="nt">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;fragments&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;score&quot;</span><span class="p">:</span> <span class="mf">0.92</span>
+            <span class="p">},</span> <span class="p">{</span>
+                <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
+                <span class="nt">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;bottles&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;score&quot;</span><span class="p">:</span> <span class="mf">0.75</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<ul>
+<li>for a video or a zipped file: a json of format</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;video_length&quot;</span><span class="p">:</span> <span class="mi">132</span><span class="p">,</span>
+    <span class="nt">&quot;fps&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;video_id&quot;</span><span class="p">:</span> <span class="s2">&quot;GOPRO1234.mp4&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;detected_trash&quot;</span><span class="p">:</span>
+        <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;bottles&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="nt">&quot;frame_to_box&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="err">23:</span> <span class="err">[0,</span> <span class="err">0,</span> <span class="err">1,</span> <span class="err">10],</span>
+                    <span class="err">24:</span> <span class="err">[1,</span> <span class="err">1,</span> <span class="err">4,</span> <span class="err">13]</span>
+                <span class="p">}</span>
+            <span class="p">},</span> <span class="p">{</span>
+                <span class="nt">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;fragments&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="nt">&quot;frame_to_box&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="err">12:</span> <span class="err">[10,</span> <span class="err">8,</span> <span class="err">9,</span> <span class="err">15]</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Raises:</p>
+<ul>
+<li><em>NotImplementedError</em>: If the format of data isn't handled yet</li>
+</ul>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span> <span class="n">handle_file</span><span class="p">(</span>
+
+    <span class="n">file</span><span class="p">:</span> <span class="n">FileStorage</span><span class="p">,</span>
+
+    <span class="n">upload_folder</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">UPLOAD_FOLDER</span><span class="p">,</span>
+
+    <span class="n">fps</span><span class="p">:</span> <span class="nb nb-Type">int</span> <span class="o">=</span> <span class="n">FPS</span><span class="p">,</span>
+
+    <span class="n">resolution</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb nb-Type">int</span><span class="p">,</span> <span class="nb nb-Type">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">RESOLUTION</span><span class="p">,</span>
+
+    <span class="o">**</span><span class="n">kwargs</span>
+
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">]:</span>
+
+    <span class="sd">&quot;&quot;&quot;Make the prediction if the data is coming from an uploaded file.</span>
+
+<span class="sd">    Arguments:</span>
+
+<span class="sd">    - *file*: The file, can be either an image or a video, or a zipped folder</span>
+
+<span class="sd">    - *upload_folder*: Where the files are temporarly stored</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">    - for an image: a json of format</span>
+
+<span class="sd">    ```json</span>
+
+<span class="sd">    {</span>
+
+<span class="sd">        &quot;image&quot;: filename,</span>
+
+<span class="sd">        &quot;detected_trash&quot;:</span>
+
+<span class="sd">            [</span>
+
+<span class="sd">                {</span>
+
+<span class="sd">                    &quot;box&quot;: [1, 1, 2, 20],</span>
+
+<span class="sd">                    &quot;label&quot;: &quot;fragments&quot;,</span>
+
+<span class="sd">                    &quot;score&quot;: 0.92</span>
+
+<span class="sd">                }, {</span>
+
+<span class="sd">                    &quot;box&quot;: [10, 10, 25, 20],</span>
+
+<span class="sd">                    &quot;label&quot;: &quot;bottles&quot;,</span>
+
+<span class="sd">                    &quot;score&quot;: 0.75</span>
+
+<span class="sd">                }</span>
+
+<span class="sd">            ]</span>
+
+<span class="sd">    }</span>
+
+<span class="sd">    ```</span>
+
+<span class="sd">    - for a video or a zipped file: a json of format</span>
+
+<span class="sd">    ```json</span>
+
+<span class="sd">    {</span>
+
+<span class="sd">        &quot;video_length&quot;: 132,</span>
+
+<span class="sd">        &quot;fps&quot;: 2,</span>
+
+<span class="sd">        &quot;video_id&quot;: &quot;GOPRO1234.mp4&quot;,</span>
+
+<span class="sd">        &quot;detected_trash&quot;:</span>
+
+<span class="sd">            [</span>
+
+<span class="sd">                {</span>
+
+<span class="sd">                    &quot;label&quot;: &quot;bottles&quot;,</span>
+
+<span class="sd">                    &quot;id&quot;: 0,</span>
+
+<span class="sd">                    &quot;frame_to_box&quot;: {</span>
+
+<span class="sd">                        23: [0, 0, 1, 10],</span>
+
+<span class="sd">                        24: [1, 1, 4, 13]</span>
+
+<span class="sd">                    }</span>
+
+<span class="sd">                }, {</span>
+
+<span class="sd">                    &quot;label&quot;: &quot;fragments&quot;,</span>
+
+<span class="sd">                    &quot;id&quot;: 1,</span>
+
+<span class="sd">                    &quot;frame_to_box&quot;: {</span>
+
+<span class="sd">                        12: [10, 8, 9, 15]</span>
+
+<span class="sd">                    }</span>
+
+<span class="sd">                }</span>
+
+<span class="sd">            ]</span>
+
+<span class="sd">    }</span>
+
+<span class="sd">    ```</span>
+
+<span class="sd">    Raises:</span>
+
+<span class="sd">    - *NotImplementedError*: If the format of data isn&#39;t handled yet</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">kwargs</span><span class="p">:</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Unused kwargs: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">kwargs</span><span class="p">))</span>
+
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">secure_filename</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
+    <span class="n">full_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">upload_folder</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">upload_folder</span><span class="p">):</span>
+
+        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">upload_folder</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">full_filepath</span><span class="p">):</span>
+
+        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">full_filepath</span><span class="p">)</span>
+
+    <span class="n">file</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">full_filepath</span><span class="p">)</span>
+
+    <span class="n">file_type</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">mimetype</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># mimetype is for example &#39;image/png&#39; and we only want the image</span>
+
+    <span class="k">if</span> <span class="n">file_type</span> <span class="o">==</span> <span class="s2">&quot;image&quot;</span><span class="p">:</span>
+
+        <span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">full_filepath</span><span class="p">)</span>  <span class="c1"># cv2 opens in BGR</span>
+
+        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">full_filepath</span><span class="p">)</span>  <span class="c1"># remove it as we don&#39;t need it anymore</span>
+
+        <span class="n">try</span><span class="p">:</span>
+
+            <span class="n">detected_trash</span> <span class="o">=</span> <span class="n">predict_and_format_image</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+
+        <span class="n">except</span> <span class="n">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;image&quot;</span><span class="p">:</span> <span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;detected_trash&quot;</span><span class="p">:</span> <span class="n">detected_trash</span><span class="p">}</span>
+
+    <span class="k">elif</span> <span class="n">file_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;video&quot;</span><span class="p">,</span> <span class="s2">&quot;application&quot;</span><span class="p">]:</span>
+
+        <span class="n">folder</span> <span class="o">=</span> <span class="n">None</span>
+
+        <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">mimetype</span> <span class="o">==</span> <span class="s2">&quot;application/zip&quot;</span><span class="p">:</span>
+
+            <span class="c1"># zip case</span>
+
+            <span class="n">ZipFile</span><span class="p">(</span><span class="n">full_filepath</span><span class="p">)</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">upload_folder</span><span class="p">)</span>
+
+            <span class="n">dirname</span> <span class="o">=</span> <span class="n">None</span>
+
+            <span class="n">with</span> <span class="n">ZipFile</span><span class="p">(</span><span class="n">full_filepath</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zipObj</span><span class="p">:</span>
+
+                <span class="n">listOfFileNames</span> <span class="o">=</span> <span class="n">zipObj</span><span class="o">.</span><span class="n">namelist</span><span class="p">()</span>
+
+                <span class="k">for</span> <span class="n">fileName</span> <span class="ow">in</span> <span class="n">listOfFileNames</span><span class="p">:</span>
+
+                    <span class="n">dirname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">fileName</span><span class="p">)</span>
+
+                    <span class="n">zipObj</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">fileName</span><span class="p">,</span> <span class="n">upload_folder</span><span class="p">)</span>
+
+            <span class="n">folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">upload_folder</span><span class="p">,</span> <span class="n">dirname</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="c1"># video case: splitting video and saving frames</span>
+
+            <span class="n">folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">upload_folder</span><span class="p">,</span> <span class="s2">&quot;{}_split&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">folder</span><span class="p">):</span>
+
+                <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+
+            <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Splitting video {} to {}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">full_filepath</span><span class="p">,</span> <span class="n">folder</span><span class="p">))</span>
+
+            <span class="n">split_video</span><span class="p">(</span><span class="n">full_filepath</span><span class="p">,</span> <span class="n">folder</span><span class="p">,</span> <span class="n">fps</span><span class="o">=</span><span class="n">fps</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="n">resolution</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;folder:&quot;</span><span class="p">,</span> <span class="n">folder</span><span class="p">,</span> <span class="s2">&quot;uplaod_folder:&quot;</span><span class="p">,</span> <span class="n">upload_folder</span><span class="p">,</span> <span class="s2">&quot;file.filename:&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
+        <span class="n">image_paths</span> <span class="o">=</span> <span class="n">read_folder</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">len</span><span class="p">(</span><span class="n">image_paths</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+
+            <span class="n">raise</span> <span class="n">ValueError</span><span class="p">(</span><span class="s2">&quot;No output image&quot;</span><span class="p">)</span>
+
+        <span class="c1"># making inference on frames</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;{} images to analyze on {} CPUs.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">len</span><span class="p">(</span><span class="n">image_paths</span><span class="p">),</span> <span class="n">CPU_COUNT</span><span class="p">))</span>
+
+        <span class="n">try</span><span class="p">:</span>
+
+            <span class="n">with</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">CPU_COUNT</span><span class="p">)</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
+
+                <span class="n">inference_outputs</span> <span class="o">=</span> <span class="n">list</span><span class="p">(</span>
+
+                    <span class="n">tqdm</span><span class="p">(</span>
+
+                        <span class="n">p</span><span class="o">.</span><span class="n">imap</span><span class="p">(</span><span class="n">process_image</span><span class="p">,</span> <span class="n">image_paths</span><span class="p">),</span>
+
+                        <span class="n">total</span><span class="o">=</span><span class="n">len</span><span class="p">(</span><span class="n">image_paths</span><span class="p">),</span>
+
+                    <span class="p">)</span>
+
+                <span class="p">)</span>
+
+        <span class="n">except</span> <span class="n">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Finish analyzing video {}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">full_filepath</span><span class="p">))</span>
+
+        <span class="c1"># tracking objects</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Starting tracking.&quot;</span><span class="p">)</span>
+
+        <span class="n">object_tracker</span> <span class="o">=</span> <span class="n">ObjectTracking</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">image_paths</span><span class="p">,</span> <span class="n">inference_outputs</span><span class="p">,</span> <span class="n">fps</span><span class="o">=</span><span class="n">fps</span><span class="p">)</span>
+
+        <span class="n">tracks</span> <span class="o">=</span> <span class="n">object_tracker</span><span class="o">.</span><span class="n">compute_tracks</span><span class="p">()</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Tracking finished.&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">object_tracker</span><span class="o">.</span><span class="n">json_result</span><span class="p">(</span><span class="n">tracks</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="n">raise</span> <span class="n">NotImplementedError</span><span class="p">(</span><span class="n">file_type</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h3 id="handle_post_request">handle_post_request</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">handle_post_request</span><span class="p">(</span>
+    <span class="n">upload_folder</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s1">&#39;tmp&#39;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">built</span><span class="o">-</span><span class="ow">in</span> <span class="n">function</span> <span class="n">array</span><span class="o">&gt;</span><span class="p">]</span>
+</code></pre></div>
+
+<p>This method is the first one to be called when a POST request is coming. It analyzes the incoming
+    format (file or JSON) and then call the appropiate methods to do the prediction.</p>
+<p>If you want to make a prediction by sending the data as a JSON, it has to be in this format:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;image&quot;</span><span class="p">:[[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]],[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]]]}</span>
+</code></pre></div>
+
+<p>or</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;video&quot;</span><span class="p">:</span> <span class="err">TODO</span><span class="p">}</span>
+</code></pre></div>
+
+<p>Arguments:</p>
+<ul>
+<li><em>upload_folder</em>: Where the files are temporarly stored</li>
+</ul>
+<p>Returns:</p>
+<ul>
+<li><em>Dict[str, np.array]</em>: The predictions of the TF serving module</li>
+</ul>
+<p>Raises:</p>
+<ul>
+<li><em>NotImplementedError</em>: If the format of data isn't handled yet</li>
+</ul>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span> <span class="n">handle_post_request</span><span class="p">(</span><span class="n">upload_folder</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">UPLOAD_FOLDER</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">]:</span>
+
+    <span class="sd">&quot;&quot;&quot;This method is the first one to be called when a POST request is coming. It analyzes the incoming</span>
+
+<span class="sd">        format (file or JSON) and then call the appropiate methods to do the prediction.</span>
+
+<span class="sd">    If you want to make a prediction by sending the data as a JSON, it has to be in this format:</span>
+
+<span class="sd">    ```json</span>
+
+<span class="sd">    {&quot;image&quot;:[[[0,0,0],[0,0,0]],[[0,0,0],[0,0,0]]]}</span>
+
+<span class="sd">    ```</span>
+
+<span class="sd">    or</span>
+
+<span class="sd">    ```json</span>
+
+<span class="sd">    {&quot;video&quot;: TODO}</span>
+
+<span class="sd">    ```</span>
+
+<span class="sd">    Arguments:</span>
+
+<span class="sd">    - *upload_folder*: Where the files are temporarly stored</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">    - *Dict[str, np.array]*: The predictions of the TF serving module</span>
+
+<span class="sd">    Raises:</span>
+
+<span class="sd">    - *NotImplementedError*: If the format of data isn&#39;t handled yet</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="s2">&quot;file&quot;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">files</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">handle_file</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">files</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">],</span> <span class="n">upload_folder</span><span class="p">,</span> <span class="o">**</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">)</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="s2">&quot;image&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+
+        <span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;image&quot;</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;detected_trash&quot;</span><span class="p">:</span> <span class="n">predict_and_format_image</span><span class="p">(</span><span class="n">image</span><span class="p">)}</span>
+
+    <span class="k">if</span> <span class="s2">&quot;video&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+
+        <span class="n">raise</span> <span class="n">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;video&quot;</span><span class="p">)</span>
+
+    <span class="n">raise</span> <span class="n">ValueError</span><span class="p">(</span>
+
+        <span class="s2">&quot;Error during the reading of JSON. Keys {} aren&#39;t valid ones.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span>
+
+        <span class="s2">&quot;For an image, send a JSON such as {&#39;image&#39;: [0, 0, 0]}.&quot;</span> <span class="o">+</span>
+
+        <span class="s2">&quot;Sending videos over JSON isn&#39;t implemented yet.&quot;</span>
+
+    <span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h3 id="keep_prediction">keep_prediction</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">keep_prediction</span><span class="p">(</span>
+    <span class="n">class_names</span><span class="p">,</span>
+    <span class="n">label</span><span class="p">,</span>
+    <span class="n">class_to_threshold</span><span class="p">,</span>
+    <span class="n">score</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">keep_prediction</span><span class="p">(</span><span class="n">class_names</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="p">,</span><span class="w"> </span><span class="n">class_to_threshold</span><span class="p">,</span><span class="w"> </span><span class="n">score</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">isinstance</span><span class="p">(</span><span class="n">score</span><span class="p">,</span><span class="w"> </span><span class="n">list</span><span class="p">)</span><span class="err">:</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">scores</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="n">classes</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="k">array</span><span class="p">(</span><span class="n">score</span><span class="p">).</span><span class="nf">sum</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nl">SUM_THRESHOLD</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">False</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">True</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">class_names</span><span class="o">[</span><span class="n">label</span><span class="o">]</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">class_to_threshold</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">class_to_threshold</span><span class="o">[</span><span class="n"></span>
+
+<span class="n">        class_names[label</span><span class="o">]</span><span class="err">]</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h3 id="predict_and_format_image">predict_and_format_image</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">predict_and_format_image</span><span class="p">(</span>
+    <span class="n">image</span><span class="p">:</span><span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">class_names</span><span class="p">:</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;bottles&#39;</span><span class="p">,</span> <span class="s1">&#39;others&#39;</span><span class="p">,</span> <span class="s1">&#39;fragments&#39;</span><span class="p">],</span>
+    <span class="n">class_to_threshold</span><span class="p">:</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;bottles&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span> <span class="s1">&#39;others&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s1">&#39;fragments&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">}</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]]</span>
+</code></pre></div>
+
+<p>Make prediction on an image and return them in a human readable format.</p>
+<p>Arguments:</p>
+<ul>
+<li><em>image</em>: An numpy array in BGR</li>
+<li><em>class_names</em>: The list of class names without background</li>
+<li><em>class_to_threshold</em>: A dict assigning class names to threshold. If a class name isn't in
+    this dict, no threshold will be applied, which means that all predictions for this class
+    will be kept.</li>
+</ul>
+<p>Returns:</p>
+<ul>
+<li><em>List[Dict[str, object]]</em>: List of dicts such as:</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span>
+    <span class="s2">&quot;box&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
+    <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;fragments&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mf">0.92</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">predict_and_format_image</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">    </span><span class="nc">image</span><span class="err">:</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">class_names</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">[</span><span class="n">str</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CLASS_NAMES</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">class_to_threshold</span><span class="p">:</span><span class="w"> </span><span class="n">Dict</span><span class="o">[</span><span class="n">str, float</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CLASS_TO_THRESHOLD</span><span class="w"></span>
+
+<span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">List</span><span class="o">[</span><span class="n">Dict[str, object</span><span class="o">]</span><span class="err">]:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;Make prediction on an image and return them in a human readable format.</span>
+
+<span class="ss">    Arguments:</span>
+
+<span class="ss">    - *image*: An numpy array in BGR</span>
+
+<span class="ss">    - *class_names*: The list of class names without background</span>
+
+<span class="ss">    - *class_to_threshold*: A dict assigning class names to threshold. If a class name isn&#39;t in</span>
+
+<span class="ss">        this dict, no threshold will be applied, which means that all predictions for this class</span>
+
+<span class="ss">        will be kept.</span>
+
+<span class="ss">    Returns:</span>
+
+<span class="ss">    - *List[Dict[str, object]]*: List of dicts such as:</span>
+
+<span class="ss">    ```python3</span>
+
+<span class="ss">    {</span>
+
+<span class="ss">        &quot;</span><span class="n">box</span><span class="ss">&quot;: [1, 1, 2, 20],</span>
+
+<span class="ss">        &quot;</span><span class="n">label</span><span class="ss">&quot;: &quot;</span><span class="n">fragments</span><span class="ss">&quot;,</span>
+
+<span class="ss">        &quot;</span><span class="n">score</span><span class="ss">&quot;: 0.92</span>
+
+<span class="ss">    }</span>
+
+<span class="ss">    ```</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">class_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">&quot;BG&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">class_names</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">outputs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">localizer_tensorflow_serving_inference</span><span class="p">(</span><span class="nc">image</span><span class="p">,</span><span class="w"> </span><span class="n">SERVING_URL</span><span class="p">,</span><span class="w"> </span><span class="n">return_all_scores</span><span class="o">=</span><span class="k">False</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">detected_trash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">box</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="p">,</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">zip</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">outputs</span><span class="o">[</span><span class="n">&quot;output/boxes:0&quot;</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">outputs</span><span class="o">[</span><span class="n">&quot;output/labels:0&quot;</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">outputs</span><span class="o">[</span><span class="n">&quot;output/scores:0&quot;</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">keep_prediction</span><span class="p">(</span><span class="n">class_names</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="p">,</span><span class="w"> </span><span class="n">class_to_threshold</span><span class="p">,</span><span class="w"> </span><span class="n">score</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">trash_json</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+
+<span class="w">                </span><span class="ss">&quot;box&quot;</span><span class="err">:</span><span class="w"> </span><span class="o">[</span><span class="n">round(coord, 2) for coord in box</span><span class="o">]</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">                </span><span class="ss">&quot;label&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">class_names</span><span class="o">[</span><span class="n">label</span><span class="o">]</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">                </span><span class="ss">&quot;score&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">score</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">            </span><span class="err">}</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">detected_trash</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">trash_json</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">detected_trash</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h3 id="process_image">process_image</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">process_image</span><span class="p">(</span>
+    <span class="n">image_path</span><span class="p">:</span><span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span>
+</code></pre></div>
+
+<p>Function used to open and predict on an image. It is suposed to be used in multiprocessing.</p>
+<p>Arguments:</p>
+<ul>
+<li><em>image_path</em></li>
+</ul>
+<p>Returns:</p>
+<ul>
+<li><em>Dict[str, object]</em>: Predictions for this image path</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="n">predictions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;output/boxes:0&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">100</span><span class="p">]],</span>
+    <span class="s1">&#39;output/labels:0&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="c1"># the labels start at 1 since 0 is for background</span>
+    <span class="s1">&#39;output/scores:0&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.98</span><span class="p">,</span> <span class="mf">0.87</span><span class="p">,</span> <span class="mf">0.76</span><span class="p">]</span> <span class="c1"># sorted in descending order</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span> <span class="n">process_image</span><span class="p">(</span><span class="n">image_path</span><span class="p">:</span> <span class="n">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">str</span><span class="p">,</span> <span class="k">object</span><span class="p">]:</span>
+
+    <span class="ss">&quot;&quot;&quot;Function used to open and predict on an image. It is suposed to be used in multiprocessing.</span>
+
+<span class="ss">    Arguments:</span>
+
+<span class="ss">    - *image_path*</span>
+
+<span class="ss">    Returns:</span>
+
+<span class="ss">    - *Dict[str, object]*: Predictions for this image path</span>
+
+<span class="ss">    ```python</span>
+
+<span class="ss">    predictions = {</span>
+
+<span class="ss">        &#39;output/boxes:0&#39;: [[0, 0, 1, 1], [0, 0, 10, 10], [10, 10, 15, 100]],</span>
+
+<span class="ss">        &#39;output/labels:0&#39;: [3, 1, 2], # the labels start at 1 since 0 is for background</span>
+
+<span class="ss">        &#39;output/scores:0&#39;: [0.98, 0.87, 0.76] # sorted in descending order</span>
+
+<span class="ss">    }</span>
+
+<span class="ss">    ```</span>
+
+<span class="ss">    &quot;&quot;&quot;</span>
+
+    <span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">imread</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>  <span class="o">#</span> <span class="n">cv2</span> <span class="n">opens</span> <span class="k">in</span> <span class="n">BGR</span>
+
+    <span class="k">return</span> <span class="n">localizer_tensorflow_serving_inference</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">SERVING_URL</span><span class="p">,</span> <span class="n">return_all_scores</span><span class="o">=</span><span class="k">True</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../" title="Index" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Index
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../tracker/camera_flow/" title="Camera Flow" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Camera Flow
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Powered by
+        <a href="http://timothycrosley.github.io/portray">portray.</a>
+        You too can
+        <a href="http://timothycrosley.github.io/portray">
+          portray</a>
+        your Python project well using automatic documentation.
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../../assets/javascripts/vendor.2d1db4bd.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.6627ddf3.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2833 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.14">
+    
+    
+      
+        <title>Object Tracking - mot</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.d3202873.min.css">
+      
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ff0a5ce4.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#4cae4f">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="green" data-md-color-accent="lightgreen">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#module-mottrackerobject_tracking" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../../../.." title="mot" class="md-header-nav__button md-logo" aria-label="mot">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            mot
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Object Tracking
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/surfriderfoundationeurope/mot/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mot
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="mot" class="md-nav__button md-logo" aria-label="mot">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    mot
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/surfriderfoundationeurope/mot/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mot
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../../CONTRIBUTING/" title="Contributing" class="md-nav__link">
+      Contributing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1" checked>
+    
+    <label class="md-nav__link" for="nav-3-1">
+      Mot
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Mot" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        <span class="md-nav__icon md-icon"></span>
+        Mot
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-2" type="checkbox" id="nav-3-1-2">
+    
+    <label class="md-nav__link" for="nav-3-1-2">
+      Object Detection
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Object Detection" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-1-2">
+        <span class="md-nav__icon md-icon"></span>
+        Object Detection
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/common/" title="Common" class="md-nav__link">
+      Common
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/config/" title="Config" class="md-nav__link">
+      Config
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/data/" title="Data" class="md-nav__link">
+      Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/eval/" title="Eval" class="md-nav__link">
+      Eval
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/predict/" title="Predict" class="md-nav__link">
+      Predict
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/preprocessing/" title="Preprocessing" class="md-nav__link">
+      Preprocessing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/query_server/" title="Query Server" class="md-nav__link">
+      Query Server
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/train/" title="Train" class="md-nav__link">
+      Train
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/viz/" title="Viz" class="md-nav__link">
+      Viz
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-2-11" type="checkbox" id="nav-3-1-2-11">
+    
+    <label class="md-nav__link" for="nav-3-1-2-11">
+      Dataset
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Dataset" data-md-level="4">
+      <label class="md-nav__title" for="nav-3-1-2-11">
+        <span class="md-nav__icon md-icon"></span>
+        Dataset
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/dataset/dataset/" title="Dataset" class="md-nav__link">
+      Dataset
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/dataset/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/dataset/mot/" title="Mot" class="md-nav__link">
+      Mot
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-2-12" type="checkbox" id="nav-3-1-2-12">
+    
+    <label class="md-nav__link" for="nav-3-1-2-12">
+      Modeling
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Modeling" data-md-level="4">
+      <label class="md-nav__title" for="nav-3-1-2-12">
+        <span class="md-nav__icon md-icon"></span>
+        Modeling
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/modeling/backbone/" title="Backbone" class="md-nav__link">
+      Backbone
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/modeling/generalized_rcnn/" title="Generalized Rcnn" class="md-nav__link">
+      Generalized Rcnn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/modeling/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/modeling/model_box/" title="Model Box" class="md-nav__link">
+      Model Box
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/modeling/model_cascade/" title="Model Cascade" class="md-nav__link">
+      Model Cascade
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/modeling/model_fpn/" title="Model Fpn" class="md-nav__link">
+      Model Fpn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/modeling/model_frcnn/" title="Model Frcnn" class="md-nav__link">
+      Model Frcnn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/modeling/model_mrcnn/" title="Model Mrcnn" class="md-nav__link">
+      Model Mrcnn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/modeling/model_rpn/" title="Model Rpn" class="md-nav__link">
+      Model Rpn
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-2-13" type="checkbox" id="nav-3-1-2-13">
+    
+    <label class="md-nav__link" for="nav-3-1-2-13">
+      Utils
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Utils" data-md-level="4">
+      <label class="md-nav__title" for="nav-3-1-2-13">
+        <span class="md-nav__icon md-icon"></span>
+        Utils
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/utils/box_ops/" title="Box Ops" class="md-nav__link">
+      Box Ops
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/utils/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../object_detection/utils/np_box_ops/" title="Np Box Ops" class="md-nav__link">
+      Np Box Ops
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-3" type="checkbox" id="nav-3-1-3">
+    
+    <label class="md-nav__link" for="nav-3-1-3">
+      Serving
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Serving" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-1-3">
+        <span class="md-nav__icon md-icon"></span>
+        Serving
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../serving/app/" title="App" class="md-nav__link">
+      App
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../serving/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../serving/inference/" title="Inference" class="md-nav__link">
+      Inference
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-4" type="checkbox" id="nav-3-1-4" checked>
+    
+    <label class="md-nav__link" for="nav-3-1-4">
+      Tracker
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tracker" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-1-4">
+        <span class="md-nav__icon md-icon"></span>
+        Tracker
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../camera_flow/" title="Camera Flow" class="md-nav__link">
+      Camera Flow
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Object Tracking
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="Object Tracking" class="md-nav__link md-nav__link--active">
+      Object Tracking
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#similarity" class="md-nav__link">
+    similarity
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objecttracking" class="md-nav__link">
+    ObjectTracking
+  </a>
+  
+    <nav class="md-nav" aria-label="ObjectTracking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#average_move_speed" class="md-nav__link">
+    average_move_speed
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build_similarity_matrix" class="md-nav__link">
+    build_similarity_matrix
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build_tracklet_similarity_matrix" class="md-nav__link">
+    build_tracklet_similarity_matrix
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build_tracklets" class="md-nav__link">
+    build_tracklets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compute_tracks" class="md-nav__link">
+    compute_tracks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json_result" class="md-nav__link">
+    json_result
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#match_tracklets" class="md-nav__link">
+    match_tracklets
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#track" class="md-nav__link">
+    Track
+  </a>
+  
+    <nav class="md-nav" aria-label="Track">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#methods_1" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add_matching_detection" class="md-nav__link">
+    add_matching_detection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#append_track" class="md-nav__link">
+    append_track
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compatibility" class="md-nav__link">
+    compatibility
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compute_speed" class="md-nav__link">
+    compute_speed
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contains_subtrack" class="md-nav__link">
+    contains_subtrack
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_average_scores" class="md-nav__link">
+    get_average_scores
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_center" class="md-nav__link">
+    get_center
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_label" class="md-nav__link">
+    get_label
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_latest_detection" class="md-nav__link">
+    get_latest_detection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_latest_np_box" class="md-nav__link">
+    get_latest_np_box
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#has_valid_speed" class="md-nav__link">
+    has_valid_speed
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is_in_range" class="md-nav__link">
+    is_in_range
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is_valid" class="md-nav__link">
+    is_valid
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json_result_1" class="md-nav__link">
+    json_result
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tracker_metrics/" title="Tracker Metrics" class="md-nav__link">
+      Tracker Metrics
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tracker_utils/" title="Tracker Utils" class="md-nav__link">
+      Tracker Utils
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../video_utils/" title="Video Utils" class="md-nav__link">
+      Video Utils
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#similarity" class="md-nav__link">
+    similarity
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objecttracking" class="md-nav__link">
+    ObjectTracking
+  </a>
+  
+    <nav class="md-nav" aria-label="ObjectTracking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#average_move_speed" class="md-nav__link">
+    average_move_speed
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build_similarity_matrix" class="md-nav__link">
+    build_similarity_matrix
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build_tracklet_similarity_matrix" class="md-nav__link">
+    build_tracklet_similarity_matrix
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build_tracklets" class="md-nav__link">
+    build_tracklets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compute_tracks" class="md-nav__link">
+    compute_tracks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json_result" class="md-nav__link">
+    json_result
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#match_tracklets" class="md-nav__link">
+    match_tracklets
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#track" class="md-nav__link">
+    Track
+  </a>
+  
+    <nav class="md-nav" aria-label="Track">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#methods_1" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add_matching_detection" class="md-nav__link">
+    add_matching_detection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#append_track" class="md-nav__link">
+    append_track
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compatibility" class="md-nav__link">
+    compatibility
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compute_speed" class="md-nav__link">
+    compute_speed
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contains_subtrack" class="md-nav__link">
+    contains_subtrack
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_average_scores" class="md-nav__link">
+    get_average_scores
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_center" class="md-nav__link">
+    get_center
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_label" class="md-nav__link">
+    get_label
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_latest_detection" class="md-nav__link">
+    get_latest_detection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_latest_np_box" class="md-nav__link">
+    get_latest_np_box
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#has_valid_speed" class="md-nav__link">
+    has_valid_speed
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is_in_range" class="md-nav__link">
+    is_in_range
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is_valid" class="md-nav__link">
+    is_valid
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json_result_1" class="md-nav__link">
+    json_result
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/surfriderfoundationeurope/mot/edit/master/reference/mot/tracker/object_tracking.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="module-mottrackerobject_tracking">Module mot.tracker.object_tracking</h1>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">copy</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">cached_property</span> <span class="kn">import</span> <span class="n">cached_property</span>
+
+<span class="kn">from</span> <span class="nn">mot.object_detection.utils</span> <span class="kn">import</span> <span class="n">np_box_ops</span>
+
+<span class="kn">from</span> <span class="nn">mot.tracker.tracker_utils</span> <span class="kn">import</span> <span class="n">ratio</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">center_dist</span>
+
+<span class="k">def</span> <span class="nf">similarity</span><span class="p">(</span><span class="n">new_detection</span><span class="p">,</span> <span class="n">old_detection</span><span class="p">):</span>
+
+    <span class="n">new_scores</span><span class="p">,</span> <span class="n">new_box</span><span class="p">,</span> <span class="n">new_idx</span> <span class="o">=</span> <span class="n">new_detection</span>
+
+    <span class="n">old_scores</span><span class="p">,</span> <span class="n">old_box</span><span class="p">,</span> <span class="n">old_idx</span> <span class="o">=</span> <span class="n">old_detection</span>
+
+    <span class="n">scorediff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="kp">abs</span><span class="p">(</span><span class="n">new_scores</span> <span class="o">-</span> <span class="n">old_scores</span><span class="p">))</span>
+
+    <span class="n">ratiodiff</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">ratio</span><span class="p">(</span><span class="n">new_box</span><span class="p">)</span> <span class="o">-</span> <span class="n">ratio</span><span class="p">(</span><span class="n">old_box</span><span class="p">)))</span>
+
+    <span class="n">sizediff</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">area</span><span class="p">(</span><span class="n">new_box</span><span class="p">)</span> <span class="o">-</span> <span class="n">area</span><span class="p">(</span><span class="n">old_box</span><span class="p">))</span><span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="n">area</span><span class="p">(</span><span class="n">new_box</span><span class="p">),</span> <span class="n">area</span><span class="p">(</span><span class="n">old_box</span><span class="p">)))</span>
+
+    <span class="n">centerdiffx</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">center</span><span class="p">(</span><span class="n">new_box</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">center</span><span class="p">(</span><span class="n">old_box</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+
+    <span class="n">centerdiffy</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">center</span><span class="p">(</span><span class="n">new_box</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">center</span><span class="p">(</span><span class="n">old_box</span><span class="p">)[</span><span class="mi">1</span><span class="p">]))</span>
+
+    <span class="n">framediff</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="p">(</span><span class="n">new_idx</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">old_idx</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">scorediff</span> <span class="o">-</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="n">ratiodiff</span> <span class="o">-</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="n">sizediff</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">centerdiffx</span> <span class="o">-</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="n">centerdiffy</span> <span class="o">-</span> <span class="mf">0.2</span><span class="o">*</span><span class="n">framediff</span>
+
+<span class="k">class</span> <span class="nc">Track</span><span class="p">():</span>
+
+    <span class="sd">&#39;&#39;&#39;Track (or trajectory) class mainly defined by a sequence of frames and the corresponding detections</span>
+
+<span class="sd">    Multi-object tracking notations:</span>
+
+<span class="sd">    - The output of the detector are called &quot;detections&quot;</span>
+
+<span class="sd">    - The matching of successive boxes are called &quot;tracklets&quot; which are small tracks</span>
+
+<span class="sd">    - The final trajectories are called &quot;tracks&quot;</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">class_scores</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">box</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">frame</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">scores</span> <span class="o">=</span> <span class="p">[</span><span class="n">class_scores</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">boxes</span> <span class="o">=</span> <span class="p">[</span><span class="n">box</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">frames</span> <span class="o">=</span> <span class="p">[</span><span class="n">frame</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">speed</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">track_score</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">class_scores</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">THR_SPEED</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">THR_BOX_CENTER</span> <span class="o">=</span> <span class="mf">0.05</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">THR_BOX_RATIO</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+    <span class="k">def</span> <span class="nf">add_matching_detection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scores</span><span class="p">,</span> <span class="n">box</span><span class="p">,</span> <span class="n">frame</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">scores</span><span class="o">.</span><span class="kp">append</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">boxes</span><span class="o">.</span><span class="kp">append</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="o">.</span><span class="kp">append</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">boxes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">speed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_speed</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">track_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="kp">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scores</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">get_latest_np_box</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">boxes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">get_latest_detection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">apply_speed</span><span class="p">,</span> <span class="n">new_frame_id</span><span class="p">):</span>
+
+        <span class="n">last_box</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">boxes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="n">frame_offset</span> <span class="o">=</span> <span class="n">new_frame_id</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">apply_speed</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">speed</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="n">last_box</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">clip</span><span class="p">(</span><span class="n">last_box</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">speed</span> <span class="o">*</span> <span class="n">frame_offset</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scores</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">last_box</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+
+    <span class="k">def</span> <span class="nf">is_in_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame_idx</span><span class="p">,</span> <span class="n">time_window</span><span class="p">):</span>
+
+        <span class="k">return</span> <span class="p">(</span><span class="n">frame_idx</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">&lt;=</span> <span class="n">time_window</span>
+
+    <span class="k">def</span> <span class="nf">is_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">min_length</span><span class="p">):</span>
+
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">min_length</span>
+
+    <span class="k">def</span> <span class="nf">has_valid_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">):</span>
+
+        <span class="n">speed_dot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">dot</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">speed</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="kp">sum</span><span class="p">(</span><span class="n">speed_dot</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">THR_SPEED</span>
+
+    <span class="k">def</span> <span class="nf">get_center</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">boxes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="p">(</span><span class="n">x2</span> <span class="o">+</span> <span class="n">x1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">y2</span> <span class="o">+</span> <span class="n">y1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+
+    <span class="k">def</span> <span class="nf">get_average_scores</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="kp">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scores</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_label</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="kp">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scores</span><span class="p">)</span><span class="o">.</span><span class="kp">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">compute_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="n">boxes_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">boxes</span><span class="p">)</span>
+
+        <span class="n">time_differences</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])])</span>
+
+        <span class="n">speeds</span> <span class="o">=</span> <span class="p">(</span><span class="n">boxes_array</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">boxes_array</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:])</span><span class="o">.</span><span class="n">T</span> <span class="o">/</span> <span class="n">time_differences</span>
+
+        <span class="n">speed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">mean</span><span class="p">(</span><span class="n">speeds</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">vx</span> <span class="o">=</span> <span class="p">(</span><span class="n">speed</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">speed</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span>
+
+        <span class="n">vy</span> <span class="o">=</span> <span class="p">(</span><span class="n">speed</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">speed</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">([</span><span class="n">vx</span><span class="p">,</span> <span class="n">vy</span><span class="p">,</span> <span class="n">vx</span><span class="p">,</span> <span class="n">vy</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">compatibility</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">track</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Computes a soft compatibility score between this track and a later one.</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        - track: the newer track to compare to this one.</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        - A floating point value corresponding to the compatibility. -1 is not compatible</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">track</span><span class="o">.</span><span class="n">frames</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+
+            <span class="k">return</span> <span class="o">-</span><span class="mf">1.0</span>
+
+        <span class="n">projected_box</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_latest_detection</span><span class="p">(</span><span class="n">apply_speed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">new_frame_id</span><span class="o">=</span><span class="n">track</span><span class="o">.</span><span class="n">frames</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="n">old_detection</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">get_average_scores</span><span class="p">(),</span> <span class="n">projected_box</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+
+        <span class="n">new_detection</span> <span class="o">=</span> <span class="p">[</span><span class="n">track</span><span class="o">.</span><span class="n">get_average_scores</span><span class="p">(),</span> <span class="n">track</span><span class="o">.</span><span class="n">boxes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">track</span><span class="o">.</span><span class="n">frames</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+
+        <span class="k">return</span> <span class="n">similarity</span><span class="p">(</span><span class="n">old_detection</span><span class="p">,</span> <span class="n">new_detection</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">contains_subtrack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">track</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Compare two tracks and verify if the track is a subpart of this one</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        - track: the newer track to compare to this one.</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        - True if it matches, false otherwise</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_label</span><span class="p">()</span> <span class="o">!=</span> <span class="n">track</span><span class="o">.</span><span class="n">get_label</span><span class="p">():</span>
+
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="n">common_frames</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">track</span><span class="o">.</span><span class="n">frames</span><span class="p">))</span>
+
+        <span class="n">match_box</span> <span class="o">=</span> <span class="mf">0.</span>
+
+        <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">common_frames</span><span class="p">:</span>
+
+            <span class="n">box1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">boxes</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">frame</span><span class="p">)]</span>
+
+            <span class="n">box2</span> <span class="o">=</span> <span class="n">track</span><span class="o">.</span><span class="n">boxes</span><span class="p">[</span><span class="n">track</span><span class="o">.</span><span class="n">frames</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">frame</span><span class="p">)]</span>
+
+            <span class="k">if</span> <span class="n">center_dist</span><span class="p">(</span><span class="n">box1</span><span class="p">,</span> <span class="n">box2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">THR_BOX_CENTER</span> <span class="ow">and</span> \
+
+               <span class="nb">abs</span><span class="p">(</span><span class="n">ratio</span><span class="p">(</span><span class="n">box1</span><span class="p">)</span> <span class="o">-</span> <span class="n">ratio</span><span class="p">(</span><span class="n">box2</span><span class="p">))</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">THR_BOX_RATIO</span><span class="p">:</span>
+
+               <span class="n">match_box</span> <span class="o">+=</span> <span class="mf">1.</span>
+
+        <span class="n">match_ratio</span> <span class="o">=</span> <span class="n">match_box</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">track</span><span class="o">.</span><span class="n">frames</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">match_ratio</span> <span class="o">&gt;</span> <span class="mf">0.2</span><span class="p">:</span>
+
+            <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">append_track</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">track</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">scores</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">track</span><span class="o">.</span><span class="n">scores</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">boxes</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">track</span><span class="o">.</span><span class="n">boxes</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">track</span><span class="o">.</span><span class="n">frames</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">boxes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">speed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_speed</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">track_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="kp">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scores</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">return</span> <span class="s2">&quot;(id:</span><span class="si">{}</span><span class="s2">, label:</span><span class="si">{}</span><span class="s2">, center:(</span><span class="si">{:.1f}</span><span class="s2">,</span><span class="si">{:.1f}</span><span class="s2">), frames:</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_label</span><span class="p">(),</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_center</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_center</span><span class="p">()[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span>
+
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">json_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;bottles&quot;</span><span class="p">,</span> <span class="s2">&quot;others&quot;</span><span class="p">,</span> <span class="s2">&quot;fragments&quot;</span><span class="p">]):</span>
+
+        <span class="n">class_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;BG&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">class_names</span>
+
+        <span class="n">rounded_boxes</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">round</span><span class="p">(</span><span class="n">coord</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">box</span><span class="p">]</span> <span class="k">for</span> <span class="n">box</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">boxes</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+
+            <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">class_names</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">get_label</span><span class="p">()],</span>
+
+            <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">track_score</span><span class="p">,</span>
+
+            <span class="s2">&quot;frame_to_box&quot;</span><span class="p">:</span> <span class="p">{</span><span class="n">frame</span><span class="p">:</span> <span class="n">box</span> <span class="k">for</span> <span class="n">frame</span><span class="p">,</span> <span class="n">box</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">,</span> <span class="n">rounded_boxes</span><span class="p">)},</span>
+
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span>
+
+        <span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">ObjectTracking</span><span class="p">():</span>
+
+    <span class="sd">&#39;&#39;&#39;Wrapper class to tracking trash objects in video output frames</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+
+        <span class="bp">self</span><span class="p">,</span> <span class="n">video_id</span><span class="p">,</span> <span class="n">list_path_images</span><span class="p">,</span> <span class="n">list_inference_output</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fps</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">list_geoloc</span><span class="o">=</span><span class="kc">None</span>
+
+    <span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">video_id</span> <span class="o">=</span> <span class="n">video_id</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">list_path_images</span> <span class="o">=</span> <span class="n">list_path_images</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">list_inference_output</span> <span class="o">=</span> <span class="n">list_inference_output</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_images</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_path_images</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">list_geoloc</span> <span class="o">=</span> <span class="n">list_geoloc</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">fps</span> <span class="o">=</span> <span class="n">fps</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">tracking_done</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">iou_threshold</span> <span class="o">=</span> <span class="mf">0.3</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">rewind_window_match</span> <span class="o">=</span> <span class="mi">2</span>
+
+    <span class="k">def</span> <span class="nf">build_tracklet_similarity_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tracklets</span><span class="p">:</span><span class="n">List</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Builds a compatibility matrix between tracklets</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        - new_scores: list of [classes scores] of length N</span>
+
+<span class="sd">        - new_boxes: list of [4 coordinates] of length N</span>
+
+<span class="sd">        - idx: integer frame idx</span>
+
+<span class="sd">        - potential_matching_tracklets: list of tracklets of length M</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        - a similarity matrix (numpy array) of shape (N, M)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">nb_tracklets</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tracklets</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">nb_tracklets</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">zeros</span><span class="p">((</span><span class="n">nb_tracklets</span><span class="p">,</span> <span class="n">nb_tracklets</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nb_tracklets</span><span class="p">):</span>
+
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">nb_tracklets</span><span class="p">):</span>
+
+                <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">tracklets</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">compatibility</span><span class="p">(</span><span class="n">tracklets</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">m</span>
+
+    <span class="k">def</span> <span class="nf">build_similarity_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_scores</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="n">new_boxes</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">potential_matching_tracklets</span><span class="p">:</span><span class="n">List</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Builds a similarity matrix between new scores and boxes and existing tracklets</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        - new_scores: list of [classes scores] of length N</span>
+
+<span class="sd">        - new_boxes: list of [4 coordinates] of length N</span>
+
+<span class="sd">        - idx: integer frame idx</span>
+
+<span class="sd">        - potential_matching_tracklets: list of tracklets of length M</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        - a similarity matrix (numpy array) of shape (N, M)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">nb_new</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_boxes</span><span class="p">)</span>
+
+        <span class="n">nb_old</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">potential_matching_tracklets</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">nb_old</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">nb_new</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">zeros</span><span class="p">((</span><span class="n">nb_new</span><span class="p">,</span> <span class="n">nb_old</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nb_new</span><span class="p">):</span>
+
+            <span class="n">new_detection</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="n">new_scores</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="n">new_boxes</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">idx</span><span class="p">]</span>
+
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nb_old</span><span class="p">):</span>
+
+                <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">similarity</span><span class="p">(</span><span class="n">new_detection</span><span class="p">,</span> <span class="n">potential_matching_tracklets</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">get_latest_detection</span><span class="p">(</span><span class="n">apply_speed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">new_frame_id</span><span class="o">=</span><span class="n">idx</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">m</span>
+
+    <span class="k">def</span> <span class="nf">average_move_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tracklets</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Computes the average displacement of tracklets</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">speeds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">([[</span><span class="n">tracklet</span><span class="o">.</span><span class="n">speed</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tracklet</span><span class="o">.</span><span class="n">speed</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="k">for</span> <span class="n">tracklet</span> <span class="ow">in</span> <span class="n">tracklets</span> <span class="k">if</span> <span class="n">tracklet</span><span class="o">.</span><span class="n">speed</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="kp">mean</span><span class="p">(</span><span class="n">speeds</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">compute_tracks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Main function which computes tracks from detection on successive frames</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">tracklets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_tracklets</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">list_inference_output</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;build tracks length tracklets:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">tracklets</span><span class="p">))</span>
+
+        <span class="n">average_speed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">average_move_speed</span><span class="p">(</span><span class="n">tracklets</span><span class="p">)</span>
+
+        <span class="n">filtered_tracklets</span> <span class="o">=</span> <span class="n">tracklets</span>
+
+        <span class="c1"># Filter tracklets with wrong speed</span>
+
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">average_speed</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.05</span><span class="p">:</span>
+
+            <span class="n">filtered_tracklets</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span><span class="n">t</span><span class="o">.</span><span class="n">has_valid_speed</span><span class="p">(</span><span class="n">average_speed</span><span class="p">),</span> <span class="n">filtered_tracklets</span><span class="p">))</span>
+
+        <span class="c1"># Match tracklets</span>
+
+        <span class="n">matched_tracks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">match_tracklets</span><span class="p">(</span><span class="n">filtered_tracklets</span><span class="p">,</span> <span class="n">average_speed</span><span class="p">)</span>
+
+        <span class="c1"># Filter tracklets that are too small</span>
+
+        <span class="n">matched_tracks</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span><span class="n">t</span><span class="o">.</span><span class="n">is_valid</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">matched_tracks</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">matched_tracks</span>
+
+    <span class="k">def</span> <span class="nf">build_tracklets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_detections</span><span class="p">,</span> <span class="n">time_window</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">matching_threshold</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Builds tracklets, i.e. confident matching between successive frames</span>
+
+<span class="sd">        using a greedy algorithm (considers the best matching previous box)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        - input_detections: list of successive frames and their corresponding boxes and classes</span>
+
+<span class="sd">        - time_window: integer corresponding to the number of previous frames considered</span>
+
+<span class="sd">        - matching_threshold: float threshold for accepting a match</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        - a list of Track objects, mainly defined by [frame_ids, boxes and classes]</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">tracklets</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">frame_idx</span><span class="p">,</span> <span class="n">json_object</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">input_detections</span><span class="p">):</span>
+
+            <span class="n">new_scores</span> <span class="o">=</span> <span class="n">json_object</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;output/scores:0&quot;</span><span class="p">,</span> <span class="p">[])</span>
+
+            <span class="n">new_boxes</span> <span class="o">=</span> <span class="n">json_object</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;output/boxes:0&quot;</span><span class="p">,</span> <span class="p">[])</span>
+
+            <span class="c1"># Expects boxes with Non maximum suppression ?</span>
+
+            <span class="c1"># Build the list of previous trash that could be matched and similarity with the new</span>
+
+            <span class="n">potential_matching_tracklets</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span><span class="n">t</span><span class="o">.</span><span class="n">is_in_range</span><span class="p">(</span><span class="n">frame_idx</span><span class="p">,</span> <span class="n">time_window</span><span class="p">),</span> <span class="n">tracklets</span><span class="p">))</span>
+
+            <span class="n">sim_matrix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_similarity_matrix</span><span class="p">(</span><span class="n">new_scores</span><span class="p">,</span> <span class="n">new_boxes</span><span class="p">,</span> <span class="n">frame_idx</span><span class="p">,</span> <span class="n">potential_matching_tracklets</span><span class="p">)</span>
+
+            <span class="c1"># greedily match the new boxes:</span>
+
+            <span class="n">new_tracklets_idxs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">new_boxes</span><span class="p">)))</span>
+
+            <span class="k">if</span> <span class="n">sim_matrix</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">new_boxes</span><span class="p">)):</span>
+
+                    <span class="n">max_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">max</span><span class="p">(</span><span class="n">sim_matrix</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="kp">max</span><span class="p">(</span><span class="n">max_values</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">matching_threshold</span><span class="p">:</span>
+
+                        <span class="k">break</span>
+
+                    <span class="n">new_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">argmax</span><span class="p">(</span><span class="n">max_values</span><span class="p">)</span>
+
+                    <span class="n">matching_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">argmax</span><span class="p">(</span><span class="n">sim_matrix</span><span class="p">[</span><span class="n">new_idx</span><span class="p">])</span>
+
+                    <span class="c1"># append to the corresponding tracklet</span>
+
+                    <span class="n">potential_matching_tracklets</span><span class="p">[</span><span class="n">matching_idx</span><span class="p">]</span><span class="o">.</span><span class="n">add_matching_detection</span><span class="p">(</span><span class="n">new_scores</span><span class="p">[</span><span class="n">new_idx</span><span class="p">],</span> <span class="n">new_boxes</span><span class="p">[</span><span class="n">new_idx</span><span class="p">],</span> <span class="n">frame_idx</span><span class="p">)</span>
+
+                    <span class="c1"># remove from similarity matrix</span>
+
+                    <span class="n">sim_matrix</span><span class="p">[</span><span class="n">new_idx</span><span class="p">,:]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
+
+                    <span class="n">sim_matrix</span><span class="p">[:,</span><span class="n">matching_idx</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
+
+                    <span class="n">new_tracklets_idxs</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">new_idx</span><span class="p">)</span>
+
+            <span class="c1">#remaining boxes become new tracklets</span>
+
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">new_tracklets_idxs</span><span class="p">:</span>
+
+                <span class="n">tracklets</span><span class="o">.</span><span class="kp">append</span><span class="p">(</span><span class="n">Track</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tracklets</span><span class="p">),</span> <span class="n">new_scores</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">new_boxes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">frame_idx</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">tracklets</span>
+
+    <span class="k">def</span> <span class="nf">match_tracklets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tracklets</span><span class="p">,</span> <span class="n">average_speed</span><span class="p">,</span> <span class="n">matching_threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Match tracklets</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># greedily match the tracklets</span>
+
+        <span class="c1"># may be improved using :</span>
+
+        <span class="c1"># scipy.optimize.linear_sum_assignment(matrix)</span>
+
+        <span class="n">sim_matrix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_tracklet_similarity_matrix</span><span class="p">(</span><span class="n">tracklets</span><span class="p">)</span>
+
+        <span class="n">matches</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">nb_tracklets</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tracklets</span><span class="p">)</span>
+
+        <span class="n">list_outbound</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">nb_tracklets</span><span class="p">))</span>
+
+        <span class="n">list_inbound</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">nb_tracklets</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">nb_tracklets</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+
+            <span class="k">return</span> <span class="p">[]</span>
+
+        <span class="k">if</span> <span class="n">sim_matrix</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nb_tracklets</span><span class="p">):</span>
+
+                <span class="n">max_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">max</span><span class="p">(</span><span class="n">sim_matrix</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="kp">max</span><span class="p">(</span><span class="n">max_values</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">matching_threshold</span><span class="p">:</span>
+
+                    <span class="k">break</span>
+
+                <span class="n">new_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">argmax</span><span class="p">(</span><span class="n">max_values</span><span class="p">)</span>
+
+                <span class="n">matching_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">argmax</span><span class="p">(</span><span class="n">sim_matrix</span><span class="p">[</span><span class="n">new_idx</span><span class="p">])</span>
+
+                <span class="c1"># remove from similarity matrix</span>
+
+                <span class="n">sim_matrix</span><span class="p">[</span><span class="n">new_idx</span><span class="p">,:]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
+
+                <span class="n">sim_matrix</span><span class="p">[:,</span><span class="n">matching_idx</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
+
+                <span class="n">matches</span><span class="o">.</span><span class="kp">append</span><span class="p">([</span><span class="n">new_idx</span><span class="p">,</span> <span class="n">matching_idx</span><span class="p">])</span>
+
+        <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+
+            <span class="n">tracklets</span><span class="p">[</span><span class="n">match</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">append_tracklet</span><span class="p">(</span><span class="n">tracklets</span><span class="p">[</span><span class="n">match</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+
+        <span class="n">tracklet_idxes_to_remove</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="n">tracklet</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">tracklet</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tracklets</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">tracklet_idxes_to_remove</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">json_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tracks</span><span class="p">,</span> <span class="n">include_geo</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+
+        <span class="sd">&#39;&#39;&#39;Outputs a json result centered on tracked objects. Score not yet included</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        - include_geo: Boolean which specifies whether the return format includes</span>
+
+<span class="sd">        the geolocalization data, or just the simple timestamp data</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        - a json file of the following format:</span>
+
+<span class="sd">        ```python</span>
+
+<span class="sd">            {&quot;video_length&quot;: 132,</span>
+
+<span class="sd">            &quot;fps&quot;: 2,</span>
+
+<span class="sd">            &quot;video_id&quot;: &quot;GOPRO1234.mp4&quot;,</span>
+
+<span class="sd">            &quot;detected_trash&quot;: [</span>
+
+<span class="sd">              {&quot;label&quot;: &quot;bottle&quot;, &quot;id&quot;: 0, &quot;frames&quot;: [23,24,25]},</span>
+
+<span class="sd">              {&quot;label&quot;: &quot;fragment&quot;, &quot;id&quot;: 1, &quot;frames&quot;: [32]},</span>
+
+<span class="sd">            ]}</span>
+
+<span class="sd">        ```</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">json_output</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="n">json_output</span><span class="p">[</span><span class="s2">&quot;video_length&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_images</span>
+
+        <span class="n">json_output</span><span class="p">[</span><span class="s2">&quot;fps&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fps</span>
+
+        <span class="n">json_output</span><span class="p">[</span><span class="s2">&quot;video_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">video_id</span>
+
+        <span class="n">json_output</span><span class="p">[</span><span class="s2">&quot;detected_trash&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">track</span><span class="o">.</span><span class="n">json_result</span><span class="p">()</span> <span class="k">for</span> <span class="n">track</span> <span class="ow">in</span> <span class="n">tracks</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">json_output</span>
+</code></pre></div>
+
+</details>
+<h2 id="functions">Functions</h2>
+<h3 id="similarity">similarity</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">similarity</span><span class="p">(</span>
+    <span class="n">new_detection</span><span class="p">,</span>
+    <span class="n">old_detection</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span> <span class="n">similarity</span><span class="p">(</span><span class="n">new_detection</span><span class="p">,</span> <span class="n">old_detection</span><span class="p">):</span>
+
+    <span class="n">new_scores</span><span class="p">,</span> <span class="n">new_box</span><span class="p">,</span> <span class="n">new_idx</span> <span class="o">=</span> <span class="n">new_detection</span>
+
+    <span class="n">old_scores</span><span class="p">,</span> <span class="n">old_box</span><span class="p">,</span> <span class="n">old_idx</span> <span class="o">=</span> <span class="n">old_detection</span>
+
+    <span class="n">scorediff</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="k">abs</span><span class="p">(</span><span class="n">new_scores</span> <span class="o">-</span> <span class="n">old_scores</span><span class="p">))</span>
+
+    <span class="n">ratiodiff</span> <span class="o">=</span> <span class="k">min</span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="k">abs</span><span class="p">(</span><span class="n">ratio</span><span class="p">(</span><span class="n">new_box</span><span class="p">)</span> <span class="o">-</span> <span class="n">ratio</span><span class="p">(</span><span class="n">old_box</span><span class="p">)))</span>
+
+    <span class="n">sizediff</span> <span class="o">=</span> <span class="k">min</span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="k">abs</span><span class="p">(</span><span class="n">area</span><span class="p">(</span><span class="n">new_box</span><span class="p">)</span> <span class="o">-</span> <span class="n">area</span><span class="p">(</span><span class="n">old_box</span><span class="p">))</span><span class="o">/</span> <span class="k">max</span><span class="p">(</span><span class="n">area</span><span class="p">(</span><span class="n">new_box</span><span class="p">),</span> <span class="n">area</span><span class="p">(</span><span class="n">old_box</span><span class="p">)))</span>
+
+    <span class="n">centerdiffx</span> <span class="o">=</span> <span class="k">min</span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="k">abs</span><span class="p">(</span><span class="n">center</span><span class="p">(</span><span class="n">new_box</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">center</span><span class="p">(</span><span class="n">old_box</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+
+    <span class="n">centerdiffy</span> <span class="o">=</span> <span class="k">min</span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="k">abs</span><span class="p">(</span><span class="n">center</span><span class="p">(</span><span class="n">new_box</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">center</span><span class="p">(</span><span class="n">old_box</span><span class="p">)[</span><span class="mi">1</span><span class="p">]))</span>
+
+    <span class="n">framediff</span> <span class="o">=</span> <span class="k">min</span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">new_idx</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">old_idx</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="mi">1</span><span class="p">.</span><span class="mi">0</span> <span class="o">-</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span> <span class="o">*</span> <span class="n">scorediff</span> <span class="o">-</span> <span class="mi">0</span><span class="p">.</span><span class="mi">2</span> <span class="o">*</span> <span class="n">ratiodiff</span> <span class="o">-</span> <span class="mi">0</span><span class="p">.</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sizediff</span> <span class="o">-</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span> <span class="o">*</span> <span class="n">centerdiffx</span> <span class="o">-</span> <span class="mi">0</span><span class="p">.</span><span class="mi">2</span> <span class="o">*</span> <span class="n">centerdiffy</span> <span class="o">-</span> <span class="mi">0</span><span class="p">.</span><span class="mi">2</span><span class="o">*</span><span class="n">framediff</span>
+</code></pre></div>
+
+</details>
+<h2 id="classes">Classes</h2>
+<h3 id="objecttracking">ObjectTracking</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">ObjectTracking</span><span class="p">(</span>
+    <span class="n">video_id</span><span class="p">,</span>
+    <span class="n">list_path_images</span><span class="p">,</span>
+    <span class="n">list_inference_output</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">fps</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">list_geoloc</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Wrapper class to tracking trash objects in video output frames</p>
+<h4 id="methods">Methods</h4>
+<h5 id="average_move_speed">average_move_speed</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">average_move_speed</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">tracklets</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Computes the average displacement of tracklets</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">average_move_speed</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">tracklets</span><span class="p">):</span>
+
+        <span class="ss">&quot;&quot;&quot;Computes the average displacement of tracklets</span>
+
+<span class="ss">        &quot;&quot;&quot;</span>
+
+        <span class="n">speeds</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">array</span><span class="p">([[</span><span class="n">tracklet</span><span class="p">.</span><span class="n">speed</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tracklet</span><span class="p">.</span><span class="n">speed</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="k">for</span> <span class="n">tracklet</span> <span class="k">in</span> <span class="n">tracklets</span> <span class="k">if</span> <span class="n">tracklet</span><span class="p">.</span><span class="n">speed</span> <span class="k">is</span> <span class="k">not</span> <span class="k">None</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">speeds</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h5 id="build_similarity_matrix">build_similarity_matrix</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">build_similarity_matrix</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">new_scores</span><span class="p">:</span><span class="n">List</span><span class="p">,</span>
+    <span class="n">new_boxes</span><span class="p">:</span><span class="n">List</span><span class="p">,</span>
+    <span class="n">idx</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span>
+    <span class="n">potential_matching_tracklets</span><span class="p">:</span><span class="n">List</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Builds a similarity matrix between new scores and boxes and existing tracklets</p>
+<p>Arguments:</p>
+<ul>
+<li>new_scores: list of [classes scores] of length N</li>
+<li>new_boxes: list of [4 coordinates] of length N</li>
+<li>idx: integer frame idx</li>
+<li>potential_matching_tracklets: list of tracklets of length M</li>
+</ul>
+<p>Returns:
+- a similarity matrix (numpy array) of shape (N, M)</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">build_similarity_matrix</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="nl">new_scores</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="nl">new_boxes</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="nl">idx</span><span class="p">:</span> <span class="kt">int</span><span class="p">,</span> <span class="nl">potential_matching_tracklets</span><span class="p">:</span><span class="n">List</span><span class="p">)</span><span class="o">:</span>
+
+        <span class="s">&quot;&quot;&quot;Builds a similarity matrix between new scores and boxes and existing tracklets</span>
+
+        <span class="nl">Arguments</span><span class="p">:</span>
+
+        <span class="o">-</span> <span class="nl">new_scores</span><span class="p">:</span> <span class="n">list</span> <span class="n">of</span> <span class="p">[</span><span class="n">classes</span> <span class="n">scores</span><span class="p">]</span> <span class="n">of</span> <span class="n">length</span> <span class="n">N</span>
+
+        <span class="o">-</span> <span class="nl">new_boxes</span><span class="p">:</span> <span class="n">list</span> <span class="n">of</span> <span class="p">[</span><span class="mi">4</span> <span class="n">coordinates</span><span class="p">]</span> <span class="n">of</span> <span class="n">length</span> <span class="n">N</span>
+
+        <span class="o">-</span> <span class="nl">idx</span><span class="p">:</span> <span class="n">integer</span> <span class="n">frame</span> <span class="n">idx</span>
+
+        <span class="o">-</span> <span class="nl">potential_matching_tracklets</span><span class="p">:</span> <span class="n">list</span> <span class="n">of</span> <span class="n">tracklets</span> <span class="n">of</span> <span class="n">length</span> <span class="n">M</span>
+
+        <span class="nl">Returns</span><span class="p">:</span>
+
+        <span class="o">-</span> <span class="n">a</span> <span class="n">similarity</span> <span class="n">matrix</span> <span class="p">(</span><span class="n">numpy</span> <span class="n">array</span><span class="p">)</span> <span class="n">of</span> <span class="n">shape</span> <span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
+
+        <span class="s">&quot;&quot;&quot;</span>
+
+        <span class="n">nb_new</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="n">new_boxes</span><span class="p">)</span>
+
+        <span class="n">nb_old</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="n">potential_matching_tracklets</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">nb_old</span> <span class="o">==</span> <span class="mi">0</span> <span class="n">or</span> <span class="n">nb_new</span> <span class="o">==</span> <span class="mi">0</span><span class="o">:</span>
+
+            <span class="k">return</span> <span class="n">None</span>
+
+        <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nb_new</span><span class="p">,</span> <span class="n">nb_old</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">range</span><span class="p">(</span><span class="n">nb_new</span><span class="p">)</span><span class="o">:</span>
+
+            <span class="n">new_detection</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">new_scores</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">new_boxes</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">idx</span><span class="p">]</span>
+
+            <span class="k">for</span> <span class="n">j</span> <span class="k">in</span> <span class="n">range</span><span class="p">(</span><span class="n">nb_old</span><span class="p">)</span><span class="o">:</span>
+
+                <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">similarity</span><span class="p">(</span><span class="n">new_detection</span><span class="p">,</span> <span class="n">potential_matching_tracklets</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">get_latest_detection</span><span class="p">(</span><span class="n">apply_speed</span><span class="o">=</span><span class="n">True</span><span class="p">,</span> <span class="n">new_frame_id</span><span class="o">=</span><span class="n">idx</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">m</span>
+</code></pre></div>
+
+</details>
+<h5 id="build_tracklet_similarity_matrix">build_tracklet_similarity_matrix</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">build_tracklet_similarity_matrix</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">tracklets</span><span class="p">:</span><span class="n">List</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Builds a compatibility matrix between tracklets</p>
+<p>Arguments:</p>
+<ul>
+<li>new_scores: list of [classes scores] of length N</li>
+<li>new_boxes: list of [4 coordinates] of length N</li>
+<li>idx: integer frame idx</li>
+<li>potential_matching_tracklets: list of tracklets of length M</li>
+</ul>
+<p>Returns:
+- a similarity matrix (numpy array) of shape (N, M)</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">build_tracklet_similarity_matrix</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="nl">tracklets</span><span class="p">:</span><span class="n">List</span><span class="p">)</span><span class="o">:</span>
+
+        <span class="s">&quot;&quot;&quot;Builds a compatibility matrix between tracklets</span>
+
+        <span class="nl">Arguments</span><span class="p">:</span>
+
+        <span class="o">-</span> <span class="nl">new_scores</span><span class="p">:</span> <span class="n">list</span> <span class="n">of</span> <span class="p">[</span><span class="n">classes</span> <span class="n">scores</span><span class="p">]</span> <span class="n">of</span> <span class="n">length</span> <span class="n">N</span>
+
+        <span class="o">-</span> <span class="nl">new_boxes</span><span class="p">:</span> <span class="n">list</span> <span class="n">of</span> <span class="p">[</span><span class="mi">4</span> <span class="n">coordinates</span><span class="p">]</span> <span class="n">of</span> <span class="n">length</span> <span class="n">N</span>
+
+        <span class="o">-</span> <span class="nl">idx</span><span class="p">:</span> <span class="n">integer</span> <span class="n">frame</span> <span class="n">idx</span>
+
+        <span class="o">-</span> <span class="nl">potential_matching_tracklets</span><span class="p">:</span> <span class="n">list</span> <span class="n">of</span> <span class="n">tracklets</span> <span class="n">of</span> <span class="n">length</span> <span class="n">M</span>
+
+        <span class="nl">Returns</span><span class="p">:</span>
+
+        <span class="o">-</span> <span class="n">a</span> <span class="n">similarity</span> <span class="n">matrix</span> <span class="p">(</span><span class="n">numpy</span> <span class="n">array</span><span class="p">)</span> <span class="n">of</span> <span class="n">shape</span> <span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
+
+        <span class="s">&quot;&quot;&quot;</span>
+
+        <span class="n">nb_tracklets</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="n">tracklets</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">nb_tracklets</span> <span class="o">==</span> <span class="mi">0</span><span class="o">:</span>
+
+            <span class="k">return</span> <span class="n">None</span>
+
+        <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nb_tracklets</span><span class="p">,</span> <span class="n">nb_tracklets</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">range</span><span class="p">(</span><span class="n">nb_tracklets</span><span class="p">)</span><span class="o">:</span>
+
+            <span class="k">for</span> <span class="n">j</span> <span class="k">in</span> <span class="n">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">nb_tracklets</span><span class="p">)</span><span class="o">:</span>
+
+                <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">tracklets</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">compatibility</span><span class="p">(</span><span class="n">tracklets</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">m</span>
+</code></pre></div>
+
+</details>
+<h5 id="build_tracklets">build_tracklets</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">build_tracklets</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">input_detections</span><span class="p">,</span>
+    <span class="n">time_window</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">matching_threshold</span><span class="o">=</span><span class="mf">0.5</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Builds tracklets, i.e. confident matching between successive frames
+using a greedy algorithm (considers the best matching previous box)</p>
+<p>Arguments:</p>
+<ul>
+<li>input_detections: list of successive frames and their corresponding boxes and classes</li>
+<li>time_window: integer corresponding to the number of previous frames considered</li>
+<li>matching_threshold: float threshold for accepting a match</li>
+</ul>
+<p>Returns:</p>
+<ul>
+<li>a list of Track objects, mainly defined by [frame_ids, boxes and classes]</li>
+</ul>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">build_tracklets</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">input_detections</span><span class="p">,</span><span class="w"> </span><span class="n">time_window</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">matching_threshold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;Builds tracklets, i.e. confident matching between successive frames</span>
+
+<span class="ss">        using a greedy algorithm (considers the best matching previous box)</span>
+
+<span class="ss">        Arguments:</span>
+
+<span class="ss">        - input_detections: list of successive frames and their corresponding boxes and classes</span>
+
+<span class="ss">        - time_window: integer corresponding to the number of previous frames considered</span>
+
+<span class="ss">        - matching_threshold: float threshold for accepting a match</span>
+
+<span class="ss">        Returns:</span>
+
+<span class="ss">        - a list of Track objects, mainly defined by [frame_ids, boxes and classes]</span>
+
+<span class="ss">        &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">tracklets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">frame_idx</span><span class="p">,</span><span class="w"> </span><span class="n">json_object</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">enumerate</span><span class="p">(</span><span class="n">input_detections</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">new_scores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">json_object</span><span class="p">.</span><span class="k">get</span><span class="p">(</span><span class="ss">&quot;output/scores:0&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">[]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">new_boxes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">json_object</span><span class="p">.</span><span class="k">get</span><span class="p">(</span><span class="ss">&quot;output/boxes:0&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">[]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="err">#</span><span class="w"> </span><span class="n">Expects</span><span class="w"> </span><span class="n">boxes</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">Non</span><span class="w"> </span><span class="n">maximum</span><span class="w"> </span><span class="n">suppression</span><span class="w"> </span><span class="vm">?</span><span class="w"></span>
+
+<span class="w">            </span><span class="err">#</span><span class="w"> </span><span class="n">Build</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">previous</span><span class="w"> </span><span class="n">trash</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">could</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">matched</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">similarity</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">new</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">potential_matching_tracklets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">(</span><span class="k">filter</span><span class="p">(</span><span class="n">lambda</span><span class="w"> </span><span class="nl">t</span><span class="p">:</span><span class="n">t</span><span class="p">.</span><span class="n">is_in_range</span><span class="p">(</span><span class="n">frame_idx</span><span class="p">,</span><span class="w"> </span><span class="n">time_window</span><span class="p">),</span><span class="w"> </span><span class="n">tracklets</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">sim_matrix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">build_similarity_matrix</span><span class="p">(</span><span class="n">new_scores</span><span class="p">,</span><span class="w"> </span><span class="n">new_boxes</span><span class="p">,</span><span class="w"> </span><span class="n">frame_idx</span><span class="p">,</span><span class="w"> </span><span class="n">potential_matching_tracklets</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="err">#</span><span class="w"> </span><span class="n">greedily</span><span class="w"> </span><span class="k">match</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="nl">boxes</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">new_tracklets_idxs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">(</span><span class="k">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">new_boxes</span><span class="p">)))</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">sim_matrix</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="k">None</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">new_boxes</span><span class="p">))</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">max_values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="nf">max</span><span class="p">(</span><span class="n">sim_matrix</span><span class="p">,</span><span class="w"> </span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="nf">max</span><span class="p">(</span><span class="n">max_values</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nl">matching_threshold</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">                        </span><span class="k">break</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">new_idx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">max_values</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">matching_idx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">sim_matrix</span><span class="o">[</span><span class="n">new_idx</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                    </span><span class="err">#</span><span class="w"> </span><span class="n">append</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">corresponding</span><span class="w"> </span><span class="n">tracklet</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">potential_matching_tracklets</span><span class="o">[</span><span class="n">matching_idx</span><span class="o">]</span><span class="p">.</span><span class="n">add_matching_detection</span><span class="p">(</span><span class="n">new_scores</span><span class="o">[</span><span class="n">new_idx</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">new_boxes</span><span class="o">[</span><span class="n">new_idx</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">frame_idx</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                    </span><span class="err">#</span><span class="w"> </span><span class="n">remove</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">similarity</span><span class="w"> </span><span class="n">matrix</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">sim_matrix</span><span class="o">[</span><span class="n">new_idx,:</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mf">1.0</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">sim_matrix</span><span class="o">[</span><span class="n">:,matching_idx</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mf">1.0</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">new_tracklets_idxs</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">new_idx</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">#remaining</span><span class="w"> </span><span class="n">boxes</span><span class="w"> </span><span class="n">become</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">tracklets</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">new_tracklets_idxs</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">tracklets</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">Track</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">tracklets</span><span class="p">),</span><span class="w"> </span><span class="n">new_scores</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">new_boxes</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">frame_idx</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">tracklets</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h5 id="compute_tracks">compute_tracks</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">compute_tracks</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Main function which computes tracks from detection on successive frames</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">compute_tracks</span><span class="p">(</span><span class="k">self</span><span class="p">):</span>
+
+        <span class="ss">&quot;&quot;&quot;Main function which computes tracks from detection on successive frames</span>
+
+<span class="ss">        &quot;&quot;&quot;</span>
+
+        <span class="n">tracklets</span> <span class="o">=</span> <span class="k">self</span><span class="p">.</span><span class="n">build_tracklets</span><span class="p">(</span><span class="k">self</span><span class="p">.</span><span class="n">list_inference_output</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">)</span>
+
+        <span class="n">print</span><span class="p">(</span><span class="ss">&quot;build tracks length tracklets:&quot;</span><span class="p">,</span> <span class="n">len</span><span class="p">(</span><span class="n">tracklets</span><span class="p">))</span>
+
+        <span class="n">average_speed</span> <span class="o">=</span> <span class="k">self</span><span class="p">.</span><span class="n">average_move_speed</span><span class="p">(</span><span class="n">tracklets</span><span class="p">)</span>
+
+        <span class="n">filtered_tracklets</span> <span class="o">=</span> <span class="n">tracklets</span>
+
+        <span class="o">#</span> <span class="n">Filter</span> <span class="n">tracklets</span> <span class="k">with</span> <span class="n">wrong</span> <span class="n">speed</span>
+
+        <span class="k">if</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">norm</span><span class="p">(</span><span class="n">average_speed</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">.</span><span class="mi">05</span><span class="p">:</span>
+
+            <span class="n">filtered_tracklets</span> <span class="o">=</span> <span class="n">list</span><span class="p">(</span><span class="n">filter</span><span class="p">(</span><span class="n">lambda</span> <span class="n">t</span><span class="p">:</span><span class="n">t</span><span class="p">.</span><span class="n">has_valid_speed</span><span class="p">(</span><span class="n">average_speed</span><span class="p">),</span> <span class="n">filtered_tracklets</span><span class="p">))</span>
+
+        <span class="o">#</span> <span class="k">Match</span> <span class="n">tracklets</span>
+
+        <span class="n">matched_tracks</span> <span class="o">=</span> <span class="k">self</span><span class="p">.</span><span class="n">match_tracklets</span><span class="p">(</span><span class="n">filtered_tracklets</span><span class="p">,</span> <span class="n">average_speed</span><span class="p">)</span>
+
+        <span class="o">#</span> <span class="n">Filter</span> <span class="n">tracklets</span> <span class="n">that</span> <span class="k">are</span> <span class="n">too</span> <span class="n">small</span>
+
+        <span class="n">matched_tracks</span> <span class="o">=</span> <span class="n">list</span><span class="p">(</span><span class="n">filter</span><span class="p">(</span><span class="n">lambda</span> <span class="n">t</span><span class="p">:</span><span class="n">t</span><span class="p">.</span><span class="n">is_valid</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">matched_tracks</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">matched_tracks</span>
+</code></pre></div>
+
+</details>
+<h5 id="json_result">json_result</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">json_result</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">tracks</span><span class="p">,</span>
+    <span class="n">include_geo</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Outputs a json result centered on tracked objects. Score not yet included</p>
+<p>Arguments:</p>
+<ul>
+<li>include_geo: Boolean which specifies whether the return format includes
+the geolocalization data, or just the simple timestamp data</li>
+</ul>
+<p>Returns:</p>
+<ul>
+<li>a json file of the following format:</li>
+</ul>
+<div class="codehilite"><pre><span></span><code>    <span class="p">{</span><span class="s2">&quot;video_length&quot;</span><span class="p">:</span> <span class="mi">132</span><span class="p">,</span>
+    <span class="s2">&quot;fps&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;video_id&quot;</span><span class="p">:</span> <span class="s2">&quot;GOPRO1234.mp4&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;detected_trash&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;bottle&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;frames&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">23</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="mi">25</span><span class="p">]},</span>
+      <span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;fragment&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;frames&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">32</span><span class="p">]},</span>
+    <span class="p">]}</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">json_result</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">tracks</span><span class="p">,</span> <span class="n">include_geo</span><span class="o">=</span><span class="k">False</span><span class="p">):</span>
+
+        <span class="s1">&#39;&#39;&#39;Outputs a json result centered on tracked objects. Score not yet included</span>
+
+<span class="s1">        Arguments:</span>
+
+<span class="s1">        - include_geo: Boolean which specifies whether the return format includes</span>
+
+<span class="s1">        the geolocalization data, or just the simple timestamp data</span>
+
+<span class="s1">        Returns:</span>
+
+<span class="s1">        - a json file of the following format:</span>
+
+<span class="s1">        ```python</span>
+
+<span class="s1">            {&quot;video_length&quot;: 132,</span>
+
+<span class="s1">            &quot;fps&quot;: 2,</span>
+
+<span class="s1">            &quot;video_id&quot;: &quot;GOPRO1234.mp4&quot;,</span>
+
+<span class="s1">            &quot;detected_trash&quot;: [</span>
+
+<span class="s1">              {&quot;label&quot;: &quot;bottle&quot;, &quot;id&quot;: 0, &quot;frames&quot;: [23,24,25]},</span>
+
+<span class="s1">              {&quot;label&quot;: &quot;fragment&quot;, &quot;id&quot;: 1, &quot;frames&quot;: [32]},</span>
+
+<span class="s1">            ]}</span>
+
+<span class="s1">        ```</span>
+
+<span class="s1">        &#39;&#39;&#39;</span>
+
+        <span class="n">json_output</span> <span class="o">=</span> <span class="err">{}</span>
+
+        <span class="n">json_output</span><span class="p">[</span><span class="ss">&quot;video_length&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="k">self</span><span class="p">.</span><span class="n">num_images</span>
+
+        <span class="n">json_output</span><span class="p">[</span><span class="ss">&quot;fps&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="k">self</span><span class="p">.</span><span class="n">fps</span>
+
+        <span class="n">json_output</span><span class="p">[</span><span class="ss">&quot;video_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="k">self</span><span class="p">.</span><span class="n">video_id</span>
+
+        <span class="n">json_output</span><span class="p">[</span><span class="ss">&quot;detected_trash&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">track</span><span class="p">.</span><span class="n">json_result</span><span class="p">()</span> <span class="k">for</span> <span class="n">track</span> <span class="k">in</span> <span class="n">tracks</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">json_output</span>
+</code></pre></div>
+
+</details>
+<h5 id="match_tracklets">match_tracklets</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">match_tracklets</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">tracklets</span><span class="p">,</span>
+    <span class="n">average_speed</span><span class="p">,</span>
+    <span class="n">matching_threshold</span><span class="o">=</span><span class="mf">0.5</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Match tracklets</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="s s-Atom">def</span> <span class="nf">match_tracklets</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">,</span> <span class="s s-Atom">tracklets</span><span class="p">,</span> <span class="s s-Atom">average_speed</span><span class="p">,</span> <span class="s s-Atom">matching_threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="s2">&quot;&quot;&quot;Match tracklets</span>
+
+<span class="s2">        &quot;&quot;&quot;</span>
+
+        <span class="s s-Atom">#</span> <span class="s s-Atom">greedily</span> <span class="s s-Atom">match</span> <span class="s s-Atom">the</span> <span class="s s-Atom">tracklets</span>
+
+        <span class="s s-Atom">#</span> <span class="s s-Atom">may</span> <span class="s s-Atom">be</span> <span class="s s-Atom">improved</span> <span class="s s-Atom">using</span> <span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">#</span> <span class="s s-Atom">scipy</span><span class="p">.</span><span class="s s-Atom">optimize</span><span class="p">.</span><span class="nf">linear_sum_assignment</span><span class="p">(</span><span class="s s-Atom">matrix</span><span class="p">)</span>
+
+        <span class="s s-Atom">sim_matrix</span> <span class="o">=</span> <span class="s s-Atom">self</span><span class="p">.</span><span class="nf">build_tracklet_similarity_matrix</span><span class="p">(</span><span class="s s-Atom">tracklets</span><span class="p">)</span>
+
+        <span class="s s-Atom">matches</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="s s-Atom">nb_tracklets</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="s s-Atom">tracklets</span><span class="p">)</span>
+
+        <span class="s s-Atom">list_outbound</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="nf">range</span><span class="p">(</span><span class="s s-Atom">nb_tracklets</span><span class="p">))</span>
+
+        <span class="s s-Atom">list_inbound</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="nf">range</span><span class="p">(</span><span class="s s-Atom">nb_tracklets</span><span class="p">))</span>
+
+        <span class="s s-Atom">if</span> <span class="s s-Atom">nb_tracklets</span> <span class="o">==</span> <span class="mi">0</span><span class="s s-Atom">:</span>
+
+            <span class="s s-Atom">return</span> <span class="p">[]</span>
+
+        <span class="s s-Atom">if</span> <span class="s s-Atom">sim_matrix</span> <span class="o">is</span> <span class="o">not</span> <span class="nv">None</span><span class="s s-Atom">:</span>
+
+            <span class="s s-Atom">for</span> <span class="s s-Atom">i</span> <span class="s s-Atom">in</span> <span class="nf">range</span><span class="p">(</span><span class="s s-Atom">nb_tracklets</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                <span class="s s-Atom">max_values</span> <span class="o">=</span> <span class="s s-Atom">np</span><span class="p">.</span><span class="nf">max</span><span class="p">(</span><span class="s s-Atom">sim_matrix</span><span class="p">,</span> <span class="s s-Atom">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+                <span class="s s-Atom">if</span> <span class="s s-Atom">np</span><span class="p">.</span><span class="nf">max</span><span class="p">(</span><span class="s s-Atom">max_values</span><span class="p">)</span> <span class="o">&lt;</span> <span class="s s-Atom">matching_threshold:</span>
+
+                    <span class="s s-Atom">break</span>
+
+                <span class="s s-Atom">new_idx</span> <span class="o">=</span> <span class="s s-Atom">np</span><span class="p">.</span><span class="nf">argmax</span><span class="p">(</span><span class="s s-Atom">max_values</span><span class="p">)</span>
+
+                <span class="s s-Atom">matching_idx</span> <span class="o">=</span> <span class="s s-Atom">np</span><span class="p">.</span><span class="nf">argmax</span><span class="p">(</span><span class="s s-Atom">sim_matrix</span><span class="p">[</span><span class="s s-Atom">new_idx</span><span class="p">])</span>
+
+                <span class="s s-Atom">#</span> <span class="s s-Atom">remove</span> <span class="s s-Atom">from</span> <span class="s s-Atom">similarity</span> <span class="s s-Atom">matrix</span>
+
+                <span class="s s-Atom">sim_matrix</span><span class="p">[</span><span class="s s-Atom">new_idx</span><span class="p">,</span><span class="s s-Atom">:</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
+
+                <span class="s s-Atom">sim_matrix</span><span class="p">[</span><span class="s s-Atom">:</span><span class="p">,</span><span class="s s-Atom">matching_idx</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
+
+                <span class="s s-Atom">matches</span><span class="p">.</span><span class="nf">append</span><span class="p">([</span><span class="s s-Atom">new_idx</span><span class="p">,</span> <span class="s s-Atom">matching_idx</span><span class="p">])</span>
+
+        <span class="s s-Atom">for</span> <span class="s s-Atom">match</span> <span class="s s-Atom">in</span> <span class="s s-Atom">matches</span><span class="p">[</span><span class="s s-Atom">::-</span><span class="mi">1</span><span class="p">]</span><span class="s s-Atom">:</span>
+
+            <span class="s s-Atom">tracklets</span><span class="p">[</span><span class="s s-Atom">match</span><span class="p">[</span><span class="mi">1</span><span class="p">]].</span><span class="nf">append_tracklet</span><span class="p">(</span><span class="s s-Atom">tracklets</span><span class="p">[</span><span class="s s-Atom">match</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+
+        <span class="s s-Atom">tracklet_idxes_to_remove</span> <span class="o">=</span> <span class="p">[</span><span class="s s-Atom">m</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="s s-Atom">for</span> <span class="s s-Atom">m</span> <span class="s s-Atom">in</span> <span class="s s-Atom">matches</span><span class="p">]</span>
+
+        <span class="s s-Atom">return</span> <span class="p">[</span><span class="s s-Atom">tracklet</span> <span class="s s-Atom">for</span> <span class="s s-Atom">i</span><span class="p">,</span><span class="s s-Atom">tracklet</span> <span class="s s-Atom">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="s s-Atom">tracklets</span><span class="p">)</span> <span class="s s-Atom">if</span> <span class="s s-Atom">i</span> <span class="o">not</span> <span class="s s-Atom">in</span> <span class="s s-Atom">tracklet_idxes_to_remove</span><span class="p">]</span>
+</code></pre></div>
+
+</details>
+<h3 id="track">Track</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Track</span><span class="p">(</span>
+    <span class="nb">id</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span>
+    <span class="n">class_scores</span><span class="p">:</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
+    <span class="n">box</span><span class="p">:</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
+    <span class="n">frame</span><span class="p">:</span><span class="nb">int</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Track (or trajectory) class mainly defined by a sequence of frames and the corresponding detections</p>
+<p>Multi-object tracking notations:
+- The output of the detector are called "detections"
+- The matching of successive boxes are called "tracklets" which are small tracks
+- The final trajectories are called "tracks"</p>
+<h4 id="methods_1">Methods</h4>
+<h5 id="add_matching_detection">add_matching_detection</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">add_matching_detection</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">scores</span><span class="p">,</span>
+    <span class="n">box</span><span class="p">,</span>
+    <span class="n">frame</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">add_matching_detection</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">scores</span><span class="p">,</span> <span class="n">box</span><span class="p">,</span> <span class="n">frame</span><span class="p">):</span>
+
+        <span class="k">self</span><span class="p">.</span><span class="n">scores</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+
+        <span class="k">self</span><span class="p">.</span><span class="n">boxes</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+
+        <span class="k">self</span><span class="p">.</span><span class="n">frames</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">len</span><span class="p">(</span><span class="k">self</span><span class="p">.</span><span class="n">boxes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+
+            <span class="k">self</span><span class="p">.</span><span class="n">speed</span> <span class="o">=</span> <span class="k">self</span><span class="p">.</span><span class="n">compute_speed</span><span class="p">()</span>
+
+        <span class="k">self</span><span class="p">.</span><span class="n">track_score</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="k">max</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">array</span><span class="p">(</span><span class="k">self</span><span class="p">.</span><span class="n">scores</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+</code></pre></div>
+
+</details>
+<h5 id="append_track">append_track</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">append_track</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">track</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">append_track</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">track</span><span class="p">):</span>
+
+        <span class="k">self</span><span class="p">.</span><span class="n">scores</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="n">track</span><span class="p">.</span><span class="n">scores</span><span class="p">)</span>
+
+        <span class="k">self</span><span class="p">.</span><span class="n">boxes</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="n">track</span><span class="p">.</span><span class="n">boxes</span><span class="p">)</span>
+
+        <span class="k">self</span><span class="p">.</span><span class="n">frames</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="n">track</span><span class="p">.</span><span class="n">frames</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">len</span><span class="p">(</span><span class="k">self</span><span class="p">.</span><span class="n">boxes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+
+            <span class="k">self</span><span class="p">.</span><span class="n">speed</span> <span class="o">=</span> <span class="k">self</span><span class="p">.</span><span class="n">compute_speed</span><span class="p">()</span>
+
+        <span class="k">self</span><span class="p">.</span><span class="n">track_score</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="k">max</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">array</span><span class="p">(</span><span class="k">self</span><span class="p">.</span><span class="n">scores</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+</code></pre></div>
+
+</details>
+<h5 id="compatibility">compatibility</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">compatibility</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">track</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Computes a soft compatibility score between this track and a later one.</p>
+<p>Arguments:</p>
+<ul>
+<li>track: the newer track to compare to this one.</li>
+</ul>
+<p>Returns:</p>
+<ul>
+<li>A floating point value corresponding to the compatibility. -1 is not compatible</li>
+</ul>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">compatibility</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">track</span><span class="p">):</span>
+
+        <span class="ss">&quot;&quot;&quot;Computes a soft compatibility score between this track and a later one.</span>
+
+<span class="ss">        Arguments:</span>
+
+<span class="ss">        - track: the newer track to compare to this one.</span>
+
+<span class="ss">        Returns:</span>
+
+<span class="ss">        - A floating point value corresponding to the compatibility. -1 is not compatible</span>
+
+<span class="ss">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="k">self</span><span class="p">.</span><span class="n">frames</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">track</span><span class="p">.</span><span class="n">frames</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span>
+
+        <span class="n">projected_box</span> <span class="o">=</span> <span class="k">self</span><span class="p">.</span><span class="n">get_latest_detection</span><span class="p">(</span><span class="n">apply_speed</span><span class="o">=</span><span class="k">True</span><span class="p">,</span> <span class="n">new_frame_id</span><span class="o">=</span><span class="n">track</span><span class="p">.</span><span class="n">frames</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="n">old_detection</span> <span class="o">=</span> <span class="p">[</span><span class="k">self</span><span class="p">.</span><span class="n">get_average_scores</span><span class="p">(),</span> <span class="n">projected_box</span><span class="p">,</span> <span class="k">self</span><span class="p">.</span><span class="n">frames</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+
+        <span class="n">new_detection</span> <span class="o">=</span> <span class="p">[</span><span class="n">track</span><span class="p">.</span><span class="n">get_average_scores</span><span class="p">(),</span> <span class="n">track</span><span class="p">.</span><span class="n">boxes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">track</span><span class="p">.</span><span class="n">frames</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+
+        <span class="k">return</span> <span class="n">similarity</span><span class="p">(</span><span class="n">old_detection</span><span class="p">,</span> <span class="n">new_detection</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h5 id="compute_speed">compute_speed</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">compute_speed</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="s s-Atom">def</span> <span class="nf">compute_speed</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">boxes_array</span> <span class="o">=</span> <span class="s s-Atom">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">.</span><span class="s s-Atom">boxes</span><span class="p">)</span>
+
+        <span class="s s-Atom">time_differences</span> <span class="o">=</span> <span class="s s-Atom">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="nf">float</span><span class="p">(</span><span class="s s-Atom">y</span><span class="o">-</span><span class="s s-Atom">x</span><span class="p">)</span> <span class="s s-Atom">for</span> <span class="s s-Atom">x</span><span class="p">,</span><span class="s s-Atom">y</span> <span class="s s-Atom">in</span> <span class="nf">zip</span><span class="p">(</span><span class="s s-Atom">self</span><span class="p">.</span><span class="s s-Atom">frames</span><span class="p">[</span><span class="mi">1</span><span class="s s-Atom">:</span><span class="p">],</span> <span class="s s-Atom">self</span><span class="p">.</span><span class="s s-Atom">frames</span><span class="p">[</span><span class="mi">0</span><span class="p">:-</span><span class="mi">1</span><span class="p">])])</span>
+
+        <span class="s s-Atom">speeds</span> <span class="o">=</span> <span class="p">(</span><span class="s s-Atom">boxes_array</span><span class="p">[</span><span class="mi">1</span><span class="s s-Atom">:</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">]</span> <span class="o">-</span> <span class="s s-Atom">boxes_array</span><span class="p">[</span><span class="mi">0</span><span class="p">:-</span><span class="mi">1</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">]).</span><span class="nv">T</span> <span class="o">/</span> <span class="s s-Atom">time_differences</span>
+
+        <span class="s s-Atom">speed</span> <span class="o">=</span> <span class="s s-Atom">np</span><span class="p">.</span><span class="nf">mean</span><span class="p">(</span><span class="s s-Atom">speeds</span><span class="p">,</span> <span class="s s-Atom">axis</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="s s-Atom">vx</span> <span class="o">=</span> <span class="p">(</span><span class="s s-Atom">speed</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s s-Atom">speed</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span>
+
+        <span class="s s-Atom">vy</span> <span class="o">=</span> <span class="p">(</span><span class="s s-Atom">speed</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s s-Atom">speed</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span>
+
+        <span class="s s-Atom">return</span> <span class="s s-Atom">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="s s-Atom">vx</span><span class="p">,</span> <span class="s s-Atom">vy</span><span class="p">,</span> <span class="s s-Atom">vx</span><span class="p">,</span> <span class="s s-Atom">vy</span><span class="p">])</span>
+</code></pre></div>
+
+</details>
+<h5 id="contains_subtrack">contains_subtrack</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">contains_subtrack</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">track</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Compare two tracks and verify if the track is a subpart of this one</p>
+<p>Arguments:</p>
+<ul>
+<li>track: the newer track to compare to this one.</li>
+</ul>
+<p>Returns:</p>
+<ul>
+<li>True if it matches, false otherwise</li>
+</ul>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">contains_subtrack</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">track</span><span class="p">):</span>
+
+        <span class="ss">&quot;&quot;&quot;Compare two tracks and verify if the track is a subpart of this one</span>
+
+<span class="ss">        Arguments:</span>
+
+<span class="ss">        - track: the newer track to compare to this one.</span>
+
+<span class="ss">        Returns:</span>
+
+<span class="ss">        - True if it matches, false otherwise</span>
+
+<span class="ss">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="k">self</span><span class="p">.</span><span class="n">get_label</span><span class="p">()</span> <span class="o">!=</span> <span class="n">track</span><span class="p">.</span><span class="n">get_label</span><span class="p">():</span>
+
+            <span class="k">return</span> <span class="k">False</span>
+
+        <span class="n">common_frames</span> <span class="o">=</span> <span class="k">set</span><span class="p">(</span><span class="k">self</span><span class="p">.</span><span class="n">frames</span><span class="p">).</span><span class="n">intersection</span><span class="p">(</span><span class="k">set</span><span class="p">(</span><span class="n">track</span><span class="p">.</span><span class="n">frames</span><span class="p">))</span>
+
+        <span class="n">match_box</span> <span class="o">=</span> <span class="mi">0</span><span class="p">.</span>
+
+        <span class="k">for</span> <span class="n">frame</span> <span class="k">in</span> <span class="n">common_frames</span><span class="p">:</span>
+
+            <span class="n">box1</span> <span class="o">=</span> <span class="k">self</span><span class="p">.</span><span class="n">boxes</span><span class="p">[</span><span class="k">self</span><span class="p">.</span><span class="n">frames</span><span class="p">.</span><span class="k">index</span><span class="p">(</span><span class="n">frame</span><span class="p">)]</span>
+
+            <span class="n">box2</span> <span class="o">=</span> <span class="n">track</span><span class="p">.</span><span class="n">boxes</span><span class="p">[</span><span class="n">track</span><span class="p">.</span><span class="n">frames</span><span class="p">.</span><span class="k">index</span><span class="p">(</span><span class="n">frame</span><span class="p">)]</span>
+
+            <span class="k">if</span> <span class="n">center_dist</span><span class="p">(</span><span class="n">box1</span><span class="p">,</span> <span class="n">box2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="k">self</span><span class="p">.</span><span class="n">THR_BOX_CENTER</span> <span class="k">and</span> <span class="err">\</span>
+
+               <span class="k">abs</span><span class="p">(</span><span class="n">ratio</span><span class="p">(</span><span class="n">box1</span><span class="p">)</span> <span class="o">-</span> <span class="n">ratio</span><span class="p">(</span><span class="n">box2</span><span class="p">))</span> <span class="o">&lt;</span> <span class="k">self</span><span class="p">.</span><span class="n">THR_BOX_RATIO</span><span class="p">:</span>
+
+               <span class="n">match_box</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">.</span>
+
+        <span class="n">match_ratio</span> <span class="o">=</span> <span class="n">match_box</span> <span class="o">/</span> <span class="n">len</span><span class="p">(</span><span class="n">track</span><span class="p">.</span><span class="n">frames</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">match_ratio</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">.</span><span class="mi">2</span><span class="p">:</span>
+
+            <span class="k">return</span> <span class="k">True</span>
+
+        <span class="k">return</span> <span class="k">False</span>
+</code></pre></div>
+
+</details>
+<h5 id="get_average_scores">get_average_scores</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">get_average_scores</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">get_average_scores</span><span class="p">(</span><span class="k">self</span><span class="p">):</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">array</span><span class="p">(</span><span class="k">self</span><span class="p">.</span><span class="n">scores</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h5 id="get_center">get_center</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">get_center</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">get_center</span><span class="p">(</span><span class="k">self</span><span class="p">):</span>
+
+        <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="k">self</span><span class="p">.</span><span class="n">boxes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="p">(</span><span class="n">x2</span> <span class="o">+</span> <span class="n">x1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">y2</span> <span class="o">+</span> <span class="n">y1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+</code></pre></div>
+
+</details>
+<h5 id="get_label">get_label</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">get_label</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">get_label</span><span class="p">(</span><span class="k">self</span><span class="p">):</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">array</span><span class="p">(</span><span class="k">self</span><span class="p">.</span><span class="n">scores</span><span class="p">).</span><span class="k">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span>
+</code></pre></div>
+
+</details>
+<h5 id="get_latest_detection">get_latest_detection</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">get_latest_detection</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">apply_speed</span><span class="p">,</span>
+    <span class="n">new_frame_id</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">get_latest_detection</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">apply_speed</span><span class="p">,</span> <span class="n">new_frame_id</span><span class="p">):</span>
+
+        <span class="n">last_box</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">array</span><span class="p">(</span><span class="k">self</span><span class="p">.</span><span class="n">boxes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="n">frame_offset</span> <span class="o">=</span> <span class="n">new_frame_id</span> <span class="o">-</span> <span class="k">self</span><span class="p">.</span><span class="n">frames</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">apply_speed</span> <span class="k">and</span> <span class="k">self</span><span class="p">.</span><span class="n">speed</span> <span class="k">is</span> <span class="k">not</span> <span class="k">None</span><span class="p">:</span>
+
+            <span class="n">last_box</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">clip</span><span class="p">(</span><span class="n">last_box</span> <span class="o">+</span> <span class="k">self</span><span class="p">.</span><span class="n">speed</span> <span class="o">*</span> <span class="n">frame_offset</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nb">array</span><span class="p">(</span><span class="k">self</span><span class="p">.</span><span class="n">scores</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">last_box</span><span class="p">,</span> <span class="k">self</span><span class="p">.</span><span class="n">frames</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+</code></pre></div>
+
+</details>
+<h5 id="get_latest_np_box">get_latest_np_box</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">get_latest_np_box</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">get_latest_np_box</span><span class="p">(</span><span class="k">self</span><span class="p">):</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="nb">array</span><span class="p">(</span><span class="k">self</span><span class="p">.</span><span class="n">boxes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+
+</details>
+<h5 id="has_valid_speed">has_valid_speed</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">has_valid_speed</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">speed</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">has_valid_speed</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">speed</span><span class="p">):</span>
+
+        <span class="n">speed_dot</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="k">self</span><span class="p">.</span><span class="n">speed</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="k">sum</span><span class="p">(</span><span class="n">speed_dot</span><span class="p">)</span> <span class="o">&gt;</span> <span class="k">self</span><span class="p">.</span><span class="n">THR_SPEED</span>
+</code></pre></div>
+
+</details>
+<h5 id="is_in_range">is_in_range</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">is_in_range</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">frame_idx</span><span class="p">,</span>
+    <span class="n">time_window</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">is_in_range</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">frame_idx</span><span class="p">,</span> <span class="n">time_window</span><span class="p">):</span>
+
+        <span class="k">return</span> <span class="p">(</span><span class="n">frame_idx</span> <span class="o">-</span> <span class="k">self</span><span class="p">.</span><span class="n">frames</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">&lt;=</span> <span class="n">time_window</span>
+</code></pre></div>
+
+</details>
+<h5 id="is_valid">is_valid</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">is_valid</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">min_length</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">is_valid</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">min_length</span><span class="p">):</span>
+
+        <span class="k">return</span> <span class="n">len</span><span class="p">(</span><span class="k">self</span><span class="p">.</span><span class="n">frames</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">min_length</span>
+</code></pre></div>
+
+</details>
+<h5 id="json_result_1">json_result</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">json_result</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;bottles&#39;</span><span class="p">,</span> <span class="s1">&#39;others&#39;</span><span class="p">,</span> <span class="s1">&#39;fragments&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">json_result</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="ss">&quot;bottles&quot;</span><span class="p">,</span> <span class="ss">&quot;others&quot;</span><span class="p">,</span> <span class="ss">&quot;fragments&quot;</span><span class="p">]):</span>
+
+        <span class="n">class_names</span> <span class="o">=</span> <span class="p">[</span><span class="ss">&quot;BG&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">class_names</span>
+
+        <span class="n">rounded_boxes</span> <span class="o">=</span> <span class="p">[[</span><span class="n">round</span><span class="p">(</span><span class="n">coord</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">coord</span> <span class="k">in</span> <span class="n">box</span><span class="p">]</span> <span class="k">for</span> <span class="n">box</span> <span class="k">in</span> <span class="k">self</span><span class="p">.</span><span class="n">boxes</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="err">{</span>
+
+            <span class="ss">&quot;label&quot;</span><span class="p">:</span> <span class="n">class_names</span><span class="p">[</span><span class="k">self</span><span class="p">.</span><span class="n">get_label</span><span class="p">()],</span>
+
+            <span class="ss">&quot;score&quot;</span><span class="p">:</span> <span class="k">self</span><span class="p">.</span><span class="n">track_score</span><span class="p">,</span>
+
+            <span class="ss">&quot;frame_to_box&quot;</span><span class="p">:</span> <span class="err">{</span><span class="n">frame</span><span class="p">:</span> <span class="n">box</span> <span class="k">for</span> <span class="n">frame</span><span class="p">,</span> <span class="n">box</span> <span class="k">in</span> <span class="n">zip</span><span class="p">(</span><span class="k">self</span><span class="p">.</span><span class="n">frames</span><span class="p">,</span> <span class="n">rounded_boxes</span><span class="p">)</span><span class="err">}</span><span class="p">,</span>
+
+            <span class="ss">&quot;id&quot;</span><span class="p">:</span> <span class="k">self</span><span class="p">.</span><span class="n">id</span>
+
+        <span class="err">}</span>
+</code></pre></div>
+
+</details>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../" title="Index" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Index
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../tracker_metrics/" title="Tracker Metrics" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Tracker Metrics
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Powered by
+        <a href="http://timothycrosley.github.io/portray">portray.</a>
+        You too can
+        <a href="http://timothycrosley.github.io/portray">
+          portray</a>
+        your Python project well using automatic documentation.
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../../assets/javascripts/vendor.2d1db4bd.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.6627ddf3.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

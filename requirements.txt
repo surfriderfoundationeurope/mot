@@ -1,0 +1,13 @@
+opencv-python>=4.1
+tensorpack==0.9.8
+tensorflow-gpu==1.15.2
+python-prctl>=1.7
+tqdm>=4.36.1
+cython>=0.29.13
+scipy>=1.3.1
+ffmpeg-python
+wget
+requests
+flask>=1.1.1
+werkzeug==0.16.1 # It fixes the error: from werkzeug import FileStorage cannot import FileStorage.
+cached_property

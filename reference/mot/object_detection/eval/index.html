@@ -1,0 +1,2554 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.14">
+    
+    
+      
+        <title>Eval - mot</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.d3202873.min.css">
+      
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ff0a5ce4.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#4cae4f">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="green" data-md-color-accent="lightgreen">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#module-motobject_detectioneval" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../../../.." title="mot" class="md-header-nav__button md-logo" aria-label="mot">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            mot
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Eval
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/surfriderfoundationeurope/mot/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mot
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="mot" class="md-nav__button md-logo" aria-label="mot">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    mot
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/surfriderfoundationeurope/mot/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mot
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../../CONTRIBUTING/" title="Contributing" class="md-nav__link">
+      Contributing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1" checked>
+    
+    <label class="md-nav__link" for="nav-3-1">
+      Mot
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Mot" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        <span class="md-nav__icon md-icon"></span>
+        Mot
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-2" type="checkbox" id="nav-3-1-2" checked>
+    
+    <label class="md-nav__link" for="nav-3-1-2">
+      Object Detection
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Object Detection" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-1-2">
+        <span class="md-nav__icon md-icon"></span>
+        Object Detection
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../common/" title="Common" class="md-nav__link">
+      Common
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../config/" title="Config" class="md-nav__link">
+      Config
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../data/" title="Data" class="md-nav__link">
+      Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Eval
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="Eval" class="md-nav__link md-nav__link--active">
+      Eval
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multithread_predict_dataflow" class="md-nav__link">
+    multithread_predict_dataflow
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#predict_dataflow" class="md-nav__link">
+    predict_dataflow
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#predict_image" class="md-nav__link">
+    predict_image
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#detectionresult" class="md-nav__link">
+    DetectionResult
+  </a>
+  
+    <nav class="md-nav" aria-label="DetectionResult">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ancestors-in-mro" class="md-nav__link">
+    Ancestors (in MRO)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instance-variables" class="md-nav__link">
+    Instance variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#count" class="md-nav__link">
+    count
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#index" class="md-nav__link">
+    index
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evalcallback" class="md-nav__link">
+    EvalCallback
+  </a>
+  
+    <nav class="md-nav" aria-label="EvalCallback">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ancestors-in-mro_1" class="md-nav__link">
+    Ancestors (in MRO)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#class-variables" class="md-nav__link">
+    Class variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instance-variables_1" class="md-nav__link">
+    Instance variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods_1" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#after_epoch" class="md-nav__link">
+    after_epoch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after_run" class="md-nav__link">
+    after_run
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after_train" class="md-nav__link">
+    after_train
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#before_epoch" class="md-nav__link">
+    before_epoch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#before_run" class="md-nav__link">
+    before_run
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#before_train" class="md-nav__link">
+    before_train
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_tensors_maybe_in_tower" class="md-nav__link">
+    get_tensors_maybe_in_tower
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_chief_only" class="md-nav__link">
+    set_chief_only
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup_graph" class="md-nav__link">
+    setup_graph
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trigger" class="md-nav__link">
+    trigger
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trigger_epoch" class="md-nav__link">
+    trigger_epoch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trigger_step" class="md-nav__link">
+    trigger_step
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../predict/" title="Predict" class="md-nav__link">
+      Predict
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../preprocessing/" title="Preprocessing" class="md-nav__link">
+      Preprocessing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../query_server/" title="Query Server" class="md-nav__link">
+      Query Server
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../train/" title="Train" class="md-nav__link">
+      Train
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../viz/" title="Viz" class="md-nav__link">
+      Viz
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-2-11" type="checkbox" id="nav-3-1-2-11">
+    
+    <label class="md-nav__link" for="nav-3-1-2-11">
+      Dataset
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Dataset" data-md-level="4">
+      <label class="md-nav__title" for="nav-3-1-2-11">
+        <span class="md-nav__icon md-icon"></span>
+        Dataset
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dataset/dataset/" title="Dataset" class="md-nav__link">
+      Dataset
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dataset/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dataset/mot/" title="Mot" class="md-nav__link">
+      Mot
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-2-12" type="checkbox" id="nav-3-1-2-12">
+    
+    <label class="md-nav__link" for="nav-3-1-2-12">
+      Modeling
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Modeling" data-md-level="4">
+      <label class="md-nav__title" for="nav-3-1-2-12">
+        <span class="md-nav__icon md-icon"></span>
+        Modeling
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modeling/backbone/" title="Backbone" class="md-nav__link">
+      Backbone
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modeling/generalized_rcnn/" title="Generalized Rcnn" class="md-nav__link">
+      Generalized Rcnn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modeling/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modeling/model_box/" title="Model Box" class="md-nav__link">
+      Model Box
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modeling/model_cascade/" title="Model Cascade" class="md-nav__link">
+      Model Cascade
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modeling/model_fpn/" title="Model Fpn" class="md-nav__link">
+      Model Fpn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modeling/model_frcnn/" title="Model Frcnn" class="md-nav__link">
+      Model Frcnn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modeling/model_mrcnn/" title="Model Mrcnn" class="md-nav__link">
+      Model Mrcnn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../modeling/model_rpn/" title="Model Rpn" class="md-nav__link">
+      Model Rpn
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-2-13" type="checkbox" id="nav-3-1-2-13">
+    
+    <label class="md-nav__link" for="nav-3-1-2-13">
+      Utils
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Utils" data-md-level="4">
+      <label class="md-nav__title" for="nav-3-1-2-13">
+        <span class="md-nav__icon md-icon"></span>
+        Utils
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../utils/box_ops/" title="Box Ops" class="md-nav__link">
+      Box Ops
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../utils/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../utils/np_box_ops/" title="Np Box Ops" class="md-nav__link">
+      Np Box Ops
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-3" type="checkbox" id="nav-3-1-3">
+    
+    <label class="md-nav__link" for="nav-3-1-3">
+      Serving
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Serving" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-1-3">
+        <span class="md-nav__icon md-icon"></span>
+        Serving
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../serving/app/" title="App" class="md-nav__link">
+      App
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../serving/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../serving/inference/" title="Inference" class="md-nav__link">
+      Inference
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-4" type="checkbox" id="nav-3-1-4">
+    
+    <label class="md-nav__link" for="nav-3-1-4">
+      Tracker
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tracker" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-1-4">
+        <span class="md-nav__icon md-icon"></span>
+        Tracker
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tracker/camera_flow/" title="Camera Flow" class="md-nav__link">
+      Camera Flow
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tracker/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tracker/object_tracking/" title="Object Tracking" class="md-nav__link">
+      Object Tracking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tracker/tracker_metrics/" title="Tracker Metrics" class="md-nav__link">
+      Tracker Metrics
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tracker/tracker_utils/" title="Tracker Utils" class="md-nav__link">
+      Tracker Utils
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tracker/video_utils/" title="Video Utils" class="md-nav__link">
+      Video Utils
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multithread_predict_dataflow" class="md-nav__link">
+    multithread_predict_dataflow
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#predict_dataflow" class="md-nav__link">
+    predict_dataflow
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#predict_image" class="md-nav__link">
+    predict_image
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#detectionresult" class="md-nav__link">
+    DetectionResult
+  </a>
+  
+    <nav class="md-nav" aria-label="DetectionResult">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ancestors-in-mro" class="md-nav__link">
+    Ancestors (in MRO)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instance-variables" class="md-nav__link">
+    Instance variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#count" class="md-nav__link">
+    count
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#index" class="md-nav__link">
+    index
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evalcallback" class="md-nav__link">
+    EvalCallback
+  </a>
+  
+    <nav class="md-nav" aria-label="EvalCallback">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ancestors-in-mro_1" class="md-nav__link">
+    Ancestors (in MRO)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#class-variables" class="md-nav__link">
+    Class variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instance-variables_1" class="md-nav__link">
+    Instance variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods_1" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#after_epoch" class="md-nav__link">
+    after_epoch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after_run" class="md-nav__link">
+    after_run
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after_train" class="md-nav__link">
+    after_train
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#before_epoch" class="md-nav__link">
+    before_epoch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#before_run" class="md-nav__link">
+    before_run
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#before_train" class="md-nav__link">
+    before_train
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_tensors_maybe_in_tower" class="md-nav__link">
+    get_tensors_maybe_in_tower
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_chief_only" class="md-nav__link">
+    set_chief_only
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup_graph" class="md-nav__link">
+    setup_graph
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trigger" class="md-nav__link">
+    trigger
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trigger_epoch" class="md-nav__link">
+    trigger_epoch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trigger_step" class="md-nav__link">
+    trigger_step
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/surfriderfoundationeurope/mot/edit/master/reference/mot/object_detection/eval.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="module-motobject_detectioneval">Module mot.object_detection.eval</h1>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="c1"># File: eval.py</span>
+
+<span class="kn">import</span> <span class="nn">itertools</span>
+
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+
+<span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
+
+<span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">ExitStack</span>
+
+<span class="kn">import</span> <span class="nn">cv2</span>
+
+<span class="kn">import</span> <span class="nn">tqdm</span>
+
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">interpolate</span>
+
+<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Iterable</span>
+
+<span class="kn">from</span> <span class="nn">tensorpack.callbacks</span> <span class="kn">import</span> <span class="n">Callback</span>
+
+<span class="kn">from</span> <span class="nn">tensorpack.tfutils.common</span> <span class="kn">import</span> <span class="n">get_tf_version_tuple</span>
+
+<span class="kn">from</span> <span class="nn">tensorpack.utils</span> <span class="kn">import</span> <span class="n">logger</span><span class="p">,</span> <span class="n">get_tqdm</span>
+
+<span class="kn">from</span> <span class="nn">mot.object_detection.common</span> <span class="kn">import</span> <span class="n">CustomResize</span><span class="p">,</span> <span class="n">clip_boxes</span>
+
+<span class="kn">from</span> <span class="nn">mot.object_detection.config</span> <span class="kn">import</span> <span class="n">config</span> <span class="k">as</span> <span class="n">cfg</span>
+
+<span class="kn">from</span> <span class="nn">mot.object_detection.data</span> <span class="kn">import</span> <span class="n">get_eval_dataflow</span>
+
+<span class="kn">from</span> <span class="nn">mot.object_detection.dataset</span> <span class="kn">import</span> <span class="n">DatasetRegistry</span>
+
+<span class="k">try</span><span class="p">:</span>
+
+    <span class="kn">import</span> <span class="nn">horovod.tensorflow</span> <span class="k">as</span> <span class="nn">hvd</span>
+
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+
+    <span class="k">pass</span>
+
+<span class="n">DetectionResult</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span>
+
+    <span class="s1">&#39;DetectionResult&#39;</span><span class="p">,</span>
+
+    <span class="p">[</span><span class="s1">&#39;box&#39;</span><span class="p">,</span> <span class="s1">&#39;score&#39;</span><span class="p">,</span> <span class="s1">&#39;class_id&#39;</span><span class="p">,</span> <span class="s1">&#39;mask&#39;</span><span class="p">])</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">box: 4 float</span>
+
+<span class="sd">score: float</span>
+
+<span class="sd">class_id: int, 1~NUM_CLASS</span>
+
+<span class="sd">mask: None, or a binary image of the original image shape</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="k">def</span> <span class="nf">_scale_box</span><span class="p">(</span><span class="n">box</span><span class="p">,</span> <span class="n">scale</span><span class="p">):</span>
+
+    <span class="n">w_half</span> <span class="o">=</span> <span class="p">(</span><span class="n">box</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">box</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="mf">0.5</span>
+
+    <span class="n">h_half</span> <span class="o">=</span> <span class="p">(</span><span class="n">box</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">box</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="mf">0.5</span>
+
+    <span class="n">x_c</span> <span class="o">=</span> <span class="p">(</span><span class="n">box</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">box</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="mf">0.5</span>
+
+    <span class="n">y_c</span> <span class="o">=</span> <span class="p">(</span><span class="n">box</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">box</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="mf">0.5</span>
+
+    <span class="n">w_half</span> <span class="o">*=</span> <span class="n">scale</span>
+
+    <span class="n">h_half</span> <span class="o">*=</span> <span class="n">scale</span>
+
+    <span class="n">scaled_box</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">zeros_like</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+
+    <span class="n">scaled_box</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_c</span> <span class="o">-</span> <span class="n">w_half</span>
+
+    <span class="n">scaled_box</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_c</span> <span class="o">+</span> <span class="n">w_half</span>
+
+    <span class="n">scaled_box</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_c</span> <span class="o">-</span> <span class="n">h_half</span>
+
+    <span class="n">scaled_box</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_c</span> <span class="o">+</span> <span class="n">h_half</span>
+
+    <span class="k">return</span> <span class="n">scaled_box</span>
+
+<span class="k">def</span> <span class="nf">_paste_mask</span><span class="p">(</span><span class="n">box</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="kp">shape</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">        box: 4 float</span>
+
+<span class="sd">        mask: MxM floats</span>
+
+<span class="sd">        shape: h,w</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">        A uint8 binary image of hxw.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">assert</span> <span class="n">mask</span><span class="o">.</span><span class="kp">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">mask</span><span class="o">.</span><span class="kp">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">mask</span><span class="o">.</span><span class="kp">shape</span>
+
+    <span class="k">if</span> <span class="n">cfg</span><span class="o">.</span><span class="n">MRCNN</span><span class="o">.</span><span class="n">ACCURATE_PASTE</span><span class="p">:</span>
+
+        <span class="c1"># This method is accurate but much slower.</span>
+
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;constant&#39;</span><span class="p">)</span>
+
+        <span class="n">box</span> <span class="o">=</span> <span class="n">_scale_box</span><span class="p">(</span><span class="n">box</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">mask</span><span class="o">.</span><span class="kp">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">mask</span><span class="o">.</span><span class="kp">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="p">))</span>
+
+        <span class="n">mask_pixels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">mask</span><span class="o">.</span><span class="kp">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="mf">0.5</span>
+
+        <span class="n">mask_continuous</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp2d</span><span class="p">(</span><span class="n">mask_pixels</span><span class="p">,</span> <span class="n">mask_pixels</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+
+        <span class="n">h</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="kp">shape</span>
+
+        <span class="n">ys</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span>
+
+        <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span>
+
+        <span class="n">ys</span> <span class="o">=</span> <span class="p">(</span><span class="n">ys</span> <span class="o">-</span> <span class="n">box</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">box</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">box</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="n">mask</span><span class="o">.</span><span class="kp">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">xs</span> <span class="o">=</span> <span class="p">(</span><span class="n">xs</span> <span class="o">-</span> <span class="n">box</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">box</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">box</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="n">mask</span><span class="o">.</span><span class="kp">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="c1"># Waste a lot of compute since most indices are out-of-border</span>
+
+        <span class="n">res</span> <span class="o">=</span> <span class="n">mask_continuous</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">(</span><span class="n">res</span> <span class="o">&gt;=</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="kp">astype</span><span class="p">(</span><span class="s1">&#39;uint8&#39;</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="c1"># This method (inspired by Detectron) is less accurate but fast.</span>
+
+        <span class="c1"># int() is floor</span>
+
+        <span class="c1"># box fpcoor=0.0 -&gt; intcoor=0.0</span>
+
+        <span class="n">x0</span><span class="p">,</span> <span class="n">y0</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">box</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">))</span>
+
+        <span class="c1"># box fpcoor=h -&gt; intcoor=h-1, inclusive</span>
+
+        <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">box</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">))</span>    <span class="c1"># inclusive</span>
+
+        <span class="n">x1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">)</span>    <span class="c1"># require at least 1x1</span>
+
+        <span class="n">y1</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">y0</span><span class="p">,</span> <span class="n">y1</span><span class="p">)</span>
+
+        <span class="n">w</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">x0</span>
+
+        <span class="n">h</span> <span class="o">=</span> <span class="n">y1</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">y0</span>
+
+        <span class="c1"># rounding errors could happen here, because masks were not originally computed for this shape.</span>
+
+        <span class="c1"># but it&#39;s hard to do better, because the network does not know the &quot;original&quot; scale</span>
+
+        <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="kp">resize</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="kp">astype</span><span class="p">(</span><span class="s1">&#39;uint8&#39;</span><span class="p">)</span>
+
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">zeros</span><span class="p">(</span><span class="kp">shape</span><span class="p">,</span> <span class="kp">dtype</span><span class="o">=</span><span class="s1">&#39;uint8&#39;</span><span class="p">)</span>
+
+        <span class="n">ret</span><span class="p">[</span><span class="n">y0</span><span class="p">:</span><span class="n">y1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x0</span><span class="p">:</span><span class="n">x1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">mask</span>
+
+        <span class="k">return</span> <span class="n">ret</span>
+
+<span class="k">def</span> <span class="nf">predict_image</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">model_func</span><span class="p">,</span> <span class="n">as_named_tuple</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Run detection on one image, using the TF callable.</span>
+
+<span class="sd">    This function should handle the preprocessing internally.</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">        img: an image</span>
+
+<span class="sd">        model_func: a callable from the TF model.</span>
+
+<span class="sd">            It takes image and returns (boxes, probs, labels, [masks])</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">        [DetectionResult]</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">orig_shape</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="kp">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+
+    <span class="n">resizer</span> <span class="o">=</span> <span class="n">CustomResize</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">PREPROC</span><span class="o">.</span><span class="n">TEST_SHORT_EDGE_SIZE</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">PREPROC</span><span class="o">.</span><span class="n">MAX_SIZE</span><span class="p">)</span>
+
+    <span class="n">resized_img</span> <span class="o">=</span> <span class="n">resizer</span><span class="o">.</span><span class="n">augment</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+    <span class="n">scale</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">sqrt</span><span class="p">(</span><span class="n">resized_img</span><span class="o">.</span><span class="kp">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">img</span><span class="o">.</span><span class="kp">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">resized_img</span><span class="o">.</span><span class="kp">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">img</span><span class="o">.</span><span class="kp">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="n">boxes</span><span class="p">,</span> <span class="n">probs</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="o">*</span><span class="n">masks</span> <span class="o">=</span> <span class="n">model_func</span><span class="p">(</span><span class="n">resized_img</span><span class="p">)</span>
+
+    <span class="c1"># Some slow numpy postprocessing:</span>
+
+    <span class="n">boxes</span> <span class="o">=</span> <span class="n">boxes</span> <span class="o">/</span> <span class="n">scale</span>
+
+    <span class="c1"># boxes are already clipped inside the graph, but after the floating point scaling, this may not be true any more.</span>
+
+    <span class="n">boxes</span> <span class="o">=</span> <span class="n">clip_boxes</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">orig_shape</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">masks</span><span class="p">:</span>
+
+        <span class="n">full_masks</span> <span class="o">=</span> <span class="p">[</span><span class="n">_paste_mask</span><span class="p">(</span><span class="n">box</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">orig_shape</span><span class="p">)</span> <span class="k">for</span> <span class="n">box</span><span class="p">,</span> <span class="n">mask</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">masks</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+
+        <span class="n">masks</span> <span class="o">=</span> <span class="n">full_masks</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="c1"># fill with none</span>
+
+        <span class="n">masks</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">boxes</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">as_named_tuple</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">probs</span><span class="o">.</span><span class="kp">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span> <span class="c1"># if the scores of all entities are returned for each prediction</span>
+
+            <span class="n">probs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">max</span><span class="p">(</span><span class="n">probs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># we keep here only the biggest score</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="n">DetectionResult</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span> <span class="k">for</span> <span class="n">args</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">probs</span><span class="p">,</span> <span class="n">labels</span><span class="o">.</span><span class="kp">tolist</span><span class="p">(),</span> <span class="n">masks</span><span class="p">)]</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">probs</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">predict_dataflow</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">model_func</span><span class="p">,</span> <span class="n">tqdm_bar</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">        df: a DataFlow which produces (image, image_id)</span>
+
+<span class="sd">        model_func: a callable from the TF model.</span>
+
+<span class="sd">            It takes image and returns (boxes, probs, labels, [masks])</span>
+
+<span class="sd">        tqdm_bar: a tqdm object to be shared among multiple evaluation instances. If None,</span>
+
+<span class="sd">            will create a new one.</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">        list of dict, in the format used by</span>
+
+<span class="sd">        `DatasetSplit.eval_inference_results`</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">df</span><span class="o">.</span><span class="n">reset_state</span><span class="p">()</span>
+
+    <span class="n">all_results</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">with</span> <span class="n">ExitStack</span><span class="p">()</span> <span class="k">as</span> <span class="n">stack</span><span class="p">:</span>
+
+        <span class="c1"># tqdm is not quite thread-safe: https://github.com/tqdm/tqdm/issues/323</span>
+
+        <span class="k">if</span> <span class="n">tqdm_bar</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="n">tqdm_bar</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">enter_context</span><span class="p">(</span><span class="n">get_tqdm</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="kp">size</span><span class="p">()))</span>
+
+        <span class="k">for</span> <span class="n">img</span><span class="p">,</span> <span class="n">img_id</span> <span class="ow">in</span> <span class="n">df</span><span class="p">:</span>
+
+            <span class="n">results</span> <span class="o">=</span> <span class="n">predict_image</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">model_func</span><span class="p">,</span> <span class="n">as_named_tuple</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+
+                <span class="c1"># int()/float() to make it json-serializable</span>
+
+                <span class="c1"># our model can return only the highest score, or the scores of all entities</span>
+
+                <span class="c1"># here, we are just interested in the highest score</span>
+
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">score</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">):</span>
+
+                    <span class="n">score</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">score</span><span class="p">)</span>
+
+                <span class="k">else</span><span class="p">:</span>
+
+                    <span class="n">score</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">score</span>
+
+                <span class="n">res</span> <span class="o">=</span> <span class="p">{</span>
+
+                    <span class="s1">&#39;image_id&#39;</span><span class="p">:</span> <span class="n">img_id</span><span class="p">,</span>
+
+                    <span class="s1">&#39;category_id&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">class_id</span><span class="p">),</span>
+
+                    <span class="s1">&#39;bbox&#39;</span><span class="p">:</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">box</span><span class="p">],</span>
+
+                    <span class="s1">&#39;score&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">score</span><span class="p">),</span> <span class="mi">4</span><span class="p">),</span>
+
+                <span class="p">}</span>
+
+                <span class="c1"># also append segmentation to results</span>
+
+                <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+                    <span class="kn">import</span> <span class="nn">pycocotools.mask</span> <span class="k">as</span> <span class="nn">cocomask</span>
+
+                    <span class="n">rle</span> <span class="o">=</span> <span class="n">cocomask</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+
+                        <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">mask</span><span class="p">[:,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+
+                    <span class="n">rle</span><span class="p">[</span><span class="s1">&#39;counts&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rle</span><span class="p">[</span><span class="s1">&#39;counts&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+
+                    <span class="n">res</span><span class="p">[</span><span class="s1">&#39;segmentation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rle</span>
+
+                <span class="n">all_results</span><span class="o">.</span><span class="kp">append</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+
+            <span class="n">tqdm_bar</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">all_results</span>
+
+<span class="k">def</span> <span class="nf">multithread_predict_dataflow</span><span class="p">(</span><span class="n">dataflows</span><span class="p">,</span> <span class="n">model_funcs</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Running multiple `predict_dataflow` in multiple threads, and aggregate the results.</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">        dataflows: a list of DataFlow to be used in :func:`predict_dataflow`</span>
+
+<span class="sd">        model_funcs: a list of callable to be used in :func:`predict_dataflow`</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">        list of dict, in the format used by</span>
+
+<span class="sd">        `DatasetSplit.eval_inference_results`</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">num_worker</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">model_funcs</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataflows</span><span class="p">)</span> <span class="o">==</span> <span class="n">num_worker</span>
+
+    <span class="k">if</span> <span class="n">num_worker</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">predict_dataflow</span><span class="p">(</span><span class="n">dataflows</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">model_funcs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;thread_name_prefix&#39;</span><span class="p">:</span> <span class="s1">&#39;EvalWorker&#39;</span><span class="p">}</span> <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="o">.</span><span class="n">minor</span> <span class="o">&gt;=</span> <span class="mi">6</span> <span class="k">else</span> <span class="p">{}</span>
+
+    <span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="n">num_worker</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">,</span> \
+
+            <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="nb">sum</span><span class="p">([</span><span class="n">df</span><span class="o">.</span><span class="kp">size</span><span class="p">()</span> <span class="k">for</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">dataflows</span><span class="p">]))</span> <span class="k">as</span> <span class="n">pbar</span><span class="p">:</span>
+
+        <span class="n">futures</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">dataflow</span><span class="p">,</span> <span class="n">pred</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">dataflows</span><span class="p">,</span> <span class="n">model_funcs</span><span class="p">):</span>
+
+            <span class="n">futures</span><span class="o">.</span><span class="kp">append</span><span class="p">(</span><span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">predict_dataflow</span><span class="p">,</span> <span class="n">dataflow</span><span class="p">,</span> <span class="n">pred</span><span class="p">,</span> <span class="n">pbar</span><span class="p">))</span>
+
+        <span class="n">all_results</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">fut</span><span class="o">.</span><span class="n">result</span><span class="p">()</span> <span class="k">for</span> <span class="n">fut</span> <span class="ow">in</span> <span class="n">futures</span><span class="p">]))</span>
+
+        <span class="k">return</span> <span class="n">all_results</span>
+
+<span class="k">class</span> <span class="nc">EvalCallback</span><span class="p">(</span><span class="n">Callback</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    A callback that runs evaluation once a while.</span>
+
+<span class="sd">    It supports multi-gpu evaluation.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_chief_only</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eval_dataset</span><span class="p">,</span> <span class="n">in_names</span><span class="p">,</span> <span class="n">out_names</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_eval_dataset</span> <span class="o">=</span> <span class="n">eval_dataset</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_in_names</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_out_names</span> <span class="o">=</span> <span class="n">in_names</span><span class="p">,</span> <span class="n">out_names</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_output_dir</span> <span class="o">=</span> <span class="n">output_dir</span>
+
+    <span class="k">def</span> <span class="nf">_setup_graph</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="n">num_gpu</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">TRAIN</span><span class="o">.</span><span class="n">NUM_GPUS</span>
+
+        <span class="k">if</span> <span class="n">cfg</span><span class="o">.</span><span class="n">TRAINER</span> <span class="o">==</span> <span class="s1">&#39;replicated&#39;</span><span class="p">:</span>
+
+            <span class="c1"># TF bug in version 1.11, 1.12: https://github.com/tensorflow/tensorflow/issues/22750</span>
+
+            <span class="n">buggy_tf</span> <span class="o">=</span> <span class="n">get_tf_version_tuple</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">)]</span>
+
+            <span class="c1"># Use two predictor threads per GPU to get better throughput</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">num_predictor</span> <span class="o">=</span> <span class="n">num_gpu</span> <span class="k">if</span> <span class="n">buggy_tf</span> <span class="k">else</span> <span class="n">num_gpu</span> <span class="o">*</span> <span class="mi">2</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">predictors</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_build_predictor</span><span class="p">(</span><span class="n">k</span> <span class="o">%</span> <span class="n">num_gpu</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_predictor</span><span class="p">)]</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">dataflows</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_eval_dataflow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_eval_dataset</span><span class="p">,</span>
+
+                                                <span class="n">shard</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">num_shards</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">num_predictor</span><span class="p">)</span>
+
+                              <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_predictor</span><span class="p">)]</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="c1"># Only eval on the first machine,</span>
+
+            <span class="c1"># Because evaluation assumes that all horovod workers share the filesystem.</span>
+
+            <span class="c1"># Alternatively, can eval on all ranks and use allgather, but allgather sometimes hangs</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_horovod_run_eval</span> <span class="o">=</span> <span class="n">hvd</span><span class="o">.</span><span class="kp">rank</span><span class="p">()</span> <span class="o">==</span> <span class="n">hvd</span><span class="o">.</span><span class="n">local_rank</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_horovod_run_eval</span><span class="p">:</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">predictor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_predictor</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">dataflow</span> <span class="o">=</span> <span class="n">get_eval_dataflow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_eval_dataset</span><span class="p">,</span>
+
+                                                  <span class="n">shard</span><span class="o">=</span><span class="n">hvd</span><span class="o">.</span><span class="n">local_rank</span><span class="p">(),</span> <span class="n">num_shards</span><span class="o">=</span><span class="n">hvd</span><span class="o">.</span><span class="n">local_size</span><span class="p">())</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">barrier</span> <span class="o">=</span> <span class="n">hvd</span><span class="o">.</span><span class="n">allreduce</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random_normal</span><span class="p">(</span><span class="kp">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+    <span class="k">def</span> <span class="nf">_build_predictor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">get_predictor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_in_names</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_out_names</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">idx</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_before_train</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="n">eval_period</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">TRAIN</span><span class="o">.</span><span class="n">EVAL_PERIOD</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">epochs_to_eval</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+
+            <span class="k">if</span> <span class="n">k</span> <span class="o">*</span> <span class="n">eval_period</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">max_epoch</span><span class="p">:</span>
+
+                <span class="k">break</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">epochs_to_eval</span><span class="o">.</span><span class="kp">add</span><span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="n">eval_period</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">epochs_to_eval</span><span class="o">.</span><span class="kp">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">max_epoch</span><span class="p">)</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="kp">info</span><span class="p">(</span><span class="s2">&quot;[EvalCallback] Will evaluate every </span><span class="si">{}</span><span class="s2"> epochs&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">eval_period</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_eval</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="n">logdir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_output_dir</span>
+
+        <span class="k">if</span> <span class="n">cfg</span><span class="o">.</span><span class="n">TRAINER</span> <span class="o">==</span> <span class="s1">&#39;replicated&#39;</span><span class="p">:</span>
+
+            <span class="n">all_results</span> <span class="o">=</span> <span class="n">multithread_predict_dataflow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataflows</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">predictors</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="n">filenames</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+
+                <span class="n">logdir</span><span class="p">,</span> <span class="s1">&#39;outputs</span><span class="si">{}</span><span class="s1">-part</span><span class="si">{}</span><span class="s1">.json&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">global_step</span><span class="p">,</span> <span class="kp">rank</span><span class="p">)</span>
+
+            <span class="p">)</span> <span class="k">for</span> <span class="kp">rank</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">hvd</span><span class="o">.</span><span class="n">local_size</span><span class="p">())]</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_horovod_run_eval</span><span class="p">:</span>
+
+                <span class="n">local_results</span> <span class="o">=</span> <span class="n">predict_dataflow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataflow</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">predictor</span><span class="p">)</span>
+
+                <span class="n">fname</span> <span class="o">=</span> <span class="n">filenames</span><span class="p">[</span><span class="n">hvd</span><span class="o">.</span><span class="n">local_rank</span><span class="p">()]</span>
+
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+
+                    <span class="n">json</span><span class="o">.</span><span class="kp">dump</span><span class="p">(</span><span class="n">local_results</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">barrier</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">hvd</span><span class="o">.</span><span class="kp">rank</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+
+                <span class="k">return</span>
+
+            <span class="n">all_results</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
+
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+
+                    <span class="n">obj</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="kp">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+                <span class="n">all_results</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+
+                <span class="n">os</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+
+        <span class="n">scores</span> <span class="o">=</span> <span class="n">DatasetRegistry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_eval_dataset</span><span class="p">)</span><span class="o">.</span><span class="n">eval_inference_results</span><span class="p">(</span><span class="n">all_results</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">scores</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">monitors</span><span class="o">.</span><span class="n">put_scalar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_eval_dataset</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_trigger_epoch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">epoch_num</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">epochs_to_eval</span><span class="p">:</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="kp">info</span><span class="p">(</span><span class="s2">&quot;Running evaluation ...&quot;</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_eval</span><span class="p">()</span>
+</code></pre></div>
+
+</details>
+<h2 id="functions">Functions</h2>
+<h3 id="multithread_predict_dataflow">multithread_predict_dataflow</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">multithread_predict_dataflow</span><span class="p">(</span>
+    <span class="n">dataflows</span><span class="p">,</span>
+    <span class="n">model_funcs</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Running multiple <code>predict_dataflow</code> in multiple threads, and aggregate the results.</p>
+<p>Args:
+    dataflows: a list of DataFlow to be used in :func:<code>predict_dataflow</code>
+    model_funcs: a list of callable to be used in :func:<code>predict_dataflow</code></p>
+<p>Returns:
+    list of dict, in the format used by
+    <code>DatasetSplit.eval_inference_results</code></p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span> <span class="n">multithread_predict_dataflow</span><span class="p">(</span><span class="n">dataflows</span><span class="p">,</span> <span class="n">model_funcs</span><span class="p">)</span><span class="o">:</span>
+
+    <span class="s2">&quot;</span><span class="se">&quot;&quot;</span><span class="s2"></span>
+
+<span class="s2">    Running multiple `predict_dataflow` in multiple threads, and aggregate the results.</span>
+
+<span class="s2">    Args:</span>
+
+<span class="s2">        dataflows: a list of DataFlow to be used in :func:`predict_dataflow`</span>
+
+<span class="s2">        model_funcs: a list of callable to be used in :func:`predict_dataflow`</span>
+
+<span class="s2">    Returns:</span>
+
+<span class="s2">        list of dict, in the format used by</span>
+
+<span class="s2">        `DatasetSplit.eval_inference_results`</span>
+
+<span class="s2">    </span><span class="se">&quot;&quot;</span><span class="s2">&quot;</span>
+
+    <span class="n">num_worker</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="n">model_funcs</span><span class="p">)</span>
+
+    <span class="n">assert</span> <span class="n">len</span><span class="p">(</span><span class="n">dataflows</span><span class="p">)</span> <span class="o">==</span> <span class="n">num_worker</span>
+
+    <span class="k">if</span> <span class="n">num_worker</span> <span class="o">==</span> <span class="mi">1</span><span class="o">:</span>
+
+        <span class="k">return</span> <span class="n">predict_dataflow</span><span class="p">(</span><span class="n">dataflows</span><span class="err">[</span><span class="mi">0</span><span class="err">]</span><span class="p">,</span> <span class="n">model_funcs</span><span class="err">[</span><span class="mi">0</span><span class="err">]</span><span class="p">)</span>
+
+    <span class="n">kwargs</span> <span class="o">=</span> <span class="err">{</span><span class="s1">&#39;thread_name_prefix&#39;</span><span class="o">:</span> <span class="s1">&#39;EvalWorker&#39;</span><span class="err">}</span> <span class="k">if</span> <span class="n">sys</span><span class="p">.</span><span class="n">version_info</span><span class="p">.</span><span class="n">minor</span> <span class="o">&gt;=</span> <span class="mi">6</span> <span class="k">else</span> <span class="err">{}</span>
+
+    <span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="n">num_worker</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">,</span> <span class="err">\</span>
+
+            <span class="n">tqdm</span><span class="p">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="nf">sum</span><span class="p">(</span><span class="err">[</span><span class="n">df</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="k">for</span> <span class="n">df</span> <span class="k">in</span> <span class="n">dataflows</span><span class="err">]</span><span class="p">))</span> <span class="k">as</span> <span class="n">pbar</span><span class="o">:</span>
+
+        <span class="n">futures</span> <span class="o">=</span> <span class="err">[]</span>
+
+        <span class="k">for</span> <span class="n">dataflow</span><span class="p">,</span> <span class="n">pred</span> <span class="k">in</span> <span class="n">zip</span><span class="p">(</span><span class="n">dataflows</span><span class="p">,</span> <span class="n">model_funcs</span><span class="p">)</span><span class="o">:</span>
+
+            <span class="n">futures</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">executor</span><span class="p">.</span><span class="n">submit</span><span class="p">(</span><span class="n">predict_dataflow</span><span class="p">,</span> <span class="n">dataflow</span><span class="p">,</span> <span class="n">pred</span><span class="p">,</span> <span class="n">pbar</span><span class="p">))</span>
+
+        <span class="n">all_results</span> <span class="o">=</span> <span class="k">list</span><span class="p">(</span><span class="n">itertools</span><span class="p">.</span><span class="k">chain</span><span class="p">(</span><span class="o">*</span><span class="err">[</span><span class="n">fut</span><span class="p">.</span><span class="n">result</span><span class="p">()</span> <span class="k">for</span> <span class="n">fut</span> <span class="k">in</span> <span class="n">futures</span><span class="err">]</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">all_results</span>
+</code></pre></div>
+
+</details>
+<h3 id="predict_dataflow">predict_dataflow</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">predict_dataflow</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span>
+    <span class="n">model_func</span><span class="p">,</span>
+    <span class="n">tqdm_bar</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Args:
+    df: a DataFlow which produces (image, image_id)
+    model_func: a callable from the TF model.
+        It takes image and returns (boxes, probs, labels, [masks])
+    tqdm_bar: a tqdm object to be shared among multiple evaluation instances. If None,
+        will create a new one.</p>
+<p>Returns:
+    list of dict, in the format used by
+    <code>DatasetSplit.eval_inference_results</code></p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">predict_dataflow</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">model_func</span><span class="p">,</span><span class="w"> </span><span class="n">tqdm_bar</span><span class="o">=</span><span class="k">None</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    Args:</span>
+
+<span class="ss">        df: a DataFlow which produces (image, image_id)</span>
+
+<span class="ss">        model_func: a callable from the TF model.</span>
+
+<span class="ss">            It takes image and returns (boxes, probs, labels, [masks])</span>
+
+<span class="ss">        tqdm_bar: a tqdm object to be shared among multiple evaluation instances. If None,</span>
+
+<span class="ss">            will create a new one.</span>
+
+<span class="ss">    Returns:</span>
+
+<span class="ss">        list of dict, in the format used by</span>
+
+<span class="ss">        `DatasetSplit.eval_inference_results`</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">df</span><span class="p">.</span><span class="n">reset_state</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">all_results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">with</span><span class="w"> </span><span class="n">ExitStack</span><span class="p">()</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nl">stack</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="n">tqdm</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">quite</span><span class="w"> </span><span class="n">thread</span><span class="o">-</span><span class="nl">safe</span><span class="p">:</span><span class="w"> </span><span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">tqdm</span><span class="o">/</span><span class="n">tqdm</span><span class="o">/</span><span class="n">issues</span><span class="o">/</span><span class="mi">323</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">tqdm_bar</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">None</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">tqdm_bar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stack</span><span class="p">.</span><span class="n">enter_context</span><span class="p">(</span><span class="n">get_tqdm</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">df</span><span class="p">.</span><span class="k">size</span><span class="p">()))</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="n">img_id</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">df</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">predict_image</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="n">model_func</span><span class="p">,</span><span class="w"> </span><span class="n">as_named_tuple</span><span class="o">=</span><span class="k">True</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">results</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="err">#</span><span class="w"> </span><span class="nc">int</span><span class="p">()</span><span class="o">/</span><span class="nc">float</span><span class="p">()</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">make</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">json</span><span class="o">-</span><span class="n">serializable</span><span class="w"></span>
+
+<span class="w">                </span><span class="err">#</span><span class="w"> </span><span class="n">our</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">highest</span><span class="w"> </span><span class="n">score</span><span class="p">,</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">scores</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="n">entities</span><span class="w"></span>
+
+<span class="w">                </span><span class="err">#</span><span class="w"> </span><span class="n">here</span><span class="p">,</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">just</span><span class="w"> </span><span class="n">interested</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">highest</span><span class="w"> </span><span class="n">score</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="n">isinstance</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">score</span><span class="p">,</span><span class="w"> </span><span class="n">Iterable</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">score</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">score</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+
+<span class="w">                    </span><span class="s1">&#39;image_id&#39;</span><span class="err">:</span><span class="w"> </span><span class="n">img_id</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">                    </span><span class="s1">&#39;category_id&#39;</span><span class="err">:</span><span class="w"> </span><span class="nc">int</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">class_id</span><span class="p">),</span><span class="w"></span>
+
+<span class="w">                    </span><span class="s1">&#39;bbox&#39;</span><span class="err">:</span><span class="w"> </span><span class="o">[</span><span class="n">round(float(x), 4) for x in r.box</span><span class="o">]</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">                    </span><span class="s1">&#39;score&#39;</span><span class="err">:</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nc">float</span><span class="p">(</span><span class="n">score</span><span class="p">),</span><span class="w"> </span><span class="mi">4</span><span class="p">),</span><span class="w"></span>
+
+<span class="w">                </span><span class="err">}</span><span class="w"></span>
+
+<span class="w">                </span><span class="err">#</span><span class="w"> </span><span class="n">also</span><span class="w"> </span><span class="n">append</span><span class="w"> </span><span class="n">segmentation</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">results</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">mask</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="k">None</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">import</span><span class="w"> </span><span class="n">pycocotools</span><span class="p">.</span><span class="n">mask</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">cocomask</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">rle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cocomask</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">                        </span><span class="n">np</span><span class="p">.</span><span class="k">array</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">mask</span><span class="o">[</span><span class="n">:, :, None</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="k">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">))</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">rle</span><span class="o">[</span><span class="n">&#39;counts&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rle</span><span class="o">[</span><span class="n">&#39;counts&#39;</span><span class="o">]</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">res</span><span class="o">[</span><span class="n">&#39;segmentation&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rle</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">all_results</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">res</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">tqdm_bar</span><span class="p">.</span><span class="k">update</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">all_results</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h3 id="predict_image">predict_image</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">predict_image</span><span class="p">(</span>
+    <span class="n">img</span><span class="p">,</span>
+    <span class="n">model_func</span><span class="p">,</span>
+    <span class="n">as_named_tuple</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Run detection on one image, using the TF callable.
+This function should handle the preprocessing internally.</p>
+<p>Args:
+    img: an image
+    model_func: a callable from the TF model.
+        It takes image and returns (boxes, probs, labels, [masks])</p>
+<p>Returns:
+    [DetectionResult]</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">predict_image</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="n">model_func</span><span class="p">,</span><span class="w"> </span><span class="n">as_named_tuple</span><span class="o">=</span><span class="k">False</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    Run detection on one image, using the TF callable.</span>
+
+<span class="ss">    This function should handle the preprocessing internally.</span>
+
+<span class="ss">    Args:</span>
+
+<span class="ss">        img: an image</span>
+
+<span class="ss">        model_func: a callable from the TF model.</span>
+
+<span class="ss">            It takes image and returns (boxes, probs, labels, [masks])</span>
+
+<span class="ss">    Returns:</span>
+
+<span class="ss">        [DetectionResult]</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">orig_shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">img</span><span class="p">.</span><span class="n">shape</span><span class="o">[</span><span class="n">:2</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">resizer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CustomResize</span><span class="p">(</span><span class="n">cfg</span><span class="p">.</span><span class="n">PREPROC</span><span class="p">.</span><span class="n">TEST_SHORT_EDGE_SIZE</span><span class="p">,</span><span class="w"> </span><span class="n">cfg</span><span class="p">.</span><span class="n">PREPROC</span><span class="p">.</span><span class="n">MAX_SIZE</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">resized_img</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resizer</span><span class="p">.</span><span class="n">augment</span><span class="p">(</span><span class="n">img</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">resized_img</span><span class="p">.</span><span class="n">shape</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">img</span><span class="p">.</span><span class="n">shape</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">resized_img</span><span class="p">.</span><span class="n">shape</span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">img</span><span class="p">.</span><span class="n">shape</span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">boxes</span><span class="p">,</span><span class="w"> </span><span class="n">probs</span><span class="p">,</span><span class="w"> </span><span class="n">labels</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">masks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model_func</span><span class="p">(</span><span class="n">resized_img</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="ow">Some</span><span class="w"> </span><span class="n">slow</span><span class="w"> </span><span class="n">numpy</span><span class="w"> </span><span class="nl">postprocessing</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">boxes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">boxes</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">scale</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">boxes</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">clipped</span><span class="w"> </span><span class="n">inside</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">graph</span><span class="p">,</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="k">after</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">floating</span><span class="w"> </span><span class="n">point</span><span class="w"> </span><span class="n">scaling</span><span class="p">,</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">may</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="k">true</span><span class="w"> </span><span class="ow">any</span><span class="w"> </span><span class="n">more</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">boxes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clip_boxes</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span><span class="w"> </span><span class="n">orig_shape</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nl">masks</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">full_masks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">_paste_mask(box, mask, orig_shape) for box, mask in zip(boxes, masks[0</span><span class="o">]</span><span class="p">)</span><span class="err">]</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">masks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">full_masks</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="k">none</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">masks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">None</span><span class="o">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">boxes</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nl">as_named_tuple</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">probs</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="err">:</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">scores</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="n">entities</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">returned</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">each</span><span class="w"> </span><span class="n">prediction</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">probs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="nf">max</span><span class="p">(</span><span class="n">probs</span><span class="p">,</span><span class="w"> </span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">keep</span><span class="w"> </span><span class="n">here</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">biggest</span><span class="w"> </span><span class="n">score</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">[</span><span class="n">DetectionResult(*args) for args in zip(boxes, probs, labels.tolist(), masks)</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span><span class="w"> </span><span class="n">probs</span><span class="p">,</span><span class="w"> </span><span class="n">labels</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h2 id="classes">Classes</h2>
+<h3 id="detectionresult">DetectionResult</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">DetectionResult</span><span class="p">(</span>
+    <span class="o">/</span><span class="p">,</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>DetectionResult(box, score, class_id, mask)</p>
+<h4 id="ancestors-in-mro">Ancestors (in MRO)</h4>
+<ul>
+<li>builtins.tuple</li>
+</ul>
+<h4 id="instance-variables">Instance variables</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">box</span>
+</code></pre></div>
+
+<p>Alias for field number 0</p>
+<div class="codehilite"><pre><span></span><code><span class="n">class_id</span>
+</code></pre></div>
+
+<p>Alias for field number 2</p>
+<div class="codehilite"><pre><span></span><code><span class="n">mask</span>
+</code></pre></div>
+
+<p>Alias for field number 3</p>
+<div class="codehilite"><pre><span></span><code><span class="n">score</span>
+</code></pre></div>
+
+<p>Alias for field number 1</p>
+<h4 id="methods">Methods</h4>
+<h5 id="count">count</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">count</span><span class="p">(</span>
+    <span class="o">...</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>T.count(value) -&gt; integer -- return number of occurrences of value</p>
+<h5 id="index">index</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">index</span><span class="p">(</span>
+    <span class="o">...</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>T.index(value, [start, [stop]]) -&gt; integer -- return first index of value.
+Raises ValueError if the value is not present.</p>
+<h3 id="evalcallback">EvalCallback</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">EvalCallback</span><span class="p">(</span>
+    <span class="n">eval_dataset</span><span class="p">,</span>
+    <span class="n">in_names</span><span class="p">,</span>
+    <span class="n">out_names</span><span class="p">,</span>
+    <span class="n">output_dir</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>A callback that runs evaluation once a while.
+It supports multi-gpu evaluation.</p>
+<h4 id="ancestors-in-mro_1">Ancestors (in MRO)</h4>
+<ul>
+<li>tensorpack.callbacks.base.Callback</li>
+</ul>
+<h4 id="class-variables">Class variables</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">name_scope</span>
+</code></pre></div>
+
+<h4 id="instance-variables_1">Instance variables</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">chief_only</span>
+</code></pre></div>
+
+<p>Only run this callback on chief training process.</p>
+<p>Returns: bool</p>
+<div class="codehilite"><pre><span></span><code><span class="n">epoch_num</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">global_step</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">local_step</span>
+</code></pre></div>
+
+<h4 id="methods_1">Methods</h4>
+<h5 id="after_epoch">after_epoch</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">after_epoch</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">after_epoch</span><span class="p">(</span><span class="k">self</span><span class="p">):</span>
+
+        <span class="k">self</span><span class="p">.</span><span class="n">_after_epoch</span><span class="p">()</span>
+</code></pre></div>
+
+</details>
+<h5 id="after_run">after_run</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">after_run</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">run_context</span><span class="p">,</span>
+    <span class="n">run_values</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">after_run</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">run_context</span><span class="p">,</span> <span class="n">run_values</span><span class="p">):</span>
+
+        <span class="k">self</span><span class="p">.</span><span class="n">_after_run</span><span class="p">(</span><span class="n">run_context</span><span class="p">,</span> <span class="n">run_values</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h5 id="after_train">after_train</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">after_train</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">after_train</span><span class="p">(</span><span class="k">self</span><span class="p">):</span>
+
+        <span class="k">self</span><span class="p">.</span><span class="n">_after_train</span><span class="p">()</span>
+</code></pre></div>
+
+</details>
+<h5 id="before_epoch">before_epoch</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">before_epoch</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">before_epoch</span><span class="p">(</span><span class="k">self</span><span class="p">):</span>
+
+        <span class="k">self</span><span class="p">.</span><span class="n">_before_epoch</span><span class="p">()</span>
+</code></pre></div>
+
+</details>
+<h5 id="before_run">before_run</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">before_run</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">ctx</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">before_run</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
+
+        <span class="n">fetches</span> <span class="o">=</span> <span class="k">self</span><span class="p">.</span><span class="n">_before_run</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">fetches</span> <span class="k">is</span> <span class="k">None</span><span class="p">:</span>
+
+            <span class="k">return</span> <span class="k">None</span>
+
+        <span class="k">if</span> <span class="n">isinstance</span><span class="p">(</span><span class="n">fetches</span><span class="p">,</span> <span class="n">tf</span><span class="p">.</span><span class="n">train</span><span class="p">.</span><span class="n">SessionRunArgs</span><span class="p">):</span>
+
+            <span class="k">return</span> <span class="n">fetches</span>
+
+        <span class="o">#</span> <span class="n">also</span> <span class="n">support</span> <span class="n">list</span> <span class="k">of</span> <span class="k">names</span>
+
+        <span class="n">assert</span> <span class="n">isinstance</span><span class="p">(</span><span class="n">fetches</span><span class="p">,</span> <span class="n">list</span><span class="p">),</span> <span class="n">fetches</span>
+
+        <span class="n">ret</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">f</span> <span class="k">in</span> <span class="n">fetches</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="n">isinstance</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">tf</span><span class="p">.</span><span class="k">Operation</span><span class="p">)):</span>
+
+                <span class="n">ret</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+
+                <span class="o">#</span> <span class="n">warn</span> <span class="n">about</span> <span class="n">speed</span>
+
+                <span class="n">ret</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">get_op_or_tensor_by_name</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">tf</span><span class="p">.</span><span class="n">train</span><span class="p">.</span><span class="n">SessionRunArgs</span><span class="p">(</span><span class="n">fetches</span><span class="o">=</span><span class="n">ret</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h5 id="before_train">before_train</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">before_train</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">before_train</span><span class="p">(</span><span class="k">self</span><span class="p">):</span>
+
+        <span class="k">self</span><span class="p">.</span><span class="n">_before_train</span><span class="p">()</span>
+</code></pre></div>
+
+</details>
+<h5 id="get_tensors_maybe_in_tower">get_tensors_maybe_in_tower</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">get_tensors_maybe_in_tower</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">names</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Get tensors in the graph with the given names.
+Will automatically check for the <em>first training tower</em>
+if no existing tensor is found with the name.</p>
+<p>Returns:
+    [tf.Tensor]</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="k">def</span> <span class="nf">get_tensors_maybe_in_tower</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Get tensors in the graph with the given names.</span>
+
+<span class="sd">        Will automatically check for the *first training tower*</span>
+
+<span class="sd">        if no existing tensor is found with the name.</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">            [tf.Tensor]</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="kn">from</span> <span class="nn">..train.tower</span> <span class="kn">import</span> <span class="n">TowerTrainer</span>  <span class="c1"># noqa</span>
+
+        <span class="k">def</span> <span class="nf">get_tensor</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Tensor {} not found in the graph!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+            <span class="k">try</span><span class="p">:</span>
+
+                <span class="k">return</span> <span class="n">get_op_or_tensor_by_name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+
+                <span class="k">pass</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="p">,</span> <span class="n">TowerTrainer</span><span class="p">):</span>
+
+                <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+            <span class="n">towers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">towers</span>
+
+            <span class="k">try</span><span class="p">:</span>
+
+                <span class="k">return</span> <span class="n">towers</span><span class="o">.</span><span class="n">training</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="n">name</span><span class="p">]</span>
+
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+
+                <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="n">get_tensor</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">]</span>
+</code></pre></div>
+
+</details>
+<h5 id="set_chief_only">set_chief_only</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">set_chief_only</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">v</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Set chief_only property, and returns the callback itself.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">set_chief_only</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="k">True</span><span class="p">):</span>
+
+        <span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Set chief_only property, and returns the callback itself.</span>
+
+<span class="ss">        &quot;&quot;&quot;</span>
+
+        <span class="k">self</span><span class="p">.</span><span class="n">_chief_only</span> <span class="o">=</span> <span class="n">v</span>
+
+        <span class="k">return</span> <span class="k">self</span>
+</code></pre></div>
+
+</details>
+<h5 id="setup_graph">setup_graph</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">setup_graph</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">trainer</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">setup_graph</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">trainer</span><span class="p">):</span>
+
+        <span class="k">self</span><span class="p">.</span><span class="n">trainer</span> <span class="o">=</span> <span class="n">trainer</span>
+
+        <span class="k">self</span><span class="p">.</span><span class="n">graph</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">get_default_graph</span><span class="p">()</span>
+
+        <span class="n">scope_name</span> <span class="o">=</span> <span class="k">self</span><span class="p">.</span><span class="n">name_scope</span> <span class="k">or</span> <span class="k">type</span><span class="p">(</span><span class="k">self</span><span class="p">).</span><span class="n">__name__</span>
+
+        <span class="n">scope_name</span> <span class="o">=</span> <span class="n">scope_name</span><span class="p">.</span><span class="k">replace</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="n">tf</span><span class="p">.</span><span class="n">name_scope</span><span class="p">(</span><span class="n">scope_name</span><span class="p">):</span>
+
+            <span class="k">self</span><span class="p">.</span><span class="n">_setup_graph</span><span class="p">()</span>
+</code></pre></div>
+
+</details>
+<h5 id="trigger">trigger</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">trigger</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="k">trigger</span><span class="p">(</span><span class="k">self</span><span class="p">):</span>
+
+        <span class="k">self</span><span class="p">.</span><span class="n">_trigger</span><span class="p">()</span>
+</code></pre></div>
+
+</details>
+<h5 id="trigger_epoch">trigger_epoch</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">trigger_epoch</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">trigger_epoch</span><span class="p">(</span><span class="k">self</span><span class="p">):</span>
+
+        <span class="k">self</span><span class="p">.</span><span class="n">_trigger_epoch</span><span class="p">()</span>
+</code></pre></div>
+
+</details>
+<h5 id="trigger_step">trigger_step</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">trigger_step</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="n">def</span> <span class="n">trigger_step</span><span class="p">(</span><span class="k">self</span><span class="p">):</span>
+
+        <span class="k">self</span><span class="p">.</span><span class="n">_trigger_step</span><span class="p">()</span>
+</code></pre></div>
+
+</details>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../data/" title="Data" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Data
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../" title="Index" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Index
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Powered by
+        <a href="http://timothycrosley.github.io/portray">portray.</a>
+        You too can
+        <a href="http://timothycrosley.github.io/portray">
+          portray</a>
+        your Python project well using automatic documentation.
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../../assets/javascripts/vendor.2d1db4bd.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.6627ddf3.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

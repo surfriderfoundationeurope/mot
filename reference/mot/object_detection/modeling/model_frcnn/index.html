@@ -1,0 +1,2654 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.14">
+    
+    
+      
+        <title>Model Frcnn - mot</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.d3202873.min.css">
+      
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ff0a5ce4.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#4cae4f">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="green" data-md-color-accent="lightgreen">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#module-motobject_detectionmodelingmodel_frcnn" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../../../../.." title="mot" class="md-header-nav__button md-logo" aria-label="mot">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            mot
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Model Frcnn
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/surfriderfoundationeurope/mot/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mot
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="mot" class="md-nav__button md-logo" aria-label="mot">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    mot
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/surfriderfoundationeurope/mot/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mot
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../../../CONTRIBUTING/" title="Contributing" class="md-nav__link">
+      Contributing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1" checked>
+    
+    <label class="md-nav__link" for="nav-3-1">
+      Mot
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Mot" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        <span class="md-nav__icon md-icon"></span>
+        Mot
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-2" type="checkbox" id="nav-3-1-2" checked>
+    
+    <label class="md-nav__link" for="nav-3-1-2">
+      Object Detection
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Object Detection" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-1-2">
+        <span class="md-nav__icon md-icon"></span>
+        Object Detection
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../common/" title="Common" class="md-nav__link">
+      Common
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../config/" title="Config" class="md-nav__link">
+      Config
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../data/" title="Data" class="md-nav__link">
+      Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../eval/" title="Eval" class="md-nav__link">
+      Eval
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../predict/" title="Predict" class="md-nav__link">
+      Predict
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../preprocessing/" title="Preprocessing" class="md-nav__link">
+      Preprocessing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../query_server/" title="Query Server" class="md-nav__link">
+      Query Server
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../train/" title="Train" class="md-nav__link">
+      Train
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../viz/" title="Viz" class="md-nav__link">
+      Viz
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-2-11" type="checkbox" id="nav-3-1-2-11">
+    
+    <label class="md-nav__link" for="nav-3-1-2-11">
+      Dataset
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Dataset" data-md-level="4">
+      <label class="md-nav__title" for="nav-3-1-2-11">
+        <span class="md-nav__icon md-icon"></span>
+        Dataset
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dataset/dataset/" title="Dataset" class="md-nav__link">
+      Dataset
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dataset/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../dataset/mot/" title="Mot" class="md-nav__link">
+      Mot
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-2-12" type="checkbox" id="nav-3-1-2-12" checked>
+    
+    <label class="md-nav__link" for="nav-3-1-2-12">
+      Modeling
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Modeling" data-md-level="4">
+      <label class="md-nav__title" for="nav-3-1-2-12">
+        <span class="md-nav__icon md-icon"></span>
+        Modeling
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../backbone/" title="Backbone" class="md-nav__link">
+      Backbone
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../generalized_rcnn/" title="Generalized Rcnn" class="md-nav__link">
+      Generalized Rcnn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model_box/" title="Model Box" class="md-nav__link">
+      Model Box
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model_cascade/" title="Model Cascade" class="md-nav__link">
+      Model Cascade
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model_fpn/" title="Model Fpn" class="md-nav__link">
+      Model Fpn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Model Frcnn
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="Model Frcnn" class="md-nav__link md-nav__link--active">
+      Model Frcnn
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fastrcnn_2fc_head" class="md-nav__link">
+    fastrcnn_2fc_head
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fastrcnn_4conv1fc_gn_head" class="md-nav__link">
+    fastrcnn_4conv1fc_gn_head
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fastrcnn_4conv1fc_head" class="md-nav__link">
+    fastrcnn_4conv1fc_head
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fastrcnn_xconv1fc_head" class="md-nav__link">
+    fastrcnn_Xconv1fc_head
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fastrcnn_losses" class="md-nav__link">
+    fastrcnn_losses
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fastrcnn_outputs" class="md-nav__link">
+    fastrcnn_outputs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fastrcnn_predictions" class="md-nav__link">
+    fastrcnn_predictions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proposal_metrics" class="md-nav__link">
+    proposal_metrics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample_fast_rcnn_targets" class="md-nav__link">
+    sample_fast_rcnn_targets
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model_mrcnn/" title="Model Mrcnn" class="md-nav__link">
+      Model Mrcnn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../model_rpn/" title="Model Rpn" class="md-nav__link">
+      Model Rpn
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-2-13" type="checkbox" id="nav-3-1-2-13">
+    
+    <label class="md-nav__link" for="nav-3-1-2-13">
+      Utils
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Utils" data-md-level="4">
+      <label class="md-nav__title" for="nav-3-1-2-13">
+        <span class="md-nav__icon md-icon"></span>
+        Utils
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../utils/box_ops/" title="Box Ops" class="md-nav__link">
+      Box Ops
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../utils/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../utils/np_box_ops/" title="Np Box Ops" class="md-nav__link">
+      Np Box Ops
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-3" type="checkbox" id="nav-3-1-3">
+    
+    <label class="md-nav__link" for="nav-3-1-3">
+      Serving
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Serving" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-1-3">
+        <span class="md-nav__icon md-icon"></span>
+        Serving
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../serving/app/" title="App" class="md-nav__link">
+      App
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../serving/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../serving/inference/" title="Inference" class="md-nav__link">
+      Inference
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1-4" type="checkbox" id="nav-3-1-4">
+    
+    <label class="md-nav__link" for="nav-3-1-4">
+      Tracker
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tracker" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-1-4">
+        <span class="md-nav__icon md-icon"></span>
+        Tracker
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tracker/camera_flow/" title="Camera Flow" class="md-nav__link">
+      Camera Flow
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tracker/" title="Index" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tracker/object_tracking/" title="Object Tracking" class="md-nav__link">
+      Object Tracking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tracker/tracker_metrics/" title="Tracker Metrics" class="md-nav__link">
+      Tracker Metrics
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tracker/tracker_utils/" title="Tracker Utils" class="md-nav__link">
+      Tracker Utils
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tracker/video_utils/" title="Video Utils" class="md-nav__link">
+      Video Utils
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fastrcnn_2fc_head" class="md-nav__link">
+    fastrcnn_2fc_head
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fastrcnn_4conv1fc_gn_head" class="md-nav__link">
+    fastrcnn_4conv1fc_gn_head
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fastrcnn_4conv1fc_head" class="md-nav__link">
+    fastrcnn_4conv1fc_head
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fastrcnn_xconv1fc_head" class="md-nav__link">
+    fastrcnn_Xconv1fc_head
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fastrcnn_losses" class="md-nav__link">
+    fastrcnn_losses
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fastrcnn_outputs" class="md-nav__link">
+    fastrcnn_outputs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fastrcnn_predictions" class="md-nav__link">
+    fastrcnn_predictions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proposal_metrics" class="md-nav__link">
+    proposal_metrics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample_fast_rcnn_targets" class="md-nav__link">
+    sample_fast_rcnn_targets
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/surfriderfoundationeurope/mot/edit/master/reference/mot/object_detection/modeling/model_frcnn.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="module-motobject_detectionmodelingmodel_frcnn">Module mot.object_detection.modeling.model_frcnn</h1>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="c1"># File: model_frcnn.py</span>
+
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+
+<span class="kn">from</span> <span class="nn">tensorpack.models</span> <span class="kn">import</span> <span class="n">Conv2D</span><span class="p">,</span> <span class="n">FullyConnected</span><span class="p">,</span> <span class="n">layer_register</span>
+
+<span class="kn">from</span> <span class="nn">tensorpack.tfutils.argscope</span> <span class="kn">import</span> <span class="n">argscope</span>
+
+<span class="kn">from</span> <span class="nn">tensorpack.tfutils.common</span> <span class="kn">import</span> <span class="n">get_tf_version_tuple</span>
+
+<span class="kn">from</span> <span class="nn">tensorpack.tfutils.scope_utils</span> <span class="kn">import</span> <span class="n">under_name_scope</span>
+
+<span class="kn">from</span> <span class="nn">tensorpack.tfutils.summary</span> <span class="kn">import</span> <span class="n">add_moving_summary</span>
+
+<span class="kn">from</span> <span class="nn">tensorpack.utils.argtools</span> <span class="kn">import</span> <span class="n">memoized_method</span>
+
+<span class="kn">from</span> <span class="nn">mot.object_detection.config</span> <span class="kn">import</span> <span class="n">config</span> <span class="k">as</span> <span class="n">cfg</span>
+
+<span class="kn">from</span> <span class="nn">mot.object_detection.utils.box_ops</span> <span class="kn">import</span> <span class="n">pairwise_iou</span>
+
+<span class="kn">from</span> <span class="nn">mot.object_detection.modeling.model_box</span> <span class="kn">import</span> <span class="n">decode_bbox_target</span><span class="p">,</span> <span class="n">encode_bbox_target</span>
+
+<span class="kn">from</span> <span class="nn">mot.object_detection.modeling.backbone</span> <span class="kn">import</span> <span class="n">GroupNorm</span>
+
+<span class="nd">@under_name_scope</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">proposal_metrics</span><span class="p">(</span><span class="n">iou</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Add summaries for RPN proposals.</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">        iou: nxm, #proposal x #gt</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># find best roi for each gt, for summary only</span>
+
+    <span class="n">best_iou</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_max</span><span class="p">(</span><span class="n">iou</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">mean_best_iou</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">best_iou</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;best_iou_per_gt&#39;</span><span class="p">)</span>
+
+    <span class="n">summaries</span> <span class="o">=</span> <span class="p">[</span><span class="n">mean_best_iou</span><span class="p">]</span>
+
+    <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;/cpu:0&#39;</span><span class="p">):</span>
+
+        <span class="k">for</span> <span class="n">th</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]:</span>
+
+            <span class="n">recall</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">truediv</span><span class="p">(</span>
+
+                <span class="n">tf</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">best_iou</span> <span class="o">&gt;=</span> <span class="n">th</span><span class="p">),</span>
+
+                <span class="n">tf</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">best_iou</span><span class="p">,</span> <span class="n">out_type</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">),</span>
+
+                <span class="n">name</span><span class="o">=</span><span class="s1">&#39;recall_iou{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">th</span><span class="p">))</span>
+
+            <span class="n">summaries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">recall</span><span class="p">)</span>
+
+    <span class="n">add_moving_summary</span><span class="p">(</span><span class="o">*</span><span class="n">summaries</span><span class="p">)</span>
+
+<span class="nd">@under_name_scope</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">sample_fast_rcnn_targets</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">gt_boxes</span><span class="p">,</span> <span class="n">gt_labels</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Sample some boxes from all proposals for training.</span>
+
+<span class="sd">    #fg is guaranteed to be &gt; 0, because ground truth boxes will be added as proposals.</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">        boxes: nx4 region proposals, floatbox</span>
+
+<span class="sd">        gt_boxes: mx4, floatbox</span>
+
+<span class="sd">        gt_labels: m, int32</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">        A BoxProposals instance, with:</span>
+
+<span class="sd">            sampled_boxes: tx4 floatbox, the rois</span>
+
+<span class="sd">            sampled_labels: t int64 labels, in [0, #class). Positive means foreground.</span>
+
+<span class="sd">            fg_inds_wrt_gt: #fg indices, each in range [0, m-1].</span>
+
+<span class="sd">                It contains the matching GT of each foreground roi.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">iou</span> <span class="o">=</span> <span class="n">pairwise_iou</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">gt_boxes</span><span class="p">)</span>     <span class="c1"># nxm</span>
+
+    <span class="n">proposal_metrics</span><span class="p">(</span><span class="n">iou</span><span class="p">)</span>
+
+    <span class="c1"># add ground truth as proposals as well</span>
+
+    <span class="n">boxes</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">boxes</span><span class="p">,</span> <span class="n">gt_boxes</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>    <span class="c1"># (n+m) x 4</span>
+
+    <span class="n">iou</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">iou</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">gt_boxes</span><span class="p">)[</span><span class="mi">0</span><span class="p">])],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>   <span class="c1"># (n+m) x m</span>
+
+    <span class="c1"># #proposal=n+m from now on</span>
+
+    <span class="k">def</span> <span class="nf">sample_fg_bg</span><span class="p">(</span><span class="n">iou</span><span class="p">):</span>
+
+        <span class="n">fg_mask</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">iou</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span>
+
+                          <span class="k">lambda</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_max</span><span class="p">(</span><span class="n">iou</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">FRCNN</span><span class="o">.</span><span class="n">FG_THRESH</span><span class="p">,</span>
+
+                          <span class="k">lambda</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">tf</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">iou</span><span class="p">)[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">bool</span><span class="p">))</span>
+
+        <span class="n">fg_inds</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">fg_mask</span><span class="p">),</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="n">num_fg</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span>
+
+            <span class="n">cfg</span><span class="o">.</span><span class="n">FRCNN</span><span class="o">.</span><span class="n">BATCH_PER_IM</span> <span class="o">*</span> <span class="n">cfg</span><span class="o">.</span><span class="n">FRCNN</span><span class="o">.</span><span class="n">FG_RATIO</span><span class="p">),</span>
+
+            <span class="n">tf</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">fg_inds</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;num_fg&#39;</span><span class="p">)</span>
+
+        <span class="n">fg_inds</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random_shuffle</span><span class="p">(</span><span class="n">fg_inds</span><span class="p">)[:</span><span class="n">num_fg</span><span class="p">]</span>
+
+        <span class="n">bg_inds</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">logical_not</span><span class="p">(</span><span class="n">fg_mask</span><span class="p">)),</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="n">num_bg</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span>
+
+            <span class="n">cfg</span><span class="o">.</span><span class="n">FRCNN</span><span class="o">.</span><span class="n">BATCH_PER_IM</span> <span class="o">-</span> <span class="n">num_fg</span><span class="p">,</span>
+
+            <span class="n">tf</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">bg_inds</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;num_bg&#39;</span><span class="p">)</span>
+
+        <span class="n">bg_inds</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random_shuffle</span><span class="p">(</span><span class="n">bg_inds</span><span class="p">)[:</span><span class="n">num_bg</span><span class="p">]</span>
+
+        <span class="n">add_moving_summary</span><span class="p">(</span><span class="n">num_fg</span><span class="p">,</span> <span class="n">num_bg</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">fg_inds</span><span class="p">,</span> <span class="n">bg_inds</span>
+
+    <span class="n">fg_inds</span><span class="p">,</span> <span class="n">bg_inds</span> <span class="o">=</span> <span class="n">sample_fg_bg</span><span class="p">(</span><span class="n">iou</span><span class="p">)</span>
+
+    <span class="c1"># fg,bg indices w.r.t proposals</span>
+
+    <span class="n">best_iou_ind</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">iou</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span>
+
+                           <span class="k">lambda</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">iou</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>   <span class="c1"># #proposal, each in 0~m-1</span>
+
+                           <span class="k">lambda</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">tf</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">iou</span><span class="p">)[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">))</span>
+
+    <span class="n">fg_inds_wrt_gt</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">best_iou_ind</span><span class="p">,</span> <span class="n">fg_inds</span><span class="p">)</span>   <span class="c1"># num_fg</span>
+
+    <span class="n">all_indices</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">fg_inds</span><span class="p">,</span> <span class="n">bg_inds</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>   <span class="c1"># indices w.r.t all n+m proposal boxes</span>
+
+    <span class="n">ret_boxes</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">all_indices</span><span class="p">)</span>
+
+    <span class="n">ret_labels</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+
+        <span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">gt_labels</span><span class="p">,</span> <span class="n">fg_inds_wrt_gt</span><span class="p">),</span>
+
+         <span class="n">tf</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">bg_inds</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># stop the gradient -- they are meant to be training targets</span>
+
+    <span class="k">return</span> <span class="n">BoxProposals</span><span class="p">(</span>
+
+        <span class="n">tf</span><span class="o">.</span><span class="n">stop_gradient</span><span class="p">(</span><span class="n">ret_boxes</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;sampled_proposal_boxes&#39;</span><span class="p">),</span>
+
+        <span class="n">tf</span><span class="o">.</span><span class="n">stop_gradient</span><span class="p">(</span><span class="n">ret_labels</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;sampled_labels&#39;</span><span class="p">),</span>
+
+        <span class="n">tf</span><span class="o">.</span><span class="n">stop_gradient</span><span class="p">(</span><span class="n">fg_inds_wrt_gt</span><span class="p">))</span>
+
+<span class="nd">@layer_register</span><span class="p">(</span><span class="n">log_shape</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">fastrcnn_outputs</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">num_categories</span><span class="p">,</span> <span class="n">class_agnostic_regression</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">        feature (any shape):</span>
+
+<span class="sd">        num_categories (int):</span>
+
+<span class="sd">        class_agnostic_regression (bool): if True, regression to N x 1 x 4</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">        cls_logits: N x num_class classification logits</span>
+
+<span class="sd">        reg_logits: N x num_classx4 or Nx1x4 if class agnostic</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">num_classes</span> <span class="o">=</span> <span class="n">num_categories</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="n">classification</span> <span class="o">=</span> <span class="n">FullyConnected</span><span class="p">(</span>
+
+        <span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="n">feature</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">,</span>
+
+        <span class="n">kernel_initializer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">random_normal_initializer</span><span class="p">(</span><span class="n">stddev</span><span class="o">=</span><span class="mf">0.01</span><span class="p">))</span>
+
+    <span class="n">num_classes_for_box</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">class_agnostic_regression</span> <span class="k">else</span> <span class="n">num_classes</span>
+
+    <span class="n">box_regression</span> <span class="o">=</span> <span class="n">FullyConnected</span><span class="p">(</span>
+
+        <span class="s1">&#39;box&#39;</span><span class="p">,</span> <span class="n">feature</span><span class="p">,</span> <span class="n">num_classes_for_box</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span>
+
+        <span class="n">kernel_initializer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">random_normal_initializer</span><span class="p">(</span><span class="n">stddev</span><span class="o">=</span><span class="mf">0.001</span><span class="p">))</span>
+
+    <span class="n">box_regression</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">box_regression</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_classes_for_box</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;output_box&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">classification</span><span class="p">,</span> <span class="n">box_regression</span>
+
+<span class="nd">@under_name_scope</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">fastrcnn_losses</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">label_logits</span><span class="p">,</span> <span class="n">fg_boxes</span><span class="p">,</span> <span class="n">fg_box_logits</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">        labels: n,</span>
+
+<span class="sd">        label_logits: nxC</span>
+
+<span class="sd">        fg_boxes: nfgx4, encoded</span>
+
+<span class="sd">        fg_box_logits: nfgxCx4 or nfgx1x4 if class agnostic</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">        label_loss, box_loss</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">label_loss</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sparse_softmax_cross_entropy_with_logits</span><span class="p">(</span>
+
+        <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">logits</span><span class="o">=</span><span class="n">label_logits</span><span class="p">)</span>
+
+    <span class="n">label_loss</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">label_loss</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;label_loss&#39;</span><span class="p">)</span>
+
+    <span class="n">fg_inds</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">labels</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)[:,</span> <span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">fg_labels</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">fg_inds</span><span class="p">)</span>
+
+    <span class="n">num_fg</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">fg_inds</span><span class="p">,</span> <span class="n">out_type</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+
+    <span class="n">empty_fg</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">num_fg</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">fg_box_logits</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="n">get_tf_version_tuple</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">14</span><span class="p">):</span>
+
+            <span class="n">fg_labels</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">fg_labels</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># nfg x 1</span>
+
+            <span class="n">fg_box_logits</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">fg_box_logits</span><span class="p">,</span> <span class="n">fg_labels</span><span class="p">,</span> <span class="n">batch_dims</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="n">indices</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">tf</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="n">num_fg</span><span class="p">),</span> <span class="n">fg_labels</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># nfgx2</span>
+
+            <span class="n">fg_box_logits</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather_nd</span><span class="p">(</span><span class="n">fg_box_logits</span><span class="p">,</span> <span class="n">indices</span><span class="p">)</span>
+
+    <span class="n">fg_box_logits</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">fg_box_logits</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>  <span class="c1"># nfg x 4</span>
+
+    <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">name_scope</span><span class="p">(</span><span class="s1">&#39;label_metrics&#39;</span><span class="p">),</span> <span class="n">tf</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;/cpu:0&#39;</span><span class="p">):</span>
+
+        <span class="n">prediction</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">label_logits</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;label_prediction&#39;</span><span class="p">)</span>
+
+        <span class="n">correct</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">prediction</span><span class="p">,</span> <span class="n">labels</span><span class="p">),</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>  <span class="c1"># boolean/integer gather is unavailable on GPU</span>
+
+        <span class="n">accuracy</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">correct</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;accuracy&#39;</span><span class="p">)</span>
+
+        <span class="n">fg_label_pred</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">label_logits</span><span class="p">,</span> <span class="n">fg_inds</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">num_zero</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">fg_label_pred</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;num_zero&#39;</span><span class="p">)</span>
+
+        <span class="n">false_negative</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+
+            <span class="n">empty_fg</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">truediv</span><span class="p">(</span><span class="n">num_zero</span><span class="p">,</span> <span class="n">num_fg</span><span class="p">),</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;false_negative&#39;</span><span class="p">)</span>
+
+        <span class="n">fg_accuracy</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+
+            <span class="n">empty_fg</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">correct</span><span class="p">,</span> <span class="n">fg_inds</span><span class="p">)),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;fg_accuracy&#39;</span><span class="p">)</span>
+
+    <span class="n">box_loss</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">fg_boxes</span> <span class="o">-</span> <span class="n">fg_box_logits</span><span class="p">))</span>
+
+    <span class="n">box_loss</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">truediv</span><span class="p">(</span>
+
+        <span class="n">box_loss</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">labels</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;box_loss&#39;</span><span class="p">)</span>
+
+    <span class="n">add_moving_summary</span><span class="p">(</span><span class="n">label_loss</span><span class="p">,</span> <span class="n">box_loss</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">,</span>
+
+                       <span class="n">fg_accuracy</span><span class="p">,</span> <span class="n">false_negative</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">num_fg</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;num_fg_label&#39;</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">label_loss</span><span class="p">,</span> <span class="n">box_loss</span><span class="p">]</span>
+
+<span class="nd">@under_name_scope</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">fastrcnn_predictions</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">scores</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Generate final results from predictions of all proposals.</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">        boxes: n#classx4 floatbox in float32</span>
+
+<span class="sd">        scores: nx#class</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">        boxes: Kx4</span>
+
+<span class="sd">        scores: K</span>
+
+<span class="sd">        labels: K</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">assert</span> <span class="n">boxes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">scores</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">boxes</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">])[</span><span class="mi">1</span><span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span>  <span class="c1"># #catxnx4</span>
+
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">scores</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>  <span class="c1"># #catxn</span>
+
+    <span class="n">max_coord</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_max</span><span class="p">(</span><span class="n">boxes</span><span class="p">)</span>
+
+    <span class="n">filtered_ids</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">scores</span> <span class="o">&gt;</span> <span class="n">cfg</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">RESULT_SCORE_THRESH</span><span class="p">)</span>  <span class="c1"># Fx2</span>
+
+    <span class="n">filtered_boxes</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather_nd</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">filtered_ids</span><span class="p">)</span>  <span class="c1"># Fx4</span>
+
+    <span class="n">filtered_scores</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather_nd</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">filtered_ids</span><span class="p">)</span>  <span class="c1"># F,</span>
+
+    <span class="n">cls_per_box</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="n">filtered_ids</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+    <span class="n">offsets</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">cls_per_box</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_coord</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># F,1</span>
+
+    <span class="n">nms_boxes</span> <span class="o">=</span> <span class="n">filtered_boxes</span> <span class="o">+</span> <span class="n">offsets</span>
+
+    <span class="n">selection</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">non_max_suppression</span><span class="p">(</span>
+
+        <span class="n">nms_boxes</span><span class="p">,</span>
+
+        <span class="n">filtered_scores</span><span class="p">,</span>
+
+        <span class="n">cfg</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">RESULTS_PER_IM</span><span class="p">,</span>
+
+        <span class="n">cfg</span><span class="o">.</span><span class="n">TEST</span><span class="o">.</span><span class="n">FRCNN_NMS_THRESH</span><span class="p">)</span>
+
+    <span class="c1"># The next lines are really dirty: it&#39;s a trick to return the scores for all classes</span>
+
+    <span class="n">final_scores</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">filtered_ids</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">selection</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">final_scores</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">final_scores</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;scores&quot;</span><span class="p">)</span>
+
+    <span class="n">final_labels</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">cls_per_box</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">selection</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;labels&#39;</span><span class="p">)</span>
+
+    <span class="n">final_boxes</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">filtered_boxes</span><span class="p">,</span> <span class="n">selection</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;boxes&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">final_boxes</span><span class="p">,</span> <span class="n">final_scores</span><span class="p">,</span> <span class="n">final_labels</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">FastRCNN heads for FPN:</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="nd">@layer_register</span><span class="p">(</span><span class="n">log_shape</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">fastrcnn_2fc_head</span><span class="p">(</span><span class="n">feature</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">        feature (any shape):</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">        2D head feature</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">dim</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">FPN</span><span class="o">.</span><span class="n">FRCNN_FC_HEAD_DIM</span>
+
+    <span class="n">init</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">variance_scaling_initializer</span><span class="p">()</span>
+
+    <span class="n">hidden</span> <span class="o">=</span> <span class="n">FullyConnected</span><span class="p">(</span><span class="s1">&#39;fc6&#39;</span><span class="p">,</span> <span class="n">feature</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="n">init</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">)</span>
+
+    <span class="n">hidden</span> <span class="o">=</span> <span class="n">FullyConnected</span><span class="p">(</span><span class="s1">&#39;fc7&#39;</span><span class="p">,</span> <span class="n">hidden</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="n">init</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">hidden</span>
+
+<span class="nd">@layer_register</span><span class="p">(</span><span class="n">log_shape</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">fastrcnn_Xconv1fc_head</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">num_convs</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">        feature (NCHW):</span>
+
+<span class="sd">        num_classes(int): num_category + 1</span>
+
+<span class="sd">        num_convs (int): number of conv layers</span>
+
+<span class="sd">        norm (str or None): either None or &#39;GN&#39;</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">        2D head feature</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">assert</span> <span class="n">norm</span> <span class="ow">in</span> <span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="s1">&#39;GN&#39;</span><span class="p">],</span> <span class="n">norm</span>
+
+    <span class="n">l</span> <span class="o">=</span> <span class="n">feature</span>
+
+    <span class="k">with</span> <span class="n">argscope</span><span class="p">(</span><span class="n">Conv2D</span><span class="p">,</span> <span class="n">data_format</span><span class="o">=</span><span class="s1">&#39;channels_first&#39;</span><span class="p">,</span>
+
+                  <span class="n">kernel_initializer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">variance_scaling_initializer</span><span class="p">(</span>
+
+                      <span class="n">scale</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;fan_out&#39;</span><span class="p">,</span>
+
+                      <span class="n">distribution</span><span class="o">=</span><span class="s1">&#39;untruncated_normal&#39;</span> <span class="k">if</span> <span class="n">get_tf_version_tuple</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;normal&#39;</span><span class="p">)):</span>
+
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_convs</span><span class="p">):</span>
+
+            <span class="n">l</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="s1">&#39;conv{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">l</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">FPN</span><span class="o">.</span><span class="n">FRCNN_CONV_HEAD_DIM</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">norm</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+
+                <span class="n">l</span> <span class="o">=</span> <span class="n">GroupNorm</span><span class="p">(</span><span class="s1">&#39;gn{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">l</span><span class="p">)</span>
+
+        <span class="n">l</span> <span class="o">=</span> <span class="n">FullyConnected</span><span class="p">(</span><span class="s1">&#39;fc&#39;</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">FPN</span><span class="o">.</span><span class="n">FRCNN_FC_HEAD_DIM</span><span class="p">,</span>
+
+                           <span class="n">kernel_initializer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">variance_scaling_initializer</span><span class="p">(),</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">l</span>
+
+<span class="k">def</span> <span class="nf">fastrcnn_4conv1fc_head</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+    <span class="k">return</span> <span class="n">fastrcnn_Xconv1fc_head</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">num_convs</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">fastrcnn_4conv1fc_gn_head</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+    <span class="k">return</span> <span class="n">fastrcnn_Xconv1fc_head</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">num_convs</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;GN&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">BoxProposals</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    A structure to manage box proposals and their relations with ground truth.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">fg_inds_wrt_gt</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            boxes: Nx4</span>
+
+<span class="sd">            labels: N, each in [0, #class), the true label for each input box</span>
+
+<span class="sd">            fg_inds_wrt_gt: #fg, each in [0, M)</span>
+
+<span class="sd">        The last four arguments could be None when not training.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">locals</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+
+            <span class="k">if</span> <span class="n">k</span> <span class="o">!=</span> <span class="s1">&#39;self&#39;</span> <span class="ow">and</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+
+    <span class="nd">@memoized_method</span>
+
+    <span class="k">def</span> <span class="nf">fg_inds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot; Returns: #fg indices in [0, N-1] &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">),</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;fg_inds&#39;</span><span class="p">)</span>
+
+    <span class="nd">@memoized_method</span>
+
+    <span class="k">def</span> <span class="nf">fg_boxes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot; Returns: #fg x4&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">boxes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fg_inds</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;fg_boxes&#39;</span><span class="p">)</span>
+
+    <span class="nd">@memoized_method</span>
+
+    <span class="k">def</span> <span class="nf">fg_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot; Returns: #fg&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fg_inds</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;fg_labels&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">FastRCNNHead</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    A class to process &amp; decode inputs/outputs of a fastrcnn classification+regression head.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proposals</span><span class="p">,</span> <span class="n">box_logits</span><span class="p">,</span> <span class="n">label_logits</span><span class="p">,</span> <span class="n">gt_boxes</span><span class="p">,</span> <span class="n">bbox_regression_weights</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            proposals: BoxProposals</span>
+
+<span class="sd">            box_logits: Nx#classx4 or Nx1x4, the output of the head</span>
+
+<span class="sd">            label_logits: Nx#class, the output of the head</span>
+
+<span class="sd">            gt_boxes: Mx4</span>
+
+<span class="sd">            bbox_regression_weights: a 4 element tensor</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">locals</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+
+            <span class="k">if</span> <span class="n">k</span> <span class="o">!=</span> <span class="s1">&#39;self&#39;</span> <span class="ow">and</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bbox_class_agnostic</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">box_logits</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_num_classes</span> <span class="o">=</span> <span class="n">box_logits</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="nd">@memoized_method</span>
+
+    <span class="k">def</span> <span class="nf">fg_box_logits</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot; Returns: #fg x ? x 4 &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">box_logits</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">proposals</span><span class="o">.</span><span class="n">fg_inds</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;fg_box_logits&#39;</span><span class="p">)</span>
+
+    <span class="nd">@memoized_method</span>
+
+    <span class="k">def</span> <span class="nf">losses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="n">encoded_fg_gt_boxes</span> <span class="o">=</span> <span class="n">encode_bbox_target</span><span class="p">(</span>
+
+            <span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gt_boxes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">proposals</span><span class="o">.</span><span class="n">fg_inds_wrt_gt</span><span class="p">),</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">proposals</span><span class="o">.</span><span class="n">fg_boxes</span><span class="p">())</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">bbox_regression_weights</span>
+
+        <span class="k">return</span> <span class="n">fastrcnn_losses</span><span class="p">(</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">proposals</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_logits</span><span class="p">,</span>
+
+            <span class="n">encoded_fg_gt_boxes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fg_box_logits</span><span class="p">()</span>
+
+        <span class="p">)</span>
+
+    <span class="nd">@memoized_method</span>
+
+    <span class="k">def</span> <span class="nf">decoded_output_boxes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot; Returns: N x #class x 4 &quot;&quot;&quot;</span>
+
+        <span class="n">anchors</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">proposals</span><span class="o">.</span><span class="n">boxes</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+
+                          <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_num_classes</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>   <span class="c1"># N x #class x 4</span>
+
+        <span class="n">decoded_boxes</span> <span class="o">=</span> <span class="n">decode_bbox_target</span><span class="p">(</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">box_logits</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">bbox_regression_weights</span><span class="p">,</span>
+
+            <span class="n">anchors</span>
+
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">decoded_boxes</span>
+
+    <span class="nd">@memoized_method</span>
+
+    <span class="k">def</span> <span class="nf">decoded_output_boxes_for_true_label</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot; Returns: Nx4 decoded boxes &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_decoded_output_boxes_for_label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">proposals</span><span class="o">.</span><span class="n">labels</span><span class="p">)</span>
+
+    <span class="nd">@memoized_method</span>
+
+    <span class="k">def</span> <span class="nf">decoded_output_boxes_for_predicted_label</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot; Returns: Nx4 decoded boxes &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_decoded_output_boxes_for_label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">predicted_labels</span><span class="p">())</span>
+
+    <span class="nd">@memoized_method</span>
+
+    <span class="k">def</span> <span class="nf">decoded_output_boxes_for_label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+
+        <span class="k">assert</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bbox_class_agnostic</span>
+
+        <span class="n">indices</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span>
+
+            <span class="n">tf</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">out_type</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">)),</span>
+
+            <span class="n">labels</span>
+
+        <span class="p">])</span>
+
+        <span class="n">needed_logits</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">gather_nd</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">box_logits</span><span class="p">,</span> <span class="n">indices</span><span class="p">)</span>
+
+        <span class="n">decoded</span> <span class="o">=</span> <span class="n">decode_bbox_target</span><span class="p">(</span>
+
+            <span class="n">needed_logits</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">bbox_regression_weights</span><span class="p">,</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">proposals</span><span class="o">.</span><span class="n">boxes</span>
+
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">decoded</span>
+
+    <span class="nd">@memoized_method</span>
+
+    <span class="k">def</span> <span class="nf">decoded_output_boxes_class_agnostic</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot; Returns: Nx4 &quot;&quot;&quot;</span>
+
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bbox_class_agnostic</span>
+
+        <span class="n">box_logits</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">box_logits</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+
+        <span class="n">decoded</span> <span class="o">=</span> <span class="n">decode_bbox_target</span><span class="p">(</span>
+
+            <span class="n">box_logits</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">bbox_regression_weights</span><span class="p">,</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">proposals</span><span class="o">.</span><span class="n">boxes</span>
+
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">decoded</span>
+
+    <span class="nd">@memoized_method</span>
+
+    <span class="k">def</span> <span class="nf">output_scores</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot; Returns: N x #class scores, summed to one for each box.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_logits</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="nd">@memoized_method</span>
+
+    <span class="k">def</span> <span class="nf">predicted_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot; Returns: N ints &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_logits</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;predicted_labels&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h2 id="functions">Functions</h2>
+<h3 id="fastrcnn_2fc_head">fastrcnn_2fc_head</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">fastrcnn_2fc_head</span><span class="p">(</span>
+    <span class="n">feature</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Args:
+    feature (any shape):</p>
+<p>Returns:
+    2D head feature</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="err">@</span><span class="n">layer_register</span><span class="p">(</span><span class="n">log_shape</span><span class="o">=</span><span class="n">True</span><span class="p">)</span>
+
+<span class="n">def</span> <span class="n">fastrcnn_2fc_head</span><span class="p">(</span><span class="n">feature</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">        feature (any shape):</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">        2D head feature</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">dim</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">FPN</span><span class="o">.</span><span class="n">FRCNN_FC_HEAD_DIM</span>
+
+    <span class="n">init</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">variance_scaling_initializer</span><span class="p">()</span>
+
+    <span class="n">hidden</span> <span class="o">=</span> <span class="n">FullyConnected</span><span class="p">(</span><span class="s1">&#39;fc6&#39;</span><span class="p">,</span> <span class="n">feature</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="n">init</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">)</span>
+
+    <span class="n">hidden</span> <span class="o">=</span> <span class="n">FullyConnected</span><span class="p">(</span><span class="s1">&#39;fc7&#39;</span><span class="p">,</span> <span class="n">hidden</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="n">init</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">hidden</span>
+</code></pre></div>
+
+</details>
+<h3 id="fastrcnn_4conv1fc_gn_head">fastrcnn_4conv1fc_gn_head</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">fastrcnn_4conv1fc_gn_head</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span> <span class="n">fastrcnn_4conv1fc_gn_head</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+    <span class="k">return</span> <span class="n">fastrcnn_Xconv1fc_head</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">num_convs</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;GN&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h3 id="fastrcnn_4conv1fc_head">fastrcnn_4conv1fc_head</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">fastrcnn_4conv1fc_head</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span> <span class="n">fastrcnn_4conv1fc_head</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+    <span class="k">return</span> <span class="n">fastrcnn_Xconv1fc_head</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">num_convs</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h3 id="fastrcnn_xconv1fc_head">fastrcnn_Xconv1fc_head</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">fastrcnn_Xconv1fc_head</span><span class="p">(</span>
+    <span class="n">feature</span><span class="p">,</span>
+    <span class="n">num_convs</span><span class="p">,</span>
+    <span class="n">norm</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Args:
+    feature (NCHW):
+    num_classes(int): num_category + 1
+    num_convs (int): number of conv layers
+    norm (str or None): either None or 'GN'</p>
+<p>Returns:
+    2D head feature</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="err">@</span><span class="n">layer_register</span><span class="p">(</span><span class="n">log_shape</span><span class="o">=</span><span class="n">True</span><span class="p">)</span>
+
+<span class="n">def</span> <span class="n">fastrcnn_Xconv1fc_head</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">num_convs</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">None</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">        feature (NCHW):</span>
+
+<span class="sd">        num_classes(int): num_category + 1</span>
+
+<span class="sd">        num_convs (int): number of conv layers</span>
+
+<span class="sd">        norm (str or None): either None or &#39;GN&#39;</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">        2D head feature</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nb">assert</span> <span class="n">norm</span> <span class="ow">in</span> <span class="p">[</span><span class="n">None</span><span class="p">,</span> <span class="s1">&#39;GN&#39;</span><span class="p">],</span> <span class="n">norm</span>
+
+    <span class="n">l</span> <span class="o">=</span> <span class="n">feature</span>
+
+    <span class="n">with</span> <span class="n">argscope</span><span class="p">(</span><span class="n">Conv2D</span><span class="p">,</span> <span class="n">data_format</span><span class="o">=</span><span class="s1">&#39;channels_first&#39;</span><span class="p">,</span>
+
+                  <span class="n">kernel_initializer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">variance_scaling_initializer</span><span class="p">(</span>
+
+                      <span class="n">scale</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;fan_out&#39;</span><span class="p">,</span>
+
+                      <span class="n">distribution</span><span class="o">=</span><span class="s1">&#39;untruncated_normal&#39;</span> <span class="k">if</span> <span class="n">get_tf_version_tuple</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;normal&#39;</span><span class="p">)):</span>
+
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_convs</span><span class="p">):</span>
+
+            <span class="n">l</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="s1">&#39;conv{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">l</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">FPN</span><span class="o">.</span><span class="n">FRCNN_CONV_HEAD_DIM</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">norm</span> <span class="k">is</span> <span class="ow">not</span> <span class="n">None</span><span class="p">:</span>
+
+                <span class="n">l</span> <span class="o">=</span> <span class="n">GroupNorm</span><span class="p">(</span><span class="s1">&#39;gn{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">l</span><span class="p">)</span>
+
+        <span class="n">l</span> <span class="o">=</span> <span class="n">FullyConnected</span><span class="p">(</span><span class="s1">&#39;fc&#39;</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">FPN</span><span class="o">.</span><span class="n">FRCNN_FC_HEAD_DIM</span><span class="p">,</span>
+
+                           <span class="n">kernel_initializer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">variance_scaling_initializer</span><span class="p">(),</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">l</span>
+</code></pre></div>
+
+</details>
+<h3 id="fastrcnn_losses">fastrcnn_losses</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">fastrcnn_losses</span><span class="p">(</span>
+    <span class="n">labels</span><span class="p">,</span>
+    <span class="n">label_logits</span><span class="p">,</span>
+    <span class="n">fg_boxes</span><span class="p">,</span>
+    <span class="n">fg_box_logits</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Args:
+    labels: n,
+    label_logits: nxC
+    fg_boxes: nfgx4, encoded
+    fg_box_logits: nfgxCx4 or nfgx1x4 if class agnostic</p>
+<p>Returns:
+    label_loss, box_loss</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="nv">@under_name_scope</span><span class="p">()</span><span class="w"></span>
+
+<span class="n">def</span><span class="w"> </span><span class="n">fastrcnn_losses</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span><span class="w"> </span><span class="n">label_logits</span><span class="p">,</span><span class="w"> </span><span class="n">fg_boxes</span><span class="p">,</span><span class="w"> </span><span class="n">fg_box_logits</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    Args:</span>
+
+<span class="ss">        labels: n,</span>
+
+<span class="ss">        label_logits: nxC</span>
+
+<span class="ss">        fg_boxes: nfgx4, encoded</span>
+
+<span class="ss">        fg_box_logits: nfgxCx4 or nfgx1x4 if class agnostic</span>
+
+<span class="ss">    Returns:</span>
+
+<span class="ss">        label_loss, box_loss</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">label_loss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">sparse_softmax_cross_entropy_with_logits</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span><span class="w"> </span><span class="n">logits</span><span class="o">=</span><span class="n">label_logits</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">label_loss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">label_loss</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;label_loss&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">fg_inds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="k">where</span><span class="p">(</span><span class="n">labels</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="o">[</span><span class="n">:, 0</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">fg_labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">gather</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span><span class="w"> </span><span class="n">fg_inds</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">num_fg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="k">size</span><span class="p">(</span><span class="n">fg_inds</span><span class="p">,</span><span class="w"> </span><span class="n">out_type</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">int64</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">empty_fg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">equal</span><span class="p">(</span><span class="n">num_fg</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nc">int</span><span class="p">(</span><span class="n">fg_box_logits</span><span class="p">.</span><span class="n">shape</span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">get_tf_version_tuple</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">14</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">fg_labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">fg_labels</span><span class="p">,</span><span class="w"> </span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">nfg</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">fg_box_logits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">gather</span><span class="p">(</span><span class="n">fg_box_logits</span><span class="p">,</span><span class="w"> </span><span class="n">fg_labels</span><span class="p">,</span><span class="w"> </span><span class="n">batch_dims</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">indices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">stack</span><span class="p">(</span><span class="o">[</span><span class="n">tf.range(num_fg), fg_labels</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">nfgx2</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">fg_box_logits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">gather_nd</span><span class="p">(</span><span class="n">fg_box_logits</span><span class="p">,</span><span class="w"> </span><span class="n">indices</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">fg_box_logits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">fg_box_logits</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="n">-1, 4</span><span class="o">]</span><span class="p">)</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">nfg</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">4</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">with</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">name_scope</span><span class="p">(</span><span class="s1">&#39;label_metrics&#39;</span><span class="p">),</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;/cpu:0&#39;</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">prediction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">label_logits</span><span class="p">,</span><span class="w"> </span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;label_prediction&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">correct</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="nf">cast</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">equal</span><span class="p">(</span><span class="n">prediction</span><span class="p">,</span><span class="w"> </span><span class="n">labels</span><span class="p">),</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">)</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="k">boolean</span><span class="o">/</span><span class="k">integer</span><span class="w"> </span><span class="n">gather</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">unavailable</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">GPU</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">accuracy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">correct</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;accuracy&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">fg_label_pred</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">gather</span><span class="p">(</span><span class="n">label_logits</span><span class="p">,</span><span class="w"> </span><span class="n">fg_inds</span><span class="p">),</span><span class="w"> </span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">num_zero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="nf">cast</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">equal</span><span class="p">(</span><span class="n">fg_label_pred</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">int64</span><span class="p">),</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;num_zero&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">false_negative</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="k">where</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">empty_fg</span><span class="p">,</span><span class="w"> </span><span class="mf">0.</span><span class="p">,</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="nf">cast</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">truediv</span><span class="p">(</span><span class="n">num_zero</span><span class="p">,</span><span class="w"> </span><span class="n">num_fg</span><span class="p">),</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">),</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;false_negative&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">fg_accuracy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="k">where</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">empty_fg</span><span class="p">,</span><span class="w"> </span><span class="mf">0.</span><span class="p">,</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">gather</span><span class="p">(</span><span class="n">correct</span><span class="p">,</span><span class="w"> </span><span class="n">fg_inds</span><span class="p">)),</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;fg_accuracy&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">box_loss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="nf">abs</span><span class="p">(</span><span class="n">fg_boxes</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">fg_box_logits</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">box_loss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">truediv</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">box_loss</span><span class="p">,</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="nf">cast</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">shape</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">),</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;box_loss&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">add_moving_summary</span><span class="p">(</span><span class="n">label_loss</span><span class="p">,</span><span class="w"> </span><span class="n">box_loss</span><span class="p">,</span><span class="w"> </span><span class="n">accuracy</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">                       </span><span class="n">fg_accuracy</span><span class="p">,</span><span class="w"> </span><span class="n">false_negative</span><span class="p">,</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="nf">cast</span><span class="p">(</span><span class="n">num_fg</span><span class="p">,</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;num_fg_label&#39;</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">[</span><span class="n">label_loss, box_loss</span><span class="o">]</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h3 id="fastrcnn_outputs">fastrcnn_outputs</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">fastrcnn_outputs</span><span class="p">(</span>
+    <span class="n">feature</span><span class="p">,</span>
+    <span class="n">num_categories</span><span class="p">,</span>
+    <span class="n">class_agnostic_regression</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Args:
+    feature (any shape):
+    num_categories (int):
+    class_agnostic_regression (bool): if True, regression to N x 1 x 4</p>
+<p>Returns:
+    cls_logits: N x num_class classification logits
+    reg_logits: N x num_classx4 or Nx1x4 if class agnostic</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="nv">@layer_register</span><span class="p">(</span><span class="n">log_shape</span><span class="o">=</span><span class="k">True</span><span class="p">)</span><span class="w"></span>
+
+<span class="n">def</span><span class="w"> </span><span class="n">fastrcnn_outputs</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span><span class="w"> </span><span class="n">num_categories</span><span class="p">,</span><span class="w"> </span><span class="n">class_agnostic_regression</span><span class="o">=</span><span class="k">False</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    Args:</span>
+
+<span class="ss">        feature (any shape):</span>
+
+<span class="ss">        num_categories (int):</span>
+
+<span class="ss">        class_agnostic_regression (bool): if True, regression to N x 1 x 4</span>
+
+<span class="ss">    Returns:</span>
+
+<span class="ss">        cls_logits: N x num_class classification logits</span>
+
+<span class="ss">        reg_logits: N x num_classx4 or Nx1x4 if class agnostic</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">num_classes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">num_categories</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">classification</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FullyConnected</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">        </span><span class="s1">&#39;class&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">feature</span><span class="p">,</span><span class="w"> </span><span class="n">num_classes</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">kernel_initializer</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">random_normal_initializer</span><span class="p">(</span><span class="n">stddev</span><span class="o">=</span><span class="mf">0.01</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">num_classes_for_box</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">class_agnostic_regression</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="n">num_classes</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">box_regression</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FullyConnected</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">        </span><span class="s1">&#39;box&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">feature</span><span class="p">,</span><span class="w"> </span><span class="n">num_classes_for_box</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">kernel_initializer</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">random_normal_initializer</span><span class="p">(</span><span class="n">stddev</span><span class="o">=</span><span class="mf">0.001</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">box_regression</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">box_regression</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">num_classes_for_box</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">),</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;output_box&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">classification</span><span class="p">,</span><span class="w"> </span><span class="n">box_regression</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h3 id="fastrcnn_predictions">fastrcnn_predictions</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">fastrcnn_predictions</span><span class="p">(</span>
+    <span class="n">boxes</span><span class="p">,</span>
+    <span class="n">scores</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Generate final results from predictions of all proposals.</p>
+<p>Args:
+    boxes: n#classx4 floatbox in float32
+    scores: nx#class</p>
+<p>Returns:
+    boxes: Kx4
+    scores: K
+    labels: K</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="nv">@under_name_scope</span><span class="p">()</span><span class="w"></span>
+
+<span class="n">def</span><span class="w"> </span><span class="n">fastrcnn_predictions</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span><span class="w"> </span><span class="n">scores</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    Generate final results from predictions of all proposals.</span>
+
+<span class="ss">    Args:</span>
+
+<span class="ss">        boxes: n#classx4 floatbox in float32</span>
+
+<span class="ss">        scores: nx#class</span>
+
+<span class="ss">    Returns:</span>
+
+<span class="ss">        boxes: Kx4</span>
+
+<span class="ss">        scores: K</span>
+
+<span class="ss">        labels: K</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">assert</span><span class="w"> </span><span class="n">boxes</span><span class="p">.</span><span class="n">shape</span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">scores</span><span class="p">.</span><span class="n">shape</span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">boxes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="n">1, 0, 2</span><span class="o">]</span><span class="p">)</span><span class="o">[</span><span class="n">1:, :, :</span><span class="o">]</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">#catxnx4</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">scores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">scores</span><span class="o">[</span><span class="n">:, 1:</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="n">1, 0</span><span class="o">]</span><span class="p">)</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">#catxn</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">max_coord</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">reduce_max</span><span class="p">(</span><span class="n">boxes</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">filtered_ids</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="k">where</span><span class="p">(</span><span class="n">scores</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">cfg</span><span class="p">.</span><span class="n">TEST</span><span class="p">.</span><span class="n">RESULT_SCORE_THRESH</span><span class="p">)</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">Fx2</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">filtered_boxes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">gather_nd</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span><span class="w"> </span><span class="n">filtered_ids</span><span class="p">)</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">Fx4</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">filtered_scores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">gather_nd</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span><span class="w"> </span><span class="n">filtered_ids</span><span class="p">)</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">F</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">cls_per_box</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">slice</span><span class="p">(</span><span class="n">filtered_ids</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="n">0, 0</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="n">-1, 1</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">offsets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="nf">cast</span><span class="p">(</span><span class="n">cls_per_box</span><span class="p">,</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">max_coord</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">F</span><span class="p">,</span><span class="mi">1</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">nms_boxes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">filtered_boxes</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">offsets</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">selection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="nc">image</span><span class="p">.</span><span class="n">non_max_suppression</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">nms_boxes</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">filtered_scores</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">cfg</span><span class="p">.</span><span class="n">TEST</span><span class="p">.</span><span class="n">RESULTS_PER_IM</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">cfg</span><span class="p">.</span><span class="n">TEST</span><span class="p">.</span><span class="n">FRCNN_NMS_THRESH</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="k">next</span><span class="w"> </span><span class="n">lines</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">really</span><span class="w"> </span><span class="nl">dirty</span><span class="p">:</span><span class="w"> </span><span class="n">it</span><span class="s1">&#39;s a trick to return the scores for all classes</span>
+
+<span class="s1">    final_scores = tf.gather(tf.gather(scores, filtered_ids[:, 1], axis=1), selection, axis=1)</span>
+
+<span class="s1">    final_scores = tf.transpose(final_scores, name=&quot;scores&quot;)</span>
+
+<span class="s1">    final_labels = tf.add(tf.gather(cls_per_box[:, 0], selection), 1, name=&#39;</span><span class="n">labels</span><span class="s1">&#39;)</span>
+
+<span class="s1">    final_boxes = tf.gather(filtered_boxes, selection, name=&#39;</span><span class="n">boxes</span><span class="err">&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">final_boxes</span><span class="p">,</span><span class="w"> </span><span class="n">final_scores</span><span class="p">,</span><span class="w"> </span><span class="n">final_labels</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h3 id="proposal_metrics">proposal_metrics</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">proposal_metrics</span><span class="p">(</span>
+    <span class="n">iou</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Add summaries for RPN proposals.</p>
+<p>Args:
+    iou: nxm, #proposal x #gt</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="nv">@under_name_scope</span><span class="p">()</span><span class="w"></span>
+
+<span class="n">def</span><span class="w"> </span><span class="n">proposal_metrics</span><span class="p">(</span><span class="n">iou</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    Add summaries for RPN proposals.</span>
+
+<span class="ss">    Args:</span>
+
+<span class="ss">        iou: nxm, #proposal x #gt</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">find</span><span class="w"> </span><span class="n">best</span><span class="w"> </span><span class="n">roi</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">each</span><span class="w"> </span><span class="n">gt</span><span class="p">,</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">summary</span><span class="w"> </span><span class="k">only</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">best_iou</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">reduce_max</span><span class="p">(</span><span class="n">iou</span><span class="p">,</span><span class="w"> </span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">mean_best_iou</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">best_iou</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;best_iou_per_gt&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">summaries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">mean_best_iou</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">with</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;/cpu:0&#39;</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">th</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="o">[</span><span class="n">0.3, 0.5</span><span class="o">]</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">recall</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">truediv</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">tf</span><span class="p">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">best_iou</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">th</span><span class="p">),</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">tf</span><span class="p">.</span><span class="k">size</span><span class="p">(</span><span class="n">best_iou</span><span class="p">,</span><span class="w"> </span><span class="n">out_type</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">int64</span><span class="p">),</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;recall_iou{}&#39;</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">th</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">summaries</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">recall</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">add_moving_summary</span><span class="p">(</span><span class="o">*</span><span class="n">summaries</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h3 id="sample_fast_rcnn_targets">sample_fast_rcnn_targets</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">sample_fast_rcnn_targets</span><span class="p">(</span>
+    <span class="n">boxes</span><span class="p">,</span>
+    <span class="n">gt_boxes</span><span class="p">,</span>
+    <span class="n">gt_labels</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Sample some boxes from all proposals for training.</p>
+<h1 id="fg-is-guaranteed-to-be-0-because-ground-truth-boxes-will-be-added-as-proposals">fg is guaranteed to be &gt; 0, because ground truth boxes will be added as proposals.</h1>
+<p>Args:
+    boxes: nx4 region proposals, floatbox
+    gt_boxes: mx4, floatbox
+    gt_labels: m, int32</p>
+<p>Returns:
+    A BoxProposals instance, with:
+        sampled_boxes: tx4 floatbox, the rois
+        sampled_labels: t int64 labels, in [0, #class). Positive means foreground.
+        fg_inds_wrt_gt: #fg indices, each in range [0, m-1].
+            It contains the matching GT of each foreground roi.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="nv">@under_name_scope</span><span class="p">()</span><span class="w"></span>
+
+<span class="n">def</span><span class="w"> </span><span class="n">sample_fast_rcnn_targets</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span><span class="w"> </span><span class="n">gt_boxes</span><span class="p">,</span><span class="w"> </span><span class="n">gt_labels</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    Sample some boxes from all proposals for training.</span>
+
+<span class="ss">    #fg is guaranteed to be &gt; 0, because ground truth boxes will be added as proposals.</span>
+
+<span class="ss">    Args:</span>
+
+<span class="ss">        boxes: nx4 region proposals, floatbox</span>
+
+<span class="ss">        gt_boxes: mx4, floatbox</span>
+
+<span class="ss">        gt_labels: m, int32</span>
+
+<span class="ss">    Returns:</span>
+
+<span class="ss">        A BoxProposals instance, with:</span>
+
+<span class="ss">            sampled_boxes: tx4 floatbox, the rois</span>
+
+<span class="ss">            sampled_labels: t int64 labels, in [0, #class). Positive means foreground.</span>
+
+<span class="ss">            fg_inds_wrt_gt: #fg indices, each in range [0, m-1].</span>
+
+<span class="ss">                It contains the matching GT of each foreground roi.</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">iou</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pairwise_iou</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span><span class="w"> </span><span class="n">gt_boxes</span><span class="p">)</span><span class="w">     </span><span class="err">#</span><span class="w"> </span><span class="n">nxm</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">proposal_metrics</span><span class="p">(</span><span class="n">iou</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">ground</span><span class="w"> </span><span class="n">truth</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">proposals</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">well</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">boxes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="nf">concat</span><span class="p">(</span><span class="o">[</span><span class="n">boxes, gt_boxes</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">4</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">iou</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="nf">concat</span><span class="p">(</span><span class="o">[</span><span class="n">iou, tf.eye(tf.shape(gt_boxes)[0</span><span class="o">]</span><span class="p">)</span><span class="err">]</span><span class="p">,</span><span class="w"> </span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">m</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">#proposal</span><span class="o">=</span><span class="n">n</span><span class="o">+</span><span class="n">m</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">now</span><span class="w"> </span><span class="k">on</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">sample_fg_bg</span><span class="p">(</span><span class="n">iou</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">fg_mask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">cond</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">shape</span><span class="p">(</span><span class="n">iou</span><span class="p">)</span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">                          </span><span class="nl">lambda</span><span class="p">:</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">reduce_max</span><span class="p">(</span><span class="n">iou</span><span class="p">,</span><span class="w"> </span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">cfg</span><span class="p">.</span><span class="n">FRCNN</span><span class="p">.</span><span class="n">FG_THRESH</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">                          </span><span class="nl">lambda</span><span class="p">:</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="o">[</span><span class="n">tf.shape(iou)[0</span><span class="o">]</span><span class="err">]</span><span class="p">,</span><span class="w"> </span><span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">bool</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">fg_inds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="k">where</span><span class="p">(</span><span class="n">fg_mask</span><span class="p">),</span><span class="w"> </span><span class="o">[</span><span class="n">-1</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">num_fg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">minimum</span><span class="p">(</span><span class="nc">int</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">cfg</span><span class="p">.</span><span class="n">FRCNN</span><span class="p">.</span><span class="n">BATCH_PER_IM</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cfg</span><span class="p">.</span><span class="n">FRCNN</span><span class="p">.</span><span class="n">FG_RATIO</span><span class="p">),</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">tf</span><span class="p">.</span><span class="k">size</span><span class="p">(</span><span class="n">fg_inds</span><span class="p">),</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;num_fg&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">fg_inds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">random_shuffle</span><span class="p">(</span><span class="n">fg_inds</span><span class="p">)</span><span class="o">[</span><span class="n">:num_fg</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">bg_inds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="k">where</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">logical_not</span><span class="p">(</span><span class="n">fg_mask</span><span class="p">)),</span><span class="w"> </span><span class="o">[</span><span class="n">-1</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">num_bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">minimum</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">cfg</span><span class="p">.</span><span class="n">FRCNN</span><span class="p">.</span><span class="n">BATCH_PER_IM</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">num_fg</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">tf</span><span class="p">.</span><span class="k">size</span><span class="p">(</span><span class="n">bg_inds</span><span class="p">),</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;num_bg&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">bg_inds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">random_shuffle</span><span class="p">(</span><span class="n">bg_inds</span><span class="p">)</span><span class="o">[</span><span class="n">:num_bg</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">add_moving_summary</span><span class="p">(</span><span class="n">num_fg</span><span class="p">,</span><span class="w"> </span><span class="n">num_bg</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">fg_inds</span><span class="p">,</span><span class="w"> </span><span class="n">bg_inds</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">fg_inds</span><span class="p">,</span><span class="w"> </span><span class="n">bg_inds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sample_fg_bg</span><span class="p">(</span><span class="n">iou</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">fg</span><span class="p">,</span><span class="n">bg</span><span class="w"> </span><span class="n">indices</span><span class="w"> </span><span class="n">w</span><span class="p">.</span><span class="n">r</span><span class="p">.</span><span class="n">t</span><span class="w"> </span><span class="n">proposals</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">best_iou_ind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">cond</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">shape</span><span class="p">(</span><span class="n">iou</span><span class="p">)</span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">                           </span><span class="nl">lambda</span><span class="p">:</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">iou</span><span class="p">,</span><span class="w"> </span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="n">#proposal</span><span class="p">,</span><span class="w"> </span><span class="k">each</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="mi">0</span><span class="o">~</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="w"></span>
+
+<span class="w">                           </span><span class="nl">lambda</span><span class="p">:</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="o">[</span><span class="n">tf.shape(iou)[0</span><span class="o">]</span><span class="err">]</span><span class="p">,</span><span class="w"> </span><span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">int64</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">fg_inds_wrt_gt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">gather</span><span class="p">(</span><span class="n">best_iou_ind</span><span class="p">,</span><span class="w"> </span><span class="n">fg_inds</span><span class="p">)</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="n">num_fg</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">all_indices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="nf">concat</span><span class="p">(</span><span class="o">[</span><span class="n">fg_inds, bg_inds</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="n">indices</span><span class="w"> </span><span class="n">w</span><span class="p">.</span><span class="n">r</span><span class="p">.</span><span class="n">t</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="n">n</span><span class="o">+</span><span class="n">m</span><span class="w"> </span><span class="n">proposal</span><span class="w"> </span><span class="n">boxes</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">ret_boxes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">gather</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span><span class="w"> </span><span class="n">all_indices</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">ret_labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="nf">concat</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">        </span><span class="o">[</span><span class="n">tf.gather(gt_labels, fg_inds_wrt_gt),</span>
+
+<span class="n">         tf.zeros_like(bg_inds, dtype=tf.int64)</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">stop</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">gradient</span><span class="w"> </span><span class="o">--</span><span class="w"> </span><span class="n">they</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">meant</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">training</span><span class="w"> </span><span class="n">targets</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">BoxProposals</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">tf</span><span class="p">.</span><span class="n">stop_gradient</span><span class="p">(</span><span class="n">ret_boxes</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;sampled_proposal_boxes&#39;</span><span class="p">),</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">tf</span><span class="p">.</span><span class="n">stop_gradient</span><span class="p">(</span><span class="n">ret_labels</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;sampled_labels&#39;</span><span class="p">),</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">tf</span><span class="p">.</span><span class="n">stop_gradient</span><span class="p">(</span><span class="n">fg_inds_wrt_gt</span><span class="p">))</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h2 id="classes">Classes</h2>
+<h3 id="boxproposals">BoxProposals</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">BoxProposals</span><span class="p">(</span>
+    <span class="n">boxes</span><span class="p">,</span>
+    <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">fg_inds_wrt_gt</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>A structure to manage box proposals and their relations with ground truth.</p>
+<h4 id="methods">Methods</h4>
+<h5 id="fg_boxes">fg_boxes</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">fg_boxes</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Returns: #fg x4</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="nv">@memoized_method</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">fg_boxes</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot; Returns: #fg x4&quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">gather</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">boxes</span><span class="p">,</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">fg_inds</span><span class="p">(),</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;fg_boxes&#39;</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h5 id="fg_inds">fg_inds</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">fg_inds</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Returns: #fg indices in [0, N-1] </p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="nv">@memoized_method</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">fg_inds</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot; Returns: #fg indices in [0, N-1] &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="k">where</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">labels</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="o">[</span><span class="n">-1</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;fg_inds&#39;</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h5 id="fg_labels">fg_labels</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">fg_labels</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Returns: #fg</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="nv">@memoized_method</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">fg_labels</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot; Returns: #fg&quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">gather</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">labels</span><span class="p">,</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">fg_inds</span><span class="p">(),</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;fg_labels&#39;</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h3 id="fastrcnnhead">FastRCNNHead</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">FastRCNNHead</span><span class="p">(</span>
+    <span class="n">proposals</span><span class="p">,</span>
+    <span class="n">box_logits</span><span class="p">,</span>
+    <span class="n">label_logits</span><span class="p">,</span>
+    <span class="n">gt_boxes</span><span class="p">,</span>
+    <span class="n">bbox_regression_weights</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>A class to process &amp; decode inputs/outputs of a fastrcnn classification+regression head.</p>
+<h4 id="methods_1">Methods</h4>
+<h5 id="decoded_output_boxes">decoded_output_boxes</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">decoded_output_boxes</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Returns: N x #class x 4 </p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="nv">@memoized_method</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">decoded_output_boxes</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot; Returns: N x #class x 4 &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">anchors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">tile</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">proposals</span><span class="p">.</span><span class="n">boxes</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"></span>
+
+<span class="w">                          </span><span class="o">[</span><span class="n">1, self._num_classes, 1</span><span class="o">]</span><span class="p">)</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">#class</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="mi">4</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">decoded_boxes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">decode_bbox_target</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">self</span><span class="p">.</span><span class="n">box_logits</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">bbox_regression_weights</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">anchors</span><span class="w"></span>
+
+<span class="w">        </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">decoded_boxes</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h5 id="decoded_output_boxes_class_agnostic">decoded_output_boxes_class_agnostic</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">decoded_output_boxes_class_agnostic</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Returns: Nx4 </p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="nv">@memoized_method</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">decoded_output_boxes_class_agnostic</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot; Returns: Nx4 &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">_bbox_class_agnostic</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">box_logits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">box_logits</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="n">-1, 4</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">decoded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">decode_bbox_target</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">box_logits</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">bbox_regression_weights</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">self</span><span class="p">.</span><span class="n">proposals</span><span class="p">.</span><span class="n">boxes</span><span class="w"></span>
+
+<span class="w">        </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">decoded</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h5 id="decoded_output_boxes_for_label">decoded_output_boxes_for_label</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">decoded_output_boxes_for_label</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">labels</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="nv">@memoized_method</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">decoded_output_boxes_for_label</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">labels</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">_bbox_class_agnostic</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">indices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">stack</span><span class="p">(</span><span class="o">[</span><span class="n"></span>
+
+<span class="n">            tf.range(tf.size(labels, out_type=tf.int64)),</span>
+
+<span class="n">            labels</span>
+
+<span class="n">        </span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">needed_logits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">gather_nd</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">box_logits</span><span class="p">,</span><span class="w"> </span><span class="n">indices</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">decoded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">decode_bbox_target</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">needed_logits</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">bbox_regression_weights</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">self</span><span class="p">.</span><span class="n">proposals</span><span class="p">.</span><span class="n">boxes</span><span class="w"></span>
+
+<span class="w">        </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">decoded</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h5 id="decoded_output_boxes_for_predicted_label">decoded_output_boxes_for_predicted_label</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">decoded_output_boxes_for_predicted_label</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Returns: Nx4 decoded boxes </p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="nv">@memoized_method</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">decoded_output_boxes_for_predicted_label</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot; Returns: Nx4 decoded boxes &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">_decoded_output_boxes_for_label</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">predicted_labels</span><span class="p">())</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h5 id="decoded_output_boxes_for_true_label">decoded_output_boxes_for_true_label</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">decoded_output_boxes_for_true_label</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Returns: Nx4 decoded boxes </p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="nv">@memoized_method</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">decoded_output_boxes_for_true_label</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot; Returns: Nx4 decoded boxes &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">_decoded_output_boxes_for_label</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">proposals</span><span class="p">.</span><span class="n">labels</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h5 id="fg_box_logits">fg_box_logits</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">fg_box_logits</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Returns: #fg x ? x 4 </p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="nv">@memoized_method</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">fg_box_logits</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot; Returns: #fg x ? x 4 &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">gather</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">box_logits</span><span class="p">,</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">proposals</span><span class="p">.</span><span class="n">fg_inds</span><span class="p">(),</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;fg_box_logits&#39;</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h5 id="losses">losses</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">losses</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="nv">@memoized_method</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">losses</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">encoded_fg_gt_boxes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">encode_bbox_target</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">tf</span><span class="p">.</span><span class="n">gather</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">gt_boxes</span><span class="p">,</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">proposals</span><span class="p">.</span><span class="n">fg_inds_wrt_gt</span><span class="p">),</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">self</span><span class="p">.</span><span class="n">proposals</span><span class="p">.</span><span class="n">fg_boxes</span><span class="p">())</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">bbox_regression_weights</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">fastrcnn_losses</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">self</span><span class="p">.</span><span class="n">proposals</span><span class="p">.</span><span class="n">labels</span><span class="p">,</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">label_logits</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">encoded_fg_gt_boxes</span><span class="p">,</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">fg_box_logits</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">        </span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h5 id="output_scores">output_scores</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">output_scores</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Returns: N x #class scores, summed to one for each box.</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="nv">@memoized_method</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">output_scores</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="k">None</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot; Returns: N x #class scores, summed to one for each box.&quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">label_logits</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h5 id="predicted_labels">predicted_labels</h5>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">predicted_labels</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Returns: N ints </p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="nv">@memoized_method</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">predicted_labels</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot; Returns: N ints &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">label_logits</span><span class="p">,</span><span class="w"> </span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;predicted_labels&#39;</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../model_fpn/" title="Model Fpn" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Model Fpn
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../model_mrcnn/" title="Model Mrcnn" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Model Mrcnn
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Powered by
+        <a href="http://timothycrosley.github.io/portray">portray.</a>
+        You too can
+        <a href="http://timothycrosley.github.io/portray">
+          portray</a>
+        your Python project well using automatic documentation.
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../../../assets/javascripts/vendor.2d1db4bd.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.6627ddf3.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../../../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../../../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
