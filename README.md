@@ -1,4 +1,9 @@
-# MOT
+<h1 align="left">MOT</h1>
+
+<a href="https://www.plasticorigins.eu/"><img width="80px" src="https://github.com/surfriderfoundationeurope/The-Plastic-Origins-Project/blob/master/assets/PlasticOrigins_logo.png" width="5%" height="5%" align="left" hspace="0" vspace="0"></a>
+
+  <p align="justify">Proudly Powered by <a href="https://surfrider.eu/">SURFRIDER Foundation Europe</a>, this open-source initiative is a part of the <a href="https://www.plasticorigins.eu/">PLASTIC ORIGINS</a> project - a citizen science project that uses AI to map plastic pollution in European rivers and share its data publicly. Browse the <a href="https://github.com/surfriderfoundationeurope/The-Plastic-Origins-Project">project repository</a> to know more about its initiatives and how you can get involved. Please consider starring :star: the project's repositories to show your interest and support. We rely on YOU for making this project a success and thank you in advance for your contributions.</p>
+  
 _________________
 
 [![Build Status](https://travis-ci.com/surfriderfoundationeurope/mot.svg?branch=master)](https://travis-ci.com/surfriderfoundationeurope/mot)
@@ -8,15 +13,27 @@ _________________
 [Read Latest Documentation](https://surfriderfoundationeurope.github.io/mot/) - [Browse GitHub Code Repository](https://github.com/surfriderfoundationeurope/mot)
 _________________
 
-## Project
+Welcome to **MOT**, the current Plastic Origins model for garbage detection on river banks. 
 
-Welcome to MOT, the garbage detection on river banks github. It is part of a project led by [Surfrider Europe](https://surfrider.eu/), which aims at quantifying plastic pollution in rivers through space and time.
-
-MOT stands for Multi-Object Tracking, as we detect, then track the different plastic trash instances.
+MOT stands for **Multi-Object Tracking** as we detect and then track the different plastic trash instances.
 
 The object detection part is based on [tensorpack](https://github.com/tensorpack/tensorpack).
 
-**The next subsections are useful to read if you want to train models or perform advanced tasks. However, if you just want to launch a serving container or perform inferences on one of those, directly jump to [this file](src/mot/serving/README.md).**
+>*The next subsections are useful to read if you want to train models or perform advanced tasks. However, if you just want to launch a serving container or perform inferences on one of those, directly jump to [this file](src/mot/serving/README.md).*
+
+## Getting Started
+
+### Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+* You have a `<Linux>` machine. 
+* Preferably, you have a GPU on your machine.
+
+#### Technical stack
+
+* Language: `Python` , `Tensorflow` , `Docker` , `Tensorpack`
+* Framework: `Python 3.3+` ,`1.6 <= tensorflow < 2.0`
 
 ### Dataset
 
@@ -59,7 +76,9 @@ Do the following command to exec an already running container:
 make docker-exec-training
 ```
 
-### Internal tools
+### Usage
+
+#### Internal tools
 
 You can launch a jupyter notebook or a tensorboard server by running the command.
 
@@ -72,7 +91,7 @@ or
 ```
 Then, access those servers through the ports you used in the Make command.
 
-### Train
+#### Train
 
 See the [original tensorpack README](src/mot/object_detection/README.md) for more details about the configurations and weights.
 ```bash
@@ -91,7 +110,7 @@ python3 -m mot.object_detection.train --load /path/to/pretrained_weights/COCO-Ma
 
 Put those files in a folder, which will be `/path/to/your/trained/model` in the export section.
 
-### Export
+#### Export
 
 First, you need to train an object detection model. Then, you can export this model in SavedModel format:
 
@@ -102,13 +121,11 @@ python3 -m mot.object_detection.predict --load /path/to/your/trained/model --ser
 The dataset should be the one downloaded following the instructions above. You can also use a folder with only [this file](http://files.heuritech.com/raw_files/surfrider/classes.json) inside if you don't want to download the whole dataset.
 Also remember to use the same config as the one used for training (using FPN.CASCADE=True for instance).
 
-### Serving
+#### Serving
 
 Refer to [this file](src/mot/serving/README.md).
 
-## Developpers
-
-Please read the [CONTRIBUTING.md](./CONTRIBUTING.md)
+## Test
 
 ### Developper installation
 
@@ -158,8 +175,33 @@ make docker-tests
 make up-tests
 pytest my_file.py::my_function
 ```
+## Contributing
 
-### Status
+It's great to have you here! We welcome any help and thank you in advance for your contributions.
+
+* Feel free to **report a problem/bug** or **propose an improvement** by creating a [new issue](https://github.com/surfriderfoundationeurope/mot/issues). Please document as much as possible the steps to reproduce your problem (even better with screenshots). If you think you discovered a security vulnerability, please contact directly our [Maintainers](##Maintainers).
+
+* Take a look at the [open issues](https://github.com/surfriderfoundationeurope/mot/issues) labeled as `help wanted`, feel free to **comment** to share your ideas or **submit a** [**pull request**](https://github.com/surfriderfoundationeurope/mot/pulls) if you feel that you can fix the issue yourself. Please document any relevant changes.
+
+For more information please read the [CONTRIBUTING.md](./CONTRIBUTING.md) file for developers.
+
+## Maintainers
+
+If you experience any problems, please don't hesitate to ping:
+
+* [@charlesollion](https://github.com/charlesollion)
+* [@mchagneux](https://github.com/mchagneux)
+
+Special thanks to all our [Contributors](https://github.com/orgs/surfriderfoundationeurope/people).
+
+## License
+
+We’re using the `MIT` License. For more details, check [`LICENSE`](https://github.com/surfriderfoundationeurope/mot/blob/master/LICENSE) file.
+
+## Additional information
+
+<details>
+<summary>STATUS</summary>
 
 Model & training:
 
@@ -186,3 +228,5 @@ Inference and deployment:
 - [x] Small webserver and API (in local)
 
 - [ ] Docker build and deployment
+
+</details>
