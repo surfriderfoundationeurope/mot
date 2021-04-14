@@ -24,31 +24,38 @@ NVIDIA_VISIBLE_DEVICES=2 RATIO_GPU=0.3 MODEL_FOLDER=/path/to/serving PORT=the_po
 
 Here are the different ways to perform inference requests.
 
-### Web interface
+### Tracking
 
-You can access a basic web interface to manually upload pictures or videos to do inference.
-In your browser, access the address `host:port`, with port being the one you specified in the previous step.
+*host:port/tracking*
 
-### cURL
-
-#### Json
-
-This only works for images.
-
-```bash
-curl -d @/path/to/json --header "Content-Type: application/json" host:port
-```
-
-#### File
-
-```bash
-curl -F "file=@/path/to/file" host:port
-```
-
-For videos you can add parameters such as fps and resolution like that:
+Available with web interface or a simple curl. You can upload a video or a zip archive containing images.
 
 ```bash
 curl -F "file=@/path/to/video.mp4" -F "fps=2" -F "resolution=(10,10)" host:port
 ```
 
 You don't have to specify those parameters and you can find their default value in [this file](inference.py).
+
+### Demo
+
+*host:port/demo*
+
+Available with web interface: you can upload an image, a localizer will make predictions on it which will be displayed in your browser.
+
+
+### Image
+
+*host:port/image*
+
+You can post to get the predictions of the localizer
+-  an image file:
+
+```bash
+curl  -F "file=@/path/to/image.jpg" host:port
+```
+
+- an image as a JSON in BGR:
+
+```bash
+curl -d @/path/to/json --header "Content-Type: application/json" host:port
+```

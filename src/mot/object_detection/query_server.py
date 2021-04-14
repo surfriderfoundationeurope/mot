@@ -1,12 +1,14 @@
 import json
+import logging
 import os
 from typing import Dict
 
 import numpy as np
 import requests
-from tensorpack import logger
 
 from mot.object_detection.preprocessing import preprocess_for_serving
+
+logger = logging.getLogger(__file__)
 
 
 def query_tensorflow_server(signature: Dict, url: str) -> Dict:
@@ -61,12 +63,16 @@ def localizer_tensorflow_serving_inference(
 
     Return:
 
-    - *Dict*: A dict with the predictions with the following format:
+    - *predictions*: A dict with the predictions with the following format:
 
     ```python
     if return_all_scores:
         predictions = {
-            'output/boxes:0': [[0, 0, 1, 1], [0, 0, 10, 10], [10, 10, 15, 100]], (y1, x1, y2, x2)
+            'output/boxes:0': [
+                [0.1, 0.1, 0.9, 0.9],
+                [0.0, 0.2, 0.1, 0.4],
+                [0.2, 0.4, 0.5, 0.7],
+                ], (y1, x1, y2, x2) scaled between 0 and 1
             'output/labels:0': [3, 1, 2],  # the labels start at 1 since 0 is for background
             'output/scores:0': [
                 [0.001, 0.001, 0.98],
@@ -76,7 +82,11 @@ def localizer_tensorflow_serving_inference(
         }
     else:
         predictions = {
-            'output/boxes:0': [[0, 0, 1, 1], [0, 0, 10, 10], [10, 10, 15, 100]],
+            'output/boxes:0': [
+                [0.1, 0.1, 0.9, 0.9],
+                [0.0, 0.2, 0.1, 0.4],
+                [0.2, 0.4, 0.5, 0.7],
+                ], # (y1, x1, y2, x2) scaled between 0 and 1
             'output/labels:0': [3, 1, 2], # the labels start at 1 since 0 is for background
             'output/scores:0': [0.98, 0.87, 0.76] # sorted in descending order
         }
@@ -87,10 +97,10 @@ def localizer_tensorflow_serving_inference(
     scores = np.array(predictions['output/scores:0'])
     if len(predictions["output/boxes:0"]) > 0:
         predictions['output/boxes:0'] = np.array(predictions['output/boxes:0'], np.int32) / ratio
-        predictions["output/boxes:0"][:, 0] /= image.shape[0] # scaling coords to [0, 1]
-        predictions["output/boxes:0"][:, 1] /= image.shape[1] # scaling coords to [0, 1]
-        predictions["output/boxes:0"][:, 2] /= image.shape[0] # scaling coords to [0, 1]
-        predictions["output/boxes:0"][:, 3] /= image.shape[1] # scaling coords to [0, 1]
+        predictions["output/boxes:0"][:, 0] /= image.shape[0]  # scaling coords to [0, 1]
+        predictions["output/boxes:0"][:, 1] /= image.shape[1]  # scaling coords to [0, 1]
+        predictions["output/boxes:0"][:, 2] /= image.shape[0]  # scaling coords to [0, 1]
+        predictions["output/boxes:0"][:, 3] /= image.shape[1]  # scaling coords to [0, 1]
         predictions['output/boxes:0'] = predictions['output/boxes:0'].tolist()
         if return_all_scores and len(scores.shape) == 1:
             raise ValueError(
